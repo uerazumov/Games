@@ -1,0 +1,97 @@
+﻿<Window x:Class="Lab2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" FontStyle="Italic">
+                Никнейм
+            </TextBlock>
+            <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="10" FontSize="16" TextAlignment="Center" FontStyle="Italic"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.33*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.3*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" FontStyle="Italic">Класс</TextBlock>
+                    <ComboBox Grid.Column="1" Margin="10">
+                        <ItemsControl.Items>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="12" FontStyle="Italic">Файтер</TextBlock>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="12" FontStyle="Italic">Клирик</TextBlock>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="12" FontStyle="Italic">Вор</TextBlock>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="12" FontStyle="Italic">Маг</TextBlock>
+                        </ItemsControl.Items>
+                    </ComboBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Сила</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Ловкость</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Интелект</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Удача</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">5</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">5</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">5</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">5</TextBlock>
+                    <Button Grid.Row="0" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
+                    <Button Grid.Row="1" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
+                    <Button Grid.Row="2" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
+                    <Button Grid.Row="3" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
+                    <Button Grid.Row="0" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
+                    <Button Grid.Row="1" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
+                    <Button Grid.Row="2" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
+                    <Button Grid.Row="3" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
+                </Grid>
+                <TextBlock Grid.Row="2" TextAlignment="Left" VerticalAlignment="Center" FontSize="16" FontStyle="Italic" Margin="10">Свободные очки 10</TextBlock>
+            </Grid>
+            <Image Grid.Column="1" Margin="20,10,20,10"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="5,5,5,5" FontStyle="Italic">Сохранить персонажа</Button>
+            <Button Grid.Column="1" Margin="5,5,5,5" FontStyle="Italic">Отмена</Button>
+        </Grid>
+        <TextBlock Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Italic">Создание персонажа</TextBlock>
+    </Grid>
+</Window>
