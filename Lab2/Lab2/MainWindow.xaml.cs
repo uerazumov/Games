@@ -20,6 +20,8 @@ namespace Lab2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public String Text { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
