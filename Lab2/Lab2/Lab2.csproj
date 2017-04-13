@@ -68,6 +68,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NicknameValidationRule.cs" />
@@ -96,6 +100,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="All classes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cleric.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Mage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Shooter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Support.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Warrior.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

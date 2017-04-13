@@ -22,9 +22,10 @@ namespace Lab2
         {
             CharacterClass = new List<string>()
             {
+                "Саппорт",
                 "Файтер",
                 "Клирик",
-                "Вор",
+                "Стрелок",
                 "Маг"
             };
         }

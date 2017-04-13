@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Lab2">
+    <local:NicknameValidationRule x:Key="NicknameRule"></local:NicknameValidationRule>
+    <BitmapImage x:Key="All_classes" UriSource="All classes.jpg"></BitmapImage>
+    <BitmapImage x:Key="Cleric" UriSource="Cleric.jpg"></BitmapImage>
+    <BitmapImage x:Key="Mage" UriSource="Mage.jpg"></BitmapImage>
+    <BitmapImage x:Key="Shooter" UriSource="Shooter.jpg"></BitmapImage>
+    <BitmapImage x:Key="Support" UriSource="Support.jpg"></BitmapImage>
+    <BitmapImage x:Key="Warrior" UriSource="Warrior.jpg"></BitmapImage>
+</ResourceDictionary>

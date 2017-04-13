@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="CharacterCreator" Height="350" Width="525">
     <Window.Resources>
-        <local:NicknameValidationRule x:Key="NicknameRule"></local:NicknameValidationRule>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
         <local:CharacterCreatorViewModel></local:CharacterCreatorViewModel>
@@ -94,7 +98,7 @@
                     <TextBlock Text="{Binding FreePoints}" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" FontSize="16" FontStyle="Italic" Margin="10"></TextBlock>
                 </Grid>
             </Grid>
-            <Image Grid.Column="1" Margin="20,10,20,10"/>
+            <Image Source="{StaticResource All_classes}" Grid.Column="1" Margin="20,10,20,10"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
