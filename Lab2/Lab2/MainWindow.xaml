@@ -84,7 +84,7 @@
                     <Button Grid.Row="1" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
                     <Button Grid.Row="2" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
                     <Button Grid.Row="3" Grid.Column="1" FontStyle="Italic" FontSize="18">-</Button>
-                    <Button Grid.Row="0" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
+                    <Button Command="{Binding Plus}" CommandParameter="{Binding}" Grid.Row="0" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
                     <Button Grid.Row="1" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
                     <Button Grid.Row="2" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
                     <Button Grid.Row="3" Grid.Column="3" FontStyle="Italic" FontSize="18">+</Button>
@@ -105,8 +105,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="5,5,5,5" FontStyle="Italic">Сохранить персонажа</Button>
-            <Button Grid.Column="1" Margin="5,5,5,5" FontStyle="Italic">Отмена</Button>
+            <Button Command="{Binding Save}" Grid.Column="0" Margin="5,5,5,5" FontStyle="Italic">Сохранить персонажа</Button>
+            <Button Command="{Binding Cancel}" Grid.Column="1" Margin="5,5,5,5" FontStyle="Italic">Отмена</Button>
         </Grid>
         <TextBlock Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Italic">Создание персонажа</TextBlock>
     </Grid>
