@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Lab2
 {
     class CharacterCreatorViewModel
     {
+        //public ICommand Plus { get;  set}
         public byte Force { get; set; }
         public byte Agility { get; set; }
         public byte Intelligence { get; set; }

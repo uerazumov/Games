@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Lab2"
         mc:Ignorable="d"
         Title="CharacterCreator" Height="350" Width="525">
+    <Window.Resources>
+        <local:NicknameValidationRule x:Key="NicknameRule"></local:NicknameValidationRule>
+    </Window.Resources>
     <Window.DataContext>
         <local:CharacterCreatorViewModel></local:CharacterCreatorViewModel>
     </Window.DataContext>
@@ -24,7 +27,13 @@
             <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" FontStyle="Italic">
                 Никнейм
             </TextBlock>
-            <TextBox Text="{Binding Nickname}" Grid.Column="1" VerticalAlignment="Center" Margin="10" FontSize="16" TextAlignment="Center" FontStyle="Italic"/>
+            <TextBox  Grid.Column="1" VerticalAlignment="Center" Margin="10" FontSize="16" TextAlignment="Center" FontStyle="Italic">
+                <Binding Path="Nickname">
+                    <Binding.ValidationRules>
+                        <local:NicknameValidationRule></local:NicknameValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
