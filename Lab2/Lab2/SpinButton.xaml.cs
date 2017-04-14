@@ -41,6 +41,7 @@ namespace Lab2
         public SpinButton()
         {
             InitializeComponent();
+            Value = 5;
             DataContext = this;
         }
 
@@ -48,12 +49,13 @@ namespace Lab2
 
         private void PlusClick(object sender, RoutedEventArgs e)
         {
-            Value++;
+            if (Value > 5)
+            Value--;
         }
 
         private void MinusClick(object sender, RoutedEventArgs e)
         {
-            Value--;
+            Value++;
         }
     }
 }

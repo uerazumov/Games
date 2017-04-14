@@ -29,6 +29,7 @@ namespace Lab2
                 "Стрелок",
                 "Маг"
             };
+            FreePoints = 10;
         }
     }
 }
