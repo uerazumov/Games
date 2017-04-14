@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows.Input;
 
 namespace Lab2
 {
-    class CharacterCreatorViewModel
+    class CharacterCreatorViewModel : INotifyPropertyChanged
     {
         public ICommand Cancel { get; set; }
         public ICommand Save { get; set; }
@@ -15,7 +16,19 @@ namespace Lab2
         public byte Agility { get; set; }
         public byte Intelligence { get; set; }
         public byte Luck { get; set; }
-        public byte FreePoints { get; set; }
+        public byte _freePoints { get; set; }
+        public byte FreePoints
+        {
+            get
+            {
+                return _freePoints;
+            }
+            set
+            {
+                _freePoints = value;
+                DoPropertyChanged("FreePoints");
+            }
+        }
         public string Nickname { get; set; }
         public List<string> CharacterClass { get; set; }
         public string SelectedCharacterClass { get; set; }
@@ -30,6 +43,19 @@ namespace Lab2
                 "Маг"
             };
             FreePoints = 10;
+            Force = 5;
+            Agility = 5;
+            Intelligence = 5;
+            Luck = 5;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void DoPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

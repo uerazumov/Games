@@ -74,10 +74,10 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Ловкость</TextBlock>
                     <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Интелект</TextBlock>
                     <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Удача</TextBlock>
-                    <local:SpinButton Grid.Row="0" Grid.Column="1"/>
-                    <local:SpinButton Grid.Row="1" Grid.Column="1"/>
-                    <local:SpinButton Grid.Row="2" Grid.Column="1"/>
-                    <local:SpinButton Grid.Row="3" Grid.Column="1"/>
+                    <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Force}" Grid.Row="0" Grid.Column="1"/>
+                    <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Agility}" Grid.Row="1" Grid.Column="1"/>
+                    <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Intelligence}" Grid.Row="2" Grid.Column="1"/>
+                    <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Luck}" Grid.Row="3" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>

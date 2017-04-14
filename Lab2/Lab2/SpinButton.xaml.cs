@@ -16,46 +16,73 @@ using System.Windows.Shapes;
 
 namespace Lab2
 {
-    public partial class SpinButton : UserControl
+    public partial class SpinButton : UserControl, INotifyPropertyChanged
     {
-        private Int32 _value;
+        public static DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(byte), typeof(SpinButton));
 
-        public int Value
+        public byte Value
         {
             get
             {
-                return (Int32)GetValue(ValueProperty);
+                return (byte)GetValue(ValueProperty);
             }
 
             set
             {
                 SetValue(ValueProperty, value);
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Value"));
+                DoPropertyChanged("Value");
             }
         }
 
-        public static DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(Int32), typeof(SpinButton));
+        public static DependencyProperty PointsProperty =
+            DependencyProperty.Register("Points", typeof(byte), typeof(SpinButton));
+
+        public byte Points
+        {
+            get
+            {
+                return (byte)GetValue(PointsProperty);
+            }
+
+            set
+            {
+                SetValue(PointsProperty, value);
+                DoPropertyChanged("Points");
+            }
+        }
+
+        private void PlusClick(object sender, RoutedEventArgs e)
+        {
+            if ((Value > 5) && (Points < 10))
+            {
+                Value--;
+                Points++;
+            }
+        }
 
         public SpinButton()
         {
             InitializeComponent();
-            Value = 5;
             DataContext = this;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void PlusClick(object sender, RoutedEventArgs e)
-        {
-            if (Value > 5)
-            Value--;
         }
 
         private void MinusClick(object sender, RoutedEventArgs e)
         {
-            Value++;
+            if (Points > 0)
+            {
+                Value++;
+                Points--;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void DoPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }
