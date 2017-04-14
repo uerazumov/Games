@@ -31,7 +31,19 @@ namespace Lab2
         }
         public string Nickname { get; set; }
         public List<string> CharacterClass { get; set; }
-        public string SelectedCharacterClass { get; set; }
+        public string _selectedCharacterClass { get; set; }
+        public string SelectedCharacterClass
+        {
+            get
+            {
+                return _selectedCharacterClass;
+            }
+            set
+            {
+                _selectedCharacterClass = value;
+                DoPropertyChanged("SelectedCharacterClass");
+            }
+        }
         public CharacterCreatorViewModel()
         {
             CharacterClass = new List<string>()

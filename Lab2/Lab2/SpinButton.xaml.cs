@@ -54,7 +54,7 @@ namespace Lab2
 
         private void PlusClick(object sender, RoutedEventArgs e)
         {
-            if ((Value > 5) && (Points < 10))
+            if (Value > 5)
             {
                 Value--;
                 Points++;
