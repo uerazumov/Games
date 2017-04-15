@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab2"
         mc:Ignorable="d"
-        Title="CharacterCreator" Height="350" Width="525">
+        Title="CharacterCreator" Height="400" Width="800">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +28,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" FontStyle="Italic">
+            <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Italic">
                 Никнейм
             </TextBlock>
             <TextBox  Grid.Column="1" VerticalAlignment="Center" Margin="10" FontSize="16" TextAlignment="Center" FontStyle="Italic"/>
@@ -49,8 +49,8 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" FontStyle="Italic">Класс</TextBlock>
-                    <ComboBox ItemsSource="{Binding CharacterClass}" SelectedItem="{Binding SelectedCharacterClass}" Grid.Column="1" Margin="10"></ComboBox>
+                    <TextBlock Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Italic">Класс</TextBlock>
+                    <ComboBox ItemsSource="{Binding CharacterClass}" SelectedItem="{Binding SelectedCharacterClass}" Grid.Column="1" Margin="10" FontSize="16"></ComboBox>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -64,10 +64,10 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="0.3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Сила</TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Ловкость</TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Интелект</TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontStyle="Italic" Margin="10,0">Удача</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10,0">Сила</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10,0">Ловкость</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10,0">Интелект</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10,0">Удача</TextBlock>
                     <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Force}" Grid.Row="0" Grid.Column="1"/>
                     <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Agility}" Grid.Row="1" Grid.Column="1"/>
                     <local:SpinButton Points="{Binding FreePoints}" Value="{Binding Intelligence}" Grid.Row="2" Grid.Column="1"/>
@@ -78,8 +78,8 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="0.6*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="16" FontStyle="Italic" Margin="10">Свободные очки</TextBlock>
-                    <TextBlock Text="{Binding FreePoints}" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" FontSize="16" FontStyle="Italic" Margin="10"></TextBlock>
+                    <TextBlock Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10">Свободные очки</TextBlock>
+                    <TextBlock Text="{Binding FreePoints}" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" FontSize="20" FontStyle="Italic" Margin="10"></TextBlock>
                 </Grid>
             </Grid>
             <Image Source="{Binding SelectedCharacterClass, Converter={StaticResource ClassConvertor} }" Grid.Column="1" Margin="20,10,20,10"/>
@@ -89,8 +89,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding Save}" Grid.Column="0" Margin="5,5,5,5" FontStyle="Italic">Сохранить персонажа</Button>
-            <Button Command="{Binding Cancel}" Grid.Column="1" Margin="5,5,5,5" FontStyle="Italic">Отмена</Button>
+            <Button Command="{Binding Save}" Grid.Column="0" Margin="5,5,5,5" FontStyle="Italic" FontSize="20">Сохранить персонажа</Button>
+            <Button Command="{Binding Cancel}" Grid.Column="1" Margin="5,5,5,5" FontStyle="Italic" FontSize="20">Отмена</Button>
         </Grid>
         <TextBlock Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Italic">Создание персонажа</TextBlock>
     </Grid>
