@@ -52,7 +52,7 @@ namespace Lab2
             }
         }
 
-        private void PlusClick(object sender, RoutedEventArgs e)
+        private void MinusClick(object sender, RoutedEventArgs e)
         {
             if (Value > 5)
             {
@@ -67,7 +67,7 @@ namespace Lab2
             DataContext = this;
         }
 
-        private void MinusClick(object sender, RoutedEventArgs e)
+        private void PlusClick(object sender, RoutedEventArgs e)
         {
             if (Points > 0)
             {

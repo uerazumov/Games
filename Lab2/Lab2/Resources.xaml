@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:Lab2">
     <local:NicknameValidationRule x:Key="NicknameRule"></local:NicknameValidationRule>
     <local:CharacterClassConvertor x:Key="ClassConvertor"></local:CharacterClassConvertor>
+    <local:CharacterCreatorViewModel x:Key="CharacterVM"></local:CharacterCreatorViewModel>
 </ResourceDictionary>
