@@ -29,6 +29,12 @@
                 Никнейм
             </TextBlock>
             <TextBox DataContext="{StaticResource CharacterVM}" Grid.Column="1" Style="{StaticResource TextBoxStyle}">
+                <TextBox.Background>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="#FFBA78CD" Offset="0" />
+                        <GradientStop Color="#FF7411A2" Offset="1" />
+                    </RadialGradientBrush>
+                </TextBox.Background>
                 <TextBox.Text>
                     <Binding Path="Nickname">
                         <Binding.ValidationRules>
@@ -57,7 +63,7 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle_24_center}">Класс</TextBlock>
                     <ComboBox ItemsSource="{Binding CharacterClass}" SelectedItem="{Binding SelectedCharacterClass}" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"></ComboBox>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Margin="10,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -66,7 +72,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.6*"></ColumnDefinition>
                         <ColumnDefinition Width="0.3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockStyle_20_left}">Сила</TextBlock>
@@ -78,13 +84,13 @@
                     <local:SpinButton Points="{Binding Source={StaticResource CharacterVM} , Path=FreePoints, Mode=TwoWay}" Value="{Binding Source={StaticResource CharacterVM} , Path=Intelligence, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
                     <local:SpinButton Points="{Binding Source={StaticResource CharacterVM} , Path=FreePoints, Mode=TwoWay}" Value="{Binding Source={StaticResource CharacterVM} , Path=Luck, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" Margin="10,0,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="0.6*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle_20_left}">Свободные очки</TextBlock>
-                    <TextBlock Text="{Binding FreePoints}" Grid.Column="1" Style="{StaticResource TextBlockStyle_20_left}"></TextBlock>
+                    <TextBlock Text="{Binding FreePoints, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{StaticResource TextBlockStyle_trigger}"></TextBlock>
                 </Grid>
             </Grid>
             <Image Source="{Binding SelectedCharacterClass, Converter={StaticResource ClassConvertor} }" Grid.Column="1" Margin="20,10,20,10"/>
@@ -94,8 +100,22 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding Save}" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа</Button>
-            <Button Command="{Binding Cancel}" Grid.Column="1" Style="{StaticResource ButtonStyle}">Отмена</Button>
+            <Button Command="{Binding Save}" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа
+                <Button.Background>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="#FFBA78CD" Offset="0" />
+                        <GradientStop Color="#FF7411A2" Offset="1" />
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Command="{Binding Cancel}" Grid.Column="1" Style="{StaticResource ButtonStyle}">Отмена
+                <Button.Background>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="#FFBA78CD" Offset="0" />
+                        <GradientStop Color="#FF7411A2" Offset="1" />
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
         </Grid>
         <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle_24_center}">Создание персонажа</TextBlock>
     </Grid>

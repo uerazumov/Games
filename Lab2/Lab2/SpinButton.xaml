@@ -7,10 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="24"></Setter>
-            <Setter Property="FontStyle" Value="Italic"></Setter>
-        </Style>
+        <ImageBrush x:Key="Plus" ImageSource="Plus.png"></ImageBrush>
+        <ImageBrush x:Key="Minus" ImageSource="Minus.png"></ImageBrush>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,7 +17,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Text="{Binding Value}" Grid.Column="1" Margin="0,5,0,0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" FontStyle="Italic"></TextBlock>
-        <Button Click="MinusClick" Grid.Column="0" Style="{StaticResource ButtonStyle}">-</Button>
-        <Button Click="PlusClick" Grid.Column="2" Style="{StaticResource ButtonStyle}">+</Button>
+        <Button Click="MinusClick" Grid.Column="0" Background="{StaticResource Minus}"></Button>
+        <Button Click="PlusClick" Grid.Column="2" Background="{StaticResource Plus}"></Button>
     </Grid>
 </UserControl>

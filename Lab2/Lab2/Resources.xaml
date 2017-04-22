@@ -14,22 +14,32 @@
         <Setter Property="TextAlignment" Value="Left"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
     </Style>
+    <Style x:Key="TextBlockStyle_trigger" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="TextAlignment" Value="Left"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding FreePoints}" Value="0">
+                <Setter Property="Visibility" Value="Collapsed"></Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="TextBlockStyle_24_center" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="TextAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="24"></Setter>
-        <Setter Property="Margin" Value="10,0"></Setter>
+        <Setter Property="Margin" Value="10,4,0,4"></Setter>
     </Style>
-    <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="Margin" Value="5,5,5,5"></Setter>
-        <Setter Property="FontStyle" Value="Italic"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
-    </Style>
+
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontStyle" Value="Italic"></Setter>
         <Setter Property="Margin" Value="10"></Setter>
         <Setter Property="TextAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="5,5,5,5"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
     </Style>
     <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
         <Setter Property="FontSize" Value="16"></Setter>
