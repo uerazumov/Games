@@ -8,6 +8,7 @@ using System.Windows.Controls;
 
 namespace Lab2
 {
+    // В Никнейме допустимы только русские буквы верхнего и нижнего регистра
     public class NicknameValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)

@@ -6,14 +6,20 @@
              xmlns:local="clr-namespace:Lab2"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Value}" Grid.Column="1" TextAlignment="Center" FontStyle="Italic" FontSize="20" Margin="0,5,0,0"></TextBlock>
-        <Button Click="MinusClick" Grid.Column="0" FontStyle="Italic" FontSize="24">-</Button>
-        <Button Click="PlusClick" Grid.Column="2" FontStyle="Italic" FontSize="24">+</Button>
+        <TextBlock Text="{Binding Value}" Grid.Column="1" Margin="0,5,0,0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" FontStyle="Italic"></TextBlock>
+        <Button Click="MinusClick" Grid.Column="0" Style="{StaticResource ButtonStyle}">-</Button>
+        <Button Click="PlusClick" Grid.Column="2" Style="{StaticResource ButtonStyle}">+</Button>
     </Grid>
 </UserControl>

@@ -16,7 +16,7 @@ namespace Lab2
         public byte Agility { get; set; }
         public byte Intelligence { get; set; }
         public byte Luck { get; set; }
-        public byte _freePoints { get; set; }
+        private byte _freePoints { get; set; }
         public byte FreePoints
         {
             get
@@ -31,7 +31,7 @@ namespace Lab2
         }
         public string Nickname { get; set; }
         public List<string> CharacterClass { get; set; }
-        public string _selectedCharacterClass { get; set; }
+        private string _selectedCharacterClass { get; set; }
         public string SelectedCharacterClass
         {
             get

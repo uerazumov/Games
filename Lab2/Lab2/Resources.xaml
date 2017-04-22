@@ -4,4 +4,36 @@
     <local:NicknameValidationRule x:Key="NicknameRule"></local:NicknameValidationRule>
     <local:CharacterClassConvertor x:Key="ClassConvertor"></local:CharacterClassConvertor>
     <local:CharacterCreatorViewModel x:Key="CharacterVM"></local:CharacterCreatorViewModel>
+    <ImageBrush x:Key="BackgroundImage" ImageSource="Background Image.jpg"></ImageBrush>
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        
+    </Style>
+    <Style x:Key="TextBlockStyle_20_left" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="TextAlignment" Value="Left"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+    <Style x:Key="TextBlockStyle_24_center" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="24"></Setter>
+        <Setter Property="Margin" Value="10,0"></Setter>
+    </Style>
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="5,5,5,5"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+    <Style x:Key="TextBoxStyle" TargetType="TextBox">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+    <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+    </Style>
 </ResourceDictionary>
