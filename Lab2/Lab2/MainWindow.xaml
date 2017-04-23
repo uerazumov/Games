@@ -61,7 +61,8 @@
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle_24_center}">Класс</TextBlock>
-                    <ComboBox ItemsSource="{Binding CharacterClass}" SelectedItem="{Binding SelectedCharacterClass}" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+                    <ComboBox ItemsSource="{Binding CharacterClass}" SelectedItem="{Binding SelectedCharacterClass}" Grid.Column="1" Style="{StaticResource ComboBoxStyle}">
+                    </ComboBox>
                 </Grid>
                 <Grid Grid.Row="1" Margin="10,0,0,0">
                     <Grid.RowDefinitions>
