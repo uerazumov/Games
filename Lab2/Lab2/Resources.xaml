@@ -37,6 +37,39 @@
         <Setter Property="FontSize" Value="16"></Setter>
     </Style>
     <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2">
+                        <Border.Style>
+                            <Style>
+                                <Setter Property="Border.Background">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="#FFBA78CD" Offset="0" />
+                                            <GradientStop Color="#FF7411A2" Offset="1" />
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                        <Setter Property="Border.Background">
+                                            <Setter.Value>
+                                                <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                                    <GradientStop Color="#FFE9C3F3" Offset="0" />
+                                                    <GradientStop Color="#FFA953D1" Offset="1" />
+                                                </RadialGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Margin" Value="5,5,5,5"></Setter>
         <Setter Property="FontStyle" Value="Italic"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>

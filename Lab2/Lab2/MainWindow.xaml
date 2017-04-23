@@ -100,22 +100,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding Save}" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа
-                <Button.Background>
-                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-                        <GradientStop Color="#FFBA78CD" Offset="0" />
-                        <GradientStop Color="#FF7411A2" Offset="1" />
-                    </RadialGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button Command="{Binding Cancel}" Grid.Column="1" Style="{StaticResource ButtonStyle}">Отмена
-                <Button.Background>
-                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-                        <GradientStop Color="#FFBA78CD" Offset="0" />
-                        <GradientStop Color="#FF7411A2" Offset="1" />
-                    </RadialGradientBrush>
-                </Button.Background>
-            </Button>
+            <Button Command="{Binding Save}" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа</Button>
+            <Button Command="{Binding Cancel}" Grid.Column="1" Style="{StaticResource ButtonStyle}">Отмена</Button>
         </Grid>
         <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle_24_center}">Создание персонажа</TextBlock>
     </Grid>
