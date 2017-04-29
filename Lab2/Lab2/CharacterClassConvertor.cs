@@ -18,27 +18,27 @@ namespace Lab2
             {
                 case "Саппорт":
                     {
-                        return Image.UriSource = new Uri("Support.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\Support.jpg", UriKind.RelativeOrAbsolute);
                     }
                 case "Файтер":
                     {
-                        return Image.UriSource = new Uri("Warrior.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\Warrior.jpg", UriKind.RelativeOrAbsolute);
                     }
                 case "Клирик":
                     {
-                        return Image.UriSource = new Uri("Cleric.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\Cleric.jpg", UriKind.RelativeOrAbsolute);
                     }
                 case "Стрелок":
                     {
-                        return Image.UriSource = new Uri("Shooter.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\Shooter.jpg", UriKind.RelativeOrAbsolute);
                     }
                 case "Маг":
                     {
-                        return Image.UriSource = new Uri("Mage.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\Mage.jpg", UriKind.RelativeOrAbsolute);
                     }
                 default:
                     {
-                        return Image.UriSource = new Uri("All classes.jpg", UriKind.RelativeOrAbsolute);
+                        return Image.UriSource = new Uri("Images\\All classes.jpg", UriKind.RelativeOrAbsolute);
                     }
             }
         }

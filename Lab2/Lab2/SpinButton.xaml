@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
     <UserControl.Resources>
-        <ImageBrush x:Key="Plus" ImageSource="Plus.png"></ImageBrush>
-        <ImageBrush x:Key="PlusActive" ImageSource="PlusActive.png"></ImageBrush>
-        <ImageBrush x:Key="Minus" ImageSource="Minus.png"></ImageBrush>
-        <ImageBrush x:Key="MinusActive" ImageSource="MinusActive.png"></ImageBrush>
+        <ImageBrush x:Key="Plus" ImageSource="Images\Plus.png"></ImageBrush>
+        <ImageBrush x:Key="PlusActive" ImageSource="Images\PlusActive.png"></ImageBrush>
+        <ImageBrush x:Key="Minus" ImageSource="Images\Minus.png"></ImageBrush>
+        <ImageBrush x:Key="MinusActive" ImageSource="Images\MinusActive.png"></ImageBrush>
         <Style x:Key="ButtonPlusStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
