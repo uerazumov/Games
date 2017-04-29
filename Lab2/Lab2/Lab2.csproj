@@ -110,37 +110,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="All classes.jpg" />
+    <Resource Include="Images\All classes.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Cleric.jpg" />
+    <Resource Include="Images\Cleric.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Mage.jpg" />
+    <Resource Include="Images\Mage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Shooter.jpg" />
+    <Resource Include="Images\Shooter.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Support.jpg" />
+    <Resource Include="Images\Support.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Warrior.jpg" />
+    <Resource Include="Images\Warrior.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Background Image.jpg" />
+    <Resource Include="Images\Background Image.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Plus.PNG" />
+    <Resource Include="Images\Plus.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Minus.PNG" />
+    <Resource Include="Images\Minus.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PlusActive.png" />
+    <Resource Include="Images\PlusActive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="MinusActive.png" />
+    <Resource Include="Images\MinusActive.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
