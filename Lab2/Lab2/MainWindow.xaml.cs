@@ -80,7 +80,7 @@ namespace Lab2
                     }
                     else
                     {
-                        MessageBox.Show("Укажите имя персонажа!");
+                        MessageBox.Show("Укажите корректное имя персонажа!");
                     }
                 }
             }
