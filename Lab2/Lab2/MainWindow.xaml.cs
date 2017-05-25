@@ -27,8 +27,9 @@ namespace Lab2
         {
             InitializeComponent();
         }
+        //Реализация кнопки "Сохранить персонажа"
         public List<string> SqlCharacterNames = new List<string>();
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveCharacter(object sender, RoutedEventArgs e)
         {
             using (SqlConnection CharTable = new SqlConnection("Server=DESKTOP-AUTQL9N;Database=myDataBase;Trusted_Connection=True;"))
             {

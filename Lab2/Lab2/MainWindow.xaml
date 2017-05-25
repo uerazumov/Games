@@ -101,7 +101,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Click="Button_Click" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа</Button>
+            <Button Click="SaveCharacter" Grid.Column="0" Style="{StaticResource ButtonStyle}">Сохранить персонажа</Button>
             <Button Command="{Binding Cancel}" Grid.Column="1" Style="{StaticResource ButtonStyle}">Отмена</Button>
         </Grid>
         <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle_24_center}">Создание персонажа</TextBlock>
