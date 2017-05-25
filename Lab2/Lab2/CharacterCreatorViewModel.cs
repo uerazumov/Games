@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Lab2
@@ -29,7 +31,19 @@ namespace Lab2
                 DoPropertyChanged("FreePoints");
             }
         }
-        public string Nickname { get; set; }
+        public string _nickname { get; set; }
+        public string Nickname
+        {
+            get
+            {
+                return _nickname;
+            }
+            set
+            {
+                _nickname = value;
+                DoPropertyChanged("Nickname");
+            }
+        }
         public List<string> CharacterClass { get; set; }
         private string _selectedCharacterClass { get; set; }
         public string SelectedCharacterClass
