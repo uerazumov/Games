@@ -59,7 +59,7 @@ namespace Lab2
                 {
                     SqlCommand save = new SqlCommand("AddNewCharacter", CharTable);
                     save.CommandType = System.Data.CommandType.StoredProcedure;
-                    if ((Nick.Text != "")&&(Nick.Text != null))
+                    if ((Nick.Text != "")&&(Nick.Text != null)&&(!Validation.GetHasError(Nick)))
                     {
                         SqlParameter NewNickname = new SqlParameter("@NickName", Nick.Text);
                         SqlParameter NewClass = new SqlParameter("@Class", ClassBox.SelectedItem);
