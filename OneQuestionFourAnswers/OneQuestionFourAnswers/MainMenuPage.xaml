@@ -7,8 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainMenuPage">
-
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
