@@ -7,30 +7,36 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="GamePage">
-
-    <Grid Background="White">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.7*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="10,30,10,30"></TextBlock>
+        <TextBlock TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Text="Здесь будет текст вопроса" Grid.Row="0" FontSize="50" Margin="10,30,10,30"></TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="15"></Button>
-            <Button Grid.Column="1" Margin="15"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15"></Button>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="15"></Button>
-            <Button Grid.Column="1" Margin="15"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15"></Button>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15"></Button>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -45,13 +51,13 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Height="30" Width="30"></Button>
-                <Button Grid.Column="1" Height="30" Width="30"></Button>
-                <Button Grid.Column="2" Height="30" Width="30"></Button>
+                <Button Style="{StaticResource StatisticsButtonStyle}" Grid.Column="0" Height="30" Width="30"></Button>
+                <Button Style="{StaticResource TimeButtonStyle}" Grid.Column="1" Height="30" Width="30"></Button>
+                <Button Style="{StaticResource TwoAnswersButtonStyle}" Grid.Column="2" Height="30" Width="30"></Button>
             </Grid>
-            <TextBlock Text="Счёт:" Grid.Column="1" Margin="5" TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Время" Grid.Column="2" Margin="5" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <Button Grid.Column="3" Height="30" Width="30"></Button>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Счeт:" Grid.Column="1" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Время" Grid.Column="2" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <Button Style="{StaticResource SoundButtonStyle}" Grid.Column="3" Height="30" Width="30"></Button>
         </Grid>
     </Grid>
 </Page>

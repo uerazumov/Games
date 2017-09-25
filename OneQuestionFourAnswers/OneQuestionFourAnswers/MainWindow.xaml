@@ -6,5 +6,12 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="525">
-    <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" />
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}"/>
 </Window>

@@ -81,6 +81,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResourcesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -100,6 +104,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="VisualResources\ButtonFontStyle.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,6 +119,34 @@
       <Project>{603f9afa-e0eb-4658-a45c-7879a9e2456b}</Project>
       <Name>BussinesLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\BackgroundImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\Buttons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\ButtonsTup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\ButtonsText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\InformationIcon.png" />
+    <Resource Include="VisualResources\Images\SoundIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\StatisticsIcon.png" />
+    <Resource Include="VisualResources\Images\TimeIcon.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\InformationIconTup.png" />
+    <Resource Include="VisualResources\Images\SoundIconTup.png" />
+    <Resource Include="VisualResources\Images\StatisticsIconTup.png" />
+    <Resource Include="VisualResources\Images\TimeIconTup.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersIconTup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
