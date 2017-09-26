@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d"
+        Icon="VisualResources\WindowIcon.ico"
         Title="MainWindow" Height="600" Width="725" MinHeight="450" MinWidth="525">
     <Window.Resources>
         <ResourceDictionary>

@@ -26,8 +26,8 @@
             <Viewbox Grid.Row="0" HorizontalAlignment="Center">
                 <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
             </Viewbox>
-            <Viewbox Grid.Row="1" Stretch="Uniform">
-            <TextBlock Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
+        <Viewbox Grid.Row="1" Stretch="Uniform">
+            <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
         <Viewbox Grid.Row="2" HorizontalAlignment="Center">
             <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" FontSize="50" Text="Спасительные кнопки"></TextBlock>

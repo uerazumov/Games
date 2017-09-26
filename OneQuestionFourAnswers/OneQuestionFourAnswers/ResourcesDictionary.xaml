@@ -7,6 +7,7 @@
         <Setter Property="Stretch" Value="Uniform"></Setter>
     </Style>
     <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="350"></Setter>
         <Setter Property="Margin" Value="5,5,5,5"></Setter>
         <Setter Property="TextElement.FontFamily" Value="./VisualResources/#Resphekt"></Setter>
         <Setter Property="FontSize" Value="50"></Setter>
