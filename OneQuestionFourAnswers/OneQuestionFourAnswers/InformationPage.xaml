@@ -16,38 +16,51 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="Button_Click"></Button>
-            <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
-        </Grid>
-        <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
-        <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" FontSize="50" Text="Спасительные кнопки"></TextBlock>
+        <Button Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="Button_Click"></Button>
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Row="1" Stretch="Uniform">
+            <TextBlock Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" FontSize="50" Text="Спасительные кнопки"></TextBlock>
+        </Viewbox>
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
-            <Image Grid.Row="1" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeIcon.png"/>
-            <Image Grid.Row="2" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов воображаемых зрителей"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Дает вам дополнительную минуту"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Убирает два неверных варианта"/>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
+                <Image Grid.Row="1" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeIcon.png"/>
+                <Image Grid.Row="2" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
+            </Grid>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов воображаемых зрителей"/>
+                    <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Дает вам дополнительную минуту"/>
+                    <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Убирает два неверных варианта"/>
+                </Grid>
+            </Viewbox>
         </Grid>
         <TextBlock Grid.Row="4" Style="{StaticResource TextBlockStyle}" FontSize="20" VerticalAlignment="Bottom" Text="Разработал: Разумов Юрий, МИСиС, 2017 год"></TextBlock>
     </Grid>

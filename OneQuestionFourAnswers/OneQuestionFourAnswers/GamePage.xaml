@@ -40,10 +40,11 @@
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                <ColumnDefinition Width="60"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
@@ -55,9 +56,23 @@
                 <Button Grid.Column="1" Style="{StaticResource TimeButtonStyle}"></Button>
                 <Button Grid.Column="2" Style="{StaticResource TwoAnswersButtonStyle}"></Button>
             </Grid>
-            <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5" VerticalAlignment="Center" Text="Счeт:"></TextBlock>
-            <TextBlock Grid.Column="2" Style="{StaticResource TextBlockStyle}" Margin="5" VerticalAlignment="Center" Text="Время"></TextBlock>
-            <Button Grid.Column="3" Style="{StaticResource SoundButtonStyle}"></Button>
+            <Viewbox Grid.Column="1" Stretch="Uniform">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="Счeт:"></TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="999"></TextBlock>
+                </Grid>
+            </Viewbox>
+            <Image Grid.Column="2" Source="\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5"></Image>
+            <Viewbox Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Left">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" TextAlignment="Left" Text="Время"></TextBlock>
+            </Viewbox>
+            <Button Grid.Column="4" Style="{StaticResource SoundButtonStyle}" Grid.ColumnSpan="2" Margin="0,5,5,-10"></Button>
         </Grid>
     </Grid>
 </Page>

@@ -111,7 +111,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="VisualResources\ButtonFontStyle.ttf" />
+    <Resource Include="VisualResources\ForAllFontStyle.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -158,6 +158,9 @@
   <ItemGroup>
     <Resource Include="VisualResources\Images\BackIcon.png" />
     <Resource Include="VisualResources\Images\BackIconTup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\Time.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

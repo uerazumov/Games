@@ -31,8 +31,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Margin="10" HorizontalAlignment="Left" Click="Button_Click_Information"></Button>
-            <Button Grid.Column="1" Style="{StaticResource SoundButtonStyle}" Margin="10" HorizontalAlignment="Right"></Button>
+            <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Click="Button_Click_Information"></Button>
+            <Button Grid.Column="1" Style="{StaticResource SoundButtonStyle}"></Button>
         </Grid>
     </Grid>
 </Page>
