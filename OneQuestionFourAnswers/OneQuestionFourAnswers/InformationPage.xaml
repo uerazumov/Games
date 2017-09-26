@@ -23,9 +23,9 @@
             <RowDefinition Height="0.4*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="Button_Click"></Button>
-            <Viewbox Grid.Row="0" HorizontalAlignment="Center">
-                <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
-            </Viewbox>
+        <Viewbox Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
+        </Viewbox>
         <Viewbox Grid.Row="1" Stretch="Uniform">
             <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
@@ -45,9 +45,9 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
+                <Image Grid.Row="2" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
                 <Image Grid.Row="1" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeIcon.png"/>
-                <Image Grid.Row="2" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
+                <Image Grid.Row="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
             </Grid>
             <Viewbox Grid.Column="1" HorizontalAlignment="Left">
                 <Grid>

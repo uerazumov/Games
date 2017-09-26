@@ -32,7 +32,14 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Click="Button_Click_Information"></Button>
-            <Button Grid.Column="1" Style="{StaticResource SoundButtonStyle}"></Button>
+            <Button x:Name="SoundButton" Grid.Column="1" Style="{StaticResource SoundButtonStyle}"></Button>
         </Grid>
+        <Popup Name="pLink" IsOpen="False" StaysOpen="True" Placement="Center" Height="100" Width="340" AllowsTransparency="False">
+            <Border BorderBrush="Purple" BorderThickness="5">
+                <Grid Background="{StaticResource PopupBackgroundImage}">
+                    <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Подождите, базы обновляются"></TextBlock>
+                </Grid>
+            </Border>
+        </Popup>
     </Grid>
 </Page>
