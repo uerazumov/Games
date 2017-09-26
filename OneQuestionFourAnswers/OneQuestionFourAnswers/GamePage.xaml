@@ -51,13 +51,13 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource StatisticsButtonStyle}" Grid.Column="0" Height="30" Width="30"></Button>
-                <Button Style="{StaticResource TimeButtonStyle}" Grid.Column="1" Height="30" Width="30"></Button>
-                <Button Style="{StaticResource TwoAnswersButtonStyle}" Grid.Column="2" Height="30" Width="30"></Button>
+                <Button Grid.Column="0" Style="{StaticResource StatisticsButtonStyle}"></Button>
+                <Button Grid.Column="1" Style="{StaticResource TimeButtonStyle}"></Button>
+                <Button Grid.Column="2" Style="{StaticResource TwoAnswersButtonStyle}"></Button>
             </Grid>
-            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Счeт:" Grid.Column="1" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Время" Grid.Column="2" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <Button Style="{StaticResource SoundButtonStyle}" Grid.Column="3" Height="30" Width="30"></Button>
+            <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5" VerticalAlignment="Center" Text="Счeт:"></TextBlock>
+            <TextBlock Grid.Column="2" Style="{StaticResource TextBlockStyle}" Margin="5" VerticalAlignment="Center" Text="Время"></TextBlock>
+            <Button Grid.Column="3" Style="{StaticResource SoundButtonStyle}"></Button>
         </Grid>
     </Grid>
 </Page>

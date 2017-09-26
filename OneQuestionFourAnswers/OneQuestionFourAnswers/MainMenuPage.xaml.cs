@@ -30,5 +30,10 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
         }
+        private void Button_Click_Information(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
+        }
     }
 }
