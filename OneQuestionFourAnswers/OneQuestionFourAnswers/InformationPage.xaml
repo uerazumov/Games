@@ -27,6 +27,7 @@
                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Button HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="Button_Click"></Button>
             <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
         </Grid>
         <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
@@ -41,7 +42,7 @@
                 <ColumnDefinition Width="0.1*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Source="VisualResources\Images\TwoAnswersIcon.png"/>
+            <Image Grid.Row="0" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
             <Image Grid.Row="1" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeIcon.png"/>
             <Image Grid.Row="2" Grid.Column="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов воображаемых зрителей"/>

@@ -24,5 +24,11 @@ namespace OneQuestionFourAnswers
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+        }
     }
 }
