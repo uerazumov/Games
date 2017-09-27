@@ -41,9 +41,12 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="InformstionButtonStyle" TargetType="Button">
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
         <Setter Property="Height" Value="50"></Setter>
         <Setter Property="Width" Value="50"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+    </Style>
+    <Style x:Key="InformstionButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="Margin" Value="30,10,10,5"></Setter>
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="Template">
@@ -73,10 +76,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="SoundButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="10,10,30,10"></Setter>
+    <Style x:Key="SoundButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Margin" Value="10,10,30,5"></Setter>
         <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -105,10 +106,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="StatisticsButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
+    <Style x:Key="StatisticsButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -136,10 +134,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="TimeButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
+    <Style x:Key="TimeButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -167,10 +162,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="TwoAnswersButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
+    <Style x:Key="TwoAnswersButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -198,10 +190,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="BackButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
+    <Style x:Key="BackButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
