@@ -23,9 +23,9 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" FontSize="70" Text="1 вопрос - 4 ответа"></TextBlock>
-        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="80,5,80,5" Click="Button_Click_Start_Game" Content="Начать игру"></Button>
-        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="80,5,80,5" Content="Обновить"></Button>
-        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="80,5,80,5" Content="Таблица рекордов"></Button>
+        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="Button_Click_Start_Game" Content="Начать игру"></Button>
+        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Обновить"></Button>
+        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Таблица рекордов"></Button>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

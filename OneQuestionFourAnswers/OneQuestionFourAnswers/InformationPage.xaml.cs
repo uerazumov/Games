@@ -20,6 +20,7 @@ namespace OneQuestionFourAnswers
     /// </summary>
     public partial class InformationPage : Page
     {
+
         public InformationPage()
         {
             InitializeComponent();
