@@ -25,15 +25,35 @@ namespace OneQuestionFourAnswers
             InitializeComponent();
         }
 
-        private void Button_Click_Start_Game(object sender, RoutedEventArgs e)
+        private void ButtonClickStartGame(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
         }
-        private void Button_Click_Information(object sender, RoutedEventArgs e)
+        private void ButtonClickInformation(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
+        }
+
+        private void ButtonClickRefresh(object sender, RoutedEventArgs e)
+        {
+            RefreshPopup.IsOpen = true;
+            IsEnabled = false;
+        }
+
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).LocationChanged += (obj, arg) =>
+            {
+                if (!RefreshPopup.IsOpen)
+                {
+                    return;
+                }
+                var offset = RefreshPopup.HorizontalOffset;
+                RefreshPopup.HorizontalOffset = offset + 1;
+                RefreshPopup.HorizontalOffset = offset;
+            };
         }
     }
 }

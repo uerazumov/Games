@@ -235,5 +235,10 @@
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="TextAlignment" Value="Center"></Setter>
     </Style>
-    
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="CornerRadius" Value="5"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Purple"></Setter>
+        <Setter Property="Background" Value="{StaticResource PopupBackgroundImage}"></Setter>
+    </Style>
 </ResourceDictionary>

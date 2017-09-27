@@ -22,7 +22,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="Button_Click"></Button>
+        <Button Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="BackButtonClick"></Button>
         <Viewbox Grid.Row="0" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
         </Viewbox>

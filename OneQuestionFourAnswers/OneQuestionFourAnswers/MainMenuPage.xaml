@@ -4,9 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainMenuPage">
+      Title="MainMenuPage" Loaded="OnPageLoaded">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,20 +24,21 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" FontSize="70" Text="1 вопрос - 4 ответа"></TextBlock>
-        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="Button_Click_Start_Game" Content="Начать игру"></Button>
-        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Обновить"></Button>
+        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame" Content="Начать игру"></Button>
+        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Обновить" Click="ButtonClickRefresh"></Button>
         <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Таблица рекордов"></Button>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Click="Button_Click_Information"></Button>
+            <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Click="ButtonClickInformation"></Button>
             <Button x:Name="SoundButton" Grid.Column="1" Style="{StaticResource SoundButtonStyle}"></Button>
         </Grid>
-        <Popup Name="pLink" IsOpen="False" StaysOpen="True" Placement="Center" Height="100" Width="340" AllowsTransparency="False">
-            <Border BorderBrush="Purple" BorderThickness="5">
-                <Grid Background="{StaticResource PopupBackgroundImage}">
+        <Popup x:Name="RefreshPopup" IsOpen="False" StaysOpen="True" Placement="Center" Height="100" Width="340" AllowsTransparency="False">
+            <Border Style="{StaticResource BorderStyle}">
+                <Grid>
+                    <fa:ImageAwesome Icon="Refresh" Spin="True" SpinDuration="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Width="40"></fa:ImageAwesome>
                     <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Подождите, базы обновляются"></TextBlock>
                 </Grid>
             </Border>
