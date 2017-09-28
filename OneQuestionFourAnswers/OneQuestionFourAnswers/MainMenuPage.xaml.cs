@@ -40,6 +40,8 @@ namespace OneQuestionFourAnswers
         {
             RefreshPopup.IsOpen = true;
             IsEnabled = false;
+            //RefreshWindow Refresher = new RefreshWindow();
+            //Refresher.Show();
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
