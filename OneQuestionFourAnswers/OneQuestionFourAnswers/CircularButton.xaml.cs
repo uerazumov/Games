@@ -16,14 +16,16 @@ using System.Windows.Shapes;
 namespace OneQuestionFourAnswers
 {
     /// <summary>
-    /// Логика взаимодействия для GamePage.xaml
+    /// Логика взаимодействия для CircularButton.xaml
     /// </summary>
-    public partial class GamePage : Page
+    public partial class CircularButton : UserControl
     {
-        public GamePage()
+        public CircularButton()
         {
             InitializeComponent();
+            DataContext = this;
         }
-        private void OnPageLoaded(object sender, RoutedEventArgs e){}
+        public ImageBrush BackgroundImage { get; set; }
+        public ImageBrush BackgroundImageActive { get; set; }
     }
 }

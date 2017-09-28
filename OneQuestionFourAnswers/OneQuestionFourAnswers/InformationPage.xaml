@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600"
-      Title="InformationPage">
+      Title="InformationPage" Loaded="OnPageLoaded">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,7 +22,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource BackButtonStyle}" Click="BackButtonClick"></Button>
+        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Viewbox Grid.Row="0" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
         </Viewbox>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="GamePage">
+      Title="GamePage" Loaded="OnPageLoaded">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -42,21 +42,21 @@
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="210"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="0.6*"></ColumnDefinition>
-                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource StatisticsButtonStyle}"></Button>
-                <Button Grid.Column="1" Style="{StaticResource TimeButtonStyle}"></Button>
-                <Button Grid.Column="2" Style="{StaticResource TwoAnswersButtonStyle}"></Button>
+                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" BackgroundImage="{StaticResource StatisticsButtonIcon}" BackgroundImageActive="{StaticResource StatisticsButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="TimeButton" Grid.Column="1" BackgroundImage="{StaticResource TimeButtonIcon}" BackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="TwoAnswersButton" Grid.Column="2" BackgroundImage="{StaticResource TwoAnswersButtonIcon}" BackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
             </Grid>
             <Viewbox Grid.Column="1" Stretch="Uniform">
                 <Grid>
@@ -74,7 +74,7 @@
             <Viewbox Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Left">
                 <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" TextAlignment="Left" Text="Время"></TextBlock>
             </Viewbox>
-            <Button Grid.Column="4" Style="{StaticResource SoundButtonStyle}" Grid.ColumnSpan="2" Margin="0,5,5,-10"></Button>
+            <local:CircularButton HorizontalAlignment="Left" x:Name="SoundButton" Grid.Column="4" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

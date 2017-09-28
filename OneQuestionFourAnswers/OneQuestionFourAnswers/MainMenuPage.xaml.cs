@@ -46,6 +46,7 @@ namespace OneQuestionFourAnswers
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
+            InformationButton.ControlButton.Click += ButtonClickInformation;
             Window.GetWindow(this).LocationChanged += (obj, arg) =>
             {
                 if (!RefreshPopup.IsOpen)

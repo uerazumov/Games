@@ -32,8 +32,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource InformstionButtonStyle}" Click="ButtonClickInformation"></Button>
-            <Button x:Name="SoundButton" Grid.Column="1" Style="{StaticResource SoundButtonStyle}"></Button>
+            <local:CircularButton Margin="30,0,0,0" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" BackgroundImage="{StaticResource InformationButtonIcon}" BackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
+            <local:CircularButton Margin="30,0,0,0" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
         </Grid>
         <Popup x:Name="RefreshPopup" IsOpen="False" StaysOpen="True" Placement="Center" Height="100" Width="340" AllowsTransparency="False">
             <Border Style="{StaticResource BorderStyle}">

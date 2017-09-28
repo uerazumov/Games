@@ -59,9 +59,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CircularButton.xaml.cs">
+      <DependentUpon>CircularButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RefreshWindow.xaml.cs">
       <DependentUpon>RefreshWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CircularButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,9 +153,6 @@
     <Resource Include="VisualResources\Images\Buttons.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualResources\Images\ButtonsTup.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="VisualResources\Images\ButtonsText.png" />
   </ItemGroup>
   <ItemGroup>
@@ -161,13 +165,6 @@
     <Resource Include="VisualResources\Images\TwoAnswersIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualResources\Images\InformationIconTup.png" />
-    <Resource Include="VisualResources\Images\SoundIconTup.png" />
-    <Resource Include="VisualResources\Images\StatisticsIconTup.png" />
-    <Resource Include="VisualResources\Images\TimeIconTup.png" />
-    <Resource Include="VisualResources\Images\TwoAnswersIconTup.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="VisualResources\Images\Time.png" />
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualResources\Images\SoundIconOff.png" />
-    <Resource Include="VisualResources\Images\SoundIconOffTup.png" />
     <Resource Include="VisualResources\Images\StatisticsIconUsed.png" />
     <Resource Include="VisualResources\Images\TimeIconUsed.png" />
     <Resource Include="VisualResources\Images\TwoAnswersIconUsed.png" />
@@ -185,7 +181,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualResources\Images\BackIcon.png" />
-    <Resource Include="VisualResources\Images\BackIconTup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\BackIconTap.png" />
+    <Resource Include="VisualResources\Images\ButtonsTap.png" />
+    <Resource Include="VisualResources\Images\InformationIconTap.png" />
+    <Resource Include="VisualResources\Images\SoundIconOffTap.png" />
+    <Resource Include="VisualResources\Images\SoundIconTap.png" />
+    <Resource Include="VisualResources\Images\StatisticsIconTap.png" />
+    <Resource Include="VisualResources\Images\TimeIconTap.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersIconTap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

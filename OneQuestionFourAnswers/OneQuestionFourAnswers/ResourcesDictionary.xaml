@@ -3,6 +3,18 @@
                     xmlns:local="clr-namespace:OneQuestionFourAnswers">
     <ImageBrush x:Key="BackgroundImage" ImageSource="VisualResources\Images\BackgroundImage.jpg"></ImageBrush>
     <ImageBrush x:Key="PopupBackgroundImage" ImageSource="VisualResources\Images\PopupBackgroundImage.jpg"></ImageBrush>
+    <ImageBrush x:Key="InformationButtonIcon" ImageSource="VisualResources\Images\InformationIcon.png"></ImageBrush>
+    <ImageBrush x:Key="InformationButtonIconActive" ImageSource="VisualResources\Images\InformationIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="SoundButtonIcon" ImageSource="VisualResources\Images\SoundIcon.png"></ImageBrush>
+    <ImageBrush x:Key="SoundButtonIconActive" ImageSource="VisualResources\Images\SoundIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="BackButtonIcon" ImageSource="VisualResources\Images\BackIcon.png"></ImageBrush>
+    <ImageBrush x:Key="BackButtonIconActive" ImageSource="VisualResources\Images\BackIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersButtonIcon" ImageSource="VisualResources\Images\TwoAnswersIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersButtonIconActive" ImageSource="VisualResources\Images\TwoAnswersIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="TimeButtonIcon" ImageSource="VisualResources\Images\TimeIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TimeButtonIconActive" ImageSource="VisualResources\Images\TimeIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsButtonIcon" ImageSource="VisualResources\Images\StatisticsIcon.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsButtonIconActive" ImageSource="VisualResources\Images\StatisticsIconTap.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>
@@ -28,7 +40,7 @@
                                     <Trigger Property="Border.IsMouseOver" Value="True">
                                         <Setter Property="Border.Background">
                                             <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\ButtonsTup.png"></ImageBrush>
+                                                <ImageBrush ImageSource="VisualResources\Images\ButtonsTap.png"></ImageBrush>
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
@@ -36,183 +48,6 @@
                             </Style>
                         </Border.Style>
                         <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="BaseButtonStyle" TargetType="Button">
-        <Setter Property="Height" Value="50"></Setter>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
-    </Style>
-    <Style x:Key="InformstionButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Margin" Value="30,10,10,5"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\InformationIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\InformationIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="SoundButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Margin" Value="10,10,30,5"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\SoundIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\SoundIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="StatisticsButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\StatisticsIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\StatisticsIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="TimeButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\TimeIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\TimeIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="TwoAnswersButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\TwoAnswersIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\TwoAnswersIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="BackButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border>
-                        <Border.Style>
-                            <Style>
-                                <Setter Property="Border.Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\BackIcon.png"></ImageBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\BackIconTup.png"></ImageBrush>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

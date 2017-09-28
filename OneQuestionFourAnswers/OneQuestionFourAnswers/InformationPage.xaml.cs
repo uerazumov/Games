@@ -31,5 +31,10 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
         }
+
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
+            BackButton.ControlButton.Click += BackButtonClick;
+        }
     }
 }
