@@ -62,11 +62,18 @@
     <Compile Include="CircularButton.xaml.cs">
       <DependentUpon>CircularButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExitTheGame.xaml.cs">
+      <DependentUpon>ExitTheGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="StrechTextBlock.xaml.cs">
       <DependentUpon>StrechTextBlock.xaml</DependentUpon>
     </Compile>
     <Page Include="CircularButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExitTheGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,7 +192,7 @@
     <Resource Include="VisualResources\Images\TwoAnswersIconUsed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualResources\Images\PopupBackgroundImage.jpg" />
+    <Resource Include="VisualResources\Images\NoticeBackgroundImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualResources\Images\BackIcon.png" />

@@ -16,24 +16,24 @@ using System.Windows.Shapes;
 namespace OneQuestionFourAnswers
 {
     /// <summary>
-    /// Логика взаимодействия для GamePage.xaml
+    /// Логика взаимодействия для ExitTheGame.xaml
     /// </summary>
-    public partial class GamePage : Page
+    public partial class ExitTheGame : Window
     {
-        public GamePage()
+        public ExitTheGame()
         {
             InitializeComponent();
         }
-        private void BackButtonClick(object sender, RoutedEventArgs e)
-        {
-            ExitTheGame etg = new ExitTheGame();
-            etg.Owner = Window.GetWindow(this);
-            etg.Show();  
-        }
 
-        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        private void YesButtonClick(object sender, RoutedEventArgs e)
         {
-            BackButton.ControlButton.Click += BackButtonClick;
+            NavigationService ns = NavigationService.GetNavigationService(Owner);
+            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            this.Close();
         }
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }      
     }
 }

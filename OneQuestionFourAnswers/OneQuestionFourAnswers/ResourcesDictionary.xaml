@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:OneQuestionFourAnswers">
     <ImageBrush x:Key="BackgroundImage" ImageSource="VisualResources\Images\BackgroundImage.jpg"></ImageBrush>
-    <ImageBrush x:Key="PopupBackgroundImage" ImageSource="VisualResources\Images\PopupBackgroundImage.jpg"></ImageBrush>
+    <ImageBrush x:Key="NoticeBackgroundImage" ImageSource="VisualResources\Images\NoticeBackgroundImage.jpg"></ImageBrush>
     <ImageBrush x:Key="InformationButtonIcon" ImageSource="VisualResources\Images\InformationIcon.png"></ImageBrush>
     <ImageBrush x:Key="InformationButtonIconActive" ImageSource="VisualResources\Images\InformationIconTap.png"></ImageBrush>
     <ImageBrush x:Key="SoundButtonIcon" ImageSource="VisualResources\Images\SoundIcon.png"></ImageBrush>
@@ -63,6 +63,6 @@
         <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="BorderThickness" Value="2"></Setter>
         <Setter Property="BorderBrush" Value="Purple"></Setter>
-        <Setter Property="Background" Value="{StaticResource PopupBackgroundImage}"></Setter>
+        <Setter Property="Background" Value="{StaticResource NoticeBackgroundImage}"></Setter>
     </Style>
 </ResourceDictionary>
