@@ -62,14 +62,19 @@
     <Compile Include="CircularButton.xaml.cs">
       <DependentUpon>CircularButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RefreshWindow.xaml.cs">
-      <DependentUpon>RefreshWindow.xaml</DependentUpon>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="StrechTextBlock.xaml.cs">
+      <DependentUpon>StrechTextBlock.xaml</DependentUpon>
     </Compile>
     <Page Include="CircularButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighscoreTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,6 +97,9 @@
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HighscoreTablePage.xaml.cs">
+      <DependentUpon>HighscoreTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InformationPage.xaml.cs">
       <DependentUpon>InformationPage.xaml</DependentUpon>
     </Compile>
@@ -102,11 +110,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RefreshWindow.xaml">
+    <Page Include="ResourcesDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResourcesDictionary.xaml">
+    <Page Include="StrechTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

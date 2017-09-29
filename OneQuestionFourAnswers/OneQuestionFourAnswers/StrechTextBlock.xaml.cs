@@ -10,18 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace OneQuestionFourAnswers
 {
     /// <summary>
-    /// Логика взаимодействия для RefreshWindow.xaml
+    /// Логика взаимодействия для StrechTextBlock.xaml
     /// </summary>
-    public partial class RefreshWindow : Window
+    public partial class StrechTextBlock : UserControl
     {
-        public RefreshWindow()
+        public StrechTextBlock()
         {
             InitializeComponent();
+            DataContext = this;
         }
+        public String TextBlockText { get; set; }
     }
 }

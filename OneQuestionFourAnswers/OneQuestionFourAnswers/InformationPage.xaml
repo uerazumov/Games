@@ -16,22 +16,18 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.4*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
         <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
-        <Viewbox Grid.Row="0" HorizontalAlignment="Center">
-            <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="50" HorizontalAlignment="Left" Text="Об игре:"></TextBlock>
-        </Viewbox>
+        <local:StrechTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrechTextBlock>
         <Viewbox Grid.Row="1" Stretch="Uniform">
             <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
-        <Viewbox Grid.Row="2" HorizontalAlignment="Center">
-            <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" FontSize="50" Text="Спасительные кнопки"></TextBlock>
-        </Viewbox>
+        <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrechTextBlock>
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>

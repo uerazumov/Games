@@ -40,8 +40,6 @@ namespace OneQuestionFourAnswers
         {
             RefreshPopup.IsOpen = true;
             IsEnabled = false;
-            //RefreshWindow Refresher = new RefreshWindow();
-            //Refresher.Show();
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
@@ -57,6 +55,12 @@ namespace OneQuestionFourAnswers
                 RefreshPopup.HorizontalOffset = offset + 1;
                 RefreshPopup.HorizontalOffset = offset;
             };
+        }
+
+        private void HighscoreButton(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("HighscoreTablePage.xaml", UriKind.Relative));
         }
     }
 }

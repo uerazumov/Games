@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace OneQuestionFourAnswers
 {
     /// <summary>
-    /// Логика взаимодействия для GamePage.xaml
+    /// Логика взаимодействия для HighscoreTable.xaml
     /// </summary>
-    public partial class GamePage : Page
+    public partial class HighscoreTable : Page
     {
-        public GamePage()
+        public HighscoreTable()
         {
             InitializeComponent();
+            DataContext = this;
         }
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
