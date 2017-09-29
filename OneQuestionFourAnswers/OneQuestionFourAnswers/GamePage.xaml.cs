@@ -28,7 +28,12 @@ namespace OneQuestionFourAnswers
         {
             ExitTheGame etg = new ExitTheGame();
             etg.Owner = Window.GetWindow(this);
-            etg.Show();  
+            var close = etg.ShowDialog() ?? false;
+            if (close)
+            {
+                NavigationService ns = NavigationService.GetNavigationService(this);
+                ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            }
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)

@@ -27,13 +27,12 @@ namespace OneQuestionFourAnswers
 
         private void YesButtonClick(object sender, RoutedEventArgs e)
         {
-            NavigationService ns = NavigationService.GetNavigationService(Owner);
-            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
-            this.Close();
+            DialogResult = true;
+            Close();
         }
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }      
     }
 }
