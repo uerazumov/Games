@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OneQuestionFourAnswers
 {
@@ -41,8 +32,18 @@ namespace OneQuestionFourAnswers
             (Window.GetWindow(this) as MainWindow).UpdateBar.Visibility = Visibility.Visible;
             StartBatton.IsEnabled = false;
             UpdateBatton.IsEnabled = false;
+            var timer = new Timer(3 * 1000) { AutoReset = false };
+            timer.Elapsed += (obj, args) =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    (App.Current.MainWindow as MainWindow).UpdateBar.Visibility = Visibility.Collapsed;
+                    StartBatton.IsEnabled = true;
+                    UpdateBatton.IsEnabled = true;
+                });
+            };
+            timer.Start();
         }
-
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             InformationButton.ControlButton.Click += ButtonClickInformation;
