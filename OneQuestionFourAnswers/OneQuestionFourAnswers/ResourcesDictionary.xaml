@@ -20,11 +20,12 @@
         <Setter Property="Stretch" Value="Uniform"></Setter>
     </Style>
     <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="MaxWidth" Value="550"></Setter>
-        <Setter Property="MaxHeight" Value="200"></Setter>
+        <Setter Property="MaxWidth" Value="750"></Setter>
+        <Setter Property="MaxHeight" Value="300"></Setter>
         <Setter Property="Margin" Value="5,5,5,5"></Setter>
         <Setter Property="TextElement.FontFamily" Value="./VisualResources/#Resphekt"></Setter>
         <Setter Property="FontSize" Value="50"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -41,6 +42,13 @@
                                         <Setter Property="Border.Background">
                                             <Setter.Value>
                                                 <ImageBrush ImageSource="VisualResources\Images\ButtonsTap.png"></ImageBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="Button.IsEnabled" Value="False">
+                                        <Setter Property="Border.Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="VisualResources\Images\ButtonsDisable.png"></ImageBrush>
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>

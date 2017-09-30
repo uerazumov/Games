@@ -22,8 +22,8 @@
             <RowDefinition Height="0.7*"></RowDefinition>
         </Grid.RowDefinitions>
         <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
-        <Viewbox Grid.Row="0" Stretch="Uniform">
-            <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="Здесь будет текст вопроса"/>
+        <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
+            <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Center" Text="Здесь будет текст вопроса"/>
         </Viewbox>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

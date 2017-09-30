@@ -29,7 +29,7 @@ namespace OneQuestionFourAnswers
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            ns.GoBack();
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)

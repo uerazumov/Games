@@ -38,23 +38,14 @@ namespace OneQuestionFourAnswers
 
         private void ButtonClickRefresh(object sender, RoutedEventArgs e)
         {
-            RefreshPopup.IsOpen = true;
-            IsEnabled = false;
+            (Window.GetWindow(this) as MainWindow).UpdateBar.Visibility = Visibility.Visible;
+            StartBatton.IsEnabled = false;
+            UpdateBatton.IsEnabled = false;
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             InformationButton.ControlButton.Click += ButtonClickInformation;
-            Window.GetWindow(this).LocationChanged += (obj, arg) =>
-            {
-                if (!RefreshPopup.IsOpen)
-                {
-                    return;
-                }
-                var offset = RefreshPopup.HorizontalOffset;
-                RefreshPopup.HorizontalOffset = offset + 1;
-                RefreshPopup.HorizontalOffset = offset;
-            };
         }
 
         private void HighscoreButton(object sender, RoutedEventArgs e)

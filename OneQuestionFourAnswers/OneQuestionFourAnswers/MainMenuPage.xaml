@@ -7,7 +7,7 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainMenuPage" Loaded="OnPageLoaded">
+      Title="MainMenuPage" Loaded="OnPageLoaded" KeepAlive="True">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,25 +23,23 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" FontSize="70" Text="1 вопрос - 4 ответа"></TextBlock>
-        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame" Content="Начать игру"></Button>
-        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Обновить" Click="ButtonClickRefresh"></Button>
-        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Content="Таблица рекордов" Click="HighscoreButton"></Button>
+        <local:StrechTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrechTextBlock>
+        <Button x:Name="StartBatton" Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame">
+            <local:StrechTextBlock Margin="5" TextBlockText="Начать игру"></local:StrechTextBlock>
+        </Button>
+        <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickRefresh">
+            <local:StrechTextBlock Margin="5" TextBlockText="Обновить"></local:StrechTextBlock>
+        </Button>
+        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
+            <local:StrechTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrechTextBlock>
+        </Button>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:CircularButton Margin="30,0,0,0" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" BackgroundImage="{StaticResource InformationButtonIcon}" BackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
-            <local:CircularButton Margin="30,0,0,0" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
+            <local:CircularButton Margin="0,0,30,0" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
         </Grid>
-        <Popup x:Name="RefreshPopup" IsOpen="False" StaysOpen="True" Placement="Center" Height="100" Width="340" AllowsTransparency="False">
-            <Border Style="{StaticResource BorderStyle}">
-                <Grid>
-                    <fa:ImageAwesome Icon="Refresh" Spin="True" SpinDuration="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Width="40"></fa:ImageAwesome>
-                    <TextBlock Style="{StaticResource TextBlockStyle}" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Подождите, базы обновляются"></TextBlock>
-                </Grid>
-            </Border>
-        </Popup>
     </Grid>
 </Page>

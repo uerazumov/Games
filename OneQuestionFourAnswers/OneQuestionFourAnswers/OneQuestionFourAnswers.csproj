@@ -172,12 +172,6 @@
     <Resource Include="VisualResources\Images\BackgroundImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualResources\Images\Buttons.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\ButtonsText.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="VisualResources\Images\InformationIcon.png" />
     <Resource Include="VisualResources\Images\SoundIcon.png" />
   </ItemGroup>
@@ -206,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualResources\Images\BackIconTap.png" />
-    <Resource Include="VisualResources\Images\ButtonsTap.png" />
     <Resource Include="VisualResources\Images\InformationIconTap.png" />
     <Resource Include="VisualResources\Images\SoundIconOffTap.png" />
     <Resource Include="VisualResources\Images\SoundIconTap.png" />
@@ -218,6 +211,15 @@
     <Resource Include="VisualResources\Images\FirstThrophy.png" />
     <Resource Include="VisualResources\Images\SecondThrophy.png" />
     <Resource Include="VisualResources\Images\ThirdThrophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\Buttons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\ButtonsTap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualResources\Images\ButtonsDisable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
