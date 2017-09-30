@@ -20,7 +20,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <local:StrechTextBlock Grid.Row="0" HorizontalAlignment="Center" TextBlockText="Таблица Рекордов"></local:StrechTextBlock>
-        <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -42,6 +42,9 @@
             <local:StrechTextBlock Grid.Row="2" Grid.Column="2" TextBlockText="888"></local:StrechTextBlock>
             <local:StrechTextBlock Grid.Row="3" Grid.Column="1" TextBlockText="Player3"></local:StrechTextBlock>
             <local:StrechTextBlock Grid.Row="3" Grid.Column="2" TextBlockText="777"></local:StrechTextBlock>
+            <Image Grid.Row="1" Grid.Column="0" Source="VisualResources/Images/FirstThrophy.png" Margin="5"></Image>
+            <Image Grid.Row="2" Grid.Column="0" Source="VisualResources/Images/SecondThrophy.png" Margin="5"></Image>
+            <Image Grid.Row="3" Grid.Column="0" Source="VisualResources/Images/ThirdThrophy.png" Margin="5"></Image>
         </Grid>
     </Grid>
 </Page>

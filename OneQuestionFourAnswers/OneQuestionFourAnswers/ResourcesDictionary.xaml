@@ -65,4 +65,16 @@
         <Setter Property="BorderBrush" Value="Purple"></Setter>
         <Setter Property="Background" Value="{StaticResource NoticeBackgroundImage}"></Setter>
     </Style>
+    <Style x:Key="TextBoxStyle" TargetType="TextBox">
+        <Setter Property="MaxLength" Value="12"></Setter>
+        <Setter Property="FontFamily" Value="./VisualResources/#Resphekt"></Setter>
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
 </ResourceDictionary>

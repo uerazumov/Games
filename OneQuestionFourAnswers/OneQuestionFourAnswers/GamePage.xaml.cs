@@ -40,5 +40,17 @@ namespace OneQuestionFourAnswers
         {
             BackButton.ControlButton.Click += BackButtonClick;
         }
+
+        private void AnswerButtonClick(object sender, RoutedEventArgs e)
+        {
+            NewRecordWindow nrw = new NewRecordWindow();
+            nrw.Owner = Window.GetWindow(this);
+            var close = nrw.ShowDialog() ?? false;
+            if (close)
+            {
+                NavigationService ns = NavigationService.GetNavigationService(this);
+                ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            }
+        }
     }
 }
