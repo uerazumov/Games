@@ -19,9 +19,9 @@
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.7*"></RowDefinition>
+            <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" BackgroundImage="{StaticResource BackButtonIcon}" BackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
             <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Center" Text="Здесь будет текст вопроса"/>
         </Viewbox>
@@ -55,9 +55,9 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" BackgroundImage="{StaticResource StatisticsButtonIcon}" BackgroundImageActive="{StaticResource StatisticsButtonIconActive}"></local:CircularButton>
-                <local:CircularButton x:Name="TimeButton" Grid.Column="1" BackgroundImage="{StaticResource TimeButtonIcon}" BackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
-                <local:CircularButton x:Name="TwoAnswersButton" Grid.Column="2" BackgroundImage="{StaticResource TwoAnswersButtonIcon}" BackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsIconUsed}" EnableBackgroundImageActive="{StaticResource StatisticsButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeButtonIcon}" DisableBackgroundImage="{StaticResource TimeIconUsed}" EnableBackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersIconUsed}" EnableBackgroundImage="{StaticResource TwoAnswersButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
             </Grid>
             <Viewbox Grid.Column="1" Stretch="Uniform">
                 <Grid>
@@ -71,9 +71,11 @@
                     <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="999"></TextBlock>
                 </Grid>
             </Viewbox>
-            <Image Grid.Column="2" Source="\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5"></Image>
+            <Viewbox Grid.Column="2" Stretch="Uniform">
+            <Image Source="\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5"></Image>
+            </Viewbox>
             <local:StrechTextBlock Grid.Column="3" HorizontalAlignment="Left" TextBlockText="Время"></local:StrechTextBlock>
-            <local:CircularButton HorizontalAlignment="Left" x:Name="SoundButton" Grid.Column="4" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
+            <local:CircularButton HorizontalAlignment="Left" x:Name="SoundButton" Grid.Column="4" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}" Margin="0,0,30,20"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

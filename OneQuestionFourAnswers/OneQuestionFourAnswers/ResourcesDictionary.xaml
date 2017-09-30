@@ -15,6 +15,11 @@
     <ImageBrush x:Key="TimeButtonIconActive" ImageSource="VisualResources\Images\TimeIconTap.png"></ImageBrush>
     <ImageBrush x:Key="StatisticsButtonIcon" ImageSource="VisualResources\Images\StatisticsIcon.png"></ImageBrush>
     <ImageBrush x:Key="StatisticsButtonIconActive" ImageSource="VisualResources\Images\StatisticsIconTap.png"></ImageBrush>
+    <ImageBrush x:Key="SoundIconOff" ImageSource="VisualResources\Images\SoundIconOff.png"></ImageBrush>
+    <ImageBrush x:Key="SoundIconOffTap" ImageSource="VisualResources\Images\SoundIconOffTap.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersIconUsed" ImageSource="VisualResources\Images\TwoAnswersIconUsed.png"></ImageBrush>
+    <ImageBrush x:Key="TimeIconUsed" ImageSource="VisualResources\Images\TimeIconUsed.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsIconUsed" ImageSource="VisualResources\Images\StatisticsIconUsed.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>

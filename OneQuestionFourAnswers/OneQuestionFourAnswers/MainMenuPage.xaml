@@ -27,7 +27,7 @@
         <Button x:Name="StartBatton" Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame">
             <local:StrechTextBlock Margin="5" TextBlockText="Начать игру"></local:StrechTextBlock>
         </Button>
-        <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickRefresh">
+        <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickUpdate">
             <local:StrechTextBlock Margin="5" TextBlockText="Обновить"></local:StrechTextBlock>
         </Button>
         <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
@@ -38,8 +38,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CircularButton Margin="30,0,0,0" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" BackgroundImage="{StaticResource InformationButtonIcon}" BackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
-            <local:CircularButton Margin="0,0,30,0" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" BackgroundImage="{StaticResource SoundButtonIcon}" BackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
+            <local:CircularButton Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
+            <local:CircularButton Margin="0,0,30,8" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

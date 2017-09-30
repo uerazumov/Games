@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d"
         Icon="VisualResources\WindowIcon.ico"
-        Title="MainWindow" Height="600" Width="725" MinHeight="450" MinWidth="525">
+        Title="MainWindow" Height="600" Width="725" MinHeight="550" MinWidth="650">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,6 +21,6 @@
                 <ProgressBar Grid.Column="1" IsIndeterminate="True"/>
             </Viewbox>
         </StatusBar>
-        <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}"/>
+        <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}"></Frame>
     </DockPanel>
 </Window>
