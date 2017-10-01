@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -51,6 +52,9 @@ namespace OneQuestionFourAnswers
         }
         private void ButtonClickStatistics(object sender, RoutedEventArgs e)
         {
+            StatisticsWindow stw = new StatisticsWindow();
+            stw.Owner = Window.GetWindow(this);
+            stw.ShowDialog();
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
         }
@@ -58,6 +62,16 @@ namespace OneQuestionFourAnswers
         {
             TimeButton.DisableButton = !TimeButton.DisableButton;
             TimeButton.IsEnabled = false;
+            
+            DoubleAnimation ClockSpin = new DoubleAnimation();
+            ClockSpin.From = 0;
+            ClockSpin.To = 360;
+            ClockSpin.Duration = new Duration(TimeSpan.FromMilliseconds(1000));
+            Storyboard.SetTargetName(ClockSpin, Clock.Name);
+            Storyboard.SetTargetProperty(ClockSpin, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
+            Storyboard ClockSpinStoryboard = new Storyboard();
+            ClockSpinStoryboard.Children.Add(ClockSpin);
+            ClockSpinStoryboard.Begin(Clock);
         }
 
         private void AnswerButtonClick(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
-        Title="ExitTheGame" ResizeMode="NoResize" Height="200" Width="300">
+        Title="Выйти из игры" ResizeMode="NoResize" Height="200" Width="300">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

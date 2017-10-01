@@ -20,6 +20,7 @@
     <ImageBrush x:Key="TwoAnswersIconUsed" ImageSource="VisualResources\Images\TwoAnswersIconUsed.png"></ImageBrush>
     <ImageBrush x:Key="TimeIconUsed" ImageSource="VisualResources\Images\TimeIconUsed.png"></ImageBrush>
     <ImageBrush x:Key="StatisticsIconUsed" ImageSource="VisualResources\Images\StatisticsIconUsed.png"></ImageBrush>
+    <local:MainWindowViewModel x:Key="MainWindowVM"></local:MainWindowViewModel>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>
@@ -89,5 +90,9 @@
         <Setter Property="TextAlignment" Value="Center"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+    <Style x:Key="StatisticsBorderStyle" TargetType="Border">
+        <Setter Property="Margin" Value="20,5"></Setter>
+        <Setter Property="CornerRadius" Value="2"></Setter>
     </Style>
 </ResourceDictionary>

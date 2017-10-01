@@ -8,6 +8,9 @@ namespace OneQuestionFourAnswers
 {
     class MainWindowViewModel
     {
-
+        public byte AHight { get; set; }
+        public byte BHight { get; set; }
+        public byte CHight { get; set; }
+        public byte DHight { get; set; }
     }
 }

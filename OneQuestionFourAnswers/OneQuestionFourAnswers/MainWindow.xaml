@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d"
         Icon="VisualResources\WindowIcon.ico"
-        Title="MainWindow" Height="600" Width="725" MinHeight="550" MinWidth="650" Loaded="OnPageLoaded">
+        Title="1 вопрос 4 ответа" Height="600" Width="725" MinHeight="550" MinWidth="650" Loaded="OnPageLoaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
