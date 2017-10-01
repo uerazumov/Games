@@ -26,10 +26,6 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
         }
-        private void ButtonClickSound(object sender, RoutedEventArgs e)
-        {
-            SoundButton.DisableButton = !SoundButton.DisableButton;
-        }
         private void ButtonClickUpdate(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as MainWindow).UpdateBar.Visibility = Visibility.Visible;
@@ -50,7 +46,6 @@ namespace OneQuestionFourAnswers
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             InformationButton.ControlButton.Click += ButtonClickInformation;
-            SoundButton.ControlButton.Click += ButtonClickSound;
         }
 
         private void HighscoreButton(object sender, RoutedEventArgs e)

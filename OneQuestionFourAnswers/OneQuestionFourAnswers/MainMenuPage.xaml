@@ -39,7 +39,6 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:CircularButton Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
-            <local:CircularButton Margin="0,0,30,8" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

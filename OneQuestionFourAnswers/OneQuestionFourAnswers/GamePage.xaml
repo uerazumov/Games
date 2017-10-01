@@ -75,7 +75,6 @@
             <Image Source="\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5"></Image>
             </Viewbox>
             <local:StrechTextBlock Grid.Column="3" HorizontalAlignment="Left" TextBlockText="Время"></local:StrechTextBlock>
-            <local:CircularButton HorizontalAlignment="Left" x:Name="SoundButton" Grid.Column="4" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}" Margin="0,0,30,20"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

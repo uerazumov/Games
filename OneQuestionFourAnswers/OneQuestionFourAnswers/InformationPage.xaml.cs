@@ -31,15 +31,10 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.GoBack();
         }
-        private void ButtonClickSound(object sender, RoutedEventArgs e)
-        {
-            SoundButton.DisableButton = !SoundButton.DisableButton;
-        }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             BackButton.ControlButton.Click += BackButtonClick;
-            SoundButton.ControlButton.Click += ButtonClickSound;
         }
     }
 }

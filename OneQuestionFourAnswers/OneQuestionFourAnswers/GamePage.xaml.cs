@@ -39,7 +39,6 @@ namespace OneQuestionFourAnswers
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             BackButton.ControlButton.Click += BackButtonClick;
-            SoundButton.ControlButton.Click += ButtonClickSound;
             TimeButton.ControlButton.Click += ButtonClickTime;
             StatisticsButton.ControlButton.Click += ButtonClickStatistics;
             TwoAnswersButton.ControlButton.Click += ButtonClickTwoAnswers;
@@ -60,10 +59,7 @@ namespace OneQuestionFourAnswers
             TimeButton.DisableButton = !TimeButton.DisableButton;
             TimeButton.IsEnabled = false;
         }
-        private void ButtonClickSound(object sender, RoutedEventArgs e)
-        {
-            SoundButton.DisableButton = !SoundButton.DisableButton;
-        }
+
         private void AnswerButtonClick(object sender, RoutedEventArgs e)
         {
             NewRecordWindow nrw = new NewRecordWindow();

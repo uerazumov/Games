@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d"
         Icon="VisualResources\WindowIcon.ico"
-        Title="MainWindow" Height="600" Width="725" MinHeight="550" MinWidth="650">
+        Title="MainWindow" Height="600" Width="725" MinHeight="550" MinWidth="650" Loaded="OnPageLoaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,6 +21,13 @@
                 <ProgressBar Grid.Column="1" IsIndeterminate="True"/>
             </Viewbox>
         </StatusBar>
-        <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}"></Frame>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}" Grid.ColumnSpan="2"></Frame>
+            <local:CircularButton VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}" Margin="0,0,30,20"></local:CircularButton>
+        </Grid>
     </DockPanel>
 </Window>

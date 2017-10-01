@@ -59,6 +59,5 @@
             </Viewbox>
         </Grid>
         <TextBlock Grid.Row="4" Style="{StaticResource TextBlockStyle}" FontSize="20" VerticalAlignment="Bottom" Text="Разработал: Разумов Юрий, МИСиС, 2017 год"></TextBlock>
-        <local:CircularButton Margin="0,0,30,20" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Row="4" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}"></local:CircularButton>
     </Grid>
 </Page>
