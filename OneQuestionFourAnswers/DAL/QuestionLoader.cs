@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class FileReader
+    public class QuestionLoader
     {
+
     }
 }

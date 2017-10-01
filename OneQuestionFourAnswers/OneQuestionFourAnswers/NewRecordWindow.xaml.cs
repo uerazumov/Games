@@ -26,13 +26,33 @@ namespace OneQuestionFourAnswers
             {
                 UsernameTextBox.Focus();
                 UsernameTextBox.SelectAll();
+                (BorderUsernameTextBox.Child as TextBox).GotFocus += OnTextBoxFocused;
             };
         }
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-            Close();
+            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox))
+            {
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                NoticeTextBlock.Visibility = Visibility.Visible;
+            }
         }
+
+        private void OnTextBoxFocused(object sender, RoutedEventArgs e)
+        {
+            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox))
+            {
+                return;
+            }
+            (BorderUsernameTextBox.Child as TextBox).Text = "";
+            Validation.ClearInvalid((BorderUsernameTextBox.Child as TextBox).GetBindingExpression(TextBox.TextProperty));
+            NoticeTextBlock.Visibility = Visibility.Collapsed;
+        }
+
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;

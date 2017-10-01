@@ -12,5 +12,6 @@ namespace OneQuestionFourAnswers
         public byte BHight { get; set; }
         public byte CHight { get; set; }
         public byte DHight { get; set; }
+        public string Name { get; set; }
     }
 }

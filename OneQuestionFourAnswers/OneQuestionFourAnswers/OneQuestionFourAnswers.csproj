@@ -66,6 +66,7 @@
       <DependentUpon>ExitTheGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="NameValidationRule.cs" />
     <Compile Include="NewRecordWindow.xaml.cs">
       <DependentUpon>NewRecordWindow.xaml</DependentUpon>
     </Compile>

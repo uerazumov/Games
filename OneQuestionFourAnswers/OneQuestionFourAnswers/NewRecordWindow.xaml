@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
-        Title="Новый рекорд" ResizeMode="NoResize" Height="200" Width="300">
+        Title="Новый рекорд" ResizeMode="NoResize" Height="320" Width="400">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,21 +16,38 @@
     </Window.Resources>
     <Grid Background="{StaticResource NoticeBackgroundImage}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="55"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="30" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
-        <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
-            <TextBox x:Name="UsernameTextBox" Style="{StaticResource TextBoxStyle}" Text="Имя игрока"></TextBox>
+        <TextBlock Grid.Row="0" FontSize="40" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
+        <Border DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
+            <TextBox FontSize="45" x:Name="UsernameTextBox" Style="{StaticResource TextBoxStyle}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <DockPanel>
+                                <AdornedElementPlaceholder x:Name="controlWithError"/>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="Name" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <local:NameValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Border>
-        <Grid Grid.Row="2">
+        <TextBlock x:Name="NoticeTextBlock" Grid.Row="2" Text="Имя должно быть на русском, от 4 до 15 символов" Visibility="Collapsed" Foreground="Wheat" FontSize="25" Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" Width="140" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
-            <Button Margin="5" Width="140" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
+            <Button Margin="0,5,5,5" Width="190" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
+            <Button Margin="5,5,0,5" Width="190" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
         </Grid>
     </Grid>
 </Window>
