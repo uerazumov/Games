@@ -13,11 +13,7 @@ namespace OneQuestionFourAnswers
             var S = value as string;
             if (S.Length < 4)
             {
-                return new ValidationResult(false, "Никнейм слишком короткий!");
-            }
-            if (S.Length > 15)
-            {
-                return new ValidationResult(false, "Никнейм слишком длинный!");
+                return new ValidationResult(false, "Имя слишком короткое!");
             }
             for (int i = 0; i < S.Length; i++)
             {
@@ -32,7 +28,7 @@ namespace OneQuestionFourAnswers
                 }
                 if (j == AcceptableSymbols.Count)
                 {
-                    return new ValidationResult(false, "В никнейме могут содержаться только буквы русского алфавита!");
+                    return new ValidationResult(false, "В имени могут содержаться только буквы русского алфавита!");
                 }
             }
             return new ValidationResult(true, String.Empty);

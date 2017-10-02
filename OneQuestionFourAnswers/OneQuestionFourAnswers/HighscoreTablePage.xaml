@@ -21,7 +21,7 @@
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <local:StrechTextBlock Grid.Row="0" HorizontalAlignment="Center" TextBlockText="Таблица Рекордов"></local:StrechTextBlock>
-        <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>

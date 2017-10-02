@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}</ProjectGuid>
+    <ProjectGuid>{41847AD1-1E0A-4271-8A85-1C9AB962E792}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>LibraryClass</RootNamespace>
+    <AssemblyName>LibraryClass</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="QuestionLoader.cs" />
+    <Compile Include="Answer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibraryClass\LibraryClass.csproj">
-      <Project>{41847ad1-1e0a-4271-8a85-1c9ab962e792}</Project>
-      <Name>LibraryClass</Name>
-    </ProjectReference>
+    <Compile Include="QuestionAnswers.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="RecordsTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

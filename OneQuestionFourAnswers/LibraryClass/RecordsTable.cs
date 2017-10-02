@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace LibraryClass
 {
-    class RecordsTable
+    public class RecordsTable
     {
-        public List<Record> Records;
-
         public RecordsTable(List<Record> records)
         {
             Records = records;
         }
+        public List<Record> Records { get; set; }
+        
     }
 }

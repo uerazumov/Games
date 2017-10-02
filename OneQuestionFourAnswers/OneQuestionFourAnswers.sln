@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneQuestionFourAnswers", "OneQuestionFourAnswers\OneQuestionFourAnswers.csproj", "{EB5E6F9D-8D02-4ACB-A66C-7A499111BD2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLogic", "BussinesLogic\BussinesLogic.csproj", "{603F9AFA-E0EB-4658-A45C-7879A9E2456B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryClass", "LibraryClass\LibraryClass.csproj", "{41847AD1-1E0A-4271-8A85-1C9AB962E792}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

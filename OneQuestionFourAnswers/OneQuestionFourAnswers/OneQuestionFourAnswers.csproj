@@ -175,6 +175,10 @@
       <Project>{603f9afa-e0eb-4658-a45c-7879a9e2456b}</Project>
       <Name>BussinesLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryClass\LibraryClass.csproj">
+      <Project>{41847ad1-1e0a-4271-8a85-1c9ab962e792}</Project>
+      <Name>LibraryClass</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualResources\Images\BackgroundImage.jpg" />

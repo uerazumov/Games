@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace LibraryClass
 {
-    class Record
+    public class Record
     {
         public string Name { get; set; }
         public int Score { get; set; }
