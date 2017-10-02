@@ -38,7 +38,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CircularButton Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
+            <local:CircularButton VerticalAlignment="Bottom" Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonIconActive}"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

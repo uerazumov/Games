@@ -23,14 +23,73 @@ namespace OneQuestionFourAnswers
             AnswerList.Add(AnswerC);
             AnswerList.Add(AnswerD);
             QuestionPlusAnswers = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
-            // /Пробный вопрос   
+            // /Пробный вопрос
+            //  Пробный список высот
+            byte a = 10;
+            byte b = 20;
+            byte c = 30;
+            byte d = 40;
+            List<byte> lb = new List<byte>();
+            lb.Add(a);
+            lb.Add(b);
+            lb.Add(c);
+            lb.Add(d);
+            StatisticsHeight = lb;
+            //  /Пробный список высот
+            GameScore = 30;
         }
-        public byte AHight { get; set; }
-        public byte BHight { get; set; }
-        public byte CHight { get; set; }
-        public byte DHight { get; set; }
-        public string Name { get; set; }
-
+        public DateTime _time { get; set; }
+        public DateTime Time
+        {
+            get
+            {
+                return _time;
+            }
+            set
+            {
+                _time = value;
+                DoPropertyChanged("Time");
+            }
+        }
+        public string _name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                DoPropertyChanged("Name");
+            }
+        }
+        public List<byte> _statisticsheight { get; set; }
+        public List<byte> StatisticsHeight
+        {
+            get
+            {
+                return _statisticsheight;
+            }
+            set
+            {
+                _statisticsheight = value;
+                DoPropertyChanged("StatisticsHeight");
+            }
+        }
+        public LibraryClass.Record _newrecord { get; set; }
+        public LibraryClass.Record NewRecord
+        {
+            get
+            {
+                return _newrecord;
+            }
+            set
+            {
+                _newrecord = value;
+                DoPropertyChanged("NewRecord");
+            }
+        }
         public int _gamescore { get; set; }
         public int GameScore
         {

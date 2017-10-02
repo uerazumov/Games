@@ -31,10 +31,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="AButton" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[0].Text, Mode=TwoWay}"></local:StrechTextBlock>
+                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[0].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
             <Button x:Name="BButton" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[1].Text, Mode=TwoWay}"></local:StrechTextBlock>
+                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[1].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
         </Grid>
         <Grid Grid.Row="2">
@@ -43,10 +43,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="CButton" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[2].Text, Mode=TwoWay}"></local:StrechTextBlock>
+                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[2].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
             <Button x:Name="DButton" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[3].Text, Mode=TwoWay}"></local:StrechTextBlock>
+                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[3].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
         </Grid>
         <Grid Grid.Row="3">
@@ -76,7 +76,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="Счeт:"></TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="999"></TextBlock>
+                    <TextBlock x:Name="Score" Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="{Binding Source={StaticResource MainWindowVM}, Path=GameScore, Mode=OneWay}"></TextBlock>
                 </Grid>
             </Viewbox>
             <Viewbox Grid.Column="2" Stretch="Uniform">
@@ -86,7 +86,7 @@
                     </Image.RenderTransform>
                 </Image>
             </Viewbox>
-            <local:StrechTextBlock Grid.Column="3" HorizontalAlignment="Left" TextBlockText="Время"></local:StrechTextBlock>
+            <local:StrechTextBlock x:Name="Time" Grid.Column="3" HorizontalAlignment="Left" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=(string)Time, Mode=OneWay}"></local:StrechTextBlock>
         </Grid>
     </Grid>
 </Page>

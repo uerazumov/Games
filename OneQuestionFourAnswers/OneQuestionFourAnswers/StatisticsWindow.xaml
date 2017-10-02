@@ -37,10 +37,10 @@
             <TextBlock Grid.Row="1" Grid.Column="1" Text="б" Style="{StaticResource TextBlockStyle}" FontSize="45" Foreground="White" Margin="0"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="в" Style="{StaticResource TextBlockStyle}" FontSize="45" Foreground="White" Margin="0"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="3" Text="г" Style="{StaticResource TextBlockStyle}" FontSize="45" Foreground="White" Margin="0"></TextBlock>
-            <Border Height="{Binding AHight}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="0" Background="White"/>
-            <Border Height="{Binding BHight}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="1" Background="White"/>
-            <Border Height="{Binding CHight}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="2" Background="White"/>
-            <Border Height="{Binding DHight}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="3" Background="White"/>
+            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[0], Mode=OneWay}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="0" Background="White"/>
+            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[1], Mode=OneWay}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="1" Background="White"/>
+            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[2], Mode=OneWay}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="2" Background="White"/>
+            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[3], Mode=OneWay}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="3" Background="White"/>
         </Grid>
         <Button Foreground="White" Content="Закрыть" Grid.Row="2" Style="{StaticResource ButtonStyle}" BorderThickness="0" Margin="60,5" Click="ButtonClickClose"></Button>
     </Grid>
