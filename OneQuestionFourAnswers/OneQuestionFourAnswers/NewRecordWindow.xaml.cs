@@ -31,7 +31,7 @@ namespace OneQuestionFourAnswers
         }
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox))
+            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox)&&((BorderUsernameTextBox.Child as TextBox).Text != ""))
             {
                 DialogResult = true;
                 Close();
