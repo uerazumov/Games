@@ -1,0 +1,32 @@
+﻿<Window x:Class="OneQuestionFourAnswers.DefeatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OneQuestionFourAnswers"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        Icon="VisualResources\WindowIcon.ico"
+        Title="Поражение" ResizeMode="NoResize" Height="250" Width="300">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="{StaticResource NoticeBackgroundImage}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="35" Grid.Row="0" Text="К сожалению, вы не побили ни один из рекордов. Хотите сыграть снова?" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Foreground="White"></TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Margin="5" Width="140" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White"></Button>
+            <Button Margin="5" Width="140" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -26,15 +26,15 @@ namespace OneQuestionFourAnswers
             InitializeComponent();
         }
         private void BackButtonClick(object sender, RoutedEventArgs e)
-        {
-            ExitTheGame etg = new ExitTheGame();
-            etg.Owner = Window.GetWindow(this);
-            var close = etg.ShowDialog() ?? false;
-            if (close)
-            {
-                NavigationService ns = NavigationService.GetNavigationService(this);
-                ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
-            }
+        {     
+                ExitTheGame etg = new ExitTheGame();
+                etg.Owner = Window.GetWindow(this);
+                var close = etg.ShowDialog() ?? false;
+                if (close)
+                {
+                    NavigationService ns = NavigationService.GetNavigationService(this);
+                    ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+                }
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
@@ -76,13 +76,26 @@ namespace OneQuestionFourAnswers
 
         private void AnswerButtonClick(object sender, RoutedEventArgs e)
         {
-            NewRecordWindow nrw = new NewRecordWindow();
-            nrw.Owner = Window.GetWindow(this);
-            var close = nrw.ShowDialog() ?? false;
+            //NewRecordWindow nrw = new NewRecordWindow();
+            //nrw.Owner = Window.GetWindow(this);
+            //var close = nrw.ShowDialog() ?? false;
+            //if (close)
+            //{
+            //    NavigationService ns = NavigationService.GetNavigationService(this);
+            //    ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            //}
+
+            DefeatWindow dfw = new DefeatWindow();
+            dfw.Owner = Window.GetWindow(this);
+            bool close = (bool)dfw.ShowDialog();
             if (close)
             {
                 NavigationService ns = NavigationService.GetNavigationService(this);
                 ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                NavigationService.Refresh();
             }
         }
     }

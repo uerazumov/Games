@@ -76,6 +76,9 @@
     <Compile Include="StrechTextBlock.xaml.cs">
       <DependentUpon>StrechTextBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DefeatWindow.xaml.cs">
+      <DependentUpon>DefeatWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="CircularButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StrechTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefeatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
