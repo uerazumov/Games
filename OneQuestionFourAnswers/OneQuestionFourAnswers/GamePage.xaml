@@ -86,7 +86,7 @@
                     </Image.RenderTransform>
                 </Image>
             </Viewbox>
-            <local:StrechTextBlock x:Name="Time" Grid.Column="3" HorizontalAlignment="Left" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=(string)Time, Mode=OneWay}"></local:StrechTextBlock>
+            <local:StrechTextBlock x:Name="Time" Grid.Column="3" HorizontalAlignment="Left" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=Time, Mode=OneWay}"></local:StrechTextBlock>
         </Grid>
     </Grid>
 </Page>

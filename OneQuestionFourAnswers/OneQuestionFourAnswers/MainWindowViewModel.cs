@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Input;
@@ -44,20 +45,20 @@ namespace OneQuestionFourAnswers
             listR.Add(Third);
             TableOfRecords = new LibraryClass.RecordsTable(listR);
             //CreateRecord = new Command(DoCreateRecord);
+            _time = new TimeSpan(0, 1, 0);
         }
-        //public DateTime _time { get; set; }
-        //public DateTime Time
-        //{
-        //    get
-        //    {
-        //        return _time;
-        //    }
-        //    set
-        //    {
-        //        _time = value;
-        //        DoPropertyChanged("Time");
-        //    }
-        //}
+        private TimeSpan _time { get; set; }
+        public string Time
+        {
+            get
+            {
+                return _time.ToString(@"mm\:ss");
+            }
+            set
+            {
+                DoPropertyChanged("Time");
+            }
+        }
         private LibraryClass.RecordsTable _tableofrecords { get; set; }
         public LibraryClass.RecordsTable TableOfRecords
         {
@@ -181,37 +182,17 @@ namespace OneQuestionFourAnswers
         {
             //Здесь будет метод получающуй рандомную статистику для одной из подсказок
         }
-        private void DoOpenRecordsTable()
+        private void DoGetRecordsTable()
         {
-            //Здесь будет метод открывающий
+            //Здесь будет метод передачи рекордов
         }
         private void DoUpdate()
         {
             //Здесь будет метод запускающий обновление базы вопросов
         }
-        private void DoDefeat()
-        {
-            //Здесь будет метод выводящий окно поражения
-        }
-        private void DoWin()
-        {
-            //Здесь будет метод выводящий окно победы
-        }
-        private void DoCloseGame()
-        {
-            //Здесь будет метод выводящий окно победы
-        }
         private void DoOpenNewGame()
         {
             //Здесь будет метод запускающий новую игру
-        }
-        private void DoOpenInformation()
-        {
-            //Здесь будет метод запускающий новую игру
-        }
-        private void DoOpenMainMany()
-        {
-            //Здесь будет метод открывающий главное меню
         }
         //private ICommand _doSomething;
         //public ICommand DoSomethingCommand
