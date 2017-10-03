@@ -30,10 +30,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="AButton" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[0].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
-            <Button x:Name="BButton" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[1].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
         </Grid>
@@ -42,10 +42,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CButton" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[2].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
-            <Button x:Name="DButton" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionPlusAnswers.Answers[3].Text, Mode=OneWay}"></local:StrechTextBlock>
             </Button>
         </Grid>
@@ -80,7 +80,7 @@
                 </Grid>
             </Viewbox>
             <Viewbox Grid.Column="2" Stretch="Uniform">
-                <Image  x:Name="Clock" Source="\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5" RenderTransformOrigin=".5,.5">
+                <Image  x:Name="Clock" Source=".\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5" RenderTransformOrigin=".5,.5">
                     <Image.RenderTransform>
                         <RotateTransform Angle="0" />
                     </Image.RenderTransform>

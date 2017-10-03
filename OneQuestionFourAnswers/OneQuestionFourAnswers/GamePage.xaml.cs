@@ -52,17 +52,16 @@ namespace OneQuestionFourAnswers
         }
         private void ButtonClickStatistics(object sender, RoutedEventArgs e)
         {
-            StatisticsWindow stw = new StatisticsWindow();
-            stw.Owner = Window.GetWindow(this);
-            stw.ShowDialog();
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
+            StatisticsWindow stw = new StatisticsWindow();
+            stw.Owner = Window.GetWindow(this);
+            stw.ShowDialog();  
         }
         private void ButtonClickTime(object sender, RoutedEventArgs e)
         {
             TimeButton.DisableButton = !TimeButton.DisableButton;
             TimeButton.IsEnabled = false;
-            
             DoubleAnimation ClockSpin = new DoubleAnimation();
             ClockSpin.From = 0;
             ClockSpin.To = 360;

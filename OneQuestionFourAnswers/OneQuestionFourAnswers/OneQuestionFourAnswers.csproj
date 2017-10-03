@@ -62,6 +62,7 @@
     <Compile Include="CircularButton.xaml.cs">
       <DependentUpon>CircularButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command.cs" />
     <Compile Include="ExitTheGame.xaml.cs">
       <DependentUpon>ExitTheGame.xaml</DependentUpon>
     </Compile>
