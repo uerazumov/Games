@@ -145,7 +145,7 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintTime()
         {
-            //Здесь будет метод прибавляющий минуту к игровому времени
+            _time += new TimeSpan(0, 1, 0);
         }
         private bool _questionIsSelect;
         public bool QuestionIsSelect
@@ -176,10 +176,6 @@ namespace OneQuestionFourAnswers
                 if (_time == TimeSpan.Zero)
                 {
                     _timer.Stop();
-                }
-                if (_time.TotalSeconds <= 58)
-                {
-                    QuestionIsSelect = true;
                 }
                 _time = _time.Add(TimeSpan.FromSeconds(-1));
             },
