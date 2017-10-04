@@ -10,27 +10,15 @@ namespace OneQuestionFourAnswers
     {
         public MainWindowViewModel()
         {
-            // Пробный список высот
-
-            byte[] lb = new byte[]{ 10, 20, 30, 40};
-
-            StatisticsHeight = lb;
             // Пробные очки
             GameScore = 30;
-            // Пробная таблица рекордов
-            LibraryClass.Record First = new LibraryClass.Record("Player 1", 500);
-            LibraryClass.Record Second = new LibraryClass.Record("Player 2", 400);
-            LibraryClass.Record Third = new LibraryClass.Record("Player 3", 300);
-            List<LibraryClass.Record> listR = new List<LibraryClass.Record>();
-            listR.Add(First);
-            listR.Add(Second);
-            listR.Add(Third);
-            TableOfRecords = new LibraryClass.RecordsTable(listR);
-            //CreateRecord = new Command(DoCreateRecord);
             _time = new TimeSpan(0, 1, 0);
             _name = "иван";
+            //CreateRecord = new Command(DoCreateRecord);
             DoOpenNewGame();
             DoUseHintStatistics();
+            DoUseHintTwoAnswers();
+            DoGetRecordsTable();
         }
         private TimeSpan _time { get; set; }
         public string Time
@@ -149,7 +137,8 @@ namespace OneQuestionFourAnswers
         private void DoCreateRecord()
         {
             NewRecord = new LibraryClass.Record(Name, GameScore);
-            //Здесь будет метод передащий данный рекорд в бизнес логику
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            FP.CreateNewRecord(NewRecord);
         }
         private void DoUseHintTime()
         {
@@ -157,7 +146,8 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintTwoAnswers()
         {
-            //Здесь будет метод получающий из БизнесЛогики массив логических элементов
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            _twowronganswers = FP.HintTwoAnswers(QuestionPlusAnswers);
         }
         private void DoChechTheAnswer()
         {
@@ -180,7 +170,8 @@ namespace OneQuestionFourAnswers
         }
         private void DoGetRecordsTable()
         {
-            //Здесь будет метод передачи рекордов
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            _tableofrecords = FP.GetRecordsTable();
         }
         private void DoUpdate()
         {

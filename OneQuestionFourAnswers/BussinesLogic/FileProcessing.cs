@@ -103,5 +103,38 @@ namespace BussinesLogic
             }
             return hintstatistic;
         }
+        public void CreateNewRecord(LibraryClass.Record newrecord)
+        {
+            //здесь будет метод передающий новый рекорд в Дата Логику
+        }
+        public bool[] HintTwoAnswers(LibraryClass.QuestionAnswers question)
+        {
+            bool[] twoanswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
+            Random rnd = new Random();
+            int t = rnd.Next(0, 3);
+            if (!twoanswers[t])
+            {
+                twoanswers[t] = true;
+            }
+            else
+            {
+                twoanswers[Math.Abs(t - rnd.Next(1, 3))] = true;
+            }
+            return twoanswers;
+        }
+        public LibraryClass.RecordsTable GetRecordsTable()
+        {
+            //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
+
+            //Тестовая таблица рекордов
+            LibraryClass.Record First = new LibraryClass.Record("Player 1", 500);
+            LibraryClass.Record Second = new LibraryClass.Record("Player 2", 400);
+            LibraryClass.Record Third = new LibraryClass.Record("Player 3", 300);
+            List<LibraryClass.Record> listR = new List<LibraryClass.Record>();
+            listR.Add(First);
+            listR.Add(Second);
+            listR.Add(Third);
+            return new LibraryClass.RecordsTable(listR);
+        }
     }
 }
