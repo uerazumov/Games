@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Input;
+using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OneQuestionFourAnswers
 {
@@ -142,8 +144,23 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintTime()
         {
-            //Здесь будет метод прибавляющий минуту к игровому времени и вращающий часики
+            //Здесь будет метод прибавляющий минуту к игровому времени
         }
+
+        //private void DoCountdownTimer()
+        //{
+        //    DispatcherTimer _timer = new DispatcherTimer();
+        //    _time = TimeSpan.FromSeconds(10);
+        //    _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+        //    {
+        //        Time = _time.ToString(@"mm\:ss");
+        //        if (_time == TimeSpan.Zero) _timer.Stop();
+        //        _time = _time.Add(TimeSpan.FromSeconds(-1));
+        //    }, Application.Current.Dispatcher);
+
+        //    _timer.Start();
+        //}
+
         private void DoUseHintTwoAnswers()
         {
             BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
