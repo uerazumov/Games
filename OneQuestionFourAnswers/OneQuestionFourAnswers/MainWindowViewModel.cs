@@ -115,6 +115,26 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("GameScore");
             }
         }
+        private bool _questionIsSelect;
+        public bool QuestionIsSelect
+        {
+            get
+            {
+                return _questionIsSelect;
+            }
+            set
+            {
+                _questionIsSelect = value;
+                DoPropertyChanged("QuestionIsSelect");
+                if (_questionIsSelect)
+                {
+                    _timer.Stop();
+                }
+            }
+
+        }
+
+        private DispatcherTimer _timer;
         private LibraryClass.QuestionAnswers _questionplusanswers { get; set; }
         public LibraryClass.QuestionAnswers QuestionPlusAnswers
         {
@@ -147,27 +167,6 @@ namespace OneQuestionFourAnswers
         {
             _time += new TimeSpan(0, 1, 0);
         }
-        private bool _questionIsSelect;
-        public bool QuestionIsSelect
-        {
-            get
-            {
-                return _questionIsSelect;
-            }
-            set
-            {
-                _questionIsSelect = value;
-                DoPropertyChanged("QuestionIsSelect");
-                if (_questionIsSelect)
-                {
-                    _timer.Stop();
-                }
-            }
-
-        }
-
-        private DispatcherTimer _timer;
-
         private void DoCountdownTimer()
         {
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
