@@ -21,7 +21,9 @@ namespace OneQuestionFourAnswers
             DoUseHintStatistics();
             DoUseHintTwoAnswers();
             DoGetRecordsTable();
+            DoCountdownTimer();
         }
+        BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
         private TimeSpan _time { get; set; }
         public string Time
         {
@@ -139,7 +141,6 @@ namespace OneQuestionFourAnswers
         private void DoCreateRecord()
         {
             NewRecord = new LibraryClass.Record(Name, GameScore);
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
             FP.CreateNewRecord(NewRecord);
         }
         private void DoUseHintTime()
@@ -147,28 +148,25 @@ namespace OneQuestionFourAnswers
             //Здесь будет метод прибавляющий минуту к игровому времени
         }
 
-        //private void DoCountdownTimer()
-        //{
-        //    DispatcherTimer _timer = new DispatcherTimer();
-        //    _time = TimeSpan.FromSeconds(10);
-        //    _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
-        //    {
-        //        Time = _time.ToString(@"mm\:ss");
-        //        if (_time == TimeSpan.Zero) _timer.Stop();
-        //        _time = _time.Add(TimeSpan.FromSeconds(-1));
-        //    }, Application.Current.Dispatcher);
+        private void DoCountdownTimer()
+        {
+            DispatcherTimer _timer = new DispatcherTimer();
+            _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                Time = _time.ToString(@"mm\:ss");
+                if (_time == TimeSpan.Zero) _timer.Stop();
+                _time = _time.Add(TimeSpan.FromSeconds(-1));
+            }, App.Current.Dispatcher);
 
-        //    _timer.Start();
-        //}
+            _timer.Start();
+        }
 
         private void DoUseHintTwoAnswers()
         {
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
             _twowronganswers = FP.HintTwoAnswers(QuestionPlusAnswers);
         }
         private void DoChechTheAnswer()
         {
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
             int score = _gamescore;
             bool DefeatReacord = false;
             if (FP.CheckAnswer(QuestionPlusAnswers.Answers[2], ref score, ref DefeatReacord)) //нужно реализовать определение вопроса по нажатой кнопке
@@ -182,12 +180,11 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintStatistics()
         {
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
             _statisticsheight = FP.HintStatistics(QuestionPlusAnswers);
         }
         private void DoGetRecordsTable()
         {
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            
             _tableofrecords = FP.GetRecordsTable();
         }
         private void DoUpdate()
@@ -196,7 +193,6 @@ namespace OneQuestionFourAnswers
         }
         private void DoOpenNewGame()
         {
-            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
             int NewScore = GameScore;
             string NewName = Name;
             FP.StartNewGame(ref NewScore, ref NewName);
