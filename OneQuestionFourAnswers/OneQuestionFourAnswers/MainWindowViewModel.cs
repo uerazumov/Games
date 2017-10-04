@@ -10,28 +10,10 @@ namespace OneQuestionFourAnswers
     {
         public MainWindowViewModel()
         {
-            TwoWrongAnswers = new bool[] { true, true, true, true };
-            // Пробный вопрос
-            LibraryClass.Answer AnswerA = new LibraryClass.Answer("ответ А", false);
-            LibraryClass.Answer AnswerB = new LibraryClass.Answer("ответ Б", false);
-            LibraryClass.Answer AnswerC = new LibraryClass.Answer("ответ В", true);
-            LibraryClass.Answer AnswerD = new LibraryClass.Answer("ответ Г", false);
-            List<LibraryClass.Answer> AnswerList = new List<LibraryClass.Answer>();
-            AnswerList.Add(AnswerA);
-            AnswerList.Add(AnswerB);
-            AnswerList.Add(AnswerC);
-            AnswerList.Add(AnswerD);
-            QuestionPlusAnswers = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
             // Пробный список высот
-            byte a = 10;
-            byte b = 20;
-            byte c = 30;
-            byte d = 40;
-            List<byte> lb = new List<byte>();
-            lb.Add(a);
-            lb.Add(b);
-            lb.Add(c);
-            lb.Add(d);
+
+            byte[] lb = new byte[]{ 10, 20, 30, 40};
+
             StatisticsHeight = lb;
             // Пробные очки
             GameScore = 30;
@@ -46,6 +28,9 @@ namespace OneQuestionFourAnswers
             TableOfRecords = new LibraryClass.RecordsTable(listR);
             //CreateRecord = new Command(DoCreateRecord);
             _time = new TimeSpan(0, 1, 0);
+            _name = "иван";
+            DoOpenNewGame();
+            DoUseHintStatistics();
         }
         private TimeSpan _time { get; set; }
         public string Time
@@ -99,8 +84,8 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("TwoWrongAnswers");
             }
         }
-        private List<byte> _statisticsheight { get; set; }
-        public List<byte> StatisticsHeight
+        private byte[] _statisticsheight { get; set; }
+        public byte[] StatisticsHeight
         {
             get
             {
@@ -176,11 +161,22 @@ namespace OneQuestionFourAnswers
         }
         private void DoChechTheAnswer()
         {
-            //Здесь будет метод проверяющий является ли выбранный ответ верным
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            int score = _gamescore;
+            bool DefeatReacord = false;
+            if (FP.CheckAnswer(QuestionPlusAnswers.Answers[2], ref score, ref DefeatReacord)) //нужно реализовать определение вопроса по нажатой кнопке
+            {
+                _gamescore = score;
+            }
+            else
+            {
+                //здесь будет обработка того, что нажал пользователь в окне победы или поражения
+            }
         }
         private void DoUseHintStatistics()
         {
-            //Здесь будет метод получающуй рандомную статистику для одной из подсказок
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            _statisticsheight = FP.HintStatistics(QuestionPlusAnswers);
         }
         private void DoGetRecordsTable()
         {
@@ -192,7 +188,19 @@ namespace OneQuestionFourAnswers
         }
         private void DoOpenNewGame()
         {
-            //Здесь будет метод запускающий новую игру
+            BussinesLogic.FileProcessing FP = new BussinesLogic.FileProcessing();
+            int NewScore = GameScore;
+            string NewName = Name;
+            FP.StartNewGame(ref NewScore, ref NewName);
+            LibraryClass.QuestionAnswers NewQuestion = QuestionPlusAnswers;
+            bool[] NewTwoWrongAnswers = TwoWrongAnswers;
+            TimeSpan NewTime = _time;
+            FP.NewQuestion(ref NewTime, ref NewQuestion, ref NewTwoWrongAnswers);
+            _time = NewTime;
+            _gamescore = NewScore;
+            _name = NewName;
+            QuestionPlusAnswers = NewQuestion;
+            _twowronganswers = NewTwoWrongAnswers;
         }
         //private ICommand _doSomething;
         //public ICommand DoSomethingCommand
