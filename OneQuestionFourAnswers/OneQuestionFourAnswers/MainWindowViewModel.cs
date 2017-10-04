@@ -147,17 +147,43 @@ namespace OneQuestionFourAnswers
         {
             //Здесь будет метод прибавляющий минуту к игровому времени
         }
+        private bool _questionIsSelect;
+        public bool QuestionIsSelect
+        {
+            get
+            {
+                return _questionIsSelect;
+            }
+            set
+            {
+                _questionIsSelect = value;
+                DoPropertyChanged("QuestionIsSelect");
+                if (_questionIsSelect)
+                {
+                    _timer.Stop();
+                }
+            }
+
+        }
+
+        private DispatcherTimer _timer;
 
         private void DoCountdownTimer()
         {
-            DispatcherTimer _timer = new DispatcherTimer();
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 Time = _time.ToString(@"mm\:ss");
-                if (_time == TimeSpan.Zero) _timer.Stop();
+                if (_time == TimeSpan.Zero)
+                {
+                    _timer.Stop();
+                }
+                if (_time.TotalSeconds <= 58)
+                {
+                    QuestionIsSelect = true;
+                }
                 _time = _time.Add(TimeSpan.FromSeconds(-1));
-            }, App.Current.Dispatcher);
-
+            },
+            App.Current.Dispatcher);
             _timer.Start();
         }
 
@@ -184,7 +210,7 @@ namespace OneQuestionFourAnswers
         }
         private void DoGetRecordsTable()
         {
-            
+
             _tableofrecords = FP.GetRecordsTable();
         }
         private void DoUpdate()
@@ -193,6 +219,7 @@ namespace OneQuestionFourAnswers
         }
         private void DoOpenNewGame()
         {
+            _questionIsSelect = false;
             int NewScore = GameScore;
             string NewName = Name;
             FP.StartNewGame(ref NewScore, ref NewName);
