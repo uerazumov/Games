@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:OneQuestionFourAnswers"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- ReSharper disable once InconsistentNaming -->
         <local:MainWindowViewModel x:Key="MainWindowVM"></local:MainWindowViewModel>
     </Application.Resources>
 </Application>

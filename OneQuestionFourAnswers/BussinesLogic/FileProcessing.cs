@@ -1,111 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LibraryClass;
 
 namespace BussinesLogic
 {
     public class FileProcessing
     {
-        public void StartNewGame(ref int newScore, ref string newName)
-        {
-            newScore = 0;
-            newName = "";
-        }
-        public void NewQuestion(ref TimeSpan newTime, ref LibraryClass.QuestionAnswers newQuestion, ref bool[] allAnswersTrue)
+
+        public void NewQuestion(out QuestionAnswers newQuestion)
         {
             //Метод берущий из БД вопрос по индексу и возвращающий нам новый вопрос
-            allAnswersTrue = new bool[] { true, true, true, true };
-            newTime = new TimeSpan(0, 0, 30);
 
             //Пробный вопрос
-            List<LibraryClass.Answer> AnswerList = new List<LibraryClass.Answer>();
-            Random rnd = new Random();
-            var r = (int)rnd.Next(0, 4);
-            for(int i = 0; i != 4; i++)
+            var answerList = new List<Answer>();
+            var rnd = new Random();
+            var r = rnd.Next(0, 4);
+            for (int i = 0; i != 4; i++)
             {
-                if(i != r)
+                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                if (i != r)
                 {
-                    AnswerList.Add(new LibraryClass.Answer("неверный", false));
+                    answerList.Add(new Answer("неверный", false));
                 }
                 else
                 {
-                    AnswerList.Add(new LibraryClass.Answer("верный", true));
+                    answerList.Add(new Answer("верный", true));
                 }
             }
-            newQuestion = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
+            newQuestion = new QuestionAnswers("Текст вопроса", answerList);
         }
-        public bool CheckAnswer(LibraryClass.Answer selectedAnswer, ref int score, ref bool defeatRecord)
+
+        public bool CheckAnswer(Answer selectedAnswer, ref int score, ref bool defeatRecord)
         {
-            if(selectedAnswer.IsCorrect)
+            if (selectedAnswer.IsCorrect)
             {
                 score += 10;
                 return true;
             }
-            else
-            {
-                //Здесь будет проверка того, побил ли пользователь рекорд
-                return false;
-            }
+            //Здесь будет проверка того, побил ли пользователь рекорд
+            return false;
         }
-        public byte[] HintStatistics(LibraryClass.QuestionAnswers question)
+
+        public byte[] HintStatistics(QuestionAnswers question)
         {
-            var max = new byte[] { 0, 1, 2, 3 };
-            var statistic = new byte[] { 0, 0, 0, 0 };
+            var statistic = new byte[] {0, 0, 0, 0};
             var random = new Random();
             byte number = 97;
-            for (int i = 0; i != 3; i++)
+            for (var i = 0; i != 3; i++)
             {
-                statistic[i] = (byte)random.Next(1, number+1);
-                number = (byte)(number - statistic[i] + 1);
+                statistic[i] = (byte) random.Next(1, number + 1);
+                number = (byte) (number - statistic[i] + 1);
             }
-            statistic[3] = (byte)(100 - statistic[0] - statistic[1] - statistic[2]);
-            var hintStatistic = statistic;
-            for(int i = 0; i !=3; i++)
-                for(int j = 1; j != 4; j++)
-                {
-                    if(statistic[i] < statistic[j])
-                    {
-                        byte temp = statistic[i];
-                        statistic[i] = statistic[j];
-                        statistic[j] = temp;
-                        temp = max[i];
-                        max[i] = max[j];
-                        max[j] = temp;
-                    }
-                }
-            for (int i = 0; i != 4;i++)
+            statistic[3] = (byte) (100 - statistic[0] - statistic[1] - statistic[2]);
+            var maxValue = statistic.Max();
+            var maxIndex = Array.IndexOf(statistic, maxValue);
+            for (var i = 0; i != 4; i++)
             {
                 if (question.Answers[i].IsCorrect)
                 {
-                    byte randomValue = (byte)random.Next(0, 101);
+                    byte randomValue = (byte) random.Next(0, 101);
                     if (randomValue < 90)
                     {
-                        byte temp = hintStatistic[i];
-                        hintStatistic[i] = hintStatistic[max[0]];
-                        hintStatistic[max[0]] = temp;
+                        var temp = statistic[i];
+                        statistic[i] = statistic[maxIndex];
+                        statistic[maxIndex] = temp;
                     }
                     else
                     {
-                        var randomIndex = (int)random.Next(1, 4);
-                        byte temp = hintStatistic[i];
-                        hintStatistic[i] = hintStatistic[randomIndex];
-                        hintStatistic[randomIndex] = temp;
+                        var randomIndex = random.Next(1, 4);
+                        var temp = statistic[i];
+                        statistic[i] = statistic[Math.Abs(randomIndex - random.Next(1, 4))];
+                        statistic[Math.Abs(randomIndex - random.Next(1, 4))] = temp;
                     }
                 }
             }
-            return hintStatistic;
+            return statistic;
         }
-        public void CreateNewRecord(LibraryClass.Record newRecord)
+
+        public void CreateNewRecord(Record newRecord)
         {
             //здесь будет метод передающий новый рекорд в Дата Логику
         }
-        public bool[] HintTwoAnswers(LibraryClass.QuestionAnswers question)
+
+        public bool[] HintTwoAnswers(QuestionAnswers question)
         {
-            var twoAnswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
+            var twoAnswers = new[]
+            {
+                question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect,
+                question.Answers[3].IsCorrect
+            };
             var random = new Random();
-            int randomIndex = random.Next(0, 4);
+            var randomIndex = random.Next(0, 4);
             if (!twoAnswers[randomIndex])
             {
                 twoAnswers[randomIndex] = true;
@@ -116,20 +102,19 @@ namespace BussinesLogic
             }
             return twoAnswers;
         }
-        public LibraryClass.RecordsTable GetRecordsTable()
+
+        public RecordsTable GetRecordsTable()
         {
             //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
 
             //Тестовая таблица рекордов
-            LibraryClass.Record First = new LibraryClass.Record("Player 1", 500);
-            LibraryClass.Record Second = new LibraryClass.Record("Player 2", 400);
-            LibraryClass.Record Third = new LibraryClass.Record("Player 3", 300);
-            List<LibraryClass.Record> listR = new List<LibraryClass.Record>();
-            listR.Add(First);
-            listR.Add(Second);
-            listR.Add(Third);
-            return new LibraryClass.RecordsTable(listR);
+            var first = new Record("Player 1", 500);
+            var second = new Record("Player 2", 400);
+            var third = new Record("Player 3", 300);
+            var listR = new List<Record> {first, second, third};
+            return new RecordsTable(listR);
         }
+
         public void UpdateBaseOfQuestion()
         {
             //Здесь будет метод запускающий обновление базы вопросов

@@ -1,15 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
 
 namespace OneQuestionFourAnswers
 {
-    /// <summary>
-    /// Логика взаимодействия для MainMenuPage.xaml
-    /// </summary>
-    public partial class MainMenuPage : Page
+    public partial class MainMenuPage
     {
         public MainMenuPage()
         {
@@ -19,16 +16,18 @@ namespace OneQuestionFourAnswers
         private void ButtonClickStartGame(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
+            ns?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
         }
         private void ButtonClickInformation(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
+            ns?.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
         }
         private void ButtonClickUpdate(object sender, RoutedEventArgs e)
         {
-            (Window.GetWindow(this) as MainWindow).UpdateBar.Visibility = Visibility.Visible;
+            var window = Window.GetWindow(this) as MainWindow;
+            Debug.Assert(window != null, nameof(window) + " != null");
+            window.UpdateBar.Visibility = Visibility.Visible;
             StartBatton.IsEnabled = false;
             UpdateBatton.IsEnabled = false;
             // Временный код
@@ -37,7 +36,7 @@ namespace OneQuestionFourAnswers
             {
                 Dispatcher.Invoke(() =>
                 {
-                    (App.Current.MainWindow as MainWindow).UpdateBar.Visibility = Visibility.Collapsed;
+                    window.UpdateBar.Visibility = Visibility.Collapsed;
                     StartBatton.IsEnabled = true;
                     UpdateBatton.IsEnabled = true;
                 });
@@ -53,7 +52,7 @@ namespace OneQuestionFourAnswers
         private void HighscoreButton(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("HighscoreTablePage.xaml", UriKind.Relative));
+            ns?.Navigate(new Uri("HighscoreTablePage.xaml", UriKind.Relative));
         }
     }
 }

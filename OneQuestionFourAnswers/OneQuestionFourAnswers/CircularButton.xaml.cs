@@ -1,25 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OneQuestionFourAnswers
 {
-    /// <summary>
-    /// Логика взаимодействия для CircularButton.xaml
-    /// </summary>
-    public partial class CircularButton : UserControl, INotifyPropertyChanged
+    public partial class CircularButton : INotifyPropertyChanged
     {
         public CircularButton()
         {
@@ -34,14 +18,11 @@ namespace OneQuestionFourAnswers
         public ImageBrush EnableBackgroundImageActive { get; set; }
 
 
+        private bool _disableButton;
 
-        public bool _disableButton { get; set; }
         public bool DisableButton
         {
-            get
-            {
-                return _disableButton;
-            }
+            get { return _disableButton; }
             set
             {
                 _disableButton = value;
@@ -51,29 +32,15 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        public ImageBrush BackgroundImageActive
-        {
-            get
-            {
-                return DisableButton ? DisableBackgroundImageActive : EnableBackgroundImageActive;
-            }
-        }
+        public ImageBrush BackgroundImageActive => DisableButton ? DisableBackgroundImageActive : EnableBackgroundImageActive;
 
-        public ImageBrush BackgroundImage
-        {
-            get
-            {
-                return DisableButton ? DisableBackgroundImage : EnableBackgroundImage;
-            }
-        }
+        public ImageBrush BackgroundImage => DisableButton ? DisableBackgroundImage : EnableBackgroundImage;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void DoPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

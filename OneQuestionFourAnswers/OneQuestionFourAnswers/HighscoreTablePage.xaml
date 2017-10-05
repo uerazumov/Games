@@ -20,7 +20,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:StrechTextBlock Grid.Row="0" HorizontalAlignment="Center" TextBlockText="Таблица Рекордов"></local:StrechTextBlock>
+        <local:StrecthTextBlock Grid.Row="0" HorizontalAlignment="Center" TextBlockText="Таблица Рекордов"></local:StrecthTextBlock>
         <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -34,15 +34,15 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:StrechTextBlock Grid.Row="0" Grid.Column="0" TextBlockText="Место"></local:StrechTextBlock>
-            <local:StrechTextBlock Grid.Row="0" Grid.Column="1" TextBlockText="Имя"></local:StrechTextBlock>
-            <local:StrechTextBlock Grid.Row="0" Grid.Column="2" TextBlockText="Очки"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[0].Name, Mode=OneWay}"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[0].Score, Mode=OneWay}"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[1].Name, Mode=OneWay}"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[1].Score, Mode=OneWay}"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[2].Name, Mode=OneWay}"></local:StrechTextBlock>
-            <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[2].Score, Mode=OneWay}"></local:StrechTextBlock>
+            <local:StrecthTextBlock Grid.Row="0" Grid.Column="0" TextBlockText="Место"></local:StrecthTextBlock>
+            <local:StrecthTextBlock Grid.Row="0" Grid.Column="1" TextBlockText="Имя"></local:StrecthTextBlock>
+            <local:StrecthTextBlock Grid.Row="0" Grid.Column="2" TextBlockText="Очки"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[0].Name, Mode=OneWay}"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[0].Score, Mode=OneWay}"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[1].Name, Mode=OneWay}"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[1].Score, Mode=OneWay}"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[2].Name, Mode=OneWay}"></local:StrecthTextBlock>
+            <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=TableOfRecords.Records[2].Score, Mode=OneWay}"></local:StrecthTextBlock>
             <Image Grid.Row="1" Grid.Column="0" Source="VisualResources/Images/FirstThrophy.png" Margin="5"></Image>
             <Image Grid.Row="2" Grid.Column="0" Source="VisualResources/Images/SecondThrophy.png" Margin="5"></Image>
             <Image Grid.Row="3" Grid.Column="0" Source="VisualResources/Images/ThirdThrophy.png" Margin="5"></Image>

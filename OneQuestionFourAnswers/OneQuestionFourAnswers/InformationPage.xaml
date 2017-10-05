@@ -23,14 +23,12 @@
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
-        <local:StrechTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrechTextBlock>
+        <local:StrecthTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrecthTextBlock>
         <Viewbox Grid.Row="1" Stretch="Uniform">
             <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
-        <local:StrechTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrechTextBlock>
+        <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrecthTextBlock>
         <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

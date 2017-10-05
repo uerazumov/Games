@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OneQuestionFourAnswers
 {
-    /// <summary>
-    /// Логика взаимодействия для NewRecordWindow.xaml
-    /// </summary>
-    public partial class NewRecordWindow : Window
+    public partial class NewRecordWindow
     {
+        private TextBox _textBox;
+
         public NewRecordWindow()
         {
             InitializeComponent();
@@ -26,12 +15,14 @@ namespace OneQuestionFourAnswers
             {
                 UsernameTextBox.Focus();
                 UsernameTextBox.SelectAll();
-                (BorderUsernameTextBox.Child as TextBox).GotFocus += OnTextBoxFocused;
+                _textBox = BorderUsernameTextBox.Child as TextBox;
+                Debug.Assert(_textBox != null, nameof(_textBox) + " != null");
+                (_textBox).GotFocus += OnTextBoxFocused;
             };
         }
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox)&&((BorderUsernameTextBox.Child as TextBox).Text != ""))
+            if (!Validation.GetHasError(_textBox)&&((_textBox).Text != ""))
             {
                 DialogResult = true;
                 Close();
@@ -44,12 +35,15 @@ namespace OneQuestionFourAnswers
 
         private void OnTextBoxFocused(object sender, RoutedEventArgs e)
         {
-            if (!Validation.GetHasError(BorderUsernameTextBox.Child as TextBox))
+            if (!Validation.GetHasError(_textBox))
             {
                 return;
             }
-            (BorderUsernameTextBox.Child as TextBox).Text = "";
-            Validation.ClearInvalid((BorderUsernameTextBox.Child as TextBox).GetBindingExpression(TextBox.TextProperty));
+            (_textBox).Text = "";
+            var property = TextBox.TextProperty;
+            Debug.Assert(property != null, "TextBox.TextProperty != null");
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Validation.ClearInvalid(_textBox.GetBindingExpression(property));
             NoticeTextBlock.Visibility = Visibility.Collapsed;
         }
 

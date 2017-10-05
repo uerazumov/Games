@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
         Title="Поражение" ResizeMode="NoResize" Height="250" Width="300">
@@ -25,7 +24,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" Width="140" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White"></Button>
+            <Button Margin="5" Width="140" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White"></Button>
             <Button Margin="5" Width="140" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
         </Grid>
     </Grid>

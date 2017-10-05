@@ -23,7 +23,8 @@
         </Grid.RowDefinitions>
         <local:CircularButton x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
-            <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Center" Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
+            <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
+                       Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
         </Viewbox>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -31,10 +32,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrechTextBlock>
+                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
             <Button x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrechTextBlock>
+                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
         <Grid Grid.Row="2">
@@ -43,10 +44,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrechTextBlock>
+                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
             <Button x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrechTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrechTextBlock>
+                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
         <Grid Grid.Row="3">
@@ -75,8 +76,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="Счeт:"></TextBlock>
-                    <TextBlock x:Name="Score" Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" VerticalAlignment="Center" Text="{Binding Source={StaticResource MainWindowVM}, Path=GameScore, Mode=OneWay}"></TextBlock>
+                    <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" Text="Счeт:"></TextBlock>
+                    <TextBlock x:Name="Score" Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6"
+                               Text="{Binding Source={StaticResource MainWindowVM}, Path=GameScore, Mode=OneWay}"></TextBlock>
                 </Grid>
             </Viewbox>
             <Viewbox Grid.Column="2" Stretch="Uniform">

@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
-      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainMenuPage" Loaded="OnPageLoaded" KeepAlive="True">
@@ -23,15 +22,15 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <local:StrechTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrechTextBlock>
+        <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
         <Button x:Name="StartBatton" Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame">
-            <local:StrechTextBlock Margin="5" TextBlockText="Начать игру"></local:StrechTextBlock>
+            <local:StrecthTextBlock Margin="5" TextBlockText="Начать игру"></local:StrecthTextBlock>
         </Button>
         <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickUpdate">
-            <local:StrechTextBlock Margin="5" TextBlockText="Обновить"></local:StrechTextBlock>
+            <local:StrecthTextBlock Margin="5" TextBlockText="Обновить"></local:StrecthTextBlock>
         </Button>
         <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
-            <local:StrechTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrechTextBlock>
+            <local:StrecthTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrecthTextBlock>
         </Button>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
