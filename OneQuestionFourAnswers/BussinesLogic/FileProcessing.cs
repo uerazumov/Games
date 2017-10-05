@@ -22,7 +22,7 @@ namespace BussinesLogic
             //Пробный вопрос
             List<LibraryClass.Answer> AnswerList = new List<LibraryClass.Answer>();
             Random rnd = new Random();
-            var r = (int)rnd.Next(0, 3);
+            var r = (int)rnd.Next(0, 4);
             for(int i = 0; i != 4; i++)
             {
                 if(i != r)
@@ -57,7 +57,7 @@ namespace BussinesLogic
             byte number = 97;
             for (int i = 0; i != 3; i++)
             {
-                statistic[i] = (byte)random.Next(1, number);
+                statistic[i] = (byte)random.Next(1, number+1);
                 number = (byte)(number - statistic[i] + 1);
             }
             statistic[3] = (byte)(100 - statistic[0] - statistic[1] - statistic[2]);
@@ -79,7 +79,7 @@ namespace BussinesLogic
             {
                 if (question.Answers[i].IsCorrect)
                 {
-                    byte randomValue = (byte)random.Next(0, 100);
+                    byte randomValue = (byte)random.Next(0, 101);
                     if (randomValue < 90)
                     {
                         byte temp = hintStatistic[i];
@@ -88,7 +88,7 @@ namespace BussinesLogic
                     }
                     else
                     {
-                        var randomIndex = (int)random.Next(1, 3);
+                        var randomIndex = (int)random.Next(1, 4);
                         byte temp = hintStatistic[i];
                         hintStatistic[i] = hintStatistic[randomIndex];
                         hintStatistic[randomIndex] = temp;
@@ -105,14 +105,14 @@ namespace BussinesLogic
         {
             var twoAnswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
             var random = new Random();
-            int randomIndex = random.Next(0, 3);
+            int randomIndex = random.Next(0, 4);
             if (!twoAnswers[randomIndex])
             {
                 twoAnswers[randomIndex] = true;
             }
             else
             {
-                twoAnswers[Math.Abs(randomIndex - random.Next(1, 3))] = true;
+                twoAnswers[Math.Abs(randomIndex - random.Next(1, 4))] = true;
             }
             return twoAnswers;
         }
