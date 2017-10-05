@@ -8,16 +8,16 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
-        public void StartNewGame(ref int newscore, ref string newname)
+        public void StartNewGame(ref int newScore, ref string newName)
         {
-            newscore = 0;
-            newname = "";
+            newScore = 0;
+            newName = "";
         }
-        public void NewQuestion(ref TimeSpan newtime, ref LibraryClass.QuestionAnswers newquestion, ref bool[] allanswerstrue)
+        public void NewQuestion(ref TimeSpan newTime, ref LibraryClass.QuestionAnswers newQuestion, ref bool[] allAnswersTrue)
         {
             //Метод берущий из БД вопрос по индексу и возвращающий нам новый вопрос
-            allanswerstrue = new bool[] { true, true, true, true };
-            newtime = new TimeSpan(0, 1, 0);
+            allAnswersTrue = new bool[] { true, true, true, true };
+            newTime = new TimeSpan(0, 1, 0);
 
             //Пробный вопрос
             LibraryClass.Answer AnswerA = new LibraryClass.Answer("верный", true);
@@ -29,11 +29,11 @@ namespace BussinesLogic
             AnswerList.Add(AnswerB);
             AnswerList.Add(AnswerC);
             AnswerList.Add(AnswerD);
-            newquestion = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
+            newQuestion = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
         }
-        public bool CheckAnswer(LibraryClass.Answer selectedanswer, ref int score, ref bool defeatrecord)
+        public bool CheckAnswer(LibraryClass.Answer selectedAnswer, ref int score, ref bool defeatRecord)
         {
-            if(selectedanswer.IsCorrect)
+            if(selectedAnswer.IsCorrect)
             {
                 score += 10;
                 return true;
@@ -46,81 +46,70 @@ namespace BussinesLogic
         }
         public byte[] HintStatistics(LibraryClass.QuestionAnswers question)
         {
-            byte[] statistic = new byte[] { 0, 0, 0, 0 };
-            Random rnd = new Random();
-            byte n = 97;
+            var max = new byte[] { 0, 1, 2, 3 };
+            var statistic = new byte[] { 0, 0, 0, 0 };
+            var random = new Random();
+            byte number = 97;
             for (int i = 0; i != 3; i++)
             {
-                statistic[i] = (byte)rnd.Next(1, n);
-                n = (byte)(n - statistic[i] + 1);
+                statistic[i] = (byte)random.Next(1, number);
+                number = (byte)(number - statistic[i] + 1);
             }
             statistic[3] = (byte)(100 - statistic[0] - statistic[1] - statistic[2]);
-            byte[] hintstatistic = statistic;
-            byte[] max = new byte[] { 0, 1, 2, 3 };
+            var hintStatistic = statistic;
             for(int i = 0; i !=3; i++)
                 for(int j = 1; j != 4; j++)
                 {
                     if(statistic[i] < statistic[j])
                     {
-                        byte t = statistic[i];
+                        byte temp = statistic[i];
                         statistic[i] = statistic[j];
-                        statistic[j] = t;
-                        t = max[i];
+                        statistic[j] = temp;
+                        temp = max[i];
                         max[i] = max[j];
-                        max[j] = t;
+                        max[j] = temp;
                     }
                 }
             for (int i = 0; i != 4;i++)
             {
                 if (question.Answers[i].IsCorrect)
                 {
-                    byte RND = (byte)rnd.Next(0, 100);
-                    if (RND < 85)
+                    byte randomValue = (byte)random.Next(0, 100);
+                    if (randomValue < 90)
                     {
-                        byte t = hintstatistic[i];
-                        hintstatistic[i] = hintstatistic[max[0]];
-                        hintstatistic[max[0]] = t;
-                    }
-                    else if (RND < 75)
-                    {
-                        byte t = hintstatistic[i];
-                        hintstatistic[i] = hintstatistic[max[1]];
-                        hintstatistic[max[1]] = t;
-                    }
-                    else if (RND < 65)
-                    {
-                        byte t = hintstatistic[i];
-                        hintstatistic[i] = hintstatistic[max[2]];
-                        hintstatistic[max[2]] = t;
+                        byte temp = hintStatistic[i];
+                        hintStatistic[i] = hintStatistic[max[0]];
+                        hintStatistic[max[0]] = temp;
                     }
                     else
                     {
-                        byte t = hintstatistic[i];
-                        hintstatistic[i] = hintstatistic[max[3]];
-                        hintstatistic[max[3]] = t;
+                        var randomIndex = (int)random.Next(1, 3);
+                        byte temp = hintStatistic[i];
+                        hintStatistic[i] = hintStatistic[randomIndex];
+                        hintStatistic[randomIndex] = temp;
                     }
                 }
             }
-            return hintstatistic;
+            return hintStatistic;
         }
-        public void CreateNewRecord(LibraryClass.Record newrecord)
+        public void CreateNewRecord(LibraryClass.Record newRecord)
         {
             //здесь будет метод передающий новый рекорд в Дата Логику
         }
         public bool[] HintTwoAnswers(LibraryClass.QuestionAnswers question)
         {
-            bool[] twoanswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
-            Random rnd = new Random();
-            int t = rnd.Next(0, 3);
-            if (!twoanswers[t])
+            var twoAnswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
+            var random = new Random();
+            int randowIndex = random.Next(0, 3);
+            if (!twoAnswers[randowIndex])
             {
-                twoanswers[t] = true;
+                twoAnswers[randowIndex] = true;
             }
             else
             {
-                twoanswers[Math.Abs(t - rnd.Next(1, 3))] = true;
+                twoAnswers[Math.Abs(randowIndex - random.Next(1, 3))] = true;
             }
-            return twoanswers;
+            return twoAnswers;
         }
         public LibraryClass.RecordsTable GetRecordsTable()
         {
