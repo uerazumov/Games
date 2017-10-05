@@ -10,6 +10,7 @@ namespace OneQuestionFourAnswers
 {
     class MainWindowViewModel : INotifyPropertyChanged
     {
+
         public MainWindowViewModel()
         {
             // Пробные очки
@@ -60,6 +61,19 @@ namespace OneQuestionFourAnswers
             {
                 _name = value;
                 DoPropertyChanged("Name");
+            }
+        }
+        private LibraryClass.QuestionAnswers _questionAnswers { get; set; }
+        public LibraryClass.QuestionAnswers QuestionAnswers
+        {
+            get
+            {
+                return _questionAnswers;
+            }
+            set
+            {
+                _questionAnswers = value;
+                DoPropertyChanged("QuestionAnswers");
             }
         }
         private bool[] _twoWrongAnswers { get; set; }
@@ -122,19 +136,6 @@ namespace OneQuestionFourAnswers
             }
         }
         private DispatcherTimer _timer;
-        private LibraryClass.QuestionAnswers _questionAnswers { get; set; }
-        public LibraryClass.QuestionAnswers QuestionAnswers
-        {
-            get
-            {
-                return _questionAnswers;
-            }
-            set
-            {
-                _questionAnswers = value;
-                DoPropertyChanged("QuestionAnswers");
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void DoPropertyChanged(string name)
@@ -152,7 +153,7 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintTime()
         {
-            _time += new TimeSpan(0, 1, 0);
+            _time += new TimeSpan(0, 0, 30);
         }
         private void DoCountdownTimer()
         {
@@ -171,7 +172,7 @@ namespace OneQuestionFourAnswers
 
         private void DoUseHintTwoAnswers()
         {
-            _twoWrongAnswers = FP.HintTwoAnswers(QuestionAnswers);
+            _twoWrongAnswers = FP.HintTwoAnswers(_questionAnswers);
         }
         private void DoChechTheAnswer()
         {
@@ -197,7 +198,7 @@ namespace OneQuestionFourAnswers
         }
         private void DoUpdate()
         {
-            //Здесь будет метод запускающий обновление базы вопросов
+            FP.UpdateBaseOfQuestion();
         }
         private void DoOpenNewGame()
         {

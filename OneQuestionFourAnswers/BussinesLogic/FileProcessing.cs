@@ -17,18 +17,23 @@ namespace BussinesLogic
         {
             //Метод берущий из БД вопрос по индексу и возвращающий нам новый вопрос
             allAnswersTrue = new bool[] { true, true, true, true };
-            newTime = new TimeSpan(0, 1, 0);
+            newTime = new TimeSpan(0, 0, 30);
 
             //Пробный вопрос
-            LibraryClass.Answer AnswerA = new LibraryClass.Answer("верный", true);
-            LibraryClass.Answer AnswerB = new LibraryClass.Answer("неверный", false);
-            LibraryClass.Answer AnswerC = new LibraryClass.Answer("неверный", false);
-            LibraryClass.Answer AnswerD = new LibraryClass.Answer("неверный", false);
             List<LibraryClass.Answer> AnswerList = new List<LibraryClass.Answer>();
-            AnswerList.Add(AnswerA);
-            AnswerList.Add(AnswerB);
-            AnswerList.Add(AnswerC);
-            AnswerList.Add(AnswerD);
+            Random rnd = new Random();
+            var r = (int)rnd.Next(0, 3);
+            for(int i = 0; i != 4; i++)
+            {
+                if(i != r)
+                {
+                    AnswerList.Add(new LibraryClass.Answer("неверный", false));
+                }
+                else
+                {
+                    AnswerList.Add(new LibraryClass.Answer("верный", true));
+                }
+            }
             newQuestion = new LibraryClass.QuestionAnswers("Текст вопроса", AnswerList);
         }
         public bool CheckAnswer(LibraryClass.Answer selectedAnswer, ref int score, ref bool defeatRecord)
@@ -100,14 +105,14 @@ namespace BussinesLogic
         {
             var twoAnswers = new bool[] { question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect, question.Answers[3].IsCorrect };
             var random = new Random();
-            int randowIndex = random.Next(0, 3);
-            if (!twoAnswers[randowIndex])
+            int randomIndex = random.Next(0, 3);
+            if (!twoAnswers[randomIndex])
             {
-                twoAnswers[randowIndex] = true;
+                twoAnswers[randomIndex] = true;
             }
             else
             {
-                twoAnswers[Math.Abs(randowIndex - random.Next(1, 3))] = true;
+                twoAnswers[Math.Abs(randomIndex - random.Next(1, 3))] = true;
             }
             return twoAnswers;
         }
@@ -124,6 +129,10 @@ namespace BussinesLogic
             listR.Add(Second);
             listR.Add(Third);
             return new LibraryClass.RecordsTable(listR);
+        }
+        public void UpdateBaseOfQuestion()
+        {
+            //Здесь будет метод запускающий обновление базы вопросов
         }
     }
 }
