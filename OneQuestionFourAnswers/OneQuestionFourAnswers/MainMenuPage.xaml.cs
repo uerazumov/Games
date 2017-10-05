@@ -31,6 +31,7 @@ namespace OneQuestionFourAnswers
             (Window.GetWindow(this) as MainWindow).UpdateBar.Visibility = Visibility.Visible;
             StartBatton.IsEnabled = false;
             UpdateBatton.IsEnabled = false;
+            // Временный код
             var timer = new Timer(3 * 1000) { AutoReset = false };
             timer.Elapsed += (obj, args) =>
             {
@@ -42,6 +43,7 @@ namespace OneQuestionFourAnswers
                 });
             };
             timer.Start();
+            // Конец временного кода
         }
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {

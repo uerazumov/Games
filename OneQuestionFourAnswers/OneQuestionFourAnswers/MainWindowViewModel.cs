@@ -36,16 +36,16 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("Time");
             }
         }
-        private LibraryClass.RecordsTable _tableofrecords { get; set; }
+        private LibraryClass.RecordsTable _tableOfRecords { get; set; }
         public LibraryClass.RecordsTable TableOfRecords
         {
             get
             {
-                return _tableofrecords;
+                return _tableOfRecords;
             }
             set
             {
-                _tableofrecords = value;
+                _tableOfRecords = value;
                 DoPropertyChanged("RecordsTable");
             }
         }
@@ -62,56 +62,45 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("Name");
             }
         }
-        private bool[] _twowronganswers { get; set; }
+        private bool[] _twoWrongAnswers { get; set; }
         public bool[] TwoWrongAnswers
         {
             get
             {
-                return _twowronganswers;
+                return _twoWrongAnswers;
             }
             set
             {
-                _twowronganswers = value;
+                _twoWrongAnswers = value;
 
                 DoPropertyChanged("TwoWrongAnswers");
             }
         }
-        private byte[] _statisticsheight { get; set; }
+        private byte[] _statisticsHeight { get; set; }
         public byte[] StatisticsHeight
         {
             get
             {
-                return _statisticsheight;
+                return _statisticsHeight;
             }
             set
             {
-                _statisticsheight = value;
+                _statisticsHeight = value;
                 DoPropertyChanged("StatisticsHeight");
             }
         }
-        private LibraryClass.Record _newrecord { get; set; }
-        public LibraryClass.Record NewRecord
-        {
-            get
-            {
-                return _newrecord;
-            }
-            set
-            {
-                _newrecord = value;
-                DoPropertyChanged("NewRecord");
-            }
-        }
-        private int _gamescore { get; set; }
+        private LibraryClass.Record _newRecord { get; set; }
+
+        private int _gameScore { get; set; }
         public int GameScore
         {
             get
             {
-                return _gamescore;
+                return _gameScore;
             }
             set
             {
-                _gamescore = value;
+                _gameScore = value;
                 DoPropertyChanged("GameScore");
             }
         }
@@ -131,21 +120,19 @@ namespace OneQuestionFourAnswers
                     _timer.Stop();
                 }
             }
-
         }
-
         private DispatcherTimer _timer;
-        private LibraryClass.QuestionAnswers _questionplusanswers { get; set; }
-        public LibraryClass.QuestionAnswers QuestionPlusAnswers
+        private LibraryClass.QuestionAnswers _questionAnswers { get; set; }
+        public LibraryClass.QuestionAnswers QuestionAnswers
         {
             get
             {
-                return _questionplusanswers;
+                return _questionAnswers;
             }
             set
             {
-                _questionplusanswers = value;
-                DoPropertyChanged("QuestionPlusAnswers");
+                _questionAnswers = value;
+                DoPropertyChanged("QuestionAnswers");
             }
         }
 
@@ -160,8 +147,8 @@ namespace OneQuestionFourAnswers
 
         private void DoCreateRecord()
         {
-            NewRecord = new LibraryClass.Record(Name, GameScore);
-            FP.CreateNewRecord(NewRecord);
+            _newRecord = new LibraryClass.Record(_name, _gameScore);
+            FP.CreateNewRecord(_newRecord);
         }
         private void DoUseHintTime()
         {
@@ -184,15 +171,15 @@ namespace OneQuestionFourAnswers
 
         private void DoUseHintTwoAnswers()
         {
-            _twowronganswers = FP.HintTwoAnswers(QuestionPlusAnswers);
+            _twoWrongAnswers = FP.HintTwoAnswers(QuestionAnswers);
         }
         private void DoChechTheAnswer()
         {
-            int score = _gamescore;
-            bool DefeatReacord = false;
-            if (FP.CheckAnswer(QuestionPlusAnswers.Answers[2], ref score, ref DefeatReacord)) //нужно реализовать определение вопроса по нажатой кнопке
+            var score = _gameScore;
+            var defeatRecord = false;
+            if (FP.CheckAnswer(QuestionAnswers.Answers[2], ref score, ref defeatRecord)) //нужно реализовать определение вопроса по нажатой кнопке
             {
-                _gamescore = score;
+                _gameScore = score;
             }
             else
             {
@@ -201,12 +188,12 @@ namespace OneQuestionFourAnswers
         }
         private void DoUseHintStatistics()
         {
-            _statisticsheight = FP.HintStatistics(QuestionPlusAnswers);
+            _statisticsHeight = FP.HintStatistics(QuestionAnswers);
         }
         private void DoGetRecordsTable()
         {
 
-            _tableofrecords = FP.GetRecordsTable();
+            _tableOfRecords = FP.GetRecordsTable();
         }
         private void DoUpdate()
         {
@@ -215,18 +202,18 @@ namespace OneQuestionFourAnswers
         private void DoOpenNewGame()
         {
             _questionIsSelect = false;
-            int NewScore = GameScore;
-            string NewName = Name;
-            FP.StartNewGame(ref NewScore, ref NewName);
-            LibraryClass.QuestionAnswers NewQuestion = QuestionPlusAnswers;
-            bool[] NewTwoWrongAnswers = TwoWrongAnswers;
-            TimeSpan NewTime = _time;
-            FP.NewQuestion(ref NewTime, ref NewQuestion, ref NewTwoWrongAnswers);
-            _time = NewTime;
-            _gamescore = NewScore;
-            _name = NewName;
-            QuestionPlusAnswers = NewQuestion;
-            _twowronganswers = NewTwoWrongAnswers;
+            var newScore = _gameScore;
+            var newName = _name;
+            FP.StartNewGame(ref newScore, ref newName);
+            var newQuestion = _questionAnswers;
+            var newTwoWrongAnswers = _twoWrongAnswers;
+            var newTime = _time;
+            FP.NewQuestion(ref newTime, ref newQuestion, ref newTwoWrongAnswers);
+            _time = newTime;
+            _gameScore = newScore;
+            _name = newName;
+            _questionAnswers = newQuestion;
+            _twoWrongAnswers = newTwoWrongAnswers;
         }
         //private ICommand _doSomething;
         //public ICommand DoSomethingCommand

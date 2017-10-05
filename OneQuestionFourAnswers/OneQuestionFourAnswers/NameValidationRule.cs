@@ -10,17 +10,17 @@ namespace OneQuestionFourAnswers
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            var S = value as string;
-            if (S.Length < 4)
+            var s = value as string;
+            if (s.Length < 4)
             {
                 return new ValidationResult(false, "Имя слишком короткое!");
             }
-            for (int i = 0; i < S.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 int j = 0;
                 while (j < AcceptableSymbols.Count)
                 {
-                    if (S.ToLower()[i] == AcceptableSymbols[j])
+                    if (s.ToLower()[i] == AcceptableSymbols[j])
                     {
                         j = AcceptableSymbols.Count;
                     }

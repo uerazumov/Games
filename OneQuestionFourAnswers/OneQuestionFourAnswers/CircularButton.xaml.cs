@@ -35,16 +35,16 @@ namespace OneQuestionFourAnswers
 
 
 
-        public bool _disablebutton { get; set; }
+        public bool _disableButton { get; set; }
         public bool DisableButton
         {
             get
             {
-                return _disablebutton;
+                return _disableButton;
             }
             set
             {
-                _disablebutton = value;
+                _disableButton = value;
                 DoPropertyChanged("DisableButton");
                 DoPropertyChanged("BackgroundImageActive");
                 DoPropertyChanged("BackgroundImage");

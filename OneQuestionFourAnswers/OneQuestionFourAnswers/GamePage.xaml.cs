@@ -54,9 +54,9 @@ namespace OneQuestionFourAnswers
         {
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
-            StatisticsWindow stw = new StatisticsWindow();
-            stw.Owner = Window.GetWindow(this);
-            stw.ShowDialog();  
+            StatisticsWindow sw = new StatisticsWindow();
+            sw.Owner = Window.GetWindow(this);
+            sw.ShowDialog();  
         }
         private void ButtonClickTime(object sender, RoutedEventArgs e)
         {
