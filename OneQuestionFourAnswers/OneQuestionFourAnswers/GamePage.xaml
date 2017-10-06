@@ -31,10 +31,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
@@ -43,10 +43,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoWrongAnswers[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
@@ -65,8 +65,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsIconUsed}" EnableBackgroundImageActive="{StaticResource StatisticsButtonIconActive}"></local:CircularButton>
-                <local:CircularButton x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeButtonIcon}" DisableBackgroundImage="{StaticResource TimeIconUsed}" EnableBackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
-                <local:CircularButton x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersIconUsed}" EnableBackgroundImage="{StaticResource TwoAnswersButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
+                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTimeCommand}"  x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeButtonIcon}" DisableBackgroundImage="{StaticResource TimeIconUsed}" EnableBackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
+                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTwoAnswersCommand}" x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersIconUsed}" EnableBackgroundImage="{StaticResource TwoAnswersButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
             </Grid>
             <Viewbox Grid.Column="1" Stretch="Uniform">
                 <Grid>

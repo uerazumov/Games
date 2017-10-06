@@ -31,15 +31,20 @@ namespace BussinesLogic
             newQuestion = new QuestionAnswers("Текст вопроса", answerList);
         }
 
-        public bool CheckAnswer(Answer selectedAnswer, ref int score, ref bool defeatRecord)
+        public bool CheckAnswer(Answer selectedAnswer, ref int score)
         {
             if (selectedAnswer.IsCorrect)
             {
                 score += 10;
                 return true;
             }
-            //Здесь будет проверка того, побил ли пользователь рекорд
             return false;
+        }
+
+        public bool CheckRecordIsBrocken(int score)
+        {
+            //Здесь будет проверка того, побил ли пользователь рекорд
+            return true;
         }
 
         public byte[] HintStatistics(QuestionAnswers question)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 
@@ -13,12 +14,7 @@ namespace OneQuestionFourAnswers
     {
         public MainWindowViewModel()
         {
-            //CreateRecord = new Command(DoCreateRecord);
-            DoOpenNewGame();
-            DoUseHintStatistics();
-            DoUseHintTwoAnswers();
-            DoGetRecordsTable();
-            DoCountdownTimer();
+            CountdownTimer();
         }
 
         private readonly BussinesLogic.FileProcessing _fp = new BussinesLogic.FileProcessing();
@@ -62,18 +58,9 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private bool[] _twoWrongAnswers;
+        private bool[] _answersMask;
 
-        public bool[] TwoWrongAnswers
-        {
-            get { return _twoWrongAnswers; }
-            set
-            {
-                _twoWrongAnswers = value;
-
-                DoPropertyChanged("TwoWrongAnswers");
-            }
-        }
+        public bool[] AnswersMask => _answersMask;
 
         private byte[] _statisticsHeight;
 
@@ -126,18 +113,13 @@ namespace OneQuestionFourAnswers
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private void DoCreateRecord()
-        {
-            _newRecord = new LibraryClass.Record(_name, _gameScore);
-            _fp.CreateNewRecord(_newRecord);
-        }
-
-        private void DoUseHintTime()
+        private void UseHintTime()
         {
             _time += new TimeSpan(0, 0, 30);
+            DoPropertyChanged("Time");
         }
 
-        private void DoCountdownTimer()
+        private void CountdownTimer()
         {
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                 {
@@ -152,64 +134,148 @@ namespace OneQuestionFourAnswers
             _timer.Start();
         }
 
-        private void DoUseHintTwoAnswers()
+        private void UseHintTwoAnswers()
         {
-            _twoWrongAnswers = _fp.HintTwoAnswers(_questionAnswers);
+            _answersMask = _fp.HintTwoAnswers(_questionAnswers);
+            DoPropertyChanged("AnswersMask");
         }
 
-        private void DoChechTheAnswer()
+        private void CheckTheAnswer()
         {
-            var score = _gameScore;
-            var defeatRecord = false;
-            if (_fp.CheckAnswer(QuestionAnswers.Answers[2], ref score, ref defeatRecord)
-            ) //нужно реализовать определение вопроса по нажатой кнопке
+            if (_fp.CheckAnswer(QuestionAnswers.Answers[2], ref _gameScore)) 
+                //нужно реализовать определение вопроса по нажатой кнопке
             {
-                _gameScore = score;
+                StartNewRound();
             }
             else
             {
-                //здесь будет обработка того, что нажал пользователь в окне победы или поражения
+                if(_fp.CheckRecordIsBrocken(_gameScore))
+                {
+                    //Здесь должно открыться окно ввода имени
+                    _newRecord = new LibraryClass.Record(_name, _gameScore);
+                    _fp.CreateNewRecord(_newRecord);
+                }
+                else
+                {
+                    //Здесь должно открыться окно поражения
+                }
             }
         }
 
-        private void DoUseHintStatistics()
+        private void UseHintStatistics()
         {
             _statisticsHeight = _fp.HintStatistics(QuestionAnswers);
+            DoPropertyChanged("StatisticsHeight");
         }
 
-        private void DoGetRecordsTable()
+        private void GetRecordsTable()
         {
             _tableOfRecords = _fp.GetRecordsTable();
+            DoPropertyChanged("RecordsTable");
         }
 
-        private void DoUpdate()
+        private void Update()
         {
             _fp.UpdateBaseOfQuestion();
         }
 
-        private void DoOpenNewGame()
+        private void OpenNewGame()
         {
             _questionIsSelect = false;
             _gameScore = 0;
             _name = "";
-            _time = new TimeSpan(0, 0, 30);
-            _fp.NewQuestion(out _questionAnswers);
-            _twoWrongAnswers = new[] {true, true, true, true};
+            StartNewRound();
+            DoPropertyChanged("QuestionIsSelect");
+            DoPropertyChanged("GameScore");
+            DoPropertyChanged("Name");
+            DoPropertyChanged("Time");
+            DoPropertyChanged("QuestionAnswers");
+            DoPropertyChanged("TwoWrongAnswers");
         }
 
-        //private ICommand _doSomething;
-        //public ICommand DoSomethingCommand
-        //{
-        //    get
-        //    {
-        //        if (_doSomething == null)
-        //        {
-        //            _doSomething = new Command(
-        //                p => this.Ca,
-        //                p => DoCreateRecord());
-        //        }
-        //        return _doSomething;
-        //    }
-        //}
+        private void StartNewRound()
+        {
+            _time = new TimeSpan(0, 0, 30);
+            _fp.NewQuestion(out _questionAnswers);
+            _answersMask = new[] {true, true, true, true};
+            _timer.Start();
+        }
+
+        private ICommand _doUseHintTimeCommand;
+        public ICommand DoUseHintTimeCommand
+        {
+            get
+            {
+                if (_doUseHintTimeCommand == null)
+                {
+                    _doUseHintTimeCommand = new Command(
+                        p => true,
+                        p => UseHintTime());
+                }
+                return _doUseHintTimeCommand;
+            }
+        }
+
+
+        //Решить что используем, метод или команду в GamePage.xaml.cs
+        private ICommand _doUseHintStatisticsCommand;
+        public ICommand DoUseHintStatisticsCommand
+        {
+            get
+            {
+                if (_doUseHintStatisticsCommand == null)
+                {
+                    _doUseHintStatisticsCommand = new Command(
+                        p => true,
+                        p => UseHintStatistics());
+                }
+                return _doUseHintStatisticsCommand;
+            }
+        }
+
+        private ICommand _doUseHintTwoAnswersCommand;
+        public ICommand DoUseHintTwoAnswersCommand
+        {
+            get
+            {
+                if (_doUseHintTwoAnswersCommand == null)
+                {
+                    _doUseHintTwoAnswersCommand = new Command(
+                        p => true,
+                        p => UseHintTwoAnswers());
+                }
+                return _doUseHintTwoAnswersCommand;
+            }
+        }
+
+        private ICommand _doOpenNewGameCommand;
+        public ICommand DoOpenNewGameCommand
+        {
+            get
+            {
+                if (_doOpenNewGameCommand == null)
+                {
+                    _doOpenNewGameCommand = new Command(
+                        p => true,
+                        p => OpenNewGame());
+                }
+                return _doOpenNewGameCommand;
+            }
+        }
+
+        private ICommand _doGetRecordsTableCommand;
+        public ICommand DoGetRecordsTableCommand
+        {
+            get
+            {
+                if (_doGetRecordsTableCommand == null)
+                {
+                    _doGetRecordsTableCommand = new Command(
+                        p => true,
+                        p => GetRecordsTable());
+                }
+                return _doGetRecordsTableCommand;
+            }
+        }
     }
 }

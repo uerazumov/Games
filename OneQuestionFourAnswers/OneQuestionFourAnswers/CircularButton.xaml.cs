@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace OneQuestionFourAnswers
@@ -17,6 +19,18 @@ namespace OneQuestionFourAnswers
         public ImageBrush EnableBackgroundImage { get; set; }
         public ImageBrush EnableBackgroundImageActive { get; set; }
 
+        public ICommand ControlCommand
+        {
+            get { return (ICommand) GetValue(ControlCommandProperty); }
+            set
+            {
+                SetValue(ControlCommandProperty, value);
+                DoPropertyChanged("ControlCommand");
+            }
+        }
+
+        public static DependencyProperty ControlCommandProperty =
+            DependencyProperty.Register("ControlCommand", typeof(ICommand), typeof(CircularButton));
 
         private bool _disableButton;
 

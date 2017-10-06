@@ -23,13 +23,13 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
-        <Button x:Name="StartBatton" Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame">
+        <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}"  x:Name="StartBatton" Grid.Row="1" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickStartGame">
             <local:StrecthTextBlock Margin="5" TextBlockText="Начать игру"></local:StrecthTextBlock>
         </Button>
         <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickUpdate">
             <local:StrecthTextBlock Margin="5" TextBlockText="Обновить"></local:StrecthTextBlock>
         </Button>
-        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
+        <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand}" Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
             <local:StrecthTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrecthTextBlock>
         </Button>
         <Grid Grid.Row="4">

@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- ReSharper disable once InconsistentNaming -->
-        <local:MainWindowViewModel x:Key="MainWindowVM"></local:MainWindowViewModel>
+        <local:MainWindowViewModel x:Key="MainWindowVM" />
     </Application.Resources>
 </Application>
+

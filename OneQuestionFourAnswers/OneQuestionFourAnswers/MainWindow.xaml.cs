@@ -14,7 +14,7 @@ namespace OneQuestionFourAnswers
             SoundButton.DisableButton = !SoundButton.DisableButton;
         }
 
-        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             SoundButton.ControlButton.Click += ButtonClickSound;
         }

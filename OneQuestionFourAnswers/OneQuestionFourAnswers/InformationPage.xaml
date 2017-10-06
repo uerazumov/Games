@@ -51,7 +51,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов воображаемых зрителей"/>
-                    <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Дает вам 30 дополнительнительных секунд"/>
+                    <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Дает вам 30 дополнительных секунд"/>
                     <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Убирает два неверных варианта"/>
                 </Grid>
             </Viewbox>

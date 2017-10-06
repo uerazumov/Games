@@ -31,6 +31,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Button x:Name="ControlButton" Style="{StaticResource CircularButtonStyle}"></Button>
+        <Button x:Name="ControlButton" Command="{Binding ControlCommand}"  Style="{StaticResource CircularButtonStyle}"></Button>
     </Grid>
 </UserControl>
