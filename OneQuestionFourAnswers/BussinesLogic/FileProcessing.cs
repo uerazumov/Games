@@ -7,6 +7,7 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
+        RecordsTable RecTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400), new Record("Player 3", 300) });
 
         public void NewQuestion(out QuestionAnswers newQuestion)
         {
@@ -44,7 +45,8 @@ namespace BussinesLogic
         public bool CheckRecordIsBrocken(int score)
         {
             //Здесь будет проверка того, побил ли пользователь рекорд
-            return true;
+
+            return false;
         }
 
         public byte[] HintStatistics(QuestionAnswers question)
@@ -113,11 +115,7 @@ namespace BussinesLogic
             //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
 
             //Тестовая таблица рекордов
-            var first = new Record("Player 1", 500);
-            var second = new Record("Player 2", 400);
-            var third = new Record("Player 3", 300);
-            var listR = new List<Record> {first, second, third};
-            return new RecordsTable(listR);
+            return RecTable;
         }
 
         public void UpdateBaseOfQuestion()

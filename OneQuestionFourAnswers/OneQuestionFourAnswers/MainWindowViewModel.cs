@@ -5,13 +5,27 @@ using System.Windows.Threading;
 using Application = System.Windows.Application;
 
 #region ...
+
 // ReSharper disable UnusedMember.Local
+
 #endregion
 
 namespace OneQuestionFourAnswers
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
+        public enum ResultType
+        {
+            Correct,
+            Incorrect,
+            IncorrectNewRecord
+        }
+
+        public delegate void TimeoutDelegate();
+        public event TimeoutDelegate Timeout;
+
+        public event TimeoutDelegate Time10Sec;
+
         public MainWindowViewModel()
         {
             CountdownTimer();
@@ -26,7 +40,10 @@ namespace OneQuestionFourAnswers
 
         public LibraryClass.RecordsTable TableOfRecords
         {
-            get { return _tableOfRecords; }
+            get
+            {
+                return _tableOfRecords;
+            }
             set
             {
                 _tableOfRecords = value;
@@ -48,19 +65,19 @@ namespace OneQuestionFourAnswers
 
         private LibraryClass.QuestionAnswers _questionAnswers;
 
-        public LibraryClass.QuestionAnswers QuestionAnswers
-        {
-            get { return _questionAnswers; }
-            set
-            {
-                _questionAnswers = value;
-                DoPropertyChanged("QuestionAnswers");
-            }
-        }
+        public LibraryClass.QuestionAnswers QuestionAnswers => _questionAnswers;
 
         private bool[] _answersMask;
 
-        public bool[] AnswersMask => _answersMask;
+        public bool[] AnswersMask
+        {
+            get { return _answersMask; }
+            set
+            {
+                _answersMask = value;
+                DoPropertyChanged("AnswersMask");
+            }
+        }
 
         private byte[] _statisticsHeight;
 
@@ -126,7 +143,10 @@ namespace OneQuestionFourAnswers
                     if (_time == TimeSpan.Zero)
                     {
                         _timer.Stop();
+                        Timeout?.Invoke();
+                        return;
                     }
+                    if (_time == new TimeSpan(0,0,13)) Time10Sec?.Invoke();
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
                     DoPropertyChanged("Time");
                 },
@@ -136,42 +156,32 @@ namespace OneQuestionFourAnswers
 
         private void UseHintTwoAnswers()
         {
-            _answersMask = _fp.HintTwoAnswers(_questionAnswers);
-            DoPropertyChanged("AnswersMask");
+            AnswersMask = _fp.HintTwoAnswers(_questionAnswers);
         }
 
-        private void CheckTheAnswer()
+        public ResultType IsCorrectAnswer(int? index)
         {
-            if (_fp.CheckAnswer(QuestionAnswers.Answers[2], ref _gameScore)) 
-                //нужно реализовать определение вопроса по нажатой кнопке
-            {
-                StartNewRound();
-            }
-            else
-            {
-                if(_fp.CheckRecordIsBrocken(_gameScore))
-                {
-                    //Здесь должно открыться окно ввода имени
-                    _newRecord = new LibraryClass.Record(_name, _gameScore);
-                    _fp.CreateNewRecord(_newRecord);
-                }
-                else
-                {
-                    //Здесь должно открыться окно поражения
-                }
-            }
+            _questionIsSelect = true;
+            if ((index == null) || !_fp.CheckAnswer(QuestionAnswers.Answers[(int) index], ref _gameScore))
+                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+            StartNewRound();
+            return ResultType.Correct;
         }
 
-        private void UseHintStatistics()
+        public void CreateNewRecord()
         {
-            _statisticsHeight = _fp.HintStatistics(QuestionAnswers);
-            DoPropertyChanged("StatisticsHeight");
+            _newRecord = new LibraryClass.Record(_name, _gameScore);
+            _fp.CreateNewRecord(_newRecord);
+        }
+
+        public void UseHintStatistics()
+        {
+            StatisticsHeight = _fp.HintStatistics(QuestionAnswers);
         }
 
         private void GetRecordsTable()
         {
-            _tableOfRecords = _fp.GetRecordsTable();
-            DoPropertyChanged("RecordsTable");
+            TableOfRecords = _fp.GetRecordsTable();
         }
 
         private void Update()
@@ -181,27 +191,34 @@ namespace OneQuestionFourAnswers
 
         private void OpenNewGame()
         {
-            _questionIsSelect = false;
-            _gameScore = 0;
-            _name = "";
+            QuestionIsSelect = false;
+            GameScore = 0;
+            Name = "";
             StartNewRound();
-            DoPropertyChanged("QuestionIsSelect");
-            DoPropertyChanged("GameScore");
-            DoPropertyChanged("Name");
-            DoPropertyChanged("Time");
-            DoPropertyChanged("QuestionAnswers");
-            DoPropertyChanged("TwoWrongAnswers");
         }
 
-        private void StartNewRound()
+        private void StopTimer()
+        {
+            _timer.Stop();
+        }
+
+        public void StartNewRound()
         {
             _time = new TimeSpan(0, 0, 30);
             _fp.NewQuestion(out _questionAnswers);
-            _answersMask = new[] {true, true, true, true};
+            AnswersMask = new[] {true, true, true, true};
             _timer.Start();
+            _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
+            _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
+            _questionAnswers.Answers[2].Text = "в. " + _questionAnswers.Answers[2].Text;
+            _questionAnswers.Answers[3].Text = "г. " + _questionAnswers.Answers[3].Text;
+            DoPropertyChanged("Time");
+            DoPropertyChanged("QuestionAnswers");
+            DoPropertyChanged("GameScore");
         }
 
         private ICommand _doUseHintTimeCommand;
+
         public ICommand DoUseHintTimeCommand
         {
             get
@@ -216,24 +233,8 @@ namespace OneQuestionFourAnswers
             }
         }
 
-
-        //Решить что используем, метод или команду в GamePage.xaml.cs
-        private ICommand _doUseHintStatisticsCommand;
-        public ICommand DoUseHintStatisticsCommand
-        {
-            get
-            {
-                if (_doUseHintStatisticsCommand == null)
-                {
-                    _doUseHintStatisticsCommand = new Command(
-                        p => true,
-                        p => UseHintStatistics());
-                }
-                return _doUseHintStatisticsCommand;
-            }
-        }
-
         private ICommand _doUseHintTwoAnswersCommand;
+
         public ICommand DoUseHintTwoAnswersCommand
         {
             get
@@ -249,6 +250,7 @@ namespace OneQuestionFourAnswers
         }
 
         private ICommand _doOpenNewGameCommand;
+
         public ICommand DoOpenNewGameCommand
         {
             get
@@ -264,6 +266,7 @@ namespace OneQuestionFourAnswers
         }
 
         private ICommand _doGetRecordsTableCommand;
+
         public ICommand DoGetRecordsTableCommand
         {
             get
@@ -275,6 +278,38 @@ namespace OneQuestionFourAnswers
                         p => GetRecordsTable());
                 }
                 return _doGetRecordsTableCommand;
+            }
+        }
+
+        private ICommand _doCreateNewRecordCommand;
+
+        public ICommand DoCreateNewRecordCommand
+        {
+            get
+            {
+                if (_doCreateNewRecordCommand == null)
+                {
+                    _doCreateNewRecordCommand = new Command(
+                        p => true,
+                        p => CreateNewRecord());
+                }
+                return _doCreateNewRecordCommand;
+            }
+        }
+
+        private ICommand _doStopTimerCommand;
+
+        public ICommand DoStopTimerCommand
+        {
+            get
+            {
+                if (_doStopTimerCommand == null)
+                {
+                    _doStopTimerCommand = new Command(
+                        p => true,
+                        p => StopTimer());
+                }
+                return _doStopTimerCommand;
             }
         }
     }

@@ -11,12 +11,13 @@ namespace OneQuestionFourAnswers
 
         private void YesButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            (Owner as MainWindow)?.PlaySound(MainWindow.SoundType.NewGameSound);
+            DialogResult = true;
             Close();
         }
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = false;
             Close();
         }
     }

@@ -64,6 +64,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Button.IsEnabled" Value="False">
+                <Setter Property="Button.Foreground" Value="Gray"></Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>

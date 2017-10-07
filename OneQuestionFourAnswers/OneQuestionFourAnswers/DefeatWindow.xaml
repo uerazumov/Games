@@ -18,7 +18,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="90"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="35" Grid.Row="0" Text="К сожалению, вы не побили ни один из рекордов. Хотите сыграть снова?" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Foreground="White"></TextBlock>
+        <TextBlock FontSize="40" Grid.Row="0" Text="К сожалению, вы проиграли. Хотите сыграть снова?" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Foreground="White"></TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

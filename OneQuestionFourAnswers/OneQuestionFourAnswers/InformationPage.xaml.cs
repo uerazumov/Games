@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace OneQuestionFourAnswers
@@ -14,7 +15,7 @@ namespace OneQuestionFourAnswers
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns?.GoBack();
+            ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)

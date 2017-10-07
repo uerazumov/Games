@@ -21,7 +21,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
         <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
             <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
                        Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
@@ -31,10 +31,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button Tag="0"  x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button Tag="1" x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
@@ -43,10 +43,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button Tag="2" x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button Tag="3" x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
