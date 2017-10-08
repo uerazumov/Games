@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
@@ -92,11 +95,34 @@ namespace OneQuestionFourAnswers
         {
             var button = (Button) sender;
             var index = Convert.ToInt16(button.Tag);
-            CheckAnswer(index);
+            _vm.AnswerIsSelect(index);
+            _vm.DoStopTimerCommand.Execute(null);
+            IsEnabled = false;
+            var counter = 0;
+            var timer = new Timer(1 * 1000) { AutoReset = true };
+            timer.Elapsed += (obj, args) =>
+            {
+                counter++;
+                Dispatcher.Invoke(() =>
+                {
+                    if (counter == 1)
+                    {
+                        _vm.PaintTrueAnswer();
+                    }
+                    if (counter == 2)
+                    {
+                        CheckAnswer(index);
+                        IsEnabled = true;
+                        timer.Stop();
+                    }
+                });
+            };
+            timer.Start();
         }
 
         private void CheckAnswer(int? index)
         {
+
             switch (_vm.IsCorrectAnswer(index))
             {
                 case MainWindowViewModel.ResultType.Correct:

@@ -9,6 +9,11 @@ namespace LibraryClass
             Records = records;
         }
         public List<Record> Records { get; set; }
+
+        public void AddRecord(Record record)
+        {
+            Records.Add(record);
+        }
         
     }
 }

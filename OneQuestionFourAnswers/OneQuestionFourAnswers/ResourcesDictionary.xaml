@@ -19,6 +19,10 @@
     <ImageBrush x:Key="TwoAnswersIconUsed" ImageSource="VisualResources\Images\TwoAnswersIconUsed.png"></ImageBrush>
     <ImageBrush x:Key="TimeIconUsed" ImageSource="VisualResources\Images\TimeIconUsed.png"></ImageBrush>
     <ImageBrush x:Key="StatisticsIconUsed" ImageSource="VisualResources\Images\StatisticsIconUsed.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorButtonIcon" ImageSource="VisualResources\Images\Voice.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorButtonIconActive" ImageSource="VisualResources\Images\VoiceTap.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorIconOff" ImageSource="VisualResources\Images\VoiceOff.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorIconOffTap" ImageSource="VisualResources\Images\VoiceOffTap.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>
@@ -64,11 +68,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="Button.IsEnabled" Value="False">
-                <Setter Property="Button.Foreground" Value="Gray"></Setter>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>

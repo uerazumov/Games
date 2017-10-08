@@ -25,7 +25,7 @@ namespace OneQuestionFourAnswers
         {
             InitializeComponent();
             _backgroundPlayer = new MediaPlayer();
-            _soundPlayer = new MediaPlayer() {Volume = 0.25};
+            _soundPlayer = new MediaPlayer() {Volume = 0.1};
         }
 
         private void ButtonClickSound(object sender, RoutedEventArgs e)
@@ -42,9 +42,23 @@ namespace OneQuestionFourAnswers
             }
         }
 
+        private void ButtonClickCommentator(object sender, RoutedEventArgs e)
+        {
+            CommentatorButton.DisableButton = !CommentatorButton.DisableButton;
+            if (CommentatorButton.DisableButton)
+            {
+                _soundPlayer.Volume = 0;
+            }
+            else
+            {
+                _soundPlayer.Volume = 0.1;
+            }
+        }
+
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             SoundButton.ControlButton.Click += ButtonClickSound;
+            CommentatorButton.ControlButton.Click += ButtonClickCommentator;
             Main.NavigationService.Navigated += (obj, args) => { Main.NavigationService.RemoveBackEntry(); };
             _backgroundPlayer.Open(new Uri(@".\SoundsAndMusic\Backround.mp3", UriKind.Relative));
             _backgroundPlayer.Play();
@@ -83,7 +97,7 @@ namespace OneQuestionFourAnswers
                     break;
             }
             _soundPlayer.Open(new Uri(source, UriKind.Relative));
-            if(!SoundButton.DisableButton)
+            if(!CommentatorButton.DisableButton)
             {
                 _soundPlayer.Play();
             }

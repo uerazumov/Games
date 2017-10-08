@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 
@@ -19,6 +20,17 @@ namespace OneQuestionFourAnswers
             Correct,
             Incorrect,
             IncorrectNewRecord
+        }
+
+        private Brush[] _foregraundBrushes;
+
+        public Brush[] ForegraundBrushes
+        {
+            get { return _foregraundBrushes; }
+            set
+            {
+                _foregraundBrushes = value;
+            }
         }
 
         public delegate void TimeoutDelegate();
@@ -105,16 +117,16 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private bool _questionIsSelect;
+        private bool _answerIsSelect;
 
         public bool QuestionIsSelect
         {
-            get { return _questionIsSelect; }
+            get { return _answerIsSelect; }
             set
             {
-                _questionIsSelect = value;
+                _answerIsSelect = value;
                 DoPropertyChanged("QuestionIsSelect");
-                if (_questionIsSelect)
+                if (_answerIsSelect)
                 {
                     _timer.Stop();
                 }
@@ -157,11 +169,20 @@ namespace OneQuestionFourAnswers
         private void UseHintTwoAnswers()
         {
             AnswersMask = _fp.HintTwoAnswers(_questionAnswers);
+            for (var i = 0; i != 4; i++)
+            {
+                if (!AnswersMask[i])
+                {
+                    ForegraundBrushes[i] = Brushes.Gray;
+                }
+            }
+            DoPropertyChanged("ForegraundBrushes");
         }
 
         public ResultType IsCorrectAnswer(int? index)
         {
-            _questionIsSelect = true;
+            _timer.Stop();
+            _answerIsSelect = true;
             if ((index == null) || !_fp.CheckAnswer(QuestionAnswers.Answers[(int) index], ref _gameScore))
                 return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
             StartNewRound();
@@ -171,6 +192,7 @@ namespace OneQuestionFourAnswers
         public void CreateNewRecord()
         {
             _newRecord = new LibraryClass.Record(_name, _gameScore);
+            _timer.Stop();
             _fp.CreateNewRecord(_newRecord);
         }
 
@@ -207,6 +229,7 @@ namespace OneQuestionFourAnswers
             _time = new TimeSpan(0, 0, 30);
             _fp.NewQuestion(out _questionAnswers);
             AnswersMask = new[] {true, true, true, true};
+            ForegraundBrushes = new Brush[] {Brushes.Black, Brushes.Black, Brushes.Black, Brushes.Black};
             _timer.Start();
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
@@ -215,6 +238,35 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("Time");
             DoPropertyChanged("QuestionAnswers");
             DoPropertyChanged("GameScore");
+            DoPropertyChanged("ForegraundBrushes");
+        }
+
+        public void AnswerIsSelect(int index)
+        {
+            for (var i = 0; i != 4; i++)
+            {
+                if (i == index)
+                {
+                    ForegraundBrushes[i] = Brushes.Goldenrod;
+                }
+                else
+                {
+                    ForegraundBrushes[i] = Brushes.Gray;
+                }
+            }
+            AnswersMask = new[] {false, false, false, false};
+            DoPropertyChanged("ForegraundBrushes");
+        }
+        public void PaintTrueAnswer()
+        {
+            for (var i = 0; i != 4; i++)
+            {
+                if (_questionAnswers.Answers[i].IsCorrect)
+                {
+                    ForegraundBrushes[i] = Brushes.ForestGreen;
+                }
+            }
+            DoPropertyChanged("ForegraundBrushes");
         }
 
         private ICommand _doUseHintTimeCommand;

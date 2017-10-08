@@ -31,10 +31,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Tag="0"  x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[0]}" Tag="0"  x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button Tag="1" x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[1]}" Tag="1" x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
@@ -43,10 +43,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Tag="2" x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
+            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[2]}" Tag="2" x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
-            <Button Tag="3" x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
+            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[3]}" Tag="3" x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
                 <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrecthTextBlock>
             </Button>
         </Grid>
@@ -56,7 +56,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="0.6*"></ColumnDefinition>
-                <ColumnDefinition Width="90"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>

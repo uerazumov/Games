@@ -7,7 +7,7 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
-        RecordsTable RecTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400), new Record("Player 3", 300) });
+        private readonly RecordsTable _recordsTableTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400)});
 
         public void NewQuestion(out QuestionAnswers newQuestion)
         {
@@ -46,7 +46,7 @@ namespace BussinesLogic
         {
             //Здесь будет проверка того, побил ли пользователь рекорд
 
-            return false;
+            return true;
         }
 
         public byte[] HintStatistics(QuestionAnswers question)
@@ -75,10 +75,12 @@ namespace BussinesLogic
                     }
                     else
                     {
-                        var randomIndex = random.Next(1, 4);
+                        var incorrect = statistic.Select((item, index) => index).Where(index => statistic[index] != maxIndex);
+                        var randomStatistic = (byte)incorrect.OrderBy(index => random.Next()).First();
+                        var randomIndex = incorrect.OrderBy(item => randomStatistic).First();
                         var temp = statistic[i];
-                        statistic[i] = statistic[Math.Abs(randomIndex - random.Next(1, 4))];
-                        statistic[Math.Abs(randomIndex - random.Next(1, 4))] = temp;
+                        statistic[i] = randomStatistic;
+                        statistic[randomIndex] = temp;
                     }
                 }
             }
@@ -92,30 +94,27 @@ namespace BussinesLogic
 
         public bool[] HintTwoAnswers(QuestionAnswers question)
         {
-            var twoAnswers = new[]
-            {
-                question.Answers[0].IsCorrect, question.Answers[1].IsCorrect, question.Answers[2].IsCorrect,
-                question.Answers[3].IsCorrect
-            };
+            var answers = question.Answers.Select(x => x.IsCorrect).ToArray();
             var random = new Random();
-            var randomIndex = random.Next(0, 4);
-            if (!twoAnswers[randomIndex])
-            {
-                twoAnswers[randomIndex] = true;
-            }
-            else
-            {
-                twoAnswers[Math.Abs(randomIndex - random.Next(1, 4))] = true;
-            }
-            return twoAnswers;
+            var incorrect = answers.Select((item, index) => index).Where(index => answers[index] == false);
+            var hintIndex = incorrect.OrderBy(index => random.Next()).First();
+            answers[hintIndex] = true;
+            return answers;
         }
 
         public RecordsTable GetRecordsTable()
         {
             //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
 
-            //Тестовая таблица рекордов
-            return RecTable;
+            var countRecords = _recordsTableTable.Records.Count;
+            if (countRecords < 3)
+            {
+                for (var i = 1; i != 4 - countRecords; i++)
+                {
+                    _recordsTableTable.Records.Add(new Record("-",0));
+                }
+            }
+            return _recordsTableTable;
         }
 
         public void UpdateBaseOfQuestion()

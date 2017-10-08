@@ -28,6 +28,7 @@
             </Grid.ColumnDefinitions>
             <Frame Name="Main" NavigationUIVisibility="Hidden" Source="/OneQuestionFourAnswers;component/MainMenuPage.xaml" Background="{StaticResource BackgroundImage}" Grid.ColumnSpan="2"></Frame>
             <local:CircularButton VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="SoundButton" Grid.Column="1" DisableBackgroundImage="{StaticResource SoundIconOff}" DisableBackgroundImageActive="{StaticResource SoundIconOffTap}" EnableBackgroundImage="{StaticResource SoundButtonIcon}" EnableBackgroundImageActive="{StaticResource SoundButtonIconActive}" Margin="0,0,30,20"></local:CircularButton>
+            <local:CircularButton VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="CommentatorButton" Grid.Column="1" DisableBackgroundImage="{StaticResource СommentatorIconOff}" DisableBackgroundImageActive="{StaticResource СommentatorIconOffTap}" EnableBackgroundImage="{StaticResource СommentatorButtonIcon}" EnableBackgroundImageActive="{StaticResource СommentatorButtonIconActive}" Margin="0,0,100,20"></local:CircularButton>
         </Grid>
     </DockPanel>
 </Window>
