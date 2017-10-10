@@ -25,7 +25,7 @@ namespace OneQuestionFourAnswers
         {
             InitializeComponent();
             _backgroundPlayer = new MediaPlayer();
-            _soundPlayer = new MediaPlayer() {Volume = 0.1};
+            _soundPlayer = new MediaPlayer() {Volume = 0.25};
         }
 
         private void ButtonClickSound(object sender, RoutedEventArgs e)
@@ -51,7 +51,7 @@ namespace OneQuestionFourAnswers
             }
             else
             {
-                _soundPlayer.Volume = 0.1;
+                _soundPlayer.Volume = 0.25;
             }
         }
 
