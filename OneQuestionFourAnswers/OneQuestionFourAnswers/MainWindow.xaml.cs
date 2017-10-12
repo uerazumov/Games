@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Navigation;
 
 namespace OneQuestionFourAnswers
 {
@@ -96,7 +95,7 @@ namespace OneQuestionFourAnswers
                     source = @".\SoundsAndMusic\TwoAnswers.mp3";
                     break;
             }
-            _soundPlayer.Open(new Uri(source, UriKind.Relative));
+            if (source != null) _soundPlayer.Open(new Uri(source, UriKind.Relative));
             if(!CommentatorButton.DisableButton)
             {
                 _soundPlayer.Play();

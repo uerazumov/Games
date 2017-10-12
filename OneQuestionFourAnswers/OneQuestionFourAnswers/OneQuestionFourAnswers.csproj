@@ -70,6 +70,9 @@
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StrechableButton.xaml.cs">
+      <DependentUpon>StrechableButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StrechTextBlock.xaml.cs">
       <DependentUpon>StrechTextBlock.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StrechableButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,6 +267,8 @@
     <Content Include="SoundsAndMusic\Win.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="VisualResources\Images\ButtonsChosen.png" />
+    <Resource Include="VisualResources\Images\ButtonsTrue.png" />
     <Resource Include="VisualResources\Images\Voice.png" />
     <Resource Include="VisualResources\Images\VoiceOff.png" />
     <Resource Include="VisualResources\Images\VoiceOffTap.png" />

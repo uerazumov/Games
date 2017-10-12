@@ -32,6 +32,7 @@
         <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand}" Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
             <local:StrecthTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrecthTextBlock>
         </Button>
+        <!--<local:StrechableButton ControlClick="HighscoreButton" Grid.Row="3" Margin="100,5,100,5" ButtonText="Информация" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand, Mode=OneWay}"></local:StrechableButton>-->
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

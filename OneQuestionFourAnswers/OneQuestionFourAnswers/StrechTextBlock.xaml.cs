@@ -26,6 +26,7 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("TextBlockText");
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void DoPropertyChanged(string name)
         {
