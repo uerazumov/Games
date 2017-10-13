@@ -19,7 +19,7 @@ namespace OneQuestionFourAnswers
         }
 
         public static DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(StateType), typeof(StrechableButton));
+            DependencyProperty.Register("State", typeof(StateType), typeof(StrechableButton), new UIPropertyMetadata(StateType.Active, new PropertyChangedCallback(Refresh)));
 
         public StateType State
         {
@@ -31,37 +31,19 @@ namespace OneQuestionFourAnswers
                 }
                 return (StateType)GetValue(StateProperty);
             }
-            set { SetValue(StateProperty, value); }
+            set{ /*SetValue(StateProperty, value);*/ }
         }
 
-        public void Refresh()
+        static public void Refresh(DependencyObject property, DependencyPropertyChangedEventArgs args)
         {
-            DoPropertyChanged("State");
-            DoPropertyChanged("BackgroundBrush");
-            DoPropertyChanged("Foregraund");
-            DoPropertyChanged("ButtonIsEnable");
-            DoPropertyChanged("IsEnabled");
+            StrechableButton strechableButton = (StrechableButton)property;
+            strechableButton.State = (StateType)args.NewValue;
+            strechableButton.DoPropertyChanged("State");
+            strechableButton.DoPropertyChanged("BackgroundBrush");
+            strechableButton.DoPropertyChanged("Foregraund");
+            strechableButton.DoPropertyChanged("ButtonIsEnable");
+            strechableButton.DoPropertyChanged("IsEnabled");
         }
-
-        ///////////////////////////////////////////////////////////
-
-        //private StateType _state;
-
-        //public StateType State
-        //{
-        //    get { return _state; }
-        //    set
-        //    {
-        //        _state = value;
-        //        DoPropertyChanged("State");
-        //        DoPropertyChanged("BackgroundBrush");
-        //        DoPropertyChanged("Foregraund");
-        //        DoPropertyChanged("ButtonIsEnable");
-        //        DoPropertyChanged("IsEnabled");
-        //    }
-        //}
-
-        ////////////////////////////////////////////////////////////
 
         public bool ButtonIsEnable => State == StateType.Active;
 

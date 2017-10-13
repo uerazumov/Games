@@ -75,8 +75,8 @@ namespace BussinesLogic
                     }
                     else
                     {
-                        var incorrect = statistic.Select((item, index) => index).Where(index => statistic[index] != maxIndex) as List<byte>;
-                        var randomStatistic = incorrect.OrderBy(index => random.Next()).First();
+                        var incorrect = statistic.Select((item, index) => index).Where(index => statistic[index] != maxIndex);
+                        var randomStatistic = (byte)incorrect.OrderBy(index => random.Next()).First();
                         var randomIndex = incorrect.OrderBy(item => randomStatistic).First();
                         var temp = statistic[i];
                         statistic[i] = randomStatistic;
