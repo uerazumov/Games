@@ -75,12 +75,15 @@ namespace BussinesLogic
                     }
                     else
                     {
-                        var incorrect = statistic.Select((item, index) => index).Where(index => statistic[index] != maxIndex);
-                        var randomStatistic = (byte)incorrect.OrderBy(index => random.Next()).First();
-                        var randomIndex = incorrect.OrderBy(item => randomStatistic).First();
-                        var temp = statistic[i];
-                        statistic[i] = randomStatistic;
-                        statistic[randomIndex] = temp;
+                        var incorrect = statistic.Select((item, index) => index).Where(index => statistic[index] != maxIndex) as int[];
+                        if (incorrect != null)
+                        {
+                            var randomStatistic = (byte)incorrect.OrderBy(index => random.Next()).First();
+                            var randomIndex = incorrect.OrderBy(item => randomStatistic).First();
+                            var temp = statistic[i];
+                            statistic[i] = randomStatistic;
+                            statistic[randomIndex] = temp;
+                        }
                     }
                 }
             }
