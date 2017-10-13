@@ -267,6 +267,7 @@
     <Content Include="SoundsAndMusic\Win.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="VisualResources\Images\ButtonsFalse.png" />
     <Resource Include="VisualResources\Images\ButtonsChosen.png" />
     <Resource Include="VisualResources\Images\ButtonsTrue.png" />
     <Resource Include="VisualResources\Images\Voice.png" />

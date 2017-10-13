@@ -29,9 +29,6 @@
         <Button x:Name="UpdateBatton" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="ButtonClickUpdate">
             <local:StrecthTextBlock Margin="5" TextBlockText="Обновить"></local:StrecthTextBlock>
         </Button>
-        <!--<Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand}" Grid.Row="3" Style="{StaticResource ButtonStyle}" Margin="100,5,100,5" Click="HighscoreButton">
-            <local:StrecthTextBlock Margin="5" TextBlockText="Таблица рекордов"></local:StrecthTextBlock>
-        </Button>-->
         <local:StrechableButton ButtonText="Информация" Click="HighscoreButton" Grid.Row="3" Margin="100,5,100,5" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand, Mode=OneWay}"></local:StrechableButton>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>

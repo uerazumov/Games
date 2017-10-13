@@ -1,26 +1,55 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+
+// ReSharper disable once PossibleNullReferenceException
 
 namespace OneQuestionFourAnswers
 {
     public partial class StrechableButton : INotifyPropertyChanging
     {
+        public enum StateType
+        {
+            Normal,
+            Chosen,
+            True,
+            Wrong
+        }
+
+        public StateType State
+        {
+            get
+            {
+                if (GetValue(StateProperty) == null)
+                {
+                    return StateType.Normal;
+                }
+                return (StateType)GetValue(StateProperty);
+            }
+            set
+            {
+                SetValue(StateProperty, value);
+                DoPropertyChanged("State");
+                DoPropertyChanged("Background");
+                DoPropertyChanged("Foregraund");
+            }
+        }
+
         public event RoutedEventHandler Click;
 
         public StrechableButton()
         {
             InitializeComponent();
             DataContext = this;
-            State = null;
             Loaded += (sender, args) =>
             {
                 Button.Click += (obj, e) => Click?.Invoke(obj, e);
             };   
         }
+
+        public static DependencyProperty StateProperty =
+            DependencyProperty.Register("State", typeof(StateType), typeof(StrechableButton));
 
         public static DependencyProperty ControlCommandProperty =
             DependencyProperty.Register("ControlCommand", typeof(ICommand), typeof(StrechableButton));
@@ -38,41 +67,30 @@ namespace OneQuestionFourAnswers
         public static DependencyProperty ButtonTextProperty =
             DependencyProperty.Register("ButtonText", typeof(string), typeof(StrechableButton));
 
-        public static DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(bool?), typeof(StrechableButton));
-
         public static DependencyProperty StateBrushProperty =
             DependencyProperty.Register("StateBrush", typeof(Brush), typeof(StrechableButton));
-
-        public bool? State
-        {
-            get
-            {
-                return (bool?)GetValue(StateProperty);
-            }
-
-            set
-            {
-                SetValue(StateProperty, value);
-                DoPropertyChanged("State");
-                DoPropertyChanged("Background");
-                DoPropertyChanged("Foregraund");
-            }
-        }
 
         public string BackgroundBrush
         {
             get
             {
-                if (State == null)
+                string path = @"VisualResources\Images\ButtonsDisable.png";
+                switch (State)
                 {
-                    return @"VisualResources\Images\ButtonsDisable.png";
+                    case StateType.Normal:
+                        path = @"VisualResources\Images\ButtonsDisable.png";
+                        break;
+                    case StateType.Chosen:
+                        path = @"VisualResources\Images\ButtonsChosen.png";
+                        break;
+                    case StateType.True:
+                        path = @"VisualResources\Images\ButtonsTrue.png";
+                        break;
+                    case StateType.Wrong:
+                        path = @"VisualResources\Images\ButtonsFalse.png";
+                        break;
                 }
-                if ((bool)State)
-                {
-                    return @"VisualResources\Images\ButtonsTrue.png";
-                }
-                return @"VisualResources\Images\ButtonsChosen.png";
+                return path;
             }
         }
 
@@ -80,15 +98,23 @@ namespace OneQuestionFourAnswers
         {
             get
             {
-                if (State == null)
+                Brush colour = Brushes.Gray;
+                switch (State)
                 {
-                    return Brushes.Gray;
+                    case StateType.Normal:
+                        colour = Brushes.Gray;
+                        break;
+                    case StateType.Chosen:
+                        colour = Brushes.OrangeRed;
+                        break;
+                    case StateType.True:
+                        colour = Brushes.ForestGreen;
+                        break;
+                    case StateType.Wrong:
+                        colour = Brushes.Red;
+                        break;
                 }
-                if ((bool)State)
-                {
-                    return Brushes.ForestGreen;
-                }
-                return Brushes.DarkOrange;
+                return colour;
             }
         }
 
