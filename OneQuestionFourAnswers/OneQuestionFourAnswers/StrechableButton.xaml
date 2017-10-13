@@ -4,19 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="300" d:DesignWidth="500" IsEnabled="{Binding ButtonIsEnable}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="MaxWidth" Value="750"></Setter>
-                <Setter Property="MaxHeight" Value="300"></Setter>
-                <Setter Property="Margin" Value="5,5,5,5"></Setter>
-                <Setter Property="TextElement.FontFamily" Value="./VisualResources/#Resphekt"></Setter>
-                <Setter Property="FontSize" Value="50"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
+            <Style x:Key="StechableButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -42,7 +36,6 @@
                                                         <ImageBrush ImageSource="{Binding BackgroundBrush}"></ImageBrush>
                                                     </Setter.Value>
                                                 </Setter>
-                                                
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -61,7 +54,7 @@
         </ResourceDictionary>
        
     </UserControl.Resources>
-    <Button x:Name="Button"  Style="{StaticResource ButtonStyle}" Command="{Binding ControlCommand}">
+    <Button x:Name="Button" Style="{StaticResource StechableButtonStyle}" Command="{Binding ControlCommand}">
         <Viewbox Stretch="Uniform" Margin="5">
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="{Binding ButtonText}"></TextBlock>
         </Viewbox>

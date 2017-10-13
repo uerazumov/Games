@@ -28,8 +28,8 @@ namespace OneQuestionFourAnswers
             var window = Window.GetWindow(this) as MainWindow;
             Debug.Assert(window != null, nameof(window) + " != null");
             window.UpdateBar.Visibility = Visibility.Visible;
-            StartBatton.IsEnabled = false;
-            UpdateBatton.IsEnabled = false;
+            StartBatton.State = StrechableButton.StateType.Inactive;
+            UpdateBatton.State = StrechableButton.StateType.Inactive;
             // Временный код
             var timer = new Timer(3 * 1000) { AutoReset = false };
             timer.Elapsed += (obj, args) =>

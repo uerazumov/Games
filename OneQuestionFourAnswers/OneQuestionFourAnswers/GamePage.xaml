@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="GamePage" Loaded="OnPageLoaded">
+      Title="GamePage" Loaded="OnPageLoaded" IsEnabled="{Binding PageIsEnable}">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,24 +31,16 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[0]}" Tag="0"  x:Name="AButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[0], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}"></local:StrecthTextBlock>
-            </Button>
-            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[1]}" Tag="1" x:Name="BButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[1], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}"></local:StrecthTextBlock>
-            </Button>
+            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="AButton" Tag="0" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[0]}"></local:StrechableButton>
+            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="BButton" Tag="1" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[1]}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[2]}" Tag="2" x:Name="CButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[2], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Margin="15" Click="AnswerButtonClick">
-                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}"></local:StrecthTextBlock>
-            </Button>
-            <Button Foreground="{Binding Source={StaticResource MainWindowVM}, Path=ForegraundBrushes[3]}" Tag="3" x:Name="DButton" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=AnswersMask[3], Mode=OneWay}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="15" Click="AnswerButtonClick">
-                <local:StrecthTextBlock TextBlockText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}"></local:StrecthTextBlock>
-            </Button>
+            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="CButton" Tag="2" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[2]}"></local:StrechableButton>
+            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="DButton" Tag="3" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[3]}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -58,7 +50,7 @@
                 <ColumnDefinition Width="0.6*"></ColumnDefinition>
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" HorizontalAlignment="Right">
+            <Grid x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>

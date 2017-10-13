@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 
@@ -15,22 +14,12 @@ namespace OneQuestionFourAnswers
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
+
         public enum ResultType
         {
             Correct,
             Incorrect,
             IncorrectNewRecord
-        }
-
-        private Brush[] _foregraundBrushes;
-
-        public Brush[] ForegraundBrushes
-        {
-            get { return _foregraundBrushes; }
-            set
-            {
-                _foregraundBrushes = value;
-            }
         }
 
         public delegate void TimeoutDelegate();
@@ -79,15 +68,15 @@ namespace OneQuestionFourAnswers
 
         public LibraryClass.QuestionAnswers QuestionAnswers => _questionAnswers;
 
-        private bool[] _answersMask;
+        private StrechableButton.StateType[] _answersState;
 
-        public bool[] AnswersMask
+        public StrechableButton.StateType[] AnswersState
         {
-            get { return _answersMask; }
+            get { return _answersState; }
             set
             {
-                _answersMask = value;
-                DoPropertyChanged("AnswersMask");
+                _answersState = value;
+                DoPropertyChanged("AnswersState");
             }
         }
 
@@ -168,15 +157,15 @@ namespace OneQuestionFourAnswers
 
         private void UseHintTwoAnswers()
         {
-            AnswersMask = _fp.HintTwoAnswers(_questionAnswers);
+            var answersMask = _fp.HintTwoAnswers(_questionAnswers);
             for (var i = 0; i != 4; i++)
             {
-                if (!AnswersMask[i])
+                if (!answersMask[i])
                 {
-                    ForegraundBrushes[i] = Brushes.Gray;
+                    AnswersState[i] = StrechableButton.StateType.Inactive;
                 }
             }
-            DoPropertyChanged("ForegraundBrushes");
+            DoPropertyChanged("AnswersState");
         }
 
         public ResultType IsCorrectAnswer(int? index)
@@ -228,8 +217,7 @@ namespace OneQuestionFourAnswers
         {
             _time = new TimeSpan(0, 0, 30);
             _fp.NewQuestion(out _questionAnswers);
-            AnswersMask = new[] {true, true, true, true};
-            ForegraundBrushes = new Brush[] {Brushes.Black, Brushes.Black, Brushes.Black, Brushes.Black};
+            AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
             _timer.Start();
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
@@ -238,7 +226,7 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("Time");
             DoPropertyChanged("QuestionAnswers");
             DoPropertyChanged("GameScore");
-            DoPropertyChanged("ForegraundBrushes");
+            DoPropertyChanged("AnswersState");
         }
 
         public void AnswerIsSelect(int index)
@@ -247,15 +235,14 @@ namespace OneQuestionFourAnswers
             {
                 if (i == index)
                 {
-                    ForegraundBrushes[i] = Brushes.Goldenrod;
+                    AnswersState[i] = StrechableButton.StateType.Chosen;
                 }
                 else
                 {
-                    ForegraundBrushes[i] = Brushes.Gray;
+                    AnswersState[i] = StrechableButton.StateType.Inactive;
                 }
             }
-            AnswersMask = new[] {false, false, false, false};
-            DoPropertyChanged("ForegraundBrushes");
+            DoPropertyChanged("AnswersState");
         }
         public void PaintTrueAnswer()
         {
@@ -263,10 +250,14 @@ namespace OneQuestionFourAnswers
             {
                 if (_questionAnswers.Answers[i].IsCorrect)
                 {
-                    ForegraundBrushes[i] = Brushes.ForestGreen;
+                    AnswersState[i] = StrechableButton.StateType.True;
+                }
+                else
+                {
+                    AnswersState[i] = StrechableButton.StateType.Wrong;
                 }
             }
-            DoPropertyChanged("ForegraundBrushes");
+            DoPropertyChanged("AnswersState");
         }
 
         private ICommand _doUseHintTimeCommand;

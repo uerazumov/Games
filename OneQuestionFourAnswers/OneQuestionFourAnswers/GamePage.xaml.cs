@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
@@ -9,6 +9,7 @@ namespace OneQuestionFourAnswers
 {
     public partial class GamePage
     {
+
         private readonly MainWindowViewModel _vm;
         private MainWindow _window;
 
@@ -89,15 +90,26 @@ namespace OneQuestionFourAnswers
             clockSpinStoryboard.Begin(Clock);
         }
 
+        private void Refresher()
+        {
+            var buttons = new List<StrechableButton> { AButton, BButton, CButton, DButton };
+            for (var i = 0; i != 4; i++)
+            {
+                buttons[i].Refresh();
+            }
+        }
+        
         private void AnswerButtonClick(object sender, RoutedEventArgs e)
         {
-            var button = (Button) sender;
+            var button = (StrechableButton) sender;
             var index = Convert.ToInt16(button.Tag);
             _vm.AnswerIsSelect(index);
+            Refresher();
+            _vm.PaintTrueAnswer();
             _vm.DoStopTimerCommand.Execute(null);
-            IsEnabled = false;
+            Hints.IsEnabled = false;
             var counter = 0;
-            var timer = new Timer(1 * 1000) { AutoReset = true };
+            var timer = new Timer(1.3 * 1000) { AutoReset = true };
             timer.Elapsed += (obj, args) =>
             {
                 counter++;
@@ -106,11 +118,13 @@ namespace OneQuestionFourAnswers
                     if (counter == 1)
                     {
                         _vm.PaintTrueAnswer();
+                        Refresher();
                     }
                     if (counter == 2)
                     {
                         CheckAnswer(index);
-                        IsEnabled = true;
+                        Refresher();
+                        Hints.IsEnabled = true;
                         timer.Stop();
                     }
                 });
