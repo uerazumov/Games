@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -19,7 +20,7 @@ namespace OneQuestionFourAnswers
         }
 
         public static DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(StateType), typeof(StrechableButton), new UIPropertyMetadata(StateType.Active, new PropertyChangedCallback(Refresh)));
+            DependencyProperty.Register("State", typeof(StateType), typeof(StrechableButton), new UIPropertyMetadata(StateType.Active, Refresh));
 
         public StateType State
         {
@@ -31,10 +32,14 @@ namespace OneQuestionFourAnswers
                 }
                 return (StateType)GetValue(StateProperty);
             }
-            set{ /*SetValue(StateProperty, value);*/ }
+            set
+            {
+                if (!Enum.IsDefined(typeof(StateType), value))
+                    throw new InvalidEnumArgumentException(nameof(value), (int) value, typeof(StateType));
+            }
         }
 
-        static public void Refresh(DependencyObject property, DependencyPropertyChangedEventArgs args)
+        public static void Refresh(DependencyObject property, DependencyPropertyChangedEventArgs args)
         {
             StrechableButton strechableButton = (StrechableButton)property;
             strechableButton.State = (StateType)args.NewValue;
