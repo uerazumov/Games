@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="OneQuestionFourAnswers.StrechableButton"
+             
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -51,7 +52,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Button Style="{StaticResource ButtonStyle}" Command="{Binding ControlCommand}">
-        <local:StrecthTextBlock DataContext="this" Margin="5" TextBlockText="{Binding ButtonText, Mode=OneWay}"></local:StrecthTextBlock>
+    <Button x:Name="Button"  Style="{StaticResource ButtonStyle}" Command="{Binding ControlCommand}">
+        <local:StrecthTextBlock Margin="5,10,5,5" TextBlockText="{Binding ButtonText}"></local:StrecthTextBlock>
     </Button>
 </UserControl>

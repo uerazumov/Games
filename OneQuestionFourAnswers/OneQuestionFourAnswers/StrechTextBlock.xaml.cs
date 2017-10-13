@@ -10,6 +10,7 @@ namespace OneQuestionFourAnswers
             InitializeComponent();
             DataContext = this;
         }
+
         public static DependencyProperty TextBlockTextProperty =
             DependencyProperty.Register("TextBlockText", typeof(string), typeof(StrecthTextBlock));
 

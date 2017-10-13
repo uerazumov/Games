@@ -9,11 +9,17 @@ namespace OneQuestionFourAnswers
 {
     public partial class StrechableButton : INotifyPropertyChanging
     {
+        public event RoutedEventHandler Click;
+
         public StrechableButton()
         {
             InitializeComponent();
             DataContext = this;
             State = null;
+            Loaded += (sender, args) =>
+            {
+                Button.Click += (obj, e) => Click?.Invoke(obj, e);
+            };   
         }
 
         public static DependencyProperty ControlCommandProperty =
@@ -28,19 +34,6 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("ControlCommand");
             }
         }
-
-        //public static DependencyProperty ControlClickProperty =
-        //    DependencyProperty.Register("ControlClick", typeof(EventHandler), typeof(StrechableButton));
-
-        //public EventHandler ControlClick
-        //{
-        //    get { return (EventHandler)GetValue(ControlClickProperty); }
-        //    set
-        //    {
-        //        SetValue(ControlClickProperty, value);
-        //        DoPropertyChanged("ControlClick");
-        //    }
-        //}
 
         public static DependencyProperty ButtonTextProperty =
             DependencyProperty.Register("ButtonText", typeof(string), typeof(StrechableButton));
