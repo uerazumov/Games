@@ -7,7 +7,7 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
-        private readonly RecordsTable _recordsTableTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400)});
+        private readonly RecordsTable _recordsTableTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400), new Record("Player 3", 40) });
 
         public void NewQuestion(out QuestionAnswers newQuestion)
         {
@@ -42,11 +42,23 @@ namespace BussinesLogic
             return false;
         }
 
-        public bool CheckRecordIsBrocken(int score)
+        public bool CheckRecordIsBrocken(Record newRecord)
         {
             //Здесь будет проверка того, побил ли пользователь рекорд
-
-            return true;
+            var tableOfReckords = GetRecordsTable();
+            for (var i = 0; i != 3; i++)
+            {
+                if (tableOfReckords.Records[i] == null)
+                {
+                    return true;
+                }
+                if (tableOfReckords.Records[i].Score < newRecord.Score)
+                {
+                    CreateNewRecord(newRecord);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public byte[] HintStatistics(QuestionAnswers question)
@@ -110,12 +122,9 @@ namespace BussinesLogic
             //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
 
             var countRecords = _recordsTableTable.Records.Count;
-            if (countRecords < 3)
+            for (var i = 1; i != 4 - countRecords; i++)
             {
-                for (var i = 1; i != 4 - countRecords; i++)
-                {
-                    _recordsTableTable.Records.Add(new Record("-",0));
-                }
+                _recordsTableTable.Records.Add(new Record("-",0));
             }
             return _recordsTableTable;
         }

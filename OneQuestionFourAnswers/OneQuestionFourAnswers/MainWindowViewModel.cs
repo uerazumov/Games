@@ -173,7 +173,10 @@ namespace OneQuestionFourAnswers
             _timer.Stop();
             _answerIsSelect = true;
             if ((index == null) || !_fp.CheckAnswer(QuestionAnswers.Answers[(int) index], ref _gameScore))
-                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+            {
+                CreateNewRecord();
+                return _fp.CheckRecordIsBrocken(_newRecord) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+            }
             StartNewRound();
             return ResultType.Correct;
         }
