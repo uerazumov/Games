@@ -81,20 +81,20 @@ namespace OneQuestionFourAnswers
         {
             get
             {
-                string path = @"VisualResources\Images\ButtonsDisable.png";
+                string path = @"VisualResources\Images\ButtonIsDisable.png";
                 switch (State)
                 {
                     case StateType.Inactive:
-                        path = @"VisualResources\Images\ButtonsDisable.png";
+                        path = @"VisualResources\Images\ButtonIsDisable.png";
                         break;
                     case StateType.Chosen:
-                        path = @"VisualResources\Images\ButtonsChosen.png";
+                        path = @"VisualResources\Images\AnswerChosenButton.png";
                         break;
                     case StateType.True:
-                        path = @"VisualResources\Images\ButtonsTrue.png";
+                        path = @"VisualResources\Images\AnswerTrueButton.png";
                         break;
                     case StateType.Wrong:
-                        path = @"VisualResources\Images\ButtonsFalse.png";
+                        path = @"VisualResources\Images\AnswerWrongButton.png";
                         break;
                 }
                 return path;

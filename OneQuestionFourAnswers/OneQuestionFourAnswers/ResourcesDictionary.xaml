@@ -2,27 +2,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ImageBrush x:Key="BackgroundImage" ImageSource="VisualResources\Images\BackgroundImage.jpg"></ImageBrush>
     <ImageBrush x:Key="NoticeBackgroundImage" ImageSource="VisualResources\Images\NoticeBackgroundImage.jpg"></ImageBrush>
-    <ImageBrush x:Key="InformationButtonIcon" ImageSource="VisualResources\Images\InformationIcon.png"></ImageBrush>
-    <ImageBrush x:Key="InformationButtonIconActive" ImageSource="VisualResources\Images\InformationIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="SoundButtonIcon" ImageSource="VisualResources\Images\SoundIcon.png"></ImageBrush>
-    <ImageBrush x:Key="SoundButtonIconActive" ImageSource="VisualResources\Images\SoundIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="BackButtonIcon" ImageSource="VisualResources\Images\BackIcon.png"></ImageBrush>
-    <ImageBrush x:Key="BackButtonIconActive" ImageSource="VisualResources\Images\BackIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="TwoAnswersButtonIcon" ImageSource="VisualResources\Images\TwoAnswersIcon.png"></ImageBrush>
-    <ImageBrush x:Key="TwoAnswersButtonIconActive" ImageSource="VisualResources\Images\TwoAnswersIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="TimeButtonIcon" ImageSource="VisualResources\Images\TimeIcon.png"></ImageBrush>
-    <ImageBrush x:Key="TimeButtonIconActive" ImageSource="VisualResources\Images\TimeIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="StatisticsButtonIcon" ImageSource="VisualResources\Images\StatisticsIcon.png"></ImageBrush>
-    <ImageBrush x:Key="StatisticsButtonIconActive" ImageSource="VisualResources\Images\StatisticsIconTap.png"></ImageBrush>
-    <ImageBrush x:Key="SoundIconOff" ImageSource="VisualResources\Images\SoundIconOff.png"></ImageBrush>
-    <ImageBrush x:Key="SoundIconOffTap" ImageSource="VisualResources\Images\SoundIconOffTap.png"></ImageBrush>
-    <ImageBrush x:Key="TwoAnswersIconUsed" ImageSource="VisualResources\Images\TwoAnswersIconUsed.png"></ImageBrush>
-    <ImageBrush x:Key="TimeIconUsed" ImageSource="VisualResources\Images\TimeIconUsed.png"></ImageBrush>
-    <ImageBrush x:Key="StatisticsIconUsed" ImageSource="VisualResources\Images\StatisticsIconUsed.png"></ImageBrush>
-    <ImageBrush x:Key="СommentatorButtonIcon" ImageSource="VisualResources\Images\Voice.png"></ImageBrush>
-    <ImageBrush x:Key="СommentatorButtonIconActive" ImageSource="VisualResources\Images\VoiceTap.png"></ImageBrush>
-    <ImageBrush x:Key="СommentatorIconOff" ImageSource="VisualResources\Images\VoiceOff.png"></ImageBrush>
-    <ImageBrush x:Key="СommentatorIconOffTap" ImageSource="VisualResources\Images\VoiceOffTap.png"></ImageBrush>
+    <ImageBrush x:Key="InformationButtonIcon" ImageSource="VisualResources\Images\InformationButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="InformationButtonActiveIcon" ImageSource="VisualResources\Images\InformationButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="SoundButtonIcon" ImageSource="VisualResources\Images\SoundButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="SoundButtonActiveIcon" ImageSource="VisualResources\Images\SoundButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="BackButtonIcon" ImageSource="VisualResources\Images\BackButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="BackButtonActiveIcon" ImageSource="VisualResources\Images\BackButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersHintButtonIcon" ImageSource="VisualResources\Images\TwoAnswersHintButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersHintButtonActiveIcon" ImageSource="VisualResources\Images\TwoAnswersHintButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TimeHintButtonIcon" ImageSource="VisualResources\Images\TimeHintButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TimeHintButtonActiveIcon" ImageSource="VisualResources\Images\TimeHintButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsHintButtonIcon" ImageSource="VisualResources\Images\StatisticsHintButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsHintButtonActiveIcon" ImageSource="VisualResources\Images\StatisticsHintButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="SoundOffButtonIcon" ImageSource="VisualResources\Images\SoundOffButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="SoundOffButtonActiveIcon" ImageSource="VisualResources\Images\SoundOffButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TwoAnswersHintUsedButtonIcon" ImageSource="VisualResources\Images\TwoAnswersHintUsedButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="TimeHintUsedButtonIcon" ImageSource="VisualResources\Images\TimeHintUsedButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="StatisticsHintUsedButtonIcon" ImageSource="VisualResources\Images\StatisticsHintUsedButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorButtonIcon" ImageSource="VisualResources\Images\СommentatorButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorButtonActiveIcon" ImageSource="VisualResources\Images\СommentatorButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorOffButtonIcon" ImageSource="VisualResources\Images\СommentatorOffButtonIcon.png"></ImageBrush>
+    <ImageBrush x:Key="СommentatorOffButtonActiveIcon" ImageSource="VisualResources\Images\CommentatorOffButtonActiveIcon.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>

@@ -22,10 +22,10 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <local:StrecthTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrecthTextBlock>
         <Viewbox Grid.Row="1" Stretch="Uniform">
-            <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать - ограничено (1 минута), поэтому вас стоит принимать решение быстро. Желаем вам удачи!"/>
+            <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать, ограничено (30 секунд), поэтому вам стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
         <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrecthTextBlock>
         <Grid Grid.Row="3">
@@ -50,7 +50,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов врага"/>
+                    <TextBlock Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Выводит статистику ответов условного врага"/>
                     <TextBlock Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Дает вам 30 дополнительных секунд"/>
                     <TextBlock Grid.Row="2" Style="{StaticResource TextBlockStyle}" TextAlignment="Left" Text="Убирает два неверных варианта"/>
                 </Grid>

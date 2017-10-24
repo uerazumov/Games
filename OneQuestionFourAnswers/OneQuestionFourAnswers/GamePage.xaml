@@ -21,7 +21,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonIconActive}"></local:CircularButton>
+        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
             <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
                        Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
@@ -56,9 +56,9 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsIconUsed}" EnableBackgroundImageActive="{StaticResource StatisticsButtonIconActive}"></local:CircularButton>
-                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTimeCommand}"  x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeButtonIcon}" DisableBackgroundImage="{StaticResource TimeIconUsed}" EnableBackgroundImageActive="{StaticResource TimeButtonIconActive}"></local:CircularButton>
-                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTwoAnswersCommand}" x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersIconUsed}" EnableBackgroundImage="{StaticResource TwoAnswersButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersButtonIconActive}"></local:CircularButton>
+                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsHintButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource StatisticsHintButtonActiveIcon}"></local:CircularButton>
+                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTimeCommand}"  x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeHintButtonIcon}" DisableBackgroundImage="{StaticResource TimeHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource TimeHintButtonActiveIcon}"></local:CircularButton>
+                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTwoAnswersCommand}" x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersHintUsedButtonIcon}" EnableBackgroundImage="{StaticResource TwoAnswersHintButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersHintButtonActiveIcon}"></local:CircularButton>
             </Grid>
             <Viewbox Grid.Column="1" Stretch="Uniform">
                 <Grid>
