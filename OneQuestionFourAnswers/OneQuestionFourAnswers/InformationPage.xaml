@@ -25,7 +25,7 @@
         <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <local:StrecthTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrecthTextBlock>
         <Viewbox Grid.Row="1" Stretch="Uniform">
-            <TextBlock Width="250" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать, ограничено (30 секунд), поэтому вам стоит принимать решение быстро. Желаем вам удачи!"/>
+            <TextBlock Width="300" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать, ограничено (30 секунд), поэтому вам стоит принимать решение быстро. Желаем вам удачи!"/>
         </Viewbox>
         <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrecthTextBlock>
         <Grid Grid.Row="3">
@@ -39,9 +39,9 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="2" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersIcon.png"/>
-                <Image Grid.Row="1" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeIcon.png"/>
-                <Image Grid.Row="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsIcon.png"/>
+                <Image Grid.Row="2" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TwoAnswersHintButtonIcon.png"/>
+                <Image Grid.Row="1" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\TimeHintButtonIcon.png"/>
+                <Image Grid.Row="0" Style="{StaticResource ImageStyle}" Source="VisualResources\Images\StatisticsHintButtonIcon.png"/>
             </Grid>
             <Viewbox Grid.Column="1" HorizontalAlignment="Left">
                 <Grid>

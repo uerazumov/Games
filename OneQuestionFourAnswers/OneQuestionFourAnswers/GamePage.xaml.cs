@@ -34,7 +34,7 @@ namespace OneQuestionFourAnswers
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            var etg = new ExitTheGame {Owner = Window.GetWindow(this)};
+            var etg = new ExitTheGame {Owner = App.Current.MainWindow};
             var close = etg.ShowDialog() ?? false;
             if (close)
             {
@@ -50,7 +50,7 @@ namespace OneQuestionFourAnswers
             TimeButton.ControlButton.Click += ButtonClickTime;
             StatisticsButton.ControlButton.Click += ButtonClickStatistics;
             TwoAnswersButton.ControlButton.Click += ButtonClickTwoAnswers;
-            _window = Window.GetWindow(this) as MainWindow;
+            _window = App.Current.MainWindow as MainWindow;
         }
 
         private void ButtonClickTwoAnswers(object sender, RoutedEventArgs e)
@@ -66,7 +66,7 @@ namespace OneQuestionFourAnswers
             _vm?.UseHintStatistics();
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
-            var sw = new StatisticsWindow {Owner = Window.GetWindow(this)};
+            var sw = new StatisticsWindow {Owner = App.Current.MainWindow};
             sw.ShowDialog();
         }
 
@@ -100,9 +100,9 @@ namespace OneQuestionFourAnswers
             var timer = new Timer(1.3 * 1000) { AutoReset = true };
             timer.Elapsed += (obj, args) =>
             {
-                counter++;
                 Dispatcher.Invoke(() =>
                 {
+                    counter++;
                     if (counter == 1)
                     {
                         _vm.PaintTrueAnswer();
@@ -124,12 +124,12 @@ namespace OneQuestionFourAnswers
             switch (_vm.IsCorrectAnswer(index))
             {
                 case MainWindowViewModel.ResultType.Correct:
-                    _vm.StartNewRound();
+                    // _vm.StartNewRound();
                     break;
                 case MainWindowViewModel.ResultType.Incorrect:
                 {
                     _window?.PlaySound(MainWindow.SoundType.DefeatSound);
-                    var dfw = new DefeatWindow {Owner = Window.GetWindow(this)};
+                    var dfw = new DefeatWindow {Owner = App.Current.MainWindow};
                     var close = dfw.ShowDialog() ?? true;
                     if (!close)
                     {
@@ -138,7 +138,7 @@ namespace OneQuestionFourAnswers
                     }
                     else
                     {
-                        _vm.DoOpenNewGameCommand.Execute(null);
+                        //_vm.DoOpenNewGameCommand.Execute(null);
                         NavigationService?.Refresh();
                     }
                 }
@@ -146,15 +146,16 @@ namespace OneQuestionFourAnswers
                 case MainWindowViewModel.ResultType.IncorrectNewRecord:
                 {
                     _window?.PlaySound(MainWindow.SoundType.WinSound);
-                    var nrw = new NewRecordWindow {Owner = Window.GetWindow(this)};
+                        var nrw = new NewRecordWindow { Owner = App.Current.MainWindow};
                     var close = nrw.ShowDialog() ?? false;
                     if (close)
                     {
-                        NavigationService ns = NavigationService.GetNavigationService(this);
-                        ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+                            _vm.CreateNewRecord();
                     }
+                    NavigationService ns = NavigationService.GetNavigationService(this);
+                    ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
                 }
-                    break;
+                break;
             }
         }
     }

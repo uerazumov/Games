@@ -21,7 +21,7 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="40" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
+        <TextBlock Grid.Row="0" FontSize="30" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
         <Border DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
             <TextBox FontSize="45" x:Name="UsernameTextBox" Style="{StaticResource TextBoxStyle}">
                 <Validation.ErrorTemplate>

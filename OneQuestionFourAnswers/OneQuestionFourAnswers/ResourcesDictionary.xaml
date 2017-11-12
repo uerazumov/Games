@@ -31,7 +31,7 @@
         <Setter Property="MaxWidth" Value="750"></Setter>
         <Setter Property="MaxHeight" Value="300"></Setter>
         <Setter Property="Margin" Value="5,5,5,5"></Setter>
-        <Setter Property="TextElement.FontFamily" Value="./VisualResources/#Resphekt"></Setter>
+        <Setter Property="TextElement.FontFamily" Value="./VisualResources/#Forum"></Setter>
         <Setter Property="FontSize" Value="50"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Template">
@@ -71,7 +71,7 @@
     </Style>
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="FontFamily" Value="./VisualResources/#Resphekt"></Setter>
+        <Setter Property="FontFamily" Value="./VisualResources/#Forum"></Setter>
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="TextAlignment" Value="Center"></Setter>
     </Style>
@@ -83,7 +83,7 @@
     </Style>
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
         <Setter Property="MaxLength" Value="12"></Setter>
-        <Setter Property="FontFamily" Value="./VisualResources/#Resphekt"></Setter>
+        <Setter Property="FontFamily" Value="./VisualResources/#Forum"></Setter>
         <Setter Property="FontSize" Value="30"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="Margin" Value="5"></Setter>

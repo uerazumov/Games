@@ -1,35 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using LibraryClass;
+using DAL;
+using System.Collections.Generic;
 
 namespace BussinesLogic
 {
     public class FileProcessing
     {
-        private readonly RecordsTable _recordsTableTable = new RecordsTable(new List<Record> { new Record("Player 1", 500), new Record("Player 2", 400), new Record("Player 3", 40) });
+        private IQuestionsProvider _questions_provider = new QuestionsProvider();
 
-        public void NewQuestion(out QuestionAnswers newQuestion)
+        private IHighScoresProvider _high_scores_provider = new HighScoresProvider();
+
+        private List<int> _availableQuestions;
+
+        public void RefreshQuestions()
         {
-            //Метод берущий из БД вопрос по индексу и возвращающий нам новый вопрос
+            _availableQuestions = Enumerable.Range(1, (int)_questions_provider.GetQuestionsCount()).ToList();
+        }
 
-            //Пробный вопрос
-            var answerList = new List<Answer>();
-            var rnd = new Random();
-            var r = rnd.Next(0, 4);
-            for (int i = 0; i != 4; i++)
-            {
-                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-                if (i != r)
-                {
-                    answerList.Add(new Answer("неверный", false));
-                }
-                else
-                {
-                    answerList.Add(new Answer("верный", true));
-                }
-            }
-            newQuestion = new QuestionAnswers("Текст вопроса", answerList);
+        public QuestionAnswers NewQuestion()
+        {
+            var random = new Random();
+            var index = random.Next(0, _availableQuestions.Count);
+            var question = _questions_provider.GetQuestionAnswers(_availableQuestions[index]);
+            _availableQuestions.RemoveAt(index);
+            return question;
         }
 
         public bool CheckAnswer(Answer selectedAnswer, ref int score)
@@ -42,9 +38,8 @@ namespace BussinesLogic
             return false;
         }
 
-        public bool CheckRecordIsBrocken(Record newRecord)
+        public bool CheckRecordIsBrocken(int gameScore)
         {
-            //Здесь будет проверка того, побил ли пользователь рекорд
             var tableOfReckords = GetRecordsTable();
             for (var i = 0; i != 3; i++)
             {
@@ -52,9 +47,8 @@ namespace BussinesLogic
                 {
                     return true;
                 }
-                if (tableOfReckords.Records[i].Score < newRecord.Score)
+                if (tableOfReckords.Records[i].Score < gameScore)
                 {
-                    CreateNewRecord(newRecord);
                     return true;
                 }
             }
@@ -104,7 +98,7 @@ namespace BussinesLogic
 
         public void CreateNewRecord(Record newRecord)
         {
-            //здесь будет метод передающий новый рекорд в Дата Логику
+            _high_scores_provider.Add(newRecord);
         }
 
         public bool[] HintTwoAnswers(QuestionAnswers question)
@@ -119,19 +113,20 @@ namespace BussinesLogic
 
         public RecordsTable GetRecordsTable()
         {
-            //Здесь будет метод, запрашивающий и Дата Логики таблицу рекордов
-
-            var countRecords = _recordsTableTable.Records.Count;
+            var recordsTable = _high_scores_provider.GetTable();
+            var countRecords = recordsTable.Records.Count;
             for (var i = 1; i != 4 - countRecords; i++)
             {
-                _recordsTableTable.Records.Add(new Record("-",0));
+                recordsTable.Records.Add(new Record("-",0));
             }
-            return _recordsTableTable;
+            return recordsTable;
         }
 
         public void UpdateBaseOfQuestion()
         {
-            //Здесь будет метод запускающий обновление базы вопросов
+            var loader = new QuestionsLoader();
+            var questions = loader.LoadQuestions();
+            _questions_provider.Update(questions);
         }
     }
 }

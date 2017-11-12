@@ -23,13 +23,13 @@ namespace OneQuestionFourAnswers
         }
 
         public delegate void TimeoutDelegate();
+
         public event TimeoutDelegate Timeout;
 
         public event TimeoutDelegate Time10Sec;
 
         public MainWindowViewModel()
         {
-            CountdownTimer();
         }
 
         private readonly BussinesLogic.FileProcessing _fp = new BussinesLogic.FileProcessing();
@@ -139,11 +139,12 @@ namespace OneQuestionFourAnswers
 
         private void CountdownTimer()
         {
+            _timer?.Stop();
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                 {
                     if (_time == TimeSpan.Zero)
                     {
-                        _timer.Stop();
+                        StopTimer();
                         Timeout?.Invoke();
                         return;
                     }
@@ -174,12 +175,13 @@ namespace OneQuestionFourAnswers
             _answerIsSelect = true;
             if ((index == null) || !_fp.CheckAnswer(QuestionAnswers.Answers[(int) index], ref _gameScore))
             {
-                CreateNewRecord();
-                return _fp.CheckRecordIsBrocken(_newRecord) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
             }
             StartNewRound();
             return ResultType.Correct;
         }
+
+
 
         public void CreateNewRecord()
         {
@@ -208,6 +210,7 @@ namespace OneQuestionFourAnswers
             QuestionIsSelect = false;
             GameScore = 0;
             Name = "";
+            _fp.RefreshQuestions();
             StartNewRound();
         }
 
@@ -219,9 +222,8 @@ namespace OneQuestionFourAnswers
         public void StartNewRound()
         {
             _time = new TimeSpan(0, 0, 30);
-            _fp.NewQuestion(out _questionAnswers);
+            _questionAnswers = _fp.NewQuestion();
             AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
-            _timer.Start();
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
             _questionAnswers.Answers[2].Text = "в. " + _questionAnswers.Answers[2].Text;
@@ -230,6 +232,7 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("QuestionAnswers");
             DoPropertyChanged("GameScore");
             DoPropertyChanged("AnswersState");
+            CountdownTimer();
         }
 
         public void AnswerIsSelect(int index)
@@ -327,22 +330,6 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private ICommand _doCreateNewRecordCommand;
-
-        public ICommand DoCreateNewRecordCommand
-        {
-            get
-            {
-                if (_doCreateNewRecordCommand == null)
-                {
-                    _doCreateNewRecordCommand = new Command(
-                        p => true,
-                        p => CreateNewRecord());
-                }
-                return _doCreateNewRecordCommand;
-            }
-        }
-
         private ICommand _doStopTimerCommand;
 
         public ICommand DoStopTimerCommand
@@ -356,6 +343,22 @@ namespace OneQuestionFourAnswers
                         p => StopTimer());
                 }
                 return _doStopTimerCommand;
+            }
+        }
+
+        private ICommand _doUpdate;
+
+        public ICommand DoUpdate
+        {
+            get
+            {
+                if (_doUpdate == null)
+                {
+                    _doUpdate = new Command(
+                        p => true,
+                        p => Update());
+                }
+                return _doUpdate;
             }
         }
     }

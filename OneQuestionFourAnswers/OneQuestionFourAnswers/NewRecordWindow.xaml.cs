@@ -42,14 +42,13 @@ namespace OneQuestionFourAnswers
             (_textBox).Text = "";
             var property = TextBox.TextProperty;
             Debug.Assert(property != null, "TextBox.TextProperty != null");
-            // ReSharper disable once AssignNullToNotNullAttribute
             Validation.ClearInvalid(_textBox.GetBindingExpression(property));
             NoticeTextBlock.Visibility = Visibility.Collapsed;
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = false;
             Close();
         }
     }

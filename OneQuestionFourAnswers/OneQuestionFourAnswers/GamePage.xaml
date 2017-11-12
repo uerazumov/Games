@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <Viewbox Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Center">
-            <TextBlock Width="100" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
+            <TextBlock Width="110" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
                        Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
         </Viewbox>
         <Grid Grid.Row="1">
@@ -68,8 +68,8 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6" Text="Счeт:"></TextBlock>
-                    <TextBlock x:Name="Score" Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5,7,5,6"
+                    <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Margin="5" Text="Счeт:"></TextBlock>
+                    <TextBlock x:Name="Score" Grid.Column="1" Style="{StaticResource TextBlockStyle}" Margin="5"
                                Text="{Binding Source={StaticResource MainWindowVM}, Path=GameScore, Mode=OneWay}"></TextBlock>
                 </Grid>
             </Viewbox>
@@ -80,7 +80,9 @@
                     </Image.RenderTransform>
                 </Image>
             </Viewbox>
-            <TextBlock VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}" FontSize="50" x:Name="Time" Grid.Column="3" HorizontalAlignment="Left" Text="{Binding Source={StaticResource MainWindowVM}, Path=Time, Mode=OneWay}" Margin="5,35,5,5"></TextBlock>
+            <Viewbox Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Left">
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}" FontSize="40" x:Name="Time" Text="{Binding Source={StaticResource MainWindowVM}, Path=Time, Mode=OneWay}" Margin="10"></TextBlock>
+            </Viewbox>
         </Grid>
     </Grid>
 </Page>

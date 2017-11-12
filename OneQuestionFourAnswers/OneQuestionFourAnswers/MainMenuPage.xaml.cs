@@ -25,7 +25,7 @@ namespace OneQuestionFourAnswers
         }
         private void ButtonClickUpdate(object sender, RoutedEventArgs e)
         {
-            var window = Window.GetWindow(this) as MainWindow;
+            var window = App.Current.MainWindow as MainWindow;
             Debug.Assert(window != null, nameof(window) + " != null");
             window.UpdateBar.Visibility = Visibility.Visible;
             StartBatton.State = StrechableButton.StateType.Inactive;

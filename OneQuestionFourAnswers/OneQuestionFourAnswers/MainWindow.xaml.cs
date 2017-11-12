@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
@@ -24,7 +25,7 @@ namespace OneQuestionFourAnswers
         {
             InitializeComponent();
             _backgroundPlayer = new MediaPlayer();
-            _soundPlayer = new MediaPlayer() {Volume = 0.25};
+           _soundPlayer = new MediaPlayer() {Volume = 0.25};
         }
 
         private void ButtonClickSound(object sender, RoutedEventArgs e)

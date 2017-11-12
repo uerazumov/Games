@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
         <local:StrechableButton x:Name="StartBatton" ButtonText="Начать игру" Click="ButtonClickStartGame" Grid.Row="1" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}"></local:StrechableButton>
-        <local:StrechableButton x:Name="UpdateBatton" ButtonText="Обновить" Click="ButtonClickUpdate" Grid.Row="2" Margin="90,0,90,0"></local:StrechableButton>
+        <local:StrechableButton x:Name="UpdateBatton" ButtonText="Обновить" Click="ButtonClickUpdate" Grid.Row="2" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUpdate}"></local:StrechableButton>
         <local:StrechableButton ButtonText="Таблица рекордов" Click="HighscoreButton" Grid.Row="3" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand, Mode=OneWay}"></local:StrechableButton>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
