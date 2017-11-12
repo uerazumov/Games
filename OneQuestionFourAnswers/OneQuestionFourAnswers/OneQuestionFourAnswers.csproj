@@ -170,12 +170,46 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="VisualResources\ResphektFontStyle.ttf" />
+    <Resource Include="VisualResources\Images\AnswerChosenButton.png" />
+    <Resource Include="VisualResources\Images\AnswerTrueButton.png" />
+    <Resource Include="VisualResources\Images\AnswerWrongButton.png" />
+    <Resource Include="VisualResources\Images\BackButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\BackButtonIcon.png" />
+    <Resource Include="VisualResources\Images\BackgroundImage.jpg" />
+    <Resource Include="VisualResources\Images\Button.png" />
+    <Resource Include="VisualResources\Images\ButtonActive.png" />
+    <Resource Include="VisualResources\Images\ButtonIsDisable.png" />
+    <Resource Include="VisualResources\Images\CommentatorOffButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\FirstThrophy.png" />
+    <Resource Include="VisualResources\Images\InformationButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\InformationButtonIcon.png" />
+    <Resource Include="VisualResources\Images\NoticeBackgroundImage.jpg" />
+    <Resource Include="VisualResources\Images\SecondThrophy.png" />
+    <Resource Include="VisualResources\Images\SoundButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\SoundButtonIcon.png" />
+    <Resource Include="VisualResources\Images\SoundOffButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\SoundOffButtonIcon.png" />
+    <Resource Include="VisualResources\Images\StatisticsHintButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\StatisticsHintButtonIcon.png" />
+    <Resource Include="VisualResources\Images\StatisticsHintUsedButtonIcon.png" />
+    <Resource Include="VisualResources\Images\ThirdThrophy.png" />
+    <Resource Include="VisualResources\Images\Time.png" />
+    <Resource Include="VisualResources\Images\TimeHintButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\TimeHintButtonIcon.png" />
+    <Resource Include="VisualResources\Images\TimeHintUsedButtonIcon.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersHintButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersHintButtonIcon.png" />
+    <Resource Include="VisualResources\Images\TwoAnswersHintUsedButtonIcon.png" />
+    <Resource Include="VisualResources\Images\СommentatorButtonActiveIcon.png" />
+    <Resource Include="VisualResources\Images\СommentatorButtonIcon.png" />
+    <Resource Include="VisualResources\Images\СommentatorOffButtonIcon.png" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="VisualResources\ResphektFontStyle.ttf" />
+    <Resource Include="VisualResources\WindowIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -189,57 +223,6 @@
       <Project>{41847ad1-1e0a-4271-8a85-1c9ab962e792}</Project>
       <Name>LibraryClass</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\BackgroundImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\ButtonIsDisable.png" />
-    <Resource Include="VisualResources\Images\InformationButtonIcon.png" />
-    <Resource Include="VisualResources\Images\SoundButtonIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\StatisticsHintButtonIcon.png" />
-    <Resource Include="VisualResources\Images\TimeHintButtonIcon.png" />
-    <Resource Include="VisualResources\Images\TwoAnswersHintButtonIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\Time.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\WindowIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\SoundOffButtonIcon.png" />
-    <Resource Include="VisualResources\Images\StatisticsHintUsedButtonIcon.png" />
-    <Resource Include="VisualResources\Images\TimeHintUsedButtonIcon.png" />
-    <Resource Include="VisualResources\Images\TwoAnswersHintUsedButtonIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\NoticeBackgroundImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\BackButtonIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\BackButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\InformationButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\SoundOffButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\SoundButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\StatisticsHintButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\TimeHintButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\TwoAnswersHintButtonActiveIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\FirstThrophy.png" />
-    <Resource Include="VisualResources\Images\SecondThrophy.png" />
-    <Resource Include="VisualResources\Images\ThirdThrophy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\Button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualResources\Images\ButtonActive.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -267,13 +250,6 @@
     <Content Include="SoundsAndMusic\Win.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="VisualResources\Images\AnswerWrongButton.png" />
-    <Resource Include="VisualResources\Images\AnswerChosenButton.png" />
-    <Resource Include="VisualResources\Images\AnswerTrueButton.png" />
-    <Resource Include="VisualResources\Images\СommentatorButtonIcon.png" />
-    <Resource Include="VisualResources\Images\СommentatorOffButtonIcon.png" />
-    <Resource Include="VisualResources\Images\CommentatorOffButtonActiveIcon.png" />
-    <Resource Include="VisualResources\Images\СommentatorButtonActiveIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,21 +42,21 @@
                             <Style>
                                 <Setter Property="Border.Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="VisualResources\Images\Buttons.png"></ImageBrush>
+                                        <ImageBrush ImageSource="VisualResources\Images\Button.png"></ImageBrush>
                                     </Setter.Value>
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="Border.IsMouseOver" Value="True">
                                         <Setter Property="Border.Background">
                                             <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\ButtonsTap.png"></ImageBrush>
+                                                <ImageBrush ImageSource="VisualResources\Images\ButtonActive.png"></ImageBrush>
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
                                     <Trigger Property="Button.IsEnabled" Value="False">
                                         <Setter Property="Border.Background">
                                             <Setter.Value>
-                                                <ImageBrush ImageSource="VisualResources\Images\ButtonsDisable.png"></ImageBrush>
+                                                <ImageBrush ImageSource="VisualResources\Images\ButtonIsDisable.png"></ImageBrush>
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
