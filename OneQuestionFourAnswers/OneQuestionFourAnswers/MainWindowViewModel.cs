@@ -37,6 +37,18 @@ namespace OneQuestionFourAnswers
             }
         }
 
+        private int _infoFontSize;
+
+        public int InfoFontSize
+        {
+            get { return _infoFontSize; }
+            set
+            {
+                _infoFontSize = value;
+                DoPropertyChanged("InfoFontSize");
+            }
+        }
+
         private int _answerFontSize;
 
         public int AnswerFontSize
@@ -311,6 +323,7 @@ namespace OneQuestionFourAnswers
             _questionBlockWidth = width - 200;
             _width = width;
             _heigth = height;
+            _infoFontSize = (int)(_width * 7000 / (_heigth * 319));
         }
 
         public void GetFontSize()
