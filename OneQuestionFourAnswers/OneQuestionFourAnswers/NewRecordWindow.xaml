@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
-        Title="Новый рекорд" ResizeMode="NoResize" Height="320" Width="400">
+        Title="Новый рекорд" ResizeMode="NoResize" Height="320" Width="400" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,7 +16,7 @@
     </Window.Resources>
     <Grid Background="{StaticResource NoticeBackgroundImage}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="75"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -40,7 +40,7 @@
                 </TextBox.Text>
             </TextBox>
         </Border>
-        <TextBlock x:Name="NoticeTextBlock" Grid.Row="2" Text="Имя должно быть на русском, от 4 до 15 символов" Visibility="Collapsed" Foreground="Wheat" FontSize="25" Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
+        <TextBlock x:Name="NoticeTextBlock" Grid.Row="2" Text="Имя должно быть на русском, от 4 до 15 символов" Visibility="Collapsed" Foreground="Wheat" FontSize="15" Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

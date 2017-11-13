@@ -142,6 +142,23 @@ namespace OneQuestionFourAnswers
             }
         }
 
+        public static DependencyProperty SizeOfFontProperty =
+            DependencyProperty.Register("SizeOfFont", typeof(double), typeof(StrechableButton));
+
+        public double SizeOfFont
+        {
+            get
+            {
+                return (double)GetValue(ButtonTextProperty);
+            }
+
+            set
+            {
+                SetValue(ButtonTextProperty, value);
+                DoPropertyChanged("SizeOfFont");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void DoPropertyChanged(string name)

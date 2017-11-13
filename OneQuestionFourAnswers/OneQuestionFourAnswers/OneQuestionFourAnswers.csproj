@@ -80,8 +80,8 @@
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StrechableButton.xaml.cs">
-      <DependentUpon>StrechableButton.xaml</DependentUpon>
+    <Compile Include="ChangeableButton.xaml.cs">
+      <DependentUpon>ChangeableButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="StrechTextBlock.xaml.cs">
       <DependentUpon>StrechTextBlock.xaml</DependentUpon>
@@ -149,7 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StrechableButton.xaml">
+    <Page Include="ChangeableButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

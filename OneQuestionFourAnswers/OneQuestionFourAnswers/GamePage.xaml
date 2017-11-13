@@ -19,7 +19,7 @@
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="110"></RowDefinition>
+            <RowDefinition Height="140"></RowDefinition>
         </Grid.RowDefinitions>
         <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <TextBlock FontSize="{Binding Source={StaticResource MainWindowVM},Path=QuestionFontSize}" Width="{Binding Source={StaticResource MainWindowVM}, Path=QuestionBlockWidth}" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="10,5,10,5"
@@ -29,26 +29,26 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="AButton" Tag="0" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[0], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
-            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="BButton" Tag="1" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[1], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="AButton" Tag="0" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[0], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="BButton" Tag="1" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[1], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="CButton" Tag="2" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[2], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
-            <local:StrechableButton ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="DButton" Tag="3" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[3], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="CButton" Tag="2" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[2], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="DButton" Tag="3" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[3], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="210"></ColumnDefinition>
+                <ColumnDefinition Width="360"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="0.6*"></ColumnDefinition>
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
+            <Grid Margin="0,0,0,20" x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -79,7 +79,7 @@
                 </Image>
             </Viewbox>
             <Viewbox Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Left">
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}" FontSize="40" x:Name="Time" Text="{Binding Source={StaticResource MainWindowVM}, Path=Time, Mode=OneWay}" Margin="10"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}" FontSize="40" x:Name="Time" Text="{Binding Source={StaticResource MainWindowVM}, Path=Time, Mode=OneWay}" Margin="15"></TextBlock>
             </Viewbox>
         </Grid>
     </Grid>

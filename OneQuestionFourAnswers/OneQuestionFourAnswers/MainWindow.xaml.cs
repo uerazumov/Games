@@ -68,6 +68,8 @@ namespace OneQuestionFourAnswers
                 _backgroundPlayer.Position = TimeSpan.Zero;
                 _backgroundPlayer.Play();
             };
+            var _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
+            _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
         }
 
         public void Exit(object sender, RoutedEventArgs e)
