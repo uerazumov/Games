@@ -57,6 +57,7 @@ namespace OneQuestionFourAnswers
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
+            ExitButton.ControlButton.Click += Exit;
             SoundButton.ControlButton.Click += ButtonClickSound;
             CommentatorButton.ControlButton.Click += ButtonClickCommentator;
             Main.NavigationService.Navigated += (obj, args) => { Main.NavigationService.RemoveBackEntry(); };
@@ -67,6 +68,11 @@ namespace OneQuestionFourAnswers
                 _backgroundPlayer.Position = TimeSpan.Zero;
                 _backgroundPlayer.Play();
             };
+        }
+
+        public void Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         public void PlaySound(SoundType type)

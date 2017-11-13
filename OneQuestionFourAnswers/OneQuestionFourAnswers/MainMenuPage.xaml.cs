@@ -10,8 +10,11 @@ namespace OneQuestionFourAnswers
     {
         public MainMenuPage()
         {
+            _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
             InitializeComponent();
         }
+
+        private readonly MainWindowViewModel _vm;
 
         private void ButtonClickStartGame(object sender, RoutedEventArgs e)
         {
@@ -47,6 +50,7 @@ namespace OneQuestionFourAnswers
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             InformationButton.ControlButton.Click += ButtonClickInformation;
+            _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
         }
 
         private void HighscoreButton(object sender, RoutedEventArgs e)

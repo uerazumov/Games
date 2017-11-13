@@ -23,6 +23,8 @@
     <ImageBrush x:Key="СommentatorButtonActiveIcon" ImageSource="VisualResources\Images\СommentatorButtonActiveIcon.png"></ImageBrush>
     <ImageBrush x:Key="СommentatorOffButtonIcon" ImageSource="VisualResources\Images\СommentatorOffButtonIcon.png"></ImageBrush>
     <ImageBrush x:Key="СommentatorOffButtonActiveIcon" ImageSource="VisualResources\Images\CommentatorOffButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="ExitIcon" ImageSource="VisualResources\Images\ExitIcon.png"></ImageBrush>
+    <ImageBrush x:Key="ExitActiveIcon" ImageSource="VisualResources\Images\ExitActiveIcon.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>

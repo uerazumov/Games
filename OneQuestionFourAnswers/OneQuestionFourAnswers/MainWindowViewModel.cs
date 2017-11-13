@@ -22,6 +22,33 @@ namespace OneQuestionFourAnswers
             IncorrectNewRecord
         }
 
+        private int _width;
+        private int _heigth;
+
+        private int _questionFontSize;
+
+        public int QuestionFontSize
+        {
+            get { return _questionFontSize; }
+            set
+            {
+                _questionFontSize = value;
+                DoPropertyChanged("QuestionFontSize");
+            }
+        }
+
+        private int _answerFontSize;
+
+        public int AnswerFontSize
+        {
+            get { return _answerFontSize; }
+            set
+            {
+                _answerFontSize = value;
+                DoPropertyChanged("AnswerFontSize");
+            }
+        }
+
         public delegate void TimeoutDelegate();
 
         public event TimeoutDelegate Timeout;
@@ -61,6 +88,18 @@ namespace OneQuestionFourAnswers
             {
                 _name = value;
                 DoPropertyChanged("Name");
+            }
+        }
+
+        private int _questionBlockWidth;
+
+        public int QuestionBlockWidth
+        {
+            get { return _questionBlockWidth; }
+            set
+            {
+                _questionBlockWidth = value;
+                DoPropertyChanged("QuestionBlockWidth");
             }
         }
 
@@ -223,6 +262,7 @@ namespace OneQuestionFourAnswers
         {
             _time = new TimeSpan(0, 0, 30);
             _questionAnswers = _fp.NewQuestion();
+            GetFontSize();
             AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
@@ -264,6 +304,38 @@ namespace OneQuestionFourAnswers
                 }
             }
             DoPropertyChanged("AnswersState");
+        }
+
+        public void ChangeWidthAndHeight(int width, int height)
+        {
+            _questionBlockWidth = width - 200;
+            _width = width;
+            _heigth = height;
+        }
+
+        public void GetFontSize()
+        {
+            _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
+            if(_questionFontSize > 90)
+            {
+                _questionFontSize = 90;
+            }
+
+            var maxAnswerLength = _questionAnswers.Answers[0].Text.Length;
+
+            for(var i = 1; i < 4; i++)
+            {
+                if(_questionAnswers.Answers[i].Text.Length > maxAnswerLength)
+                {
+                    maxAnswerLength = _questionAnswers.Answers[i].Text.Length;
+                }
+            }
+
+            _answerFontSize = (int)(_width * 2500 / (_heigth * maxAnswerLength));
+            if (_answerFontSize > 60)
+            {
+                _answerFontSize = 60;
+            }
         }
 
         private ICommand _doUseHintTimeCommand;
