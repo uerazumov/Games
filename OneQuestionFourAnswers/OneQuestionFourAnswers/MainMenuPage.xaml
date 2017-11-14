@@ -20,7 +20,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="135"></RowDefinition>
         </Grid.RowDefinitions>
         <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
         <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" x:Name="StartBatton" ButtonText="Начать игру" Click="ButtonClickStartGame" Grid.Row="1" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}"></local:StrechableButton>
