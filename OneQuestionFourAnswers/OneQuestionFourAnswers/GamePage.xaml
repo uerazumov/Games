@@ -45,16 +45,9 @@
                 <ColumnDefinition Width="360"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="60"></ColumnDefinition>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <ColumnDefinition Width="195"></ColumnDefinition>
                 <ColumnDefinition Width="0.6*"></ColumnDefinition>
-=======
                 <ColumnDefinition Width="1*"></ColumnDefinition>
->>>>>>> 691a771e8d1ae159efde94cd2d54da6a25bdd048
-=======
-                <ColumnDefinition Width="0.6*"></ColumnDefinition>
->>>>>>> parent of 691a771... Добавлены margin вопросов и окна информации. Изменено положение счёта и времени на окне игры.
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Margin="0,0,0,20" x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
