@@ -115,18 +115,6 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private int _questionBlockWidth;
-
-        public int QuestionBlockWidth
-        {
-            get { return _questionBlockWidth; }
-            set
-            {
-                _questionBlockWidth = value;
-                DoPropertyChanged("QuestionBlockWidth");
-            }
-        }
-
         private LibraryClass.QuestionAnswers _questionAnswers;
 
         public LibraryClass.QuestionAnswers QuestionAnswers => _questionAnswers;
@@ -332,10 +320,9 @@ namespace OneQuestionFourAnswers
 
         public void ChangeWidthAndHeight(int width, int height)
         {
-            _questionBlockWidth = width - 200;
             _width = width;
             _heigth = height;
-            _infoFontSize = (_width * 7000 / (_heigth * 319));
+            _infoFontSize = (_width * 5500 / (_heigth * 319));
             _mainMenuFontSize = (_width * 700 / (_heigth * 16));
             DoPropertyChanged("MainMenuFontSize");
             int i = 0;
@@ -343,8 +330,8 @@ namespace OneQuestionFourAnswers
 
         public void GetFontSize()
         {
-            _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
-            if(_questionFontSize > 90)
+            _questionFontSize = (int)(_width * 2600 / (_heigth * _questionAnswers.QuestionText.Length));
+            if (_questionFontSize > 90)
             {
                 _questionFontSize = 90;
             }
