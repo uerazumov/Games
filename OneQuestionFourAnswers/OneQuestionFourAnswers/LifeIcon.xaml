@@ -11,15 +11,14 @@
             <Setter Property="Height" Value="50"></Setter>
             <Setter Property="Width" Value="50"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Background" Value="{Binding BackgroundImage}"></Setter>
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Border.Background" Value="{Binding BackgroundImageActive}"></Setter>
+                    <Setter Property="Border.Background" Value="{Binding DisableImage}"></Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Border Style="{StaticResource BorderStyle}"></Border> 
+        <Border Background="{Binding EnableImage}" Style="{StaticResource BorderStyle}"></Border> 
     </Grid>
 </UserControl>
