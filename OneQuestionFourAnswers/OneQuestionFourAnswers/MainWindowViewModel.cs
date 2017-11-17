@@ -369,7 +369,7 @@ namespace OneQuestionFourAnswers
 
         public void GetFontSize()
         {
-            _questionFontSize = (int)(_width * 2300 / (_heigth * _questionAnswers.QuestionText.Length));
+            _questionFontSize = (int)(_width * 4000 / (_heigth * _questionAnswers.QuestionText.Length));
             if (_questionFontSize > 75)
             {
                 _questionFontSize = 75;
