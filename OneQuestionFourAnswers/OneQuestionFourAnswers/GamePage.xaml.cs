@@ -124,26 +124,34 @@ namespace OneQuestionFourAnswers
             switch (_vm.IsCorrectAnswer(index))
             {
                 case MainWindowViewModel.ResultType.Correct:
+                    {
+                        _window?.PlaySound(MainWindow.SoundType.CorrectAnswer);
+                    }
                     break;
                 case MainWindowViewModel.ResultType.Incorrect:
-                {
-                    _window?.PlaySound(MainWindow.SoundType.DefeatSound);
-                    var dfw = new DefeatWindow {Owner = App.Current.MainWindow};
-                    var close = dfw.ShowDialog() ?? true;
-                    if (!close)
                     {
-                        NavigationService ns = NavigationService.GetNavigationService(this);
-                        ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+                        _window?.PlaySound(MainWindow.SoundType.LifeIsBroken);
                     }
-                    else
+                    break;
+                case MainWindowViewModel.ResultType.Defeat:
                     {
-                        NavigationService?.Refresh();
+                        _window?.PlaySound(MainWindow.SoundType.DefeatSound);
+                        var dfw = new DefeatWindow {Owner = App.Current.MainWindow};
+                        var close = dfw.ShowDialog() ?? true;
+                        if (!close)
+                           {
+                                 NavigationService ns = NavigationService.GetNavigationService(this);
+                                 ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+                           }
+                       else
+                           {
+                                 NavigationService?.Refresh();
+                           }
                     }
-                }
                     break;
                 case MainWindowViewModel.ResultType.IncorrectNewRecord:
                 {
-                    _window?.PlaySound(MainWindow.SoundType.WinSound);
+                        _window?.PlaySound(MainWindow.SoundType.WinSound);
                         var nrw = new NewRecordWindow { Owner = App.Current.MainWindow};
                     var close = nrw.ShowDialog() ?? false;
                     if (close)

@@ -19,6 +19,7 @@ namespace OneQuestionFourAnswers
         {
             Correct,
             Incorrect,
+            Defeat,
             IncorrectNewRecord
         }
 
@@ -236,28 +237,24 @@ namespace OneQuestionFourAnswers
         {
             _timer.Stop();
             _answerIsSelect = true;
-            
-            if(index == null)
+            var lifeIsStayed = LifeIsStayed();
+            if ((index == null)||(!_fp.CheckAnswer(QuestionAnswers.Answers[(int)index])))
             {
-                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+                if (lifeIsStayed)
+                {
+                    UseOneLife();
+                    StartNewRound();
+                    return ResultType.Incorrect;
+                }
+                UseOneLife();
+                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Defeat;
             }
-
-            if(_fp.CheckAnswer(QuestionAnswers.Answers[(int)index]))
-            {
-                GameScore += 10;
-                StartNewRound();
-                return ResultType.Correct;
-            }
-            var livesIsUsed = LivesIsUsed();
-            if (livesIsUsed)
-            {
-                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
-            }
+            GameScore += 10;
             StartNewRound();
             return ResultType.Correct;
         }
 
-        public bool LivesIsUsed()
+        private void UseOneLife()
         {
             for(var i = 0; i < 3; i++)
             {
@@ -265,11 +262,14 @@ namespace OneQuestionFourAnswers
                 {
                     Lives[i] = false;
                     DoPropertyChanged("Lives");
-                    if (i == 2) return true;
-                    return false;
+                    break;
                 }
             }
-            return true;
+        }
+
+        public bool LifeIsStayed()
+        {
+            return _lives[0] | _lives[1] | !_lives[2];
         }
 
         public void CreateNewRecord()

@@ -253,10 +253,16 @@
     <Content Include="SoundsAndMusic\Backround.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SoundsAndMusic\CorrectAnswerSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SoundsAndMusic\Defeat.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SoundsAndMusic\Ends10sec.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SoundsAndMusic\LifeIsBrokenSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SoundsAndMusic\NewGame.mp3">

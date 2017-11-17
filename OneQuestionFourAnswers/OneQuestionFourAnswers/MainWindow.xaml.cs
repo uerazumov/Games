@@ -16,7 +16,9 @@ namespace OneQuestionFourAnswers
             StatisticSound,
             NewGameSound,
             TimeAddedSound,
-            TwoAnswersSound
+            TwoAnswersSound,
+            CorrectAnswer,
+            LifeIsBroken
         }
 
         private readonly MediaPlayer _backgroundPlayer;
@@ -109,6 +111,12 @@ namespace OneQuestionFourAnswers
                     break;
                 case SoundType.TwoAnswersSound:
                     source = @".\SoundsAndMusic\TwoAnswers.mp3";
+                    break;
+                case SoundType.CorrectAnswer:
+                    source = @".\SoundsAndMusic\CorrectAnswerSound.mp3";
+                    break;
+                case SoundType.LifeIsBroken:
+                    source = @".\SoundsAndMusic\LifeIsBrokenSound.mp3";
                     break;
             }
             if (source != null) _soundPlayer.Open(new Uri(source, UriKind.Relative));
