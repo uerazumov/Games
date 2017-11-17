@@ -9,6 +9,7 @@
         Title="1 вопрос 4 ответа" ResizeMode="NoResize" WindowStyle="None"  WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="OnWindowLoaded">
     <Window.Resources>
         <ResourceDictionary>
+            <FrameworkElement x:Key="KinectCursor" Cursor="VisualResources\Normal.cur"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

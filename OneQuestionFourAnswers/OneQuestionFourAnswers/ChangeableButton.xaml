@@ -55,6 +55,6 @@
        
     </UserControl.Resources>
     <Button IsEnabled="{Binding ButtonIsEnable}" x:Name="Button" Style="{StaticResource StechableButtonStyle}" Command="{Binding ControlCommand}">
-        <TextBlock Margin="15" FontSize="{Binding SizeOfFont}" Style="{StaticResource TextBlockStyle}" Text="{Binding ButtonText}"></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="15" FontSize="{Binding SizeOfFont}" Style="{StaticResource TextBlockStyle}" Text="{Binding ButtonText}"></TextBlock>
     </Button>
 </UserControl>

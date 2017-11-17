@@ -208,7 +208,6 @@
     <Resource Include="VisualResources\Images\FirstThrophy.png" />
     <Resource Include="VisualResources\Images\InformationButtonActiveIcon.png" />
     <Resource Include="VisualResources\Images\InformationButtonIcon.png" />
-    <Resource Include="VisualResources\Images\NoticeBackgroundImage.jpg" />
     <Resource Include="VisualResources\Images\SecondThrophy.png" />
     <Resource Include="VisualResources\Images\SoundButtonActiveIcon.png" />
     <Resource Include="VisualResources\Images\SoundButtonIcon.png" />
@@ -275,6 +274,9 @@
     <Content Include="SoundsAndMusic\Win.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="VisualResources\Images\NoticeBackground.png" />
+    <Resource Include="VisualResources\Images\None.png" />
+    <Resource Include="VisualResources\Normal.cur" />
     <Resource Include="VisualResources\Images\LifeIcon.png" />
     <Resource Include="VisualResources\Images\LifeUsedIcon.png" />
     <Resource Include="VisualResources\Images\ExitIcon.PNG" />

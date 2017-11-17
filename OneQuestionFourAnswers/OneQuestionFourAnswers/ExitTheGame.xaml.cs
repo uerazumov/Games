@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace OneQuestionFourAnswers
 {
@@ -17,6 +18,10 @@ namespace OneQuestionFourAnswers
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
-        }      
+        }
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;
+        }
     }
 }

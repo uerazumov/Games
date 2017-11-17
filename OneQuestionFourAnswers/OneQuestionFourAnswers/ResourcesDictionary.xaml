@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ImageBrush x:Key="BackgroundImage" ImageSource="VisualResources\Images\BackgroundImage.jpg"></ImageBrush>
-    <ImageBrush x:Key="NoticeBackgroundImage" ImageSource="VisualResources\Images\NoticeBackgroundImage.jpg"></ImageBrush>
+    <ImageBrush x:Key="None" ImageSource="VisualResources\Images\None.png"></ImageBrush>
+    <ImageBrush x:Key="NoticeBackgroundImage" ImageSource="VisualResources\Images\NoticeBackground.png"></ImageBrush>
     <ImageBrush x:Key="InformationButtonIcon" ImageSource="VisualResources\Images\InformationButtonIcon.png"></ImageBrush>
     <ImageBrush x:Key="InformationButtonActiveIcon" ImageSource="VisualResources\Images\InformationButtonActiveIcon.png"></ImageBrush>
     <ImageBrush x:Key="SoundButtonIcon" ImageSource="VisualResources\Images\SoundButtonIcon.png"></ImageBrush>

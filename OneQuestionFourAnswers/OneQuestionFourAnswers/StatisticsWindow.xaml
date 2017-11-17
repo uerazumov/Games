@@ -6,41 +6,45 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
-        Title="Статистика" Height="350" Width="350" ResizeMode="NoResize" WindowStyle="None">
+        Title="Статистика" ResizeMode="NoResize" WindowState="Maximized" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Loaded="OnWindowLoaded">
     <Window.Resources>
         <ResourceDictionary>
+            <FrameworkElement x:Key="KinectCursor" Cursor="VisualResources\Normal.cur"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="{StaticResource NoticeBackgroundImage}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="90"></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Статистика ответов" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White"></TextBlock>
-        <Grid  DataContext="{StaticResource MainWindowVM}" Grid.Row="1" Margin="5">
+    <Grid>
+        <Grid Background="White" Opacity="0.5"></Grid>
+        <Grid Height="350" Width="350" Background="{StaticResource NoticeBackgroundImage}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="155"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="90"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Text="a" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Text="б" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="2" Text="в" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="3" Text="г" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
-            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[0]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="0" Background="White"/>
-            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[1]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="1" Background="White"/>
-            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[2]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="2" Background="White"/>
-            <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[3]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="3" Background="White"/>
+            <TextBlock Grid.Row="0" Text="Статистика ответов" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White"></TextBlock>
+            <Grid  DataContext="{StaticResource MainWindowVM}" Grid.Row="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="155"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Text="a" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Text="б" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="2" Text="в" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="3" Text="г" Style="{StaticResource TextBlockStyle}" FontSize="35" Foreground="White" Margin="0"></TextBlock>
+                <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[0]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="0" Background="White"/>
+                <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[1]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="1" Background="White"/>
+                <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[2]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="2" Background="White"/>
+                <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[3]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="3" Background="White"/>
+            </Grid>
+            <Button FontSize="40" Foreground="White" Content="Закрыть" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="60,5" Click="ButtonClickClose"></Button>
         </Grid>
-        <Button FontSize="40" Foreground="White" Content="Закрыть" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="60,5" Click="ButtonClickClose"></Button>
     </Grid>
 </Window>

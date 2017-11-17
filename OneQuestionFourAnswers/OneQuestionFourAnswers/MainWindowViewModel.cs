@@ -265,6 +265,7 @@ namespace OneQuestionFourAnswers
                 {
                     Lives[i] = false;
                     DoPropertyChanged("Lives");
+                    if (i == 2) return true;
                     return false;
                 }
             }
@@ -298,7 +299,7 @@ namespace OneQuestionFourAnswers
             QuestionIsSelect = false;
             Lives = new[] { true, true, true };
             GameScore = 0;
-            Name = "";
+            Name = "Введите Имя";
             _fp.RefreshQuestions();
             StartNewRound();
         }
@@ -368,10 +369,10 @@ namespace OneQuestionFourAnswers
 
         public void GetFontSize()
         {
-            _questionFontSize = (int)(_width * 2600 / (_heigth * _questionAnswers.QuestionText.Length));
-            if (_questionFontSize > 90)
+            _questionFontSize = (int)(_width * 2300 / (_heigth * _questionAnswers.QuestionText.Length));
+            if (_questionFontSize > 75)
             {
-                _questionFontSize = 90;
+                _questionFontSize = 75;
             }
 
             var maxAnswerLength = _questionAnswers.Answers[0].Text.Length;

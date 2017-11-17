@@ -33,5 +33,9 @@ namespace OneQuestionFourAnswers
         {
             Close();
         }
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;
+        }
     }
 }
