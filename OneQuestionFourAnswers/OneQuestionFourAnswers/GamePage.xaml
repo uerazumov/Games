@@ -44,8 +44,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="360"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="195"></ColumnDefinition>
-                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -72,7 +72,7 @@
                                Text="{Binding Source={StaticResource MainWindowVM}, Path=GameScore, Mode=OneWay}"></TextBlock>
                 </Grid>
             </Viewbox>
-            <Grid Grid.Column="2" HorizontalAlignment="Center">
+            <Grid Grid.Column="2" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="65"></ColumnDefinition>
                     <ColumnDefinition Width="65"></ColumnDefinition>

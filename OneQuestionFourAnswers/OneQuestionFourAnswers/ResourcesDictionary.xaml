@@ -23,6 +23,8 @@
     <ImageBrush x:Key="СommentatorButtonActiveIcon" ImageSource="VisualResources\Images\СommentatorButtonActiveIcon.png"></ImageBrush>
     <ImageBrush x:Key="СommentatorOffButtonIcon" ImageSource="VisualResources\Images\СommentatorOffButtonIcon.png"></ImageBrush>
     <ImageBrush x:Key="СommentatorOffButtonActiveIcon" ImageSource="VisualResources\Images\CommentatorOffButtonActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="LifeIcon" ImageSource="VisualResources\Images\LifeIcon.png"></ImageBrush>
+    <ImageBrush x:Key="LifeUsedIcon" ImageSource="VisualResources\Images\LifeUsedIcon.png"></ImageBrush>
     <ImageBrush x:Key="ExitIcon" ImageSource="VisualResources\Images\ExitIcon.png"></ImageBrush>
     <ImageBrush x:Key="ExitActiveIcon" ImageSource="VisualResources\Images\ExitActiveIcon.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">

@@ -7,18 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style x:Key="BorderStyle" TargetType="Border">
-            <Setter Property="Height" Value="50"></Setter>
-            <Setter Property="Width" Value="50"></Setter>
-            <Setter Property="Margin" Value="5"></Setter>
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Border.Background" Value="{Binding DisableImage}"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="BorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="50"></Setter>
+                <Setter Property="Width" Value="50"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="Background" Value="{StaticResource LifeIcon}"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Background" Value="{StaticResource LifeUsedIcon}"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Border Background="{Binding EnableImage}" Style="{StaticResource BorderStyle}"></Border> 
+        <Border Style="{StaticResource BorderStyle}"></Border> 
     </Grid>
 </UserControl>
