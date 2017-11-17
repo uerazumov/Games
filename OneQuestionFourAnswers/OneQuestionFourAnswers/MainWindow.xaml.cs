@@ -74,7 +74,12 @@ namespace OneQuestionFourAnswers
 
         public void Exit(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var ew = new ExitWindow { Owner = this };
+            var close = ew.ShowDialog() ?? false;
+            if (close)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         public void PlaySound(SoundType type)

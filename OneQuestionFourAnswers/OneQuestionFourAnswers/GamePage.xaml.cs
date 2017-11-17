@@ -124,7 +124,6 @@ namespace OneQuestionFourAnswers
             switch (_vm.IsCorrectAnswer(index))
             {
                 case MainWindowViewModel.ResultType.Correct:
-                    // _vm.StartNewRound();
                     break;
                 case MainWindowViewModel.ResultType.Incorrect:
                 {
@@ -138,7 +137,6 @@ namespace OneQuestionFourAnswers
                     }
                     else
                     {
-                        //_vm.DoOpenNewGameCommand.Execute(null);
                         NavigationService?.Refresh();
                     }
                 }

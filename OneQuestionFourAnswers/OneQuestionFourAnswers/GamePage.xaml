@@ -46,8 +46,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
                 <ColumnDefinition Width="90"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Margin="0,0,0,20" x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
@@ -78,9 +78,9 @@
                     <ColumnDefinition Width="65"></ColumnDefinition>
                     <ColumnDefinition Width="65"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <local:LifeIcon HorizontalAlignment="Center" Grid.Column="0"></local:LifeIcon>
-                <local:LifeIcon HorizontalAlignment="Center" Grid.Column="1"></local:LifeIcon>
-                <local:LifeIcon HorizontalAlignment="Center" Grid.Column="2"></local:LifeIcon>
+                <local:LifeIcon IsEnabled="{Binding Source={StaticResource MainWindowVM},Path=Lives[0]}" HorizontalAlignment="Center" Grid.Column="0"></local:LifeIcon>
+                <local:LifeIcon IsEnabled="{Binding Source={StaticResource MainWindowVM},Path=Lives[1]}" HorizontalAlignment="Center" Grid.Column="1"></local:LifeIcon>
+                <local:LifeIcon IsEnabled="{Binding Source={StaticResource MainWindowVM},Path=Lives[2]}" HorizontalAlignment="Center" Grid.Column="2"></local:LifeIcon>
             </Grid>
             <Viewbox Grid.Column="3" Stretch="Uniform">
                 <Image  x:Name="Clock" Source=".\VisualResources\Images\Time.png" Height="50" Width="50" Margin="5" RenderTransformOrigin=".5,.5">

@@ -28,11 +28,10 @@ namespace BussinesLogic
             return question;
         }
 
-        public bool CheckAnswer(Answer selectedAnswer, ref int score)
+        public bool CheckAnswer(Answer selectedAnswer)
         {
             if (selectedAnswer.IsCorrect)
             {
-                score += 10;
                 return true;
             }
             return false;

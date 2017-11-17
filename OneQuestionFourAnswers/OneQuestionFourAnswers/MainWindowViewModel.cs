@@ -25,6 +25,18 @@ namespace OneQuestionFourAnswers
         private int _width;
         private int _heigth;
 
+        private bool[] _lives;
+
+        public bool[] Lives
+        {
+            get { return _lives; }
+            set
+            {
+                _lives = value;
+                DoPropertyChanged("Lives");
+            }
+        }
+
         private int _questionFontSize;
 
         public int QuestionFontSize
@@ -224,7 +236,20 @@ namespace OneQuestionFourAnswers
         {
             _timer.Stop();
             _answerIsSelect = true;
-            if ((index == null) || !_fp.CheckAnswer(QuestionAnswers.Answers[(int) index], ref _gameScore))
+            
+            if(index == null)
+            {
+                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
+            }
+
+            if(_fp.CheckAnswer(QuestionAnswers.Answers[(int)index]))
+            {
+                GameScore += 10;
+                StartNewRound();
+                return ResultType.Correct;
+            }
+            var livesIsUsed = LivesIsUsed();
+            if (livesIsUsed)
             {
                 return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Incorrect;
             }
@@ -232,7 +257,19 @@ namespace OneQuestionFourAnswers
             return ResultType.Correct;
         }
 
-
+        public bool LivesIsUsed()
+        {
+            for(var i = 0; i < 3; i++)
+            {
+                if(_lives[i])
+                {
+                    Lives[i] = false;
+                    DoPropertyChanged("Lives");
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public void CreateNewRecord()
         {
@@ -259,6 +296,7 @@ namespace OneQuestionFourAnswers
         private void OpenNewGame()
         {
             QuestionIsSelect = false;
+            Lives = new[] { true, true, true };
             GameScore = 0;
             Name = "";
             _fp.RefreshQuestions();
@@ -274,7 +312,7 @@ namespace OneQuestionFourAnswers
         {
             _time = new TimeSpan(0, 0, 30);
             _questionAnswers = _fp.NewQuestion();
-            GetFontSize();
+            GetFontSize(); 
             AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
@@ -347,9 +385,9 @@ namespace OneQuestionFourAnswers
             }
 
             _answerFontSize = (_width * 2500 / (_heigth * maxAnswerLength));
-            if (_answerFontSize > 80)
+            if (_answerFontSize > 60)
             {
-                _answerFontSize = 80;
+                _answerFontSize = 60;
             }
         }
 
