@@ -34,6 +34,7 @@ namespace DAL
                     answers.Add(new Answer(item, false));
                 }
             }
+
             return new QuestionAnswers(question, answers);
         }
 

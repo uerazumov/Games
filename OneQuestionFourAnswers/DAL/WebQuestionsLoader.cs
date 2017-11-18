@@ -62,6 +62,13 @@ namespace DAL
             var answers = new List<Answer>();
             answers.AddRange(GetIncorrectAnswers(columns).Select(x => new Answer(x, false)));
             answers.Add(new Answer(GetCorrectAnswer(columns), true));
+            for (var i = 0; i < 4; i++)
+            {
+                if (answers[i].Text.Length > 20)
+                {
+                    throw new InvalidDataException();
+                }
+            }
             return answers.OrderBy(x => Guid.NewGuid()).ToList();
         }
 
@@ -69,14 +76,18 @@ namespace DAL
         {
             var column = columns.ElementAt(1);
             var question = column.ChildNodes.First(node => node.Name == "a").InnerText.Trim();
-            return question.Replace("&quot;", "*").Replace("'", "*");
+            if (question.Length > 180)
+            {
+                throw new InvalidDataException();
+            }
+            return question.Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022");
         }
 
         private static IEnumerable<string> GetIncorrectAnswers(IEnumerable<HtmlNode> columns)
         {
             var column = columns.ElementAt(1);
             var variantsText = column.ChildNodes.First(node => node.Name == "div").InnerText.Trim();
-            var variants = variantsText.Split(':')[1].Split(',').Select(x => x.Trim().Replace("&quot;", "\"").Replace("'", "*")).ToList();
+            var variants = variantsText.Split(':')[1].Split(',').Select(x => x.Trim().Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022")).ToList(); 
             if (variants.Count != 3)
             {
                 throw new InvalidDataException();
@@ -87,7 +98,7 @@ namespace DAL
         private static string GetCorrectAnswer(IEnumerable<HtmlNode> columns)
         {
             var column = columns.ElementAt(2);
-            return column.InnerText.Trim().Replace("&quot;", "*").Replace("'", "*");
+            return column.InnerText.Trim().Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022");
         }
 
         public List<QuestionAnswers> LoadQuestions()

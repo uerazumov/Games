@@ -341,6 +341,7 @@ namespace OneQuestionFourAnswers
             }
             DoPropertyChanged("AnswersState");
         }
+
         public void PaintTrueAnswer()
         {
             for (var i = 0; i != 4; i++)
