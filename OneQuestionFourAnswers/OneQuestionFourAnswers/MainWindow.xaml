@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <DockPanel LastChildFill="True">
-        <StatusBar x:Name="UpdateBar" DockPanel.Dock="Bottom" Height="35" Visibility="Collapsed">
+        <StatusBar Visibility="{Binding Source={StaticResource MainWindowVM}, Path=StatusbarState}" x:Name="UpdateBar" DockPanel.Dock="Bottom" Height="35">
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="Идет загрузка обновлений" FontSize="25" Margin="5,0,0,0"/>
             <Viewbox Stretch="Fill" Margin="5">
                 <ProgressBar MinWidth="450" Height="25" IsIndeterminate="True"/>

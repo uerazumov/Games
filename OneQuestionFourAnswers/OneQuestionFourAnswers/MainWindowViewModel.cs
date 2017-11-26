@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
@@ -21,6 +23,30 @@ namespace OneQuestionFourAnswers
             Incorrect,
             Defeat,
             IncorrectNewRecord
+        }
+
+        private Visibility _statusbarState;
+
+        public Visibility StatusbarState
+        {
+            get { return _statusbarState; }
+            set
+            {
+                _statusbarState = value;
+                DoPropertyChanged("StatusbarState");
+            }
+        }
+
+        private StrechableButton.StateType _buttonsState;
+
+        public StrechableButton.StateType ButtonsState
+        {
+            get { return _buttonsState; }
+            set
+            {
+                _buttonsState = value;
+                DoPropertyChanged("ButtonsState");
+            }
         }
 
         private int _width;
@@ -289,9 +315,34 @@ namespace OneQuestionFourAnswers
             TableOfRecords = _fp.GetRecordsTable();
         }
 
+        public void CollapsStatusBar()
+        {
+            StatusbarState = Visibility.Collapsed;
+        }
+
         private void Update()
         {
-            _fp.UpdateBaseOfQuestion();
+            new Thread(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ButtonsState = StrechableButton.StateType.Inactive;
+                    StatusbarState = Visibility.Visible;
+                });
+                try
+                {
+                    _fp.UpdateBaseOfQuestion();
+                }
+                catch
+                {
+                    //ошибка обновления БД
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ButtonsState = StrechableButton.StateType.Active;
+                    StatusbarState = Visibility.Collapsed;
+                });
+            }).Start();
         }
 
         private void OpenNewGame()

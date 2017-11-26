@@ -23,9 +23,12 @@ namespace OneQuestionFourAnswers
 
         private readonly MediaPlayer _backgroundPlayer;
         private readonly MediaPlayer _soundPlayer;
+        private readonly MainWindowViewModel _vm;
 
         public MainWindow()
         {
+            _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
+            _vm.CollapsStatusBar();
             InitializeComponent();
             _backgroundPlayer = new MediaPlayer();
            _soundPlayer = new MediaPlayer() {Volume = 0.25};
