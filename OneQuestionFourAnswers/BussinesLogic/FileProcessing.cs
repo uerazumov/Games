@@ -8,11 +8,28 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
+        private ExcelStatisticSaver _excelStatisticSaver = new ExcelStatisticSaver();
+
         private IQuestionsProvider _questions_provider = new QuestionsProvider();
 
         private IHighScoresProvider _high_scores_provider = new HighScoresProvider();
 
         private List<int> _availableQuestions;
+
+        public void AddUsedQuestion(QuestionAnswers question)
+        {
+            _excelStatisticSaver.AddUsedQuestion(question);
+        }
+
+        public void AddChosenAnswer(Answer answer)
+        {
+            _excelStatisticSaver.AddChosenAnswer(answer);
+        }
+
+        public void ClearReport()
+        {
+            _excelStatisticSaver.ClearReport();
+        }
 
         public void RefreshQuestions()
         {

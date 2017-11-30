@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelStatisticSaver.cs" />
     <Compile Include="HighScoresProvider.cs" />
     <Compile Include="IHighScoresProvider.cs" />
     <Compile Include="IQuestionsLoader.cs" />

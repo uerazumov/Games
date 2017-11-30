@@ -1,16 +1,11 @@
-﻿using System;
+﻿using LibraryClass;
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
-
-#region ...
-
-// ReSharper disable UnusedMember.Local
-
-#endregion
 
 namespace OneQuestionFourAnswers
 {
@@ -127,9 +122,9 @@ namespace OneQuestionFourAnswers
 
         public string Time => _time.ToString(@"mm\:ss");
 
-        private LibraryClass.RecordsTable _tableOfRecords;
+        private RecordsTable _tableOfRecords;
 
-        public LibraryClass.RecordsTable TableOfRecords
+        public RecordsTable TableOfRecords
         {
             get
             {
@@ -154,9 +149,9 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private LibraryClass.QuestionAnswers _questionAnswers;
+        private QuestionAnswers _questionAnswers;
 
-        public LibraryClass.QuestionAnswers QuestionAnswers => _questionAnswers;
+        public QuestionAnswers QuestionAnswers => _questionAnswers;
 
         private StrechableButton.StateType[] _answersState;
 
@@ -263,21 +258,33 @@ namespace OneQuestionFourAnswers
         {
             _timer.Stop();
             _answerIsSelect = true;
-            var lifeIsStayed = LifeIsStayed();
-            if ((index == null)||(!_fp.CheckAnswer(QuestionAnswers.Answers[(int)index])))
+            if (index == null)
             {
-                if (lifeIsStayed)
-                {
-                    UseOneLife();
-                    StartNewRound();
-                    return ResultType.Incorrect;
-                }
-                UseOneLife();
-                return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Defeat;
+                var answer = new Answer("Ответ не был выбран", false);
+                _fp.AddChosenAnswer(answer);
+                return IsLivesStayed();
+            }
+            if (!_fp.CheckAnswer(QuestionAnswers.Answers[(int)index]))
+            {
+                _fp.AddChosenAnswer(QuestionAnswers.Answers[(int)index]);
+                return IsLivesStayed();
             }
             GameScore += 10;
             StartNewRound();
             return ResultType.Correct;
+        }
+
+        private ResultType IsLivesStayed()
+        {
+            var lifeIsStayed = LifeIsStayed();
+            if (lifeIsStayed)
+            {
+                UseOneLife();
+                StartNewRound();
+                return ResultType.Incorrect;
+            }
+            UseOneLife();
+            return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Defeat;
         }
 
         private void UseOneLife()
@@ -347,6 +354,7 @@ namespace OneQuestionFourAnswers
 
         private void OpenNewGame()
         {
+            _fp.ClearReport();
             QuestionIsSelect = false;
             Lives = new[] { true, true, true };
             GameScore = 0;
@@ -370,6 +378,7 @@ namespace OneQuestionFourAnswers
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
             _questionAnswers.Answers[2].Text = "в. " + _questionAnswers.Answers[2].Text;
             _questionAnswers.Answers[3].Text = "г. " + _questionAnswers.Answers[3].Text;
+            _fp.AddUsedQuestion(_questionAnswers);
             DoPropertyChanged("Time");
             DoPropertyChanged("QuestionAnswers");
             DoPropertyChanged("GameScore");
