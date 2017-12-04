@@ -26,11 +26,12 @@ namespace OneQuestionFourAnswers
 
         private void YesButtonClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = false;
             Close();
         }
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             Close();
         }
         private void OnWindowLoaded(object sender, RoutedEventArgs e)

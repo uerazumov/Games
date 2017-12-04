@@ -81,8 +81,8 @@ namespace OneQuestionFourAnswers
 
         public void Exit(object sender, RoutedEventArgs e)
         {
-            var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.ExitWindow) ?? false;
-            if (close)
+            var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.ExitWindow) ?? true;
+            if (!close)
             {
                 Application.Current.Shutdown();
             }
