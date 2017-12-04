@@ -43,7 +43,7 @@
                     </TextBox.Text>
                 </TextBox>
             </Border>
-            <TextBlock x:Name="NoticeTextBlock" Grid.Row="2" Text="Имя должно быть на русском, от 4 до 15 символов" Visibility="Collapsed" Foreground="Wheat" FontSize="15" Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
+            <TextBlock x:Name="NoticeTextBlock" Grid.Row="2" Text="Имя должно быть на русском, от 3 до 15 символов" Visibility="Collapsed" Foreground="Wheat" FontSize="15" Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>

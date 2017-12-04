@@ -177,7 +177,7 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private LibraryClass.Record _newRecord;
+        private Record _newRecord;
 
         private int _gameScore;
 
@@ -191,18 +191,18 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private bool _answerIsSelect;
+        private bool _answerIsSelected;
 
-        public bool QuestionIsSelect
+        public bool AnswerIsSelected
         {
-            get { return _answerIsSelect; }
+            get { return _answerIsSelected; }
             set
             {
-                _answerIsSelect = value;
-                DoPropertyChanged("QuestionIsSelect");
-                if (_answerIsSelect)
+                _answerIsSelected = value;
+                DoPropertyChanged("AnswerIsSelected");
+                if (_answerIsSelected)
                 {
-                    _timer.Stop();
+                    StopTimer();
                 }
             }
         }
@@ -224,7 +224,7 @@ namespace OneQuestionFourAnswers
 
         private void CountdownTimer()
         {
-            _timer?.Stop();
+            StopTimer();
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                 {
                     if (_time == TimeSpan.Zero)
@@ -238,7 +238,6 @@ namespace OneQuestionFourAnswers
                     DoPropertyChanged("Time");
                 },
                 Application.Current.Dispatcher);
-            _timer.Start();
         }
 
         private void UseHintTwoAnswers()
@@ -256,8 +255,7 @@ namespace OneQuestionFourAnswers
 
         public ResultType IsCorrectAnswer(int? index)
         {
-            _timer.Stop();
-            _answerIsSelect = true;
+            AnswerIsSelected = true;
             if (index == null)
             {
                 var answer = new Answer("Ответ не был выбран", false);
@@ -307,8 +305,8 @@ namespace OneQuestionFourAnswers
 
         public void CreateNewRecord()
         {
-            _newRecord = new LibraryClass.Record(_name, _gameScore);
-            _timer.Stop();
+            _newRecord = new Record(_name, _gameScore);
+            StopTimer();
             _fp.CreateNewRecord(_newRecord);
         }
 
@@ -355,17 +353,18 @@ namespace OneQuestionFourAnswers
         private void OpenNewGame()
         {
             _fp.ClearReport();
-            QuestionIsSelect = false;
+            AnswerIsSelected = false;
             Lives = new[] { true, true, true };
             GameScore = 0;
             Name = "Введите Имя";
             _fp.RefreshQuestions();
+            CountdownTimer();
             StartNewRound();
         }
 
         private void StopTimer()
         {
-            _timer.Stop();
+            _timer?.Stop();
         }
 
         public void StartNewRound()
@@ -383,7 +382,7 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("QuestionAnswers");
             DoPropertyChanged("GameScore");
             DoPropertyChanged("AnswersState");
-            CountdownTimer();
+            _timer.Start();
         }
 
         public void AnswerIsSelect(int index)
@@ -425,7 +424,6 @@ namespace OneQuestionFourAnswers
             _infoFontSize = (_width * 6000 / (_heigth * 319));
             _mainMenuFontSize = (_width * 700 / (_heigth * 16));
             DoPropertyChanged("MainMenuFontSize");
-            int i = 0;
         }
 
         public void GetFontSize()

@@ -21,7 +21,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="140"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
+        <local:CircularButton  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <TextBlock FontSize="{Binding Source={StaticResource MainWindowVM},Path=QuestionFontSize}" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="150,5"
                        Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
             <Grid Grid.Row="1">

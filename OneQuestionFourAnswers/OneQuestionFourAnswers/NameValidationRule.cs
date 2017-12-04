@@ -15,7 +15,7 @@ namespace OneQuestionFourAnswers
             {
                 return new ValidationResult(false, "s is null");
             }
-            if (s.Length < 4)
+            if (s.Length < 3)
             {
                 return new ValidationResult(false, "Имя слишком короткое!");
             }

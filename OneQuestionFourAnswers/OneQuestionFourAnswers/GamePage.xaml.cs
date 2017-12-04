@@ -34,9 +34,8 @@ namespace OneQuestionFourAnswers
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            var etg = new ExitTheGame {Owner = App.Current.MainWindow};
-            var close = etg.ShowDialog() ?? false;
-            if (close)
+            var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.ExitTheGame) ?? true;
+            if (!close)
             {
                 NavigationService ns = NavigationService.GetNavigationService(this);
                 ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
@@ -66,8 +65,7 @@ namespace OneQuestionFourAnswers
             _vm?.UseHintStatistics();
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
-            var sw = new StatisticsWindow {Owner = App.Current.MainWindow};
-            sw.ShowDialog();
+            DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.StatisticWindow);
         }
 
         private void ButtonClickTime(object sender, RoutedEventArgs e)
@@ -136,8 +134,7 @@ namespace OneQuestionFourAnswers
                 case MainWindowViewModel.ResultType.Defeat:
                     {
                         _window?.PlaySound(MainWindow.SoundType.DefeatSound);
-                        var dfw = new DefeatWindow {Owner = App.Current.MainWindow};
-                        var close = dfw.ShowDialog() ?? true;
+                        var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.DefeatWindow) ?? true;
                         if (!close)
                            {
                                  NavigationService ns = NavigationService.GetNavigationService(this);
@@ -145,15 +142,14 @@ namespace OneQuestionFourAnswers
                            }
                        else
                            {
-                                 NavigationService?.Refresh();
+                            NavigationService.Refresh();
                            }
                     }
                     break;
                 case MainWindowViewModel.ResultType.IncorrectNewRecord:
                 {
-                        _window?.PlaySound(MainWindow.SoundType.WinSound);
-                        var nrw = new NewRecordWindow { Owner = App.Current.MainWindow};
-                    var close = nrw.ShowDialog() ?? false;
+                    _window?.PlaySound(MainWindow.SoundType.WinSound);
+                    var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.NewRecordWindow) ?? false;
                     if (close)
                     {
                             _vm.CreateNewRecord();
