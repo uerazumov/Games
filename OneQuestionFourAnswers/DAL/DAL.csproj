@@ -67,14 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelStatisticSaver.cs" />
+    <Compile Include="ExcelStatisticProvider.cs" />
     <Compile Include="HighScoresProvider.cs" />
     <Compile Include="IHighScoresProvider.cs" />
     <Compile Include="IQuestionsLoader.cs" />
     <Compile Include="IQuestionsProvider.cs" />
+    <Compile Include="IStatisticProvider.cs" />
     <Compile Include="QuestionsLoader.cs" />
     <Compile Include="QuestionsProvider.cs" />
     <Compile Include="SqliteQuestionsProvider.cs" />
+    <Compile Include="StatisticProvider.cs" />
     <Compile Include="WebQuestionsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqliteAdapter.cs" />

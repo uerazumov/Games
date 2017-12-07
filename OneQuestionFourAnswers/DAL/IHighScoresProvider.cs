@@ -7,6 +7,5 @@ namespace DAL
     {
         bool Add(Record highScore);
         RecordsTable GetTable();
-
     }
 }

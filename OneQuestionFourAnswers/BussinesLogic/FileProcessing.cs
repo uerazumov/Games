@@ -8,7 +8,7 @@ namespace BussinesLogic
 {
     public class FileProcessing
     {
-        private ExcelStatisticSaver _excelStatisticSaver = new ExcelStatisticSaver();
+        private IStatisticProvider _excelStatisticSaver = new StatisticProvider();
 
         private IQuestionsProvider _questions_provider = new QuestionsProvider();
 
@@ -39,6 +39,10 @@ namespace BussinesLogic
         public QuestionAnswers NewQuestion()
         {
             var random = new Random();
+            if(_availableQuestions.Count == 0)
+            {
+                RefreshQuestions();
+            }
             var index = random.Next(0, _availableQuestions.Count);
             var question = _questions_provider.GetQuestionAnswers(_availableQuestions[index]);
             _availableQuestions.RemoveAt(index);

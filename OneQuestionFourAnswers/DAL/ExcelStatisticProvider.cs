@@ -3,19 +3,14 @@ using System.Collections.Generic;
 
 namespace DAL
 {
-    public class ExcelStatisticSaver
+    public class ExcelStatisticProvider : IStatisticProvider
     {
         private List<QuestionAnswers> _usedQuestions;
         private List<Answer> _chosenAnswers;
 
-        public ExcelStatisticSaver()
+        public bool CreateReport()
         {
-
-        }
-
-        public void CreateReport()
-        {
-
+            return true;
         }
 
         public void AddUsedQuestion(QuestionAnswers question)
