@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneQuestionFourAnswers", "OneQuestionFourAnswers\OneQuestionFourAnswers.csproj", "{EB5E6F9D-8D02-4ACB-A66C-7A499111BD2A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C97B95D9-BC3E-458C-BA31-9A42DA7D6A3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryClass", "LibraryClass\LibraryClass.csproj", "{41847AD1-1E0A-4271-8A85-1C9AB962E792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingService", "LoggingService\LoggingService.csproj", "{17817F97-0274-46F3-AE54-02185A44C8CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41847AD1-1E0A-4271-8A85-1C9AB962E792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17817F97-0274-46F3-AE54-02185A44C8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17817F97-0274-46F3-AE54-02185A44C8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17817F97-0274-46F3-AE54-02185A44C8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17817F97-0274-46F3-AE54-02185A44C8CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
