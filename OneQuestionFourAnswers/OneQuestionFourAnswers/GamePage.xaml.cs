@@ -23,7 +23,7 @@ namespace OneQuestionFourAnswers
         private void OnTimeout()
         {
             CheckAnswer(null);
-            _vm.Timeout -= OnTimeout;
+            //_vm.Timeout -= OnTimeout;
         }
 
         private void OnTime10Sec()

@@ -64,7 +64,7 @@ namespace DAL
             answers.Add(new Answer(GetCorrectAnswer(columns), true));
             for (var i = 0; i < 4; i++)
             {
-                if (answers[i].Text.Length > 20)
+                if (answers[i].Text.Length > 18)
                 {
                     throw new InvalidDataException();
                 }
