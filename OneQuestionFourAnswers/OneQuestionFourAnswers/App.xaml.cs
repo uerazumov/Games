@@ -1,13 +1,30 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace OneQuestionFourAnswers
 {
     public partial class App : Application
     {
-        private void ApplicationDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        public App()
         {
-            MessageBox.Show("Notified of a thread exception... application is terminating." + e.Exception.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
-            e.Handled = true;
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+        }
+
+        private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+        {
+            try
+            {
+                Exception exception = (Exception)args.ExceptionObject;
+                MessageBox.Show("К сожалению что-то пошло не так, сообщите разработчику о данной ошибке. Приносим вам наши извинения!" + exception.Message, "Uncaught Thread Exception",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }
