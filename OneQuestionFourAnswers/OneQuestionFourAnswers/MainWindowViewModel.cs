@@ -371,7 +371,7 @@ namespace OneQuestionFourAnswers
         {
             _time = new TimeSpan(0, 0, 30);
             _questionAnswers = _fp.NewQuestion();
-            GetFontSize();
+            GetFontSize(); 
             AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
             _questionAnswers.Answers[1].Text = "б. " + _questionAnswers.Answers[1].Text;
