@@ -92,6 +92,16 @@ namespace DAL
             {
                 throw new InvalidDataException();
             }
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 1; j < 4; j++)
+                {
+                    if (variantsText[i] == variantsText[j])
+                    {
+                        throw new InvalidDataException();
+                    }
+                }
+            }
             return variants;
         }
 
