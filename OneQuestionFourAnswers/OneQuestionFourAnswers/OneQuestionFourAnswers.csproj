@@ -45,10 +45,6 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -250,6 +246,10 @@
     <ProjectReference Include="..\LibraryClass\LibraryClass.csproj">
       <Project>{41847ad1-1e0a-4271-8a85-1c9ab962e792}</Project>
       <Name>LibraryClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingService\LoggingService.csproj">
+      <Project>{17817f97-0274-46f3-ae54-02185a44c8ca}</Project>
+      <Name>LoggingService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

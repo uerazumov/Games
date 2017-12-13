@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -30,6 +30,7 @@ namespace OneQuestionFourAnswers
             _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
             _vm.CollapsStatusBar();
             InitializeComponent();
+            GlobalLogger.Instance.Info("Программа запущена");
             _backgroundPlayer = new MediaPlayer();
            _soundPlayer = new MediaPlayer() {Volume = 0.25};
         }
