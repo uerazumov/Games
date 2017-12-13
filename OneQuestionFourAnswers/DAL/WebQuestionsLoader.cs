@@ -80,7 +80,7 @@ namespace DAL
             {
                 throw new InvalidDataException();
             }
-            return question.Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022");
+            return question.Replace("&amp;", "&").Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022");
         }
 
         private static IEnumerable<string> GetIncorrectAnswers(IEnumerable<HtmlNode> columns)
@@ -92,15 +92,9 @@ namespace DAL
             {
                 throw new InvalidDataException();
             }
-            for (var i = 0; i < 3; i++)
+            if (variants.Distinct().Count() != variants.Count())
             {
-                for (var j = 1; j < 4; j++)
-                {
-                    if (variantsText[i] == variantsText[j])
-                    {
-                        throw new InvalidDataException();
-                    }
-                }
+                throw new InvalidDataException();
             }
             return variants;
         }
