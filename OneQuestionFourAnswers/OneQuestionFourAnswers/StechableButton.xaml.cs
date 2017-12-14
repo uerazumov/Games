@@ -4,8 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-// ReSharper disable once PossibleNullReferenceException
-
 namespace OneQuestionFourAnswers
 {
     public partial class StrechableButton : INotifyPropertyChanged

@@ -83,7 +83,7 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private int _mainMenuFontSize;
+        private int _mainMenuFontSize = 1;
 
         public int MainMenuFontSize
         {
@@ -428,7 +428,7 @@ namespace OneQuestionFourAnswers
 
         public void GetFontSize()
         {
-            if (_heigth < 23)
+            if (_heigth < 24)
             {
                 _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
             }
@@ -451,7 +451,14 @@ namespace OneQuestionFourAnswers
                 }
             }
 
-            _answerFontSize = (_width * 2500 / (_heigth * maxAnswerLength));
+            if (_heigth < 24)
+            {
+                _answerFontSize = (_width * 2000 / (_heigth * maxAnswerLength));
+            }
+            else
+            {
+                _answerFontSize = (_width * 2500 / (_heigth * maxAnswerLength));
+            }
             if (_answerFontSize > 60)
             {
                 _answerFontSize = 60;

@@ -63,6 +63,7 @@ namespace OneQuestionFourAnswers
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
+            _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
             Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;
             ExitButton.ControlButton.Click += Exit;
             SoundButton.ControlButton.Click += ButtonClickSound;
@@ -75,8 +76,6 @@ namespace OneQuestionFourAnswers
                 _backgroundPlayer.Position = TimeSpan.Zero;
                 _backgroundPlayer.Play();
             };
-            var _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
-            _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
         }
 
         public void Exit(object sender, RoutedEventArgs e)
