@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.IO;
+using LoggingService;
 
 namespace DAL
 {
@@ -16,6 +17,7 @@ namespace DAL
                 SQLiteConnection.CreateFile(DatabaseFilename);
             }
             Connection = new SQLiteConnection($"Data Source={DatabaseFilename};Version=3;");
+            GlobalLogger.Instance.Info("Установлено соединение с базой SQLite");
             Connection.Open();
         }
 

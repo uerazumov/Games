@@ -1,6 +1,7 @@
 ﻿using LibraryClass;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using LoggingService;
 
 
 namespace DAL
@@ -45,13 +46,20 @@ namespace DAL
 
         public RecordsTable GetTable()
         {
-            const string sql = "SELECT * FROM high_scores ORDER BY score DESC";
-            var command = new SQLiteCommand(sql, Connection);
-            var reader = command.ExecuteReader();
             var results = new List<Record>();
-            while (reader.Read())
+            try
             {
-                results.Add(new Record((string)reader["name"], (int)reader["score"]));
+                const string sql = "SELECT * FROM high_scores ORDER BY score DESC";
+                var command = new SQLiteCommand(sql, Connection);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    results.Add(new Record((string)reader["name"], (int)reader["score"]));
+                }
+            }
+            catch
+            {
+                GlobalLogger.Instance.Error("Произошла ошибка при получении таблицы рекордов из БД");
             }
             return new RecordsTable(results);
         }

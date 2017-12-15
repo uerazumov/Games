@@ -3,6 +3,7 @@ using System.Linq;
 using LibraryClass;
 using DAL;
 using System.Collections.Generic;
+using LoggingService;
 
 namespace BussinesLogic
 {
@@ -10,9 +11,9 @@ namespace BussinesLogic
     {
         private IStatisticProvider _excelStatisticSaver = new StatisticProvider();
 
-        private IQuestionsProvider _questions_provider = new QuestionsProvider();
+        private IQuestionsProvider _questionsProvider = new QuestionsProvider();
 
-        private IHighScoresProvider _high_scores_provider = new HighScoresProvider();
+        private IHighScoresProvider _highScoresProvider = new HighScoresProvider();
 
         private List<int> _availableQuestions;
 
@@ -33,7 +34,8 @@ namespace BussinesLogic
 
         public void RefreshQuestions()
         {
-            _availableQuestions = Enumerable.Range(1, (int)_questions_provider.GetQuestionsCount()).ToList();
+            _availableQuestions = Enumerable.Range(1, (int)_questionsProvider.GetQuestionsCount()).ToList();
+            GlobalLogger.Instance.Info("Список использованных вопросов был очищен");
         }
 
         public QuestionAnswers NewQuestion()
@@ -44,8 +46,10 @@ namespace BussinesLogic
                 RefreshQuestions();
             }
             var index = random.Next(0, _availableQuestions.Count);
-            var question = _questions_provider.GetQuestionAnswers(_availableQuestions[index]);
+            var question = _questionsProvider.GetQuestionAnswers(_availableQuestions[index]);
             _availableQuestions.RemoveAt(index);
+            GlobalLogger.Instance.Info("Был выбран случайный вопрос с номером " + index.ToString());
+            GlobalLogger.Instance.Info("Текст вопроса " + question.QuestionText);
             return question;
         }
 
@@ -63,15 +67,13 @@ namespace BussinesLogic
             var tableOfReckords = GetRecordsTable();
             for (var i = 0; i != 3; i++)
             {
-                if (tableOfReckords.Records[i] == null)
+                if ((tableOfReckords.Records[i] == null)||(tableOfReckords.Records[i].Score < gameScore))
                 {
-                    return true;
-                }
-                if (tableOfReckords.Records[i].Score < gameScore)
-                {
+                    GlobalLogger.Instance.Info("Рекорд был побит");
                     return true;
                 }
             }
+            GlobalLogger.Instance.Info("Рекорд не был побит");
             return false;
         }
 
@@ -113,12 +115,20 @@ namespace BussinesLogic
                     }
                 }
             }
+            GlobalLogger.Instance.Info("Подсказка Статистика вернула cледующие значения: " + statistic[1].ToString() + "%  " + statistic[2].ToString() + "%  " + statistic[3].ToString() + "%  " + statistic[4].ToString() + "%");
             return statistic;
         }
 
         public void CreateNewRecord(Record newRecord)
         {
-            _high_scores_provider.Add(newRecord);
+            if(_highScoresProvider.Add(newRecord))
+            {
+                GlobalLogger.Instance.Error("Рекорд успешно добавлен в БД");
+            }
+            else
+            {
+                GlobalLogger.Instance.Error("Произошла ошибка при добавление нового рекорда в БД");
+            }
         }
 
         public bool[] HintTwoAnswers(QuestionAnswers question)
@@ -128,12 +138,15 @@ namespace BussinesLogic
             var incorrect = answers.Select((item, index) => index).Where(index => answers[index] == false);
             var hintIndex = incorrect.OrderBy(index => random.Next()).First();
             answers[hintIndex] = true;
+            var logText = "Подсказка Убрать Два Неверных ответа убрала ответы под номерами: ";
+            for(var i = 0; i < 4; i++) if (!answers[i]) logText += i.ToString() + " ";
+            GlobalLogger.Instance.Info(logText);
             return answers;
         }
 
         public RecordsTable GetRecordsTable()
         {
-            var recordsTable = _high_scores_provider.GetTable();
+            var recordsTable = _highScoresProvider.GetTable();
             var countRecords = recordsTable.Records.Count;
             for (var i = 1; i != 4 - countRecords; i++)
             {
@@ -146,7 +159,14 @@ namespace BussinesLogic
         {
             var loader = new QuestionsLoader();
             var questions = loader.LoadQuestions();
-            _questions_provider.Update(questions);
+            if(_questionsProvider.Update(questions))
+            {
+                GlobalLogger.Instance.Info("Обновление прошло успешно");
+            }
+            else
+            {
+                GlobalLogger.Instance.Error("Обновление базы не было осуществело");
+            }
         }
     }
 }

@@ -165,8 +165,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StechableButton.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="StrechTextBlock.xaml">
       <SubType>Designer</SubType>

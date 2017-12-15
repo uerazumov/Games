@@ -1,5 +1,6 @@
 ﻿using LibraryClass;
 using System.Collections.Generic;
+using LoggingService;
 
 namespace DAL
 {
@@ -10,6 +11,7 @@ namespace DAL
 
         public bool CreateReport()
         {
+            GlobalLogger.Instance.Info("Был создан отчёт Excel");
             return true;
         }
 

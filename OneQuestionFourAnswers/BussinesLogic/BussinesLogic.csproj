@@ -53,6 +53,10 @@
       <Project>{41847ad1-1e0a-4271-8a85-1c9ab962e792}</Project>
       <Name>LibraryClass</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LoggingService\LoggingService.csproj">
+      <Project>{17817f97-0274-46f3-ae54-02185a44c8ca}</Project>
+      <Name>LoggingService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
