@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -218,6 +219,7 @@ namespace OneQuestionFourAnswers
 
         private void UseHintTime()
         {
+            GlobalLogger.Instance.Info("Пользователь использовал подсказку Дополнительное Время");
             _time += new TimeSpan(0, 0, 30);
             DoPropertyChanged("Time");
         }
@@ -231,9 +233,14 @@ namespace OneQuestionFourAnswers
                     {
                         StopTimer();
                         Timeout?.Invoke();
+                        GlobalLogger.Instance.Info("Истекло время за которое можно ответить на вопрос");
                         return;
                     }
-                    if (_time == new TimeSpan(0,0,13)) Time10Sec?.Invoke();
+                    if (_time == new TimeSpan(0, 0, 13))
+                    {
+                        Time10Sec?.Invoke();
+                        GlobalLogger.Instance.Info("Осталось 13 (10) секунд на выбор ответа");
+                    }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
                     DoPropertyChanged("Time");
                 },
@@ -242,6 +249,7 @@ namespace OneQuestionFourAnswers
 
         private void UseHintTwoAnswers()
         {
+            GlobalLogger.Instance.Info("Пользователь использовал подсказку Убрать Два Неверных Ответа");
             var answersMask = _fp.HintTwoAnswers(_questionAnswers);
             for (var i = 0; i != 4; i++)
             {
@@ -255,39 +263,47 @@ namespace OneQuestionFourAnswers
 
         public ResultType IsCorrectAnswer(int? index)
         {
+            GlobalLogger.Instance.Info("Запущена проверка ответа");
             AnswerIsSelected = true;
             if (index == null)
             {
                 var answer = new Answer("Ответ не был выбран", false);
+                GlobalLogger.Instance.Info("Раунд проигран. Пользователь не выбрал ответ");
                 _fp.AddChosenAnswer(answer);
                 return IsLivesStayed();
             }
             if (!_fp.CheckAnswer(QuestionAnswers.Answers[(int)index]))
             {
                 _fp.AddChosenAnswer(QuestionAnswers.Answers[(int)index]);
+                GlobalLogger.Instance.Info("Раунд проигран. Пользователь выбрал неверный вопрос");
                 return IsLivesStayed();
             }
             GameScore += 10;
+            GlobalLogger.Instance.Info("Раунд выигран. Пользователь выбрал верный вопрос");
             StartNewRound();
             return ResultType.Correct;
         }
 
         private ResultType IsLivesStayed()
         {
+            GlobalLogger.Instance.Info("Запущена проверка - Остались ли жизни");
             var lifeIsStayed = LifeIsStayed();
             if (lifeIsStayed)
             {
+                GlobalLogger.Instance.Info("Жизни остались");
                 UseOneLife();
                 StartNewRound();
                 return ResultType.Incorrect;
             }
             UseOneLife();
+            GlobalLogger.Instance.Info("Жизней не осталось");
             return _fp.CheckRecordIsBrocken(_gameScore) ? ResultType.IncorrectNewRecord : ResultType.Defeat;
         }
 
         private void UseOneLife()
         {
-            for(var i = 0; i < 3; i++)
+            GlobalLogger.Instance.Info("Была потрачена одна жизнь");
+            for (var i = 0; i < 3; i++)
             {
                 if(_lives[i])
                 {
@@ -300,11 +316,13 @@ namespace OneQuestionFourAnswers
 
         public bool LifeIsStayed()
         {
+            GlobalLogger.Instance.Info("Запущена проверка - Потрачены ли жизни");
             return _lives[0] | _lives[1] | !_lives[2];
         }
 
         public void CreateNewRecord()
         {
+            GlobalLogger.Instance.Info("Создан новый рекорд");
             _newRecord = new Record(_name, _gameScore);
             StopTimer();
             _fp.CreateNewRecord(_newRecord);
@@ -312,11 +330,13 @@ namespace OneQuestionFourAnswers
 
         public void UseHintStatistics()
         {
+            GlobalLogger.Instance.Info("Пользователь использовал подсказку Показать Статистику");
             StatisticsHeight = _fp.HintStatistics(QuestionAnswers);
         }
 
         private void GetRecordsTable()
         {
+            GlobalLogger.Instance.Info("Была получена Таблица Рекордов");
             TableOfRecords = _fp.GetRecordsTable();
         }
 
@@ -327,6 +347,7 @@ namespace OneQuestionFourAnswers
 
         private void Update()
         {
+            GlobalLogger.Instance.Info("Было запущено обновление");
             new Thread(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -340,14 +361,15 @@ namespace OneQuestionFourAnswers
                 }
                 catch
                 {
-                    //ошибка обновления БД
+                    GlobalLogger.Instance.Error("Произошла ошибка при обновлении Базы Вопросов");
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     ButtonsState = StrechableButton.StateType.Active;
-                    StatusbarState = Visibility.Collapsed;
+                    CollapsStatusBar();
                 });
             }).Start();
+            GlobalLogger.Instance.Info("Обновление было завершено");
         }
 
         private void OpenNewGame()
@@ -358,6 +380,7 @@ namespace OneQuestionFourAnswers
             GameScore = 0;
             Name = "Введите Имя";
             _fp.RefreshQuestions();
+            GlobalLogger.Instance.Info("Была начата новая игра");
             CountdownTimer();
             StartNewRound();
         }
@@ -371,6 +394,7 @@ namespace OneQuestionFourAnswers
         {
             _time = new TimeSpan(0, 0, 30);
             _questionAnswers = _fp.NewQuestion();
+            GlobalLogger.Instance.Info("Был начат новый раунд");
             GetFontSize();
             AnswersState = new[] {StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active, StrechableButton.StateType.Active };
             _questionAnswers.Answers[0].Text = "а. " + _questionAnswers.Answers[0].Text;
@@ -383,12 +407,17 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("GameScore");
             DoPropertyChanged("AnswersState");
             _timer.Start();
+            GlobalLogger.Instance.Info("Таймер был запущен");
         }
 
-        public void AnswerIsSelect(int index)
+        public void AnswerIsSelect(int? index)
         {
             for (var i = 0; i != 4; i++)
             {
+                if (index == null)
+                {
+                    AnswersState[i] = StrechableButton.StateType.Inactive;
+                }
                 if (i == index)
                 {
                     AnswersState[i] = StrechableButton.StateType.Chosen;
@@ -399,6 +428,7 @@ namespace OneQuestionFourAnswers
                 }
             }
             DoPropertyChanged("AnswersState");
+            GlobalLogger.Instance.Info("Был выбран ответ");
         }
 
         public void PaintTrueAnswer()
@@ -415,6 +445,7 @@ namespace OneQuestionFourAnswers
                 }
             }
             DoPropertyChanged("AnswersState");
+            GlobalLogger.Instance.Info("Был выделен верный ответ");
         }
 
         public void ChangeWidthAndHeight(int width, int height)
@@ -424,13 +455,14 @@ namespace OneQuestionFourAnswers
             _infoFontSize = (_width * 6000 / (_heigth * 319));
             _mainMenuFontSize = (_width * 700 / (_heigth * 16));
             DoPropertyChanged("MainMenuFontSize");
+            GlobalLogger.Instance.Info("Была произведена подгонка размеров шрифта основных меню под размеры экрана");
         }
 
         public void GetFontSize()
         {
             if (_heigth < 800)
             {
-                _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
+                _questionFontSize = (int)(_width * 2800 / (_heigth * _questionAnswers.QuestionText.Length));
             }
             else
             {
@@ -463,6 +495,7 @@ namespace OneQuestionFourAnswers
             {
                 _answerFontSize = 60;
             }
+            GlobalLogger.Instance.Info("Была произведена подгонка размеров шрифтов вопроса и ответов под размеры экрана");
         }
 
         private ICommand _doUseHintTimeCommand;

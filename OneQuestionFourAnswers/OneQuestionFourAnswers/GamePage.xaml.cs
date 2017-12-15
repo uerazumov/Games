@@ -3,6 +3,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -22,7 +23,7 @@ namespace OneQuestionFourAnswers
 
         private void OnTimeout()
         {
-            CheckAnswer(null);
+            AnswerIsSelect(null);
             //_vm.Timeout -= OnTimeout;
         }
 
@@ -50,6 +51,7 @@ namespace OneQuestionFourAnswers
             StatisticsButton.ControlButton.Click += ButtonClickStatistics;
             TwoAnswersButton.ControlButton.Click += ButtonClickTwoAnswers;
             _window = App.Current.MainWindow as MainWindow;
+            GlobalLogger.Instance.Info("Была открыта страница Игры");
         }
 
         private void ButtonClickTwoAnswers(object sender, RoutedEventArgs e)
@@ -91,6 +93,11 @@ namespace OneQuestionFourAnswers
         {
             var button = (StrechableButton) sender;
             var index = Convert.ToInt16(button.Tag);
+            AnswerIsSelect(index);
+        }
+
+        private void AnswerIsSelect(Int16? index)
+        {
             _vm.AnswerIsSelect(index);
             _vm.DoStopTimerCommand.Execute(null);
             Hints.IsEnabled = false;

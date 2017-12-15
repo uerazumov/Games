@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -20,6 +21,7 @@ namespace OneQuestionFourAnswers
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             BackButton.ControlButton.Click += BackButtonClick;
+            GlobalLogger.Instance.Info("Была открыта страница Таблица Рекордов");
         }
     }
 }

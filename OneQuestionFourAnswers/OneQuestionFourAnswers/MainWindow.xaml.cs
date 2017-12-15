@@ -27,6 +27,7 @@ namespace OneQuestionFourAnswers
 
         public MainWindow()
         {
+            GlobalLogger.Instance.Info("==============================================================================================");
             _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
             _vm.CollapsStatusBar();
             InitializeComponent();
@@ -40,11 +41,13 @@ namespace OneQuestionFourAnswers
             if (SoundButton.DisableButton)
             {
                 _backgroundPlayer.Pause();
-                _soundPlayer.Stop();
+                _soundPlayer.Volume = 0;
+                GlobalLogger.Instance.Info("Музыка была отключена пользователем");
             }
             else
             {
                 _backgroundPlayer.Play();
+                GlobalLogger.Instance.Info("Музыка была включена пользователем");
             }
         }
 
@@ -54,10 +57,12 @@ namespace OneQuestionFourAnswers
             if (CommentatorButton.DisableButton)
             {
                 _soundPlayer.Volume = 0;
+                GlobalLogger.Instance.Info("Комментатор был отключен пользователем");
             }
             else
             {
                 _soundPlayer.Volume = 0.25;
+                GlobalLogger.Instance.Info("Комментатор был включен пользователем");
             }
         }
 
@@ -76,6 +81,7 @@ namespace OneQuestionFourAnswers
                 _backgroundPlayer.Position = TimeSpan.Zero;
                 _backgroundPlayer.Play();
             };
+            GlobalLogger.Instance.Info("Было открыто основное окно игры");
         }
 
         public void Exit(object sender, RoutedEventArgs e)
@@ -84,6 +90,7 @@ namespace OneQuestionFourAnswers
             if (!close)
             {
                 Application.Current.Shutdown();
+                GlobalLogger.Instance.Info("Приложение было закрыто пользователем при помощи кнопки Выход");
             }
         }
 
@@ -125,6 +132,7 @@ namespace OneQuestionFourAnswers
             {
                 _soundPlayer.Play();
             }
+            GlobalLogger.Instance.Info("Была воспроизведена реплика Комментатора " + type.ToString());
         }
     }
 }

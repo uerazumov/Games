@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -13,11 +14,18 @@ namespace OneQuestionFourAnswers
             var s = value as string;
             if (s == null)
             {
-                return new ValidationResult(false, "s is null");
+                GlobalLogger.Instance.Info("Пользователь не ввёл имя при попытке сохранить Рекорд");
+                return new ValidationResult(false, "Имя не введено"); 
             }
             if (s.Length < 3)
             {
+                GlobalLogger.Instance.Info("Пользователь ввёл слишком короткое имя при попытке сохранить Рекорд");
                 return new ValidationResult(false, "Имя слишком короткое!");
+            }
+            if (s.Length > 15)
+            {
+                GlobalLogger.Instance.Info("Пользователь ввёл слишком длинное имя при попытке сохранить Рекорд");
+                return new ValidationResult(false, "Имя слишком длинное!");
             }
             for (var i = 0; i < s.Length; i++)
             {
@@ -32,6 +40,7 @@ namespace OneQuestionFourAnswers
                 }
                 if (j == _acceptableSymbols.Count)
                 {
+                    GlobalLogger.Instance.Debug("Пользователь ввёл имя не на русском языке при попытке сохранить Рекорд");
                     return new ValidationResult(false, "В имени могут содержаться только буквы русского алфавита!");
                 }
             }

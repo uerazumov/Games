@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using LoggingService;
 
 namespace OneQuestionFourAnswers
 {
@@ -25,6 +21,7 @@ namespace OneQuestionFourAnswers
             if (_dialogWindow != null)
             {
                 _dialogWindow.Close();
+                GlobalLogger.Instance.Info("Диалоговое окно было закрыто, всвязи с открытием диалгового окна типа " + type.ToString());
             }
             switch (type)
             {
@@ -45,7 +42,9 @@ namespace OneQuestionFourAnswers
                     break;
             }
             _dialogWindow.ShowDialog();
+            GlobalLogger.Instance.Info("Было открыто диалоговое окно типа " + type.ToString());
             var result = _dialogWindow.DialogResult;
+            GlobalLogger.Instance.Info("Диалоговое окно было закрыто пользователем с результатом " + result.ToString());
             return result;
         }
     }
