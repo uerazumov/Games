@@ -49,7 +49,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoCreateNewRecordCommand}" x:Name="SaveButton" Margin="0,5,5,5" Width="190" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
+                <Button x:Name="SaveButton" Margin="0,5,5,5" Width="190" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
                 <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  Margin="5,5,0,5" Width="190" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
             </Grid>
         </Grid>

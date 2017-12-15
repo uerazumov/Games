@@ -115,7 +115,7 @@ namespace BussinesLogic
                     }
                 }
             }
-            GlobalLogger.Instance.Info("Подсказка Статистика вернула cледующие значения: " + statistic[1].ToString() + "%  " + statistic[2].ToString() + "%  " + statistic[3].ToString() + "%  " + statistic[4].ToString() + "%");
+            GlobalLogger.Instance.Info("Подсказка Статистика вернула cледующие значения: " + statistic[0].ToString() + "%  " + statistic[1].ToString() + "%  " + statistic[2].ToString() + "%  " + statistic[3].ToString() + "%");
             return statistic;
         }
 

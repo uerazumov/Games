@@ -41,7 +41,6 @@ namespace OneQuestionFourAnswers
             if (SoundButton.DisableButton)
             {
                 _backgroundPlayer.Pause();
-                _soundPlayer.Volume = 0;
                 GlobalLogger.Instance.Info("Музыка была отключена пользователем");
             }
             else

@@ -201,10 +201,6 @@ namespace OneQuestionFourAnswers
             {
                 _answerIsSelected = value;
                 DoPropertyChanged("AnswerIsSelected");
-                if (_answerIsSelected)
-                {
-                    StopTimer();
-                }
             }
         }
 
