@@ -275,6 +275,7 @@ namespace OneQuestionFourAnswers
                 return IsLivesStayed();
             }
             GameScore += 10;
+            _fp.AddChosenAnswer(QuestionAnswers.Answers[(int)index]);
             GlobalLogger.Instance.Info("Раунд выигран. Пользователь выбрал верный вопрос");
             StartNewRound();
             return ResultType.Correct;
@@ -496,7 +497,16 @@ namespace OneQuestionFourAnswers
 
         private void CreateReport()
         {
-            _fp.CreateReport();
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Report";
+            dlg.DefaultExt = ".xls";
+            dlg.Filter = "Таблица Excel (.xls)|*.xls";
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                _fp.CreateReport(filename);
+            }
         }
 
         private ICommand _doCreateReport;

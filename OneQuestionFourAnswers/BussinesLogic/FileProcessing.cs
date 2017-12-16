@@ -17,9 +17,16 @@ namespace BussinesLogic
 
         private List<int> _availableQuestions;
 
-        public void CreateReport()
+        public void CreateReport(string path)
         {
-            _excelStatisticSaver.CreateReport();
+            if(_excelStatisticSaver.CreateReport(path))
+            {
+                GlobalLogger.Instance.Info("Создан отчёт Excel");
+            }
+            else
+            {
+                GlobalLogger.Instance.Error("Произошла ошибка создании отчёта Excel");
+            }
         }
 
         public void AddUsedQuestion(QuestionAnswers question)
@@ -128,7 +135,7 @@ namespace BussinesLogic
         {
             if(_highScoresProvider.Add(newRecord))
             {
-                GlobalLogger.Instance.Error("Рекорд успешно добавлен в БД");
+                GlobalLogger.Instance.Info("Рекорд успешно добавлен в БД");
             }
             else
             {

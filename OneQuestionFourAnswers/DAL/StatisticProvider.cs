@@ -27,9 +27,9 @@ namespace DAL
             _provider.ClearReport();
         }
 
-        public bool CreateReport()
+        public bool CreateReport(string path)
         {
-            return _provider.CreateReport();
+            return _provider.CreateReport(path);
         }
     }
 }
