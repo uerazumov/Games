@@ -17,14 +17,16 @@
     </Window.Resources>
     <Grid>
         <Grid Background="White" Opacity="0.5"></Grid>
-        <Grid Height="320" Width="400" Background="{StaticResource NoticeBackgroundImage}">
+        <Grid Height="490" Width="600" Background="{StaticResource NoticeBackgroundImage}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="140"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" FontSize="30" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
+            <TextBlock Grid.Row="0" FontSize="40" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
             <Border DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
                 <TextBox  FontSize="45" x:Name="UsernameTextBox" Style="{StaticResource TextBoxStyle}">
                     <Validation.ErrorTemplate>
@@ -49,9 +51,10 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SaveButton" Margin="0,5,5,5" Width="190" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
-                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  Margin="5,5,0,5" Width="190" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
+                <Button x:Name="SaveButton" Margin="0,5,5,5" Width="250" Grid.Column="0" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
+                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  Margin="5,5,0,5" Width="250" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
             </Grid>
+            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoCreateReport}" x:Name="SaveStatistic" Grid.Row="5" FontSize="35" Width="350" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Сохранить статистику" Grid.Column="1" Click="SaveStatisticButtonClick" Foreground="White" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

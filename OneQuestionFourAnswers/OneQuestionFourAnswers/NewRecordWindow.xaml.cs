@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace OneQuestionFourAnswers
 {
@@ -52,6 +53,13 @@ namespace OneQuestionFourAnswers
             DialogResult = false;
             Close();
         }
+
+        private void SaveStatisticButtonClick(object sender, RoutedEventArgs e)
+        {
+            SaveStatistic.IsEnabled = false;
+            SaveStatistic.Foreground = Brushes.Gray;
+        }
+
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;

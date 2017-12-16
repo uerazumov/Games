@@ -17,6 +17,11 @@ namespace BussinesLogic
 
         private List<int> _availableQuestions;
 
+        public void CreateReport()
+        {
+            _excelStatisticSaver.CreateReport();
+        }
+
         public void AddUsedQuestion(QuestionAnswers question)
         {
             _excelStatisticSaver.AddUsedQuestion(question);

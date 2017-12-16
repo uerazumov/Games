@@ -494,6 +494,27 @@ namespace OneQuestionFourAnswers
             GlobalLogger.Instance.Info("Была произведена подгонка размеров шрифтов вопроса и ответов под размеры экрана");
         }
 
+        private void CreateReport()
+        {
+            _fp.CreateReport();
+        }
+
+        private ICommand _doCreateReport;
+
+        public ICommand DoCreateReport
+        {
+            get
+            {
+                if (_doCreateReport == null)
+                {
+                    _doCreateReport = new Command(
+                        p => true,
+                        p => CreateReport());
+                }
+                return _doCreateReport;
+            }
+        }
+
         private ICommand _doUseHintTimeCommand;
 
         public ICommand DoUseHintTimeCommand
