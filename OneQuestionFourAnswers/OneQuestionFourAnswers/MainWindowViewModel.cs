@@ -499,8 +499,8 @@ namespace OneQuestionFourAnswers
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.FileName = "Report";
-            dlg.DefaultExt = ".xls";
-            dlg.Filter = "Таблица Excel (.xls)|*.xls";
+            dlg.DefaultExt = ".xlsx";
+            dlg.Filter = "Таблица Excel (.xlsx)|*.xlsx";
             bool? result = dlg.ShowDialog();
             if (result == true)
             {

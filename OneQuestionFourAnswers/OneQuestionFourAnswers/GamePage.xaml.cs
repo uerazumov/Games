@@ -99,7 +99,6 @@ namespace OneQuestionFourAnswers
         private void AnswerIsSelect(Int16? index)
         {
             _vm.AnswerIsSelect(index);
-            _vm.DoStopTimerCommand.Execute(null);
             Hints.IsEnabled = false;
             var counter = 0;
             var timer = new Timer(1.3 * 1000) { AutoReset = true };

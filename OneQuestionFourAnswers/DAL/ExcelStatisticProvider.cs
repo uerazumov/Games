@@ -1,8 +1,9 @@
 ﻿using LibraryClass;
 using System.Collections.Generic;
 using LoggingService;
-using ExcelLibrary.SpreadSheet;
-using System;
+using System.IO;
+using OfficeOpenXml;
+using System.Drawing;
 
 namespace DAL
 {
@@ -16,22 +17,26 @@ namespace DAL
         {
             try
             {
-                Workbook workbook = new Workbook();
-                Worksheet worksheet = new Worksheet("Report");
-                workbook.Worksheets.Add(worksheet);
-                for (int i = 0; i < 100; i++) worksheet.Cells[i, 0] = new Cell("");
-                worksheet.Cells[0, 0] = new Cell("Текст вопроса");
-                worksheet.Cells[0, 1] = new Cell("Выбранный ответ");
-                for (int i = 0; i < _usedQuestions.Count; i++)
+                File.Copy(@"VisualResources\ReportTemplate.xlsx", path, true);
+                var info = new FileInfo(path);
+                using (var package = new ExcelPackage(info))
                 {
-                    worksheet.Cells[i + 2, 0] = new Cell(_usedQuestions[i].QuestionText);
-                    worksheet.Cells[i + 2, 1] = new Cell(_chosenAnswers[i].Text);
+                    var table = package.Workbook.Worksheets[1];
+                    for (int i = 0; i < _usedQuestions.Count; i++)
+                    {
+                        table.Cells[i + 2, 1].Value = _usedQuestions[i].QuestionText;
+                        var answerCell = table.Cells[i + 2, 2];
+                        answerCell.Value = _chosenAnswers[i].Text;
+                        var fill = answerCell.Style.Fill;
+                        fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        fill.BackgroundColor.SetColor(_chosenAnswers[i].IsCorrect ? Color.Green : Color.OrangeRed);
+                    }
+                    var procent = _rightAnswers * 100 / _usedQuestions.Count;
+                    table.Cells[2, 4].Value = procent.ToString() + "%";
+                    table.Column(1).AutoFit();
+                    table.Column(2).AutoFit();
+                    package.Save();
                 }
-                worksheet.Cells[_usedQuestions.Count + 3, 0] = new Cell("Процент верных ответов");
-                double procent = _rightAnswers * 100 / _usedQuestions.Count;
-                worksheet.Cells[_usedQuestions.Count + 3, 1] = new Cell(procent.ToString() + "%");
-                workbook.Save(path);
-                GlobalLogger.Instance.Info("Был создан отчёт Excel");
                 return true;
             }
             catch
@@ -48,7 +53,7 @@ namespace DAL
         public void AddChosenAnswer(Answer answer)
         {
             _chosenAnswers.Add(answer);
-            if(answer.IsCorrect)
+            if (answer.IsCorrect)
             {
                 _rightAnswers++;
             }

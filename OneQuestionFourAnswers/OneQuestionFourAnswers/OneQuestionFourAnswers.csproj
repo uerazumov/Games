@@ -195,6 +195,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="VisualResources\ReportTemplate.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="VisualResources\Forum.ttf" />
     <Resource Include="VisualResources\Images\AnswerChosenButton.png" />
     <Resource Include="VisualResources\Images\AnswerTrueButton.png" />
