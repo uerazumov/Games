@@ -15,7 +15,44 @@ namespace BussinesLogic
 
         private IHighScoresProvider _highScoresProvider = new HighScoresProvider();
 
+        private VKConnector _vkConnector = new VKConnector();
+
         private List<int> _availableQuestions;
+
+        public void CreateRec(int score)
+        {
+            _vkConnector.CreateRec(score);
+        }
+
+        public void SaveToken(string token, string userID)
+        {
+            _vkConnector.SaveToken(token, userID);
+        }
+
+        public string GetUserName()
+        {
+            return _vkConnector.GetUserName();
+        }
+
+        public bool IsTokenExist()
+        {
+            return _vkConnector.IsTokenExist();
+        }
+
+        public string GetAuthUrl()
+        {
+            return _vkConnector.GetAuthUrl();
+        }
+
+        public bool IsBaseEmpty()
+        {
+            if (_questionsProvider.GetQuestionsCount() == 0)
+            {
+                GlobalLogger.Instance.Info("При запуске игры База Вопросов оказалась пуста");
+                return true;
+            }
+            return false;
+        }
 
         public void CreateReport(string path)
         {

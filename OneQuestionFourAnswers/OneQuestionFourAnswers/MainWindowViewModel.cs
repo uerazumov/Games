@@ -33,9 +33,9 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private StrechableButton.StateType _buttonsState;
+        private StrechableButton.StateType[] _buttonsState = new StrechableButton.StateType[2];
 
-        public StrechableButton.StateType ButtonsState
+        public StrechableButton.StateType[] ButtonsState
         {
             get { return _buttonsState; }
             set
@@ -113,10 +113,6 @@ namespace OneQuestionFourAnswers
         public event TimeoutDelegate Timeout;
 
         public event TimeoutDelegate Time10Sec;
-
-        public MainWindowViewModel()
-        {
-        }
 
         private readonly BussinesLogic.FileProcessing _fp = new BussinesLogic.FileProcessing();
         private TimeSpan _time;
@@ -211,6 +207,28 @@ namespace OneQuestionFourAnswers
         public void DoPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public MainWindowViewModel()
+        {
+            if (IsBaseEmpty())
+            {
+                Update();
+            }
+            Name = ChangeUserName();
+        }
+
+        public string ChangeUserName()
+        {
+            if (IsTokenExist())
+            {
+                GlobalLogger.Instance.Info("Имя пользователя было установлено");
+                return GetUserName();
+            }
+            else
+            {
+                return "Введите Имя";
+            }
         }
 
         private void UseHintTime()
@@ -349,7 +367,9 @@ namespace OneQuestionFourAnswers
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    ButtonsState = StrechableButton.StateType.Inactive;
+                    _buttonsState[0] = StrechableButton.StateType.Inactive;
+                    _buttonsState[1] = StrechableButton.StateType.Inactive;
+                    DoPropertyChanged("ButtonsState");
                     StatusbarState = Visibility.Visible;
                 });
                 try
@@ -362,11 +382,17 @@ namespace OneQuestionFourAnswers
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    ButtonsState = StrechableButton.StateType.Active;
+                    if (!IsBaseEmpty())
+                    {
+                        _buttonsState[0] = StrechableButton.StateType.Active;
+                    }
+                    _buttonsState[1] = StrechableButton.StateType.Active;
+                    DoPropertyChanged("ButtonsState");
                     CollapsStatusBar();
                 });
             }).Start();
             GlobalLogger.Instance.Info("Обновление было завершено");
+
         }
 
         private void OpenNewGame()
@@ -375,7 +401,6 @@ namespace OneQuestionFourAnswers
             AnswerIsSelected = false;
             Lives = new[] { true, true, true };
             GameScore = 0;
-            Name = "Введите Имя";
             _fp.RefreshQuestions();
             GlobalLogger.Instance.Info("Была начата новая игра");
             CountdownTimer();
@@ -404,7 +429,6 @@ namespace OneQuestionFourAnswers
             DoPropertyChanged("GameScore");
             DoPropertyChanged("AnswersState");
             _timer.Start();
-            GlobalLogger.Instance.Info("Таймер был запущен");
         }
 
         public void AnswerIsSelect(int? index)
@@ -507,6 +531,36 @@ namespace OneQuestionFourAnswers
                 string filename = dlg.FileName;
                 _fp.CreateReport(filename);
             }
+        }
+
+        private bool IsBaseEmpty()
+        {
+            return _fp.IsBaseEmpty();
+        }
+
+        public void CreateRec()
+        {
+            _fp.CreateRec(_gameScore);
+        }
+
+        public string GetAuthUrl()
+        {
+            return _fp.GetAuthUrl();
+        }
+
+        public void SaveToken(string token, string userID)
+        {
+            _fp.SaveToken(token, userID);
+        }
+
+        public bool IsTokenExist()
+        {
+            return _fp.IsTokenExist();
+        }
+
+        private string GetUserName()
+        {
+            return _fp.GetUserName();
         }
 
         private ICommand _doCreateReport;
