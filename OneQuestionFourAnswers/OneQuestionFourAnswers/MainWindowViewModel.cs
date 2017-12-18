@@ -488,7 +488,14 @@ namespace OneQuestionFourAnswers
         {
             _width = width;
             _heigth = height;
-            _infoFontSize = (_width * 6000 / (_heigth * 319));
+            if (_heigth < 800)
+            {
+                _infoFontSize = (_width * 6000 / (_heigth * 319));
+            }
+            else
+            {
+                _infoFontSize = (_width * 8000 / (_heigth * 319));
+            }
             _mainMenuFontSize = (_width * 700 / (_heigth * 16));
             DoPropertyChanged("MainMenuFontSize");
             GlobalLogger.Instance.Info("Была произведена подгонка размеров шрифта основных меню под размеры экрана");
