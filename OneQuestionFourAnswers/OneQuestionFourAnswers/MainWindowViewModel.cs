@@ -228,21 +228,21 @@ namespace OneQuestionFourAnswers
             {
                 Update();
             }
-            Name = ChangeSettings();
+            ChangeSettings();
         }
 
-        public string ChangeSettings()
+        public void ChangeSettings()
         {
             if (IsTokenExist())
             {
                 LogInStatus = true;
+                Name = GetUserName();
                 GlobalLogger.Instance.Info("Имя пользователя было установлено");
-                return GetUserName();
             }
             else
             {
                 LogInStatus = false;
-                return "Введите Имя";
+                Name = "Введите Имя";
             }
         }
 
@@ -580,7 +580,7 @@ namespace OneQuestionFourAnswers
             return _fp.GetUserName();
         }
 
-        private void LogOut()
+        public void LogOut()
         {
             _fp.LogOut();
             LogInStatus = false;
@@ -589,22 +589,6 @@ namespace OneQuestionFourAnswers
         public bool GetLogInStatus()
         {
             return !_logInStatus;
-        }
-
-        private ICommand _doLogOut;
-
-        public ICommand DoLogOut
-        {
-            get
-            {
-                if (_doLogOut == null)
-                {
-                    _doLogOut = new Command(
-                        p => true,
-                        p => LogOut());
-                }
-                return _doLogOut;
-            }
         }
 
         private ICommand _doUseHintTimeCommand;

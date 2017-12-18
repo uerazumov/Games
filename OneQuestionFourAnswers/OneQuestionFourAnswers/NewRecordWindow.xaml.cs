@@ -58,14 +58,15 @@ namespace OneQuestionFourAnswers
 
         private void SaveStatisticButtonClick(object sender, RoutedEventArgs e)
         {
-            if(_vm.CreateReport() == true)
+            var result = _vm.CreateReport();
+            if (result == true)
             {
                 SaveStatistic.IsEnabled = false;
                 SaveStatistic.Foreground = Brushes.Gray;
                 ReportError.Visibility = Visibility.Collapsed;
                 ReportSuccessfully.Visibility = Visibility.Visible;
             }
-            else if (_vm.CreateReport() == false)
+            else if (result == false)
             {
                 ReportError.Visibility = Visibility.Visible;
             }
@@ -73,24 +74,27 @@ namespace OneQuestionFourAnswers
 
         private void SaveRecordIntoVKButtonClick(object sender, RoutedEventArgs e)
         {
-            var webResult = true;
+            bool? webResult = true;
             if (!_vm.IsTokenExist())
             {
                 WebBrowser web = new WebBrowser();
                 web.ShowDialog();
                 web.Owner = Owner;
-                webResult = web.DialogResult ?? false;
+                webResult = web.DialogResult;
             }
-            if(webResult && (_vm.CreateRec()))
+            if (webResult != null)
             {
-                SaveRecordIntoVK.IsEnabled = false;
-                SaveRecordIntoVK.Foreground = Brushes.Gray;
-                VkError.Visibility = Visibility.Collapsed;
-                VkSuccessfully.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                VkError.Visibility = Visibility.Visible;
+                if ((webResult ?? false) && _vm.CreateRec())
+                {
+                    SaveRecordIntoVK.IsEnabled = false;
+                    SaveRecordIntoVK.Foreground = Brushes.Gray;
+                    VkError.Visibility = Visibility.Collapsed;
+                    VkSuccessfully.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    VkError.Visibility = Visibility.Visible;
+                }
             }
         }
 

@@ -28,9 +28,31 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns?.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
         }
-        private void OnPageLoaded(object sender, RoutedEventArgs e)
+
+        private void ButtonClickLogOut(object sender, RoutedEventArgs e)
+        {
+            _vm.LogOut();
+            _vm.ChangeSettings();
+            RefreshInfo();
+        }
+
+        private void RefreshInfo()
         {
             LogOutButton.DisableButton = _vm.GetLogInStatus();
+            if (LogOutButton.DisableButton)
+            {
+                UserName.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                UserName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
+            LogOutButton.ControlButton.Click += ButtonClickLogOut;
+            RefreshInfo();
             InformationButton.ControlButton.Click += ButtonClickInformation;
             GlobalLogger.Instance.Info("Была открыта страница Главное Меню");
         }

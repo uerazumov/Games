@@ -23,9 +23,9 @@ namespace DAL
         public void LogOut()
         {
             Properties.Settings.Default.VkToken = "?";
-            Properties.Settings.Default.Save();
             Properties.Settings.Default.UserID = "";
             Properties.Settings.Default.Save();
+            GlobalLogger.Instance.Info("Данные пользователя были удалены");
         }
 
         private bool CreatePicture(int score)
@@ -200,6 +200,7 @@ namespace DAL
                         }
                     }
                 }
+                
                 return true;
             }
             catch
