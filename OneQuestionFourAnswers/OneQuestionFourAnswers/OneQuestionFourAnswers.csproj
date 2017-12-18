@@ -206,6 +206,9 @@
     <None Include="VisualResources\ReportTemplate.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Resource Include="VisualResources\Images\LogOutActiveIcon.png" />
+    <Resource Include="VisualResources\Images\LogOutIcon.png" />
+    <Resource Include="VisualResources\Images\LogOutUsedIcon.png" />
     <Content Include="VisualResources\Resphekt.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

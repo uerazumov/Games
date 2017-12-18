@@ -24,7 +24,6 @@ namespace OneQuestionFourAnswers
         private void OnTimeout()
         {
             AnswerIsSelect(null);
-            //_vm.Timeout -= OnTimeout;
         }
 
         private void OnTime10Sec()

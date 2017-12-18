@@ -33,6 +33,19 @@ namespace OneQuestionFourAnswers
             }
         }
 
+
+        private bool _logInStatus;
+
+        public bool LogInStatus
+        {
+            get { return _logInStatus; }
+            set
+            {
+                _logInStatus = value;
+                DoPropertyChanged("LogInStatus");
+            }
+        }
+
         private StrechableButton.StateType[] _buttonsState = new StrechableButton.StateType[2];
 
         public StrechableButton.StateType[] ButtonsState
@@ -215,18 +228,20 @@ namespace OneQuestionFourAnswers
             {
                 Update();
             }
-            Name = ChangeUserName();
+            Name = ChangeSettings();
         }
 
-        public string ChangeUserName()
+        public string ChangeSettings()
         {
             if (IsTokenExist())
             {
+                LogInStatus = true;
                 GlobalLogger.Instance.Info("Имя пользователя было установлено");
                 return GetUserName();
             }
             else
             {
+                LogInStatus = false;
                 return "Введите Имя";
             }
         }
@@ -552,6 +567,7 @@ namespace OneQuestionFourAnswers
         public void SaveToken(string token, string userID)
         {
             _fp.SaveToken(token, userID);
+            LogInStatus = true;
         }
 
         public bool IsTokenExist()
@@ -562,6 +578,33 @@ namespace OneQuestionFourAnswers
         private string GetUserName()
         {
             return _fp.GetUserName();
+        }
+
+        private void LogOut()
+        {
+            _fp.LogOut();
+            LogInStatus = false;
+        }
+
+        public bool GetLogInStatus()
+        {
+            return !_logInStatus;
+        }
+
+        private ICommand _doLogOut;
+
+        public ICommand DoLogOut
+        {
+            get
+            {
+                if (_doLogOut == null)
+                {
+                    _doLogOut = new Command(
+                        p => true,
+                        p => LogOut());
+                }
+                return _doLogOut;
+            }
         }
 
         private ICommand _doUseHintTimeCommand;

@@ -28,6 +28,9 @@
     <ImageBrush x:Key="LifeUsedIcon" ImageSource="VisualResources\Images\LifeUsedIcon.png"></ImageBrush>
     <ImageBrush x:Key="ExitIcon" ImageSource="VisualResources\Images\ExitIcon.png"></ImageBrush>
     <ImageBrush x:Key="ExitActiveIcon" ImageSource="VisualResources\Images\ExitActiveIcon.png"></ImageBrush>
+    <ImageBrush x:Key="LogOutIcon" ImageSource="VisualResources\Images\LogOutIcon.png"></ImageBrush>
+    <ImageBrush x:Key="LogOutUsedIcon" ImageSource="VisualResources\Images\LogOutUsedIcon.png"></ImageBrush>
+    <ImageBrush x:Key="LogOutActiveIcon" ImageSource="VisualResources\Images\LogOutActiveIcon.png"></ImageBrush>
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Stretch" Value="Uniform"></Setter>

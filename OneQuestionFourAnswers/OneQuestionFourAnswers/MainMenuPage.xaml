@@ -22,6 +22,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
         </Grid.RowDefinitions>
+        <local:CircularButton IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=LogInStatus}" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoLogOut}" x:Name="LogOutButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource LogOutIcon}" EnableBackgroundImageActive="{StaticResource LogOutActiveIcon}" DisableBackgroundImage="{StaticResource LogOutUsedIcon}"></local:CircularButton>
         <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
         <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" State="{Binding Source={StaticResource MainWindowVM}, Path=ButtonsState[0]}" x:Name="StartBatton" ButtonText="Начать игру" Click="ButtonClickStartGame" Grid.Row="1" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}"></local:StrechableButton>
         <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" State="{Binding Source={StaticResource MainWindowVM}, Path=ButtonsState[1]}" x:Name="UpdateBatton" ButtonText="Обновить" Grid.Row="2" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUpdate}"></local:StrechableButton>

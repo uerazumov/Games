@@ -19,6 +19,12 @@ namespace BussinesLogic
 
         private List<int> _availableQuestions;
 
+        public void LogOut()
+        {
+            _vkConnector.LogOut();
+            GlobalLogger.Instance.Info("Информация о пользователе удалена");
+        }
+
         public bool CreateRec(int score)
         {
             return _vkConnector.CreateRec(score);

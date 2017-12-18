@@ -20,6 +20,14 @@ namespace DAL
             return PostResult();
         }
 
+        public void LogOut()
+        {
+            Properties.Settings.Default.VkToken = "?";
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.UserID = "";
+            Properties.Settings.Default.Save();
+        }
+
         private bool CreatePicture(int score)
         {
             try

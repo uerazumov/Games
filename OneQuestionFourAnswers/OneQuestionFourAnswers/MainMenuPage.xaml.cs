@@ -9,8 +9,11 @@ namespace OneQuestionFourAnswers
 {
     public partial class MainMenuPage
     {
+        private readonly MainWindowViewModel _vm;
+
         public MainMenuPage()
         {
+            _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
             InitializeComponent();
         }
 
@@ -19,6 +22,7 @@ namespace OneQuestionFourAnswers
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
         }
+
         private void ButtonClickInformation(object sender, RoutedEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
@@ -26,6 +30,7 @@ namespace OneQuestionFourAnswers
         }
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
+            LogOutButton.DisableButton = _vm.GetLogInStatus();
             InformationButton.ControlButton.Click += ButtonClickInformation;
             GlobalLogger.Instance.Info("Была открыта страница Главное Меню");
         }
