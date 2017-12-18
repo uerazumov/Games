@@ -11,13 +11,12 @@ namespace DAL
     public class VKConnector
     {
 
-        public void CreateRec(int score)
+        public bool CreateRec(int score)
         {
-            CreatePicture(score);
-            PostResult();
+            return CreatePicture(score) & PostResult();
         }
 
-        private void CreatePicture(int score)
+        private bool CreatePicture(int score)
         {
             try
             {
@@ -35,10 +34,12 @@ namespace DAL
                 }
                 bitmap.Save("temp.png");
                 GlobalLogger.Instance.Info("Изображение было успешно создано");
+                return true;
             }
             catch
             {
                 GlobalLogger.Instance.Error("Произошла ошибка при создании изображения");
+                return false;
             }
         }
 
@@ -152,7 +153,7 @@ namespace DAL
             }
         }
 
-        private void PostResult()
+        private bool PostResult()
         {
             try
             {
@@ -172,10 +173,12 @@ namespace DAL
                         }
                     }
                 }
+                return true;
             }
             catch
             {
                 GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
+                return false;
             }
         }
 

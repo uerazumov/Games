@@ -538,9 +538,9 @@ namespace OneQuestionFourAnswers
             return _fp.IsBaseEmpty();
         }
 
-        public void CreateRec()
+        public bool CreateRec()
         {
-            _fp.CreateRec(_gameScore);
+            return _fp.CreateRec(_gameScore);
         }
 
         public string GetAuthUrl()

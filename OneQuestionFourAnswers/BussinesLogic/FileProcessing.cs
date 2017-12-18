@@ -19,9 +19,9 @@ namespace BussinesLogic
 
         private List<int> _availableQuestions;
 
-        public void CreateRec(int score)
+        public bool CreateRec(int score)
         {
-            _vkConnector.CreateRec(score);
+            return _vkConnector.CreateRec(score);
         }
 
         public void SaveToken(string token, string userID)

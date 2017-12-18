@@ -70,9 +70,12 @@ namespace OneQuestionFourAnswers
                 web.ShowDialog();
                 web.Owner = Owner;
             }
-            _vm.CreateRec();
-            SaveRecordIntoVK.IsEnabled = false;
-            SaveRecordIntoVK.Foreground = Brushes.Gray;
+            if(_vm.CreateRec())
+            {
+                SaveRecordIntoVK.IsEnabled = false;
+                SaveRecordIntoVK.Foreground = Brushes.Gray;
+                //Отчёт в текстблок о том, что пост успешно создан
+            }
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
