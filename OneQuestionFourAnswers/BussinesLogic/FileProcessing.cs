@@ -54,15 +54,18 @@ namespace BussinesLogic
             return false;
         }
 
-        public void CreateReport(string path)
+        public bool CreateReport(string path)
         {
-            if(_excelStatisticSaver.CreateReport(path))
+            var result = _excelStatisticSaver.CreateReport(path);
+            if (result)
             {
                 GlobalLogger.Instance.Info("Создан отчёт Excel");
+                return true;
             }
             else
             {
                 GlobalLogger.Instance.Error("Произошла ошибка создании отчёта Excel");
+                return false;
             }
         }
 

@@ -203,12 +203,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="VisualResources\Monotype-Corsiva.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="VisualResources\ReportTemplate.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="VisualResources\Resphekt.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="VisualResources\Forum.ttf" />
     <Resource Include="VisualResources\Images\AnswerChosenButton.png" />
     <Resource Include="VisualResources\Images\AnswerTrueButton.png" />

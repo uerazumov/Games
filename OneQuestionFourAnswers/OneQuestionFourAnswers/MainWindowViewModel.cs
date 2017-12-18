@@ -483,7 +483,7 @@ namespace OneQuestionFourAnswers
         {
             if (_heigth < 800)
             {
-                _questionFontSize = (int)(_width * 2800 / (_heigth * _questionAnswers.QuestionText.Length));
+                _questionFontSize = (int)(_width * 2700 / (_heigth * _questionAnswers.QuestionText.Length));
             }
             else
             {
@@ -506,7 +506,7 @@ namespace OneQuestionFourAnswers
 
             if (_heigth < 800)
             {
-                _answerFontSize = (_width * 2000 / (_heigth * maxAnswerLength));
+                _answerFontSize = (_width * 1500 / (_heigth * maxAnswerLength));
             }
             else
             {
@@ -519,7 +519,7 @@ namespace OneQuestionFourAnswers
             GlobalLogger.Instance.Info("Была произведена подгонка размеров шрифтов вопроса и ответов под размеры экрана");
         }
 
-        private void CreateReport()
+        public bool? CreateReport()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.FileName = "Report";
@@ -529,8 +529,9 @@ namespace OneQuestionFourAnswers
             if (result == true)
             {
                 string filename = dlg.FileName;
-                _fp.CreateReport(filename);
+                return _fp.CreateReport(filename);
             }
+            return null;
         }
 
         private bool IsBaseEmpty()
@@ -561,22 +562,6 @@ namespace OneQuestionFourAnswers
         private string GetUserName()
         {
             return _fp.GetUserName();
-        }
-
-        private ICommand _doCreateReport;
-
-        public ICommand DoCreateReport
-        {
-            get
-            {
-                if (_doCreateReport == null)
-                {
-                    _doCreateReport = new Command(
-                        p => true,
-                        p => CreateReport());
-                }
-                return _doCreateReport;
-            }
         }
 
         private ICommand _doUseHintTimeCommand;

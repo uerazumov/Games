@@ -13,7 +13,11 @@ namespace DAL
 
         public bool CreateRec(int score)
         {
-            return CreatePicture(score) & PostResult();
+            if (!CreatePicture(score))
+            {
+                return false;
+            }
+            return PostResult();
         }
 
         private bool CreatePicture(int score)
@@ -24,7 +28,7 @@ namespace DAL
                 using (var graphics = Graphics.FromImage(bitmap))
                 {
                     PrivateFontCollection pfc = new PrivateFontCollection();
-                    pfc.AddFontFile(@"VisualResources\Monotype-Corsiva.ttf");
+                    pfc.AddFontFile(@"VisualResources\Resphekt.ttf");
                     using (var font = new Font(pfc.Families[0], 70))
                     {
                         var size = graphics.MeasureString(score.ToString(), font);
@@ -93,7 +97,7 @@ namespace DAL
             catch
             {
                 GlobalLogger.Instance.Error("Произошла ошибка при получении сервера VK");
-                return "";
+                return "error";
             }
         }
 
@@ -102,6 +106,11 @@ namespace DAL
             try
             {
                 var server = GetUploadServer();
+                if(server == "error")
+                {
+                    GlobalLogger.Instance.Error("Произошла ошибка при получении json загрузки фото");
+                    return null;
+                }
                 using (var httpClient = new HttpClient())
                 {
                     var form = new MultipartFormDataContent();
@@ -126,6 +135,11 @@ namespace DAL
             try
             {
                 var data = UploadPhoto();
+                if (data == null)
+                {
+                    GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
+                    return "error";
+                }
                 var url = "https://api.vk.com/method/photos.saveWallPhoto?access_token=" + Properties.Settings.Default.VkToken;
                 url += "&user_id=" + Properties.Settings.Default.UserID;
                 url += "&photo=" + data.photo;
@@ -149,7 +163,7 @@ namespace DAL
             catch
             {
                 GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
-                return "";
+                return "error";
             }
         }
 
@@ -158,6 +172,11 @@ namespace DAL
             try
             {
                 var photoId = GetPhotoId();
+                if (photoId == "error")
+                {
+                    GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
+                    return false;
+                }
                 var url = "https://api.vk.com/method/wall.post?access_token=" + Properties.Settings.Default.VkToken;
                 url += "&attachments=https://github.com/Julistian/SAPR-15-1_Razumov/tree/master/OneQuestionFourAnswers," + photoId;
                 var request = (HttpWebRequest)WebRequest.Create(url);

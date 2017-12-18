@@ -25,17 +25,20 @@ namespace OneQuestionFourAnswers
                 {
                     _vm.SaveToken(dict["access_token"], dict["user_id"]);
                     _vm.ChangeUserName();
+                    DialogResult = true;
                     Close();
                     GlobalLogger.Instance.Info("Получен токен пользователя");
                 }
                 if (Array.IndexOf(dict.AllKeys, "error") != -1)
                 {
+                    DialogResult = false;
                     Close();
                     GlobalLogger.Instance.Info("Не удалось получить токен пользователя");
                 }
             }
             catch
             {
+                DialogResult = false;
                 GlobalLogger.Instance.Error("Произошла ошибка при авторизации пользователя");
             }
         }

@@ -17,7 +17,7 @@
     </Window.Resources>
     <Grid>
         <Grid Background="White" Opacity="0.5"></Grid>
-        <Grid Height="490" Width="600" Background="{StaticResource NoticeBackgroundImage}">
+        <Grid Height="530" Width="600" Background="{StaticResource NoticeBackgroundImage}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -25,6 +25,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="125"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" FontSize="40" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
             <Border DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
@@ -54,8 +55,12 @@
                 <Button x:Name="SaveButton" Margin="0,5,5,5" Width="250" Grid.Column="0" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
                 <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoStopTimerCommand}"  Margin="5,5,0,5" Width="250" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White"/>
             </Grid>
-            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoCreateReport}" x:Name="SaveStatistic" Grid.Row="5" FontSize="35" Width="250" Margin="5,5,20,15" Style="{StaticResource ButtonStyle}" Content="Cтатистика" Grid.Column="1" Click="SaveStatisticButtonClick" Foreground="White" HorizontalAlignment="Right"/>
+            <Button x:Name="SaveStatistic" Grid.Row="5" FontSize="35" Width="250" Margin="5,5,20,15" Style="{StaticResource ButtonStyle}" Content="Cтатистика" Grid.Column="1" Click="SaveStatisticButtonClick" Foreground="White" HorizontalAlignment="Right"/>
             <Button x:Name="SaveRecordIntoVK" Grid.Row="5" FontSize="35" Width="250" Margin="20,5,5,15" Style="{StaticResource ButtonStyle}" Content="Поделиться" Grid.Column="1" Click="SaveRecordIntoVKButtonClick" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="VkSuccessfully" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Запись успешно размещена</TextBlock>
+            <TextBlock x:Name="VkError" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="OrangeRed">Не удалось разместить запись</TextBlock>
+            <TextBlock x:Name="ReportSuccessfully" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Отчёт успешно создан</TextBlock>
+            <TextBlock x:Name="ReportError" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="OrangeRed">Не удалось создать отчёт</TextBlock>
         </Grid>
     </Grid>
 </Window>

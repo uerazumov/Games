@@ -58,23 +58,39 @@ namespace OneQuestionFourAnswers
 
         private void SaveStatisticButtonClick(object sender, RoutedEventArgs e)
         {
-            SaveStatistic.IsEnabled = false;
-            SaveStatistic.Foreground = Brushes.Gray;
+            if(_vm.CreateReport() == true)
+            {
+                SaveStatistic.IsEnabled = false;
+                SaveStatistic.Foreground = Brushes.Gray;
+                ReportError.Visibility = Visibility.Collapsed;
+                ReportSuccessfully.Visibility = Visibility.Visible;
+            }
+            else if (_vm.CreateReport() == false)
+            {
+                ReportError.Visibility = Visibility.Visible;
+            }
         }
 
         private void SaveRecordIntoVKButtonClick(object sender, RoutedEventArgs e)
         {
+            var webResult = true;
             if (!_vm.IsTokenExist())
             {
                 WebBrowser web = new WebBrowser();
                 web.ShowDialog();
                 web.Owner = Owner;
+                webResult = web.DialogResult ?? false;
             }
-            if(_vm.CreateRec())
+            if(webResult && (_vm.CreateRec()))
             {
                 SaveRecordIntoVK.IsEnabled = false;
                 SaveRecordIntoVK.Foreground = Brushes.Gray;
-                //Отчёт в текстблок о том, что пост успешно создан
+                VkError.Visibility = Visibility.Collapsed;
+                VkSuccessfully.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                VkError.Visibility = Visibility.Visible;
             }
         }
 
