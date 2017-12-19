@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using LoggingService;
-
+using System;
 
 namespace DAL
 {
@@ -37,8 +37,9 @@ namespace DAL
                 command = new SQLiteCommand(sql, Connection);
                 command.ExecuteNonQuery();
             }
-            catch
+            catch (Exception e)
             {
+                GlobalLogger.Instance.Error("Вызвана ошибка " + e.Message + " при добавлении рекорда в БД");
                 return false;
             }
             return true;
@@ -57,9 +58,9 @@ namespace DAL
                     results.Add(new Record((string)reader["name"], (int)reader["score"]));
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при получении таблицы рекордов из БД");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении таблицы рекордов из БД");
             }
             return new RecordsTable(results);
         }

@@ -392,9 +392,9 @@ namespace OneQuestionFourAnswers
                 {
                     _fp.UpdateBaseOfQuestion();
                 }
-                catch
+                catch (Exception e)
                 {
-                    GlobalLogger.Instance.Error("Произошла ошибка при обновлении Базы Вопросов");
+                    GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при обновлении Базы Вопросов");
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {

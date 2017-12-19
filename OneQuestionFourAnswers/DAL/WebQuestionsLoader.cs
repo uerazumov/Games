@@ -31,10 +31,10 @@ namespace DAL
                 var pages = doc.DocumentNode.SelectSingleNode(xpath).GetAttributeValue("href", "");
                 totalPages = Convert.ToInt16(pages.Split('/').Last()) / 10;
             }
-            catch
+            catch (Exception e)
             {
                 totalPages = 0;
-                GlobalLogger.Instance.Error("Произошла ошибка при получении кол-ва страниц с сайта " + url.ToString());
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении кол-ва страниц с сайта " + url.ToString());
             }
             return totalPages;
         }
@@ -60,15 +60,15 @@ namespace DAL
                         var question = new QuestionAnswers(GetQuestionText(columns), GetAnswers(columns));
                         questions.Add(question);
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        GlobalLogger.Instance.Debug("Произошла ошибка при обработке " + i.ToString() + " строки");
+                        GlobalLogger.Instance.Debug("Произошла ошибка" + e.Message + " при обработке " + i.ToString() + " строки");
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Debug("Произошла ошибка при обработке страницы");
+                GlobalLogger.Instance.Debug("Произошла ошибка " + e.Message + " при обработке страницы");
             }
             return questions;
         }

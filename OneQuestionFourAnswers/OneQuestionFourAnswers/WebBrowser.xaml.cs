@@ -40,10 +40,10 @@ namespace OneQuestionFourAnswers
                     GlobalLogger.Instance.Info("Не удалось получить токен пользователя");
                 }
             }
-            catch
+            catch (Exception error)
             {
                 DialogResult = false;
-                GlobalLogger.Instance.Error("Произошла ошибка при авторизации пользователя");
+                GlobalLogger.Instance.Error("Произошла ошибка " + error.Message + " при авторизации пользователя");
             }
         }
 

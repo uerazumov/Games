@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Net.Http;
+using System;
 
 namespace DAL
 {
@@ -48,9 +49,9 @@ namespace DAL
                 GlobalLogger.Instance.Info("Изображение было успешно создано");
                 return true;
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при создании изображения");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при создании изображения");
                 return false;
             }
         }
@@ -75,9 +76,9 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при получении имени пользователя");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении имени пользователя");
                 return "Введите Имя";
             }
         }
@@ -102,9 +103,9 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при получении сервера VK");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении сервера VK");
                 return "error";
             }
         }
@@ -131,9 +132,9 @@ namespace DAL
                     return JsonConvert.DeserializeObject(raw);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при получении json загрузки фото");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении json загрузки фото");
                 return null;
             }
         }
@@ -168,9 +169,9 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении id фото");
                 return "error";
             }
         }
@@ -182,9 +183,9 @@ namespace DAL
                 File.Delete("temp.png");
                 GlobalLogger.Instance.Info("Файл temp.png был успешно удалён");
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Не удалось удалить файл temp.png");
+                GlobalLogger.Instance.Error("Не удалось удалить файл temp.png. Текст ошибки " + e.Message);
             }
         }
 
@@ -217,10 +218,10 @@ namespace DAL
                 DeletePhoto();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 DeletePhoto();
-                GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
+                GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой " + e.Message);
                 return false;
             }
         }

@@ -4,6 +4,7 @@ using LoggingService;
 using System.IO;
 using OfficeOpenXml;
 using System.Drawing;
+using System;
 
 namespace DAL
 {
@@ -39,8 +40,9 @@ namespace DAL
                 }
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                GlobalLogger.Instance.Error("Создание отчёта завершилось с ошибкой " + e.Message);
                 return false;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using LoggingService;
+using System;
 
 namespace DAL
 {
@@ -39,10 +40,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
                 question = "";
-                GlobalLogger.Instance.Error("Произошла ошибка при получении вопроса из БД по индексу " + index.ToString());
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении вопроса из БД по индексу " + index.ToString());
             }
 
             return new QuestionAnswers(question, answers);
@@ -57,10 +58,10 @@ namespace DAL
                 var command = new SQLiteCommand(sql, Connection);
                 count = (long)command.ExecuteScalar();
             }
-            catch
+            catch (Exception e)
             {
                 count = 0;
-                GlobalLogger.Instance.Error("Произошла ошибка получении кол-ва вопросов от БД");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " получении кол-ва вопросов от БД");
             }
             return count;
         }
@@ -102,9 +103,9 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                GlobalLogger.Instance.Error("Произошла ошибка при внесении вопросов в БД");
+                GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при внесении вопросов в БД");
                 return false;
             }
         }
