@@ -377,11 +377,12 @@ namespace OneQuestionFourAnswers
 
         private void Update()
         {
-            GlobalLogger.Instance.Info("Было запущено обновление");
+            
             new Thread(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
+                    GlobalLogger.Instance.Info("Было запущено обновление");
                     _buttonsState[0] = StrechableButton.StateType.Inactive;
                     _buttonsState[1] = StrechableButton.StateType.Inactive;
                     DoPropertyChanged("ButtonsState");
@@ -404,10 +405,9 @@ namespace OneQuestionFourAnswers
                     _buttonsState[1] = StrechableButton.StateType.Active;
                     DoPropertyChanged("ButtonsState");
                     CollapsStatusBar();
+                    GlobalLogger.Instance.Info("Обновление было завершено");
                 });
             }).Start();
-            GlobalLogger.Instance.Info("Обновление было завершено");
-
         }
 
         private void OpenNewGame()
