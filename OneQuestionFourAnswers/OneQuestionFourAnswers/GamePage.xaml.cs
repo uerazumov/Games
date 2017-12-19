@@ -154,11 +154,7 @@ namespace OneQuestionFourAnswers
                 case MainWindowViewModel.ResultType.IncorrectNewRecord:
                 {
                     _window?.PlaySound(MainWindow.SoundType.WinSound);
-                    var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.NewRecordWindow) ?? false;
-                    if (close)
-                    {
-                            _vm.CreateNewRecord();
-                    }
+                    DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.NewRecordWindow);
                     NavigationService ns = NavigationService.GetNavigationService(this);
                     ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
                 }

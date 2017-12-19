@@ -350,12 +350,12 @@ namespace OneQuestionFourAnswers
             return _lives[0] | _lives[1] | !_lives[2];
         }
 
-        public void CreateNewRecord()
+        public bool CreateNewRecord()
         {
             GlobalLogger.Instance.Info("Создан новый рекорд");
             _newRecord = new Record(_name, _gameScore);
             StopTimer();
-            _fp.CreateNewRecord(_newRecord);
+            return _fp.CreateNewRecord(_newRecord);
         }
 
         public void UseHintStatistics()
@@ -505,7 +505,7 @@ namespace OneQuestionFourAnswers
         {
             if (_heigth < 800)
             {
-                _questionFontSize = (int)(_width * 2700 / (_heigth * _questionAnswers.QuestionText.Length));
+                _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
             }
             else
             {
@@ -514,6 +514,10 @@ namespace OneQuestionFourAnswers
             if (_questionFontSize > 75)
             {
                 _questionFontSize = 75;
+            }
+            if (_questionAnswers.QuestionText.Length > 130)
+            {
+                _questionFontSize -= 10;
             }
 
             var maxAnswerLength = _questionAnswers.Answers[0].Text.Length;
@@ -547,12 +551,12 @@ namespace OneQuestionFourAnswers
             dlg.FileName = "Report";
             dlg.DefaultExt = ".xlsx";
             dlg.Filter = "Таблица Excel (.xlsx)|*.xlsx";
-            bool? result = dlg.ShowDialog();
+            var result = dlg.ShowDialog();
             if (result == true)
             {
                 string filename = dlg.FileName;
                 return _fp.CreateReport(filename);
-            }
+            };
             return null;
         }
 

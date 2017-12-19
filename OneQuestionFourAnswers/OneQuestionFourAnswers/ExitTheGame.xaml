@@ -19,7 +19,7 @@
         <Grid Height="300" Width="400" Background="{StaticResource NoticeBackgroundImage}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
-                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition Height="110"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock FontSize="40" Grid.Row="0" Text="Вы действительно хотите выйти в главное меню?" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Foreground="White"></TextBlock>
             <Grid Grid.Row="1">

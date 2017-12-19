@@ -177,9 +177,10 @@ namespace BussinesLogic
             return statistic;
         }
 
-        public void CreateNewRecord(Record newRecord)
+        public bool CreateNewRecord(Record newRecord)
         {
-            if(_highScoresProvider.Add(newRecord))
+            var result = _highScoresProvider.Add(newRecord);
+            if (result)
             {
                 GlobalLogger.Instance.Info("Рекорд успешно добавлен в БД");
             }
@@ -187,6 +188,7 @@ namespace BussinesLogic
             {
                 GlobalLogger.Instance.Error("Произошла ошибка при добавление нового рекорда в БД");
             }
+            return result;
         }
 
         public bool[] HintTwoAnswers(QuestionAnswers question)
