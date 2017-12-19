@@ -25,6 +25,7 @@ namespace OneQuestionFourAnswers
             }
             finally
             {
+                //REVIEW: 0 - означает выход без ошибки. Если идёт выход с ошибкой - то выход должен быть с каким-нибудь кодом
                 Environment.Exit(0);
             }
         }

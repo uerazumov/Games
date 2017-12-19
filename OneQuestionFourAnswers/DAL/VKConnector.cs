@@ -32,6 +32,7 @@ namespace DAL
         {
             try
             {
+                //REVIEW: В настройки, ресурсы, константы
                 var bitmap = (Bitmap)Image.FromFile(@"VisualResources\Images\NewRecordTemplate.jpg");
                 using (var graphics = Graphics.FromImage(bitmap))
                 {
@@ -50,6 +51,8 @@ namespace DAL
             }
             catch
             {
+                //REVIEW: А какая ошибка-то? Вот, я увидел, что у меня софтина хлопнулась с этой строкой - как мне это поможет разобраться?
+                //REVIEW: Тут как минимум может быть 3 ошибки разных
                 GlobalLogger.Instance.Error("Произошла ошибка при создании изображения");
                 return false;
             }
@@ -59,6 +62,7 @@ namespace DAL
         {
             try
             {
+                //REVIEW:В константы урлу
                 var url = "https://api.vk.com/method/account.getProfileInfo?access_token=" + Properties.Settings.Default.VkToken;
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 using (var response = (HttpWebResponse)request.GetResponse())
@@ -77,6 +81,7 @@ namespace DAL
             }
             catch
             {
+                //REVIEW:Опять же, какая ошибка?
                 GlobalLogger.Instance.Error("Произошла ошибка при получении имени пользователя");
                 return "Введите Имя";
             }
@@ -86,6 +91,7 @@ namespace DAL
         {
             try
             {
+                //REVIEW:Урлу в константы
                 var url = "https://api.vk.com/method/photos.getWallUploadServer?access_token=" + Properties.Settings.Default.VkToken;
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 using (var response = (HttpWebResponse)request.GetResponse())
@@ -104,6 +110,7 @@ namespace DAL
             }
             catch
             {
+                //REVIEW:Ошибку выводить точно
                 GlobalLogger.Instance.Error("Произошла ошибка при получении сервера VK");
                 return "error";
             }
@@ -114,7 +121,8 @@ namespace DAL
             try
             {
                 var server = GetUploadServer();
-                if(server == "error")
+                //REVIEW:А вот тут лучше enum возвращать или обрабатывать Exception. А то сразу много вопросов. А если Error? или ERROR? Или " error "?
+                if (server == "error")
                 {
                     GlobalLogger.Instance.Error("Произошла ошибка при получении json загрузки фото");
                     return null;
@@ -133,6 +141,7 @@ namespace DAL
             }
             catch
             {
+                //REVIEW:Какая ошибка?
                 GlobalLogger.Instance.Error("Произошла ошибка при получении json загрузки фото");
                 return null;
             }
@@ -148,6 +157,7 @@ namespace DAL
                     GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
                     return "error";
                 }
+                //REVIEW:урлу - в константы
                 var url = "https://api.vk.com/method/photos.saveWallPhoto?access_token=" + Properties.Settings.Default.VkToken;
                 url += "&user_id=" + Properties.Settings.Default.UserID;
                 url += "&photo=" + data.photo;
@@ -170,7 +180,9 @@ namespace DAL
             }
             catch
             {
+                //REVIEW:Какая ошибка?
                 GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
+                //REVIEW: Лучше тогда уж null или пустую строку. Или throw; , чтобы снаружи поняли, что что-то пошло не так
                 return "error";
             }
         }
@@ -199,6 +211,7 @@ namespace DAL
                     GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
                     return false;
                 }
+                //REVIEW: Урлы в константы
                 var url = "https://api.vk.com/method/wall.post?access_token=" + Properties.Settings.Default.VkToken;
                 url += "&attachments=https://github.com/Julistian/SAPR-15-1_Razumov/tree/master/OneQuestionFourAnswers," + photoId;
                 var request = (HttpWebRequest)WebRequest.Create(url);
@@ -227,6 +240,7 @@ namespace DAL
 
         public string GetAuthUrl()
         {
+            //REVIEW:Урлы в константы
             var url = "https://oauth.vk.com/authorize?";
             url += "client_id=" + Properties.Settings.Default.AppID;
             url += "&redirect_uri=https://oauth.vk.com/blank.html";

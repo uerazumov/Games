@@ -426,7 +426,7 @@ namespace OneQuestionFourAnswers
         {
             _timer?.Stop();
         }
-
+        //REVIEW: А чего он паблик, если ссылки на него только из вьюмодели этой?
         public void StartNewRound()
         {
             _time = new TimeSpan(0, 0, 30);
@@ -446,6 +446,7 @@ namespace OneQuestionFourAnswers
             _timer.Start();
         }
 
+  
         public void AnswerIsSelect(int? index)
         {
             for (var i = 0; i != 4; i++)

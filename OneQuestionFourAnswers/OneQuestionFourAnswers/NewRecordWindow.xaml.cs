@@ -17,15 +17,18 @@ namespace OneQuestionFourAnswers
         {
             InitializeComponent();
             _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
+            //REVIEW: А отписываться как будем от этого события?
             Loaded += (obj, args) =>
             {
                 UsernameTextBox.Focus();
                 UsernameTextBox.SelectAll();
                 _textBox = BorderUsernameTextBox.Child as TextBox;
+                //REVIEW: Если уж пользуем лог - туда и пишем
                 Debug.Assert(_textBox != null, nameof(_textBox) + " != null");
                 (_textBox).GotFocus += OnTextBoxFocused;
             };
         }
+        //REVIEW: MVVM пошёл и повесился... Что за code-behind?
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             if (!Validation.GetHasError(_textBox) && ((_textBox).Text != ""))
@@ -78,6 +81,7 @@ namespace OneQuestionFourAnswers
 
         private void OnTextBoxFocused(object sender, RoutedEventArgs e)
         {
+            //REVIEW: Опять же, MVVM
             if (!Validation.GetHasError(_textBox))
             {
                 return;
@@ -94,6 +98,7 @@ namespace OneQuestionFourAnswers
             Close();
         }
 
+        //REVIEW: В команду!
         private void SaveStatisticButtonClick(object sender, RoutedEventArgs e)
         {
             new Thread(() =>
@@ -134,18 +139,20 @@ namespace OneQuestionFourAnswers
             }).Start();
         }
 
+        //REVIEW: Это делается через свойства, конвертер и биндинг
         private void MakeButtonDisabled(Button button)
         {
             button.IsEnabled = false;
             button.Foreground = Brushes.Gray;
         }
-
+        //REVIEW: И это - тоже
         private void MakeButtonEnabled(Button button)
         {
             button.IsEnabled = true;
             button.Foreground = Brushes.White;
         }
 
+        //REVIEW: В команду убрать
         private void SaveRecordIntoVKButtonClick(object sender, RoutedEventArgs e)
         {
             new Thread(() =>
@@ -198,7 +205,7 @@ namespace OneQuestionFourAnswers
                 });
             }).Start();
         }
-
+        
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;

@@ -17,6 +17,7 @@ namespace DAL
         {
             try
             {
+                //REVIEW: В настройки или константы
                 File.Copy(@"VisualResources\ReportTemplate.xlsx", path, true);
                 var info = new FileInfo(path);
                 using (var package = new ExcelPackage(info))

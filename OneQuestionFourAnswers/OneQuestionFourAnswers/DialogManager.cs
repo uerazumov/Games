@@ -16,6 +16,7 @@ namespace OneQuestionFourAnswers
 
         private static Window _dialogWindow;
 
+        //REVIEW:Во вьюмодель
         public static bool? OpenDialogWindow(DialogWindowType type)
         {
             if (_dialogWindow != null)

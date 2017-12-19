@@ -55,11 +55,13 @@ namespace OneQuestionFourAnswers
 
         public static bool SupressCookiePersist()
         {
+            //REVIEW: Вот, я читаю этот код и думаю - а почему 81? Почему не 154?
             return SetOption(81, 3);
         }
 
         public static bool EndBrowserSession()
         {
+            //REVIEW: Опять магические цифры? Им место в enum
             return SetOption(42, null);
         }
 

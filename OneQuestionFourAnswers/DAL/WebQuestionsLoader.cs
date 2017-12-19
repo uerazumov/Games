@@ -21,12 +21,14 @@ namespace DAL
 
         private static int GetTotalPages()
         {
+            //REVIEW:Это бы в константы или настройки
             const string url = "https://baza-otvetov.ru/categories/view/1/0";
             int totalPages;
             try
             {
                 var web = new HtmlWeb();
                 var doc = web.Load(url);
+                //REVIEW:Это тоже кандидат на константы или настройки. Хотя, парсить html-код - это буэ...
                 const string xpath = "/html/body/div/div/div/div[2]/div[2]/div/a[5]";
                 var pages = doc.DocumentNode.SelectSingleNode(xpath).GetAttributeValue("href", "");
                 totalPages = Convert.ToInt16(pages.Split('/').Last()) / 10;
@@ -45,9 +47,11 @@ namespace DAL
             GlobalLogger.Instance.Debug("Обработка страницы " + page.ToString() + " из " + TotalPages.ToString());
             try
             {
+                //REVIEW:В константы или настройки и дополнять на месте
                 var url = $"https://baza-otvetov.ru/categories/view/1/{page * 10}";
                 var web = new HtmlWeb();
                 var doc = web.Load(url);
+                //REVIEW:В константы или настройки
                 const string xpath = "/html/body/div/div/div/div[2]/div[2]/table";
                 var table = doc.DocumentNode.SelectSingleNode(xpath);
                 var rows = table.ChildNodes.Where(node => node.Name == "tr").Skip(1);
@@ -76,6 +80,7 @@ namespace DAL
         private static List<Answer> GetAnswers(IReadOnlyCollection<HtmlNode> columns)
         {
             var answers = new List<Answer>();
+            //REVIEW:Что будет, если columns - null?
             answers.AddRange(GetIncorrectAnswers(columns).Select(x => new Answer(x, false)));
             answers.Add(new Answer(GetCorrectAnswer(columns), true));
             for (var i = 0; i < 4; i++)
@@ -91,6 +96,7 @@ namespace DAL
 
         private static string GetQuestionText(IEnumerable<HtmlNode> columns)
         {
+            //REVIEW:columns is null приведёт к NRE на ровном месте. И количество проверить.
             var column = columns.ElementAt(1);
             var question = column.ChildNodes.First(node => node.Name == "a").InnerText.Trim();
             if (question.Length > 180)
@@ -103,6 +109,7 @@ namespace DAL
 
         private static IEnumerable<string> GetIncorrectAnswers(IEnumerable<HtmlNode> columns)
         {
+            //REVIEW: Опять NRE и OutOfRange
             var column = columns.ElementAt(1);
             var variantsText = column.ChildNodes.First(node => node.Name == "div").InnerText.Trim();
             var variants = variantsText.Split(':')[1].Split(',').Select(x => x.Trim().Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022")).ToList(); 
@@ -121,6 +128,7 @@ namespace DAL
 
         private static string GetCorrectAnswer(IEnumerable<HtmlNode> columns)
         {
+            //REVIEW:NRE, OutOfRange
             var column = columns.ElementAt(2);
             return column.InnerText.Trim().Replace("&quot;", "\u0022").Replace("'", "\u2019").Replace("«", "\u0022").Replace("»", "\u0022");
         }
