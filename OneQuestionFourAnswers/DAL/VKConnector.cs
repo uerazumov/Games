@@ -175,6 +175,19 @@ namespace DAL
             }
         }
 
+        private void DeletePhoto()
+        {
+            try
+            {
+                File.Delete("temp.png");
+                GlobalLogger.Instance.Info("Файл temp.png был успешно удалён");
+            }
+            catch
+            {
+                GlobalLogger.Instance.Error("Не удалось удалить файл temp.png");
+            }
+        }
+
         private bool PostResult()
         {
             try
@@ -182,6 +195,7 @@ namespace DAL
                 var photoId = GetPhotoId();
                 if (photoId == "error")
                 {
+                    DeletePhoto();
                     GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
                     return false;
                 }
@@ -200,11 +214,12 @@ namespace DAL
                         }
                     }
                 }
-                
+                DeletePhoto();
                 return true;
             }
             catch
             {
+                DeletePhoto();
                 GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
                 return false;
             }

@@ -153,7 +153,7 @@ namespace BussinesLogic
                 if (question.Answers[i].IsCorrect)
                 {
                     byte randomValue = (byte) random.Next(0, 101);
-                    if (randomValue < 90)
+                    if (randomValue < 95)
                     {
                         var temp = statistic[i];
                         statistic[i] = statistic[maxIndex];
