@@ -27,6 +27,7 @@ namespace OneQuestionFourAnswers
                 GlobalLogger.Instance.Info("Пользователь ввёл слишком длинное имя при попытке сохранить Рекорд");
                 return new ValidationResult(false, "Имя слишком длинное!");
             }
+            //REVIEW: Методы Any и Contains обнялись и заплакали. А вообще, такие вещи решаются регулярными выражениями
             for (var i = 0; i < s.Length; i++)
             {
                 var j = 0;

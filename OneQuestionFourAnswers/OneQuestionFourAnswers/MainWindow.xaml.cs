@@ -69,6 +69,7 @@ namespace OneQuestionFourAnswers
         {
             _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
             Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;
+            
             ExitButton.ControlButton.Click += Exit;
             SoundButton.ControlButton.Click += ButtonClickSound;
             CommentatorButton.ControlButton.Click += ButtonClickCommentator;

@@ -11,18 +11,20 @@ namespace OneQuestionFourAnswers
 
             InitializeComponent();
         }
-
+        //REVIEW:В команду
         private void YesButtonClick(object sender, RoutedEventArgs e)
         {
             (Owner as MainWindow)?.PlaySound(MainWindow.SoundType.NewGameSound);
             DialogResult = true;
             Close();
         }
+        //REVIEW:В команду
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
         }
+        //REVIEW:В команду
         private void SaveStatisticButtonClick(object sender, RoutedEventArgs e)
         {
             SaveStatistic.IsEnabled = false;

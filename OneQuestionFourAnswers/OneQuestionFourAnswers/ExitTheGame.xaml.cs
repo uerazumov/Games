@@ -10,11 +10,13 @@ namespace OneQuestionFourAnswers
             InitializeComponent();
         }
 
+        //REVIEW:В команду
         private void YesButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
         }
+        //REVIEW:В команду
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
