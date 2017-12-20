@@ -44,7 +44,7 @@
                 <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[2]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="2" Background="White"/>
                 <Border VerticalAlignment="Bottom" Height="{Binding Source={StaticResource MainWindowVM}, Path=StatisticsHeight[3]}" Style="{StaticResource StatisticsBorderStyle}" Grid.Row="0" Grid.Column="3" Background="White"/>
             </Grid>
-            <Button FontSize="40" Foreground="White" Content="Закрыть" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="60,5" Click="ButtonClickClose"></Button>
+            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoCloseDialog}" FontSize="40" Foreground="White" Content="Закрыть" Grid.Row="2" Style="{StaticResource ButtonStyle}" Margin="60,5"></Button>
         </Grid>
     </Grid>
 </Window>

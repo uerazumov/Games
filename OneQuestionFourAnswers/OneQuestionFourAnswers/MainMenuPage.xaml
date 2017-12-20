@@ -3,10 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainMenuPage" Loaded="OnPageLoaded" KeepAlive="True">
+      Title="MainMenuPage" KeepAlive="True" x:Name="MaiMenuPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Source={StaticResource MainWindowVM}, Path=DoOnMainMenuLoaded}" CommandParameter="{Binding ElementName=MaiMenuPage}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,18 +28,18 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=LogInStatus}" x:Name="LogOutButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource LogOutIcon}" EnableBackgroundImageActive="{StaticResource LogOutActiveIcon}" DisableBackgroundImage="{StaticResource LogOutUsedIcon}"></local:CircularButton>
-        <TextBlock FontSize="30" Style="{StaticResource TextBlockStyle}" Text="{Binding Source={StaticResource MainWindowVM}, Path=Name}" x:Name="UserName" Margin="140,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0"></TextBlock>
+        <local:CircularButton DisableButton="{Binding Source={StaticResource MainWindowVM}, Path=LogOutButtonState, Mode=TwoWay}" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoLogOutClick}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=LogInStatus}" x:Name="LogOutButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource LogOutIcon}" EnableBackgroundImageActive="{StaticResource LogOutActiveIcon}" DisableBackgroundImage="{StaticResource LogOutUsedIcon}"></local:CircularButton>
+        <TextBlock FontSize="30" Style="{StaticResource TextBlockStyle}" Text="{Binding Source={StaticResource MainWindowVM}, Path=Name}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=UserNameBox}" x:Name="UserName" Margin="140,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0"></TextBlock>
         <local:StrecthTextBlock Grid.Row="0" TextBlockText="1 вопрос - 4 ответа"></local:StrecthTextBlock>
         <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" State="{Binding Source={StaticResource MainWindowVM}, Path=ButtonsState[0]}" x:Name="StartBatton" ButtonText="Начать игру" Grid.Row="1" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoStartNewGameClick}"></local:StrechableButton>
         <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" State="{Binding Source={StaticResource MainWindowVM}, Path=ButtonsState[1]}" x:Name="UpdateBatton" ButtonText="Обновить" Grid.Row="2" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUpdate}"></local:StrechableButton>
-        <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" ButtonText="Таблица рекордов" Click="HighscoreButton" Grid.Row="3" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoGetRecordsTableCommand, Mode=OneWay}"></local:StrechableButton>
+        <local:StrechableButton SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=MainMenuFontSize}" ButtonText="Таблица рекордов" Grid.Row="3" Margin="90,0,90,0" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoHighscoreClick, Mode=OneWay}"></local:StrechableButton>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:CircularButton VerticalAlignment="Bottom" Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonActiveIcon}"></local:CircularButton>
+            <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoInformationClick}" VerticalAlignment="Bottom" Margin="30,0,0,20" HorizontalAlignment="Left" x:Name="InformationButton" Grid.Column="0" EnableBackgroundImage="{StaticResource InformationButtonIcon}" EnableBackgroundImageActive="{StaticResource InformationButtonActiveIcon}"></local:CircularButton>
         </Grid>
     </Grid>
 </Page>

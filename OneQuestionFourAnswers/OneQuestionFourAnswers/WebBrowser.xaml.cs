@@ -8,6 +8,13 @@ namespace OneQuestionFourAnswers
 {
     public partial class WebBrowser : Window
     {
+        private enum InternetOptions
+        {
+            INTERNET_SUPPRESS_COOKIE_PERSIST = 3,
+            INTERNET_OPTION_SUPPRESS_BEHAVIOR = 81,
+            INTERNET_OPTION_END_BROWSER_SESSION = 42
+        }
+
         private readonly MainWindowViewModel _vm;
 
         public WebBrowser()
@@ -55,14 +62,12 @@ namespace OneQuestionFourAnswers
 
         public static bool SupressCookiePersist()
         {
-            //REVIEW: Вот, я читаю этот код и думаю - а почему 81? Почему не 154?
-            return SetOption(81, 3);
+            return SetOption((int)InternetOptions.INTERNET_OPTION_SUPPRESS_BEHAVIOR, (int)InternetOptions.INTERNET_SUPPRESS_COOKIE_PERSIST);  
         }
 
         public static bool EndBrowserSession()
         {
-            //REVIEW: Опять магические цифры? Им место в enum
-            return SetOption(42, null);
+            return SetOption((int)InternetOptions.INTERNET_OPTION_END_BROWSER_SESSION, null);
         }
 
         static bool SetOption(int settingCode, int? option)

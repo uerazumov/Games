@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="HighscoreTable" Loaded="OnPageLoaded">
+      Title="HighscoreTable">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +21,7 @@
             <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
         <local:StrecthTextBlock Margin="10" Grid.Row="0" HorizontalAlignment="Center" TextBlockText="Таблица Рекордов"></local:StrecthTextBlock>
-        <local:CircularButton Grid.Row="0" x:Name="BackButton" Margin="30,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DisableBackgroundImage="{StaticResource SoundOffButtonIcon}" DisableBackgroundImageActive="{StaticResource SoundOffButtonActiveIcon}" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
+        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoBackToMenuClick}" Grid.Row="0" x:Name="BackButton" Margin="30,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DisableBackgroundImage="{StaticResource SoundOffButtonIcon}" DisableBackgroundImageActive="{StaticResource SoundOffButtonActiveIcon}" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>

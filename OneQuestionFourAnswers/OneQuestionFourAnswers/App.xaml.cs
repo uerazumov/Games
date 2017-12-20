@@ -14,20 +14,21 @@ namespace OneQuestionFourAnswers
 
         private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
         {
+            int exitCode = 0;
             try
             {
                 Exception exception = (Exception)args.ExceptionObject;
+                exitCode = exception.GetHashCode();
                 GlobalLogger.Instance.Fatal("Приложение было завершено с критической ошибкой " + exception.ToString());
-                if (exception.GetType() != typeof(TaskCanceledException)) MessageBox.Show("К сожалению что-то пошло не так, сообщите разработчику о данной ошибке. Приносим вам наши извинения! " + exception.Message, "Uncaught Thread Exception",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("К сожалению что-то пошло не так, сообщите разработчику о данной ошибке. Приносим вам наши извинения! " + exception.Message, "Uncaught Thread Exception",MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch
             {
-
+                exitCode = -1;
             }
             finally
             {
-                //REVIEW: 0 - означает выход без ошибки. Если идёт выход с ошибкой - то выход должен быть с каким-нибудь кодом
-                Environment.Exit(0);
+                Environment.Exit(exitCode);
             }
         }
     }
