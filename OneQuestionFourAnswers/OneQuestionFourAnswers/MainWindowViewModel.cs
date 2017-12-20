@@ -1066,7 +1066,7 @@ namespace OneQuestionFourAnswers
 
         private void SaveRecordClick(object textBox)
         {
-            var value = !Validation.GetHasError(textBox as TextBox);
+            (textBox as TextBox).GetBindingExpression(TextBox.TextProperty).UpdateSource();
             if (!Validation.GetHasError(textBox as TextBox))
             {
                 new Thread(() =>
