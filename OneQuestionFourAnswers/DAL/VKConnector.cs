@@ -109,7 +109,7 @@ namespace DAL
             catch (Exception e)
             {
                 GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении сервера VK");
-                return "error";
+                return "";
             }
         }
 
@@ -118,10 +118,9 @@ namespace DAL
             try
             {
                 var server = GetUploadServer();
-                //REVIEW:А вот тут лучше enum возвращать или обрабатывать Exception. А то сразу много вопросов. А если Error? или ERROR? Или " error "?
-                if (server == "error")
+                if (server == "")
                 {
-                    GlobalLogger.Instance.Error("Произошла ошибка при получении json загрузки фото");
+                    GlobalLogger.Instance.Error("Получение json загрузки фото было прервано из-за ошибки на предыдущем этапе");
                     return null;
                 }
                 using (var httpClient = new HttpClient())
@@ -150,8 +149,8 @@ namespace DAL
                 var data = UploadPhoto();
                 if (data == null)
                 {
-                    GlobalLogger.Instance.Error("Произошла ошибка при получении id фото");
-                    return "error";
+                    GlobalLogger.Instance.Error("Получение id фото было прервано из-за ошибки на предыдущем этапе");
+                    return "";
                 }
                 //REVIEW:урлу - в константы
                 var url = "https://api.vk.com/method/photos.saveWallPhoto?access_token=" + Properties.Settings.Default.VkToken;
@@ -177,8 +176,7 @@ namespace DAL
             catch (Exception e)
             {
                 GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении id фото");
-                //REVIEW: Лучше тогда уж null или пустую строку. Или throw; , чтобы снаружи поняли, что что-то пошло не так
-                return "error";
+                return "";
             }
         }
 
@@ -200,10 +198,10 @@ namespace DAL
             try
             {
                 var photoId = GetPhotoId();
-                if (photoId == "error")
+                if (photoId == "")
                 {
                     DeletePhoto();
-                    GlobalLogger.Instance.Error("Размещение записи завершилось ошибкой");
+                    GlobalLogger.Instance.Error("Размещение записи было прервано из-за ошибки на предыдущем этапе");
                     return false;
                 }
                 //REVIEW: Урлы в константы
