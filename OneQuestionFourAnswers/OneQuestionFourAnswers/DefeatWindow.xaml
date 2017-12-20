@@ -16,12 +16,10 @@
     </Window.Resources>
     <Grid>
         <Grid Background="White" Opacity="0.5"></Grid>
-        <Grid Height="450" Width="600" Background="{StaticResource NoticeBackgroundImage}">
+        <Grid Height="300" Width="480" Background="{StaticResource NoticeBackgroundImage}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="120"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="140"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock FontSize="40" Grid.Row="0" Text="К сожалению, вы проиграли. Хотите сыграть снова?" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Foreground="White"></TextBlock>
             <Grid Grid.Row="1">
@@ -32,7 +30,6 @@
                 <Button FontSize="40" Width="250" Command="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}" Margin="5,5,5,15" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White" HorizontalAlignment="Center"></Button>
                 <Button FontSize="40" Width="250" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White" HorizontalAlignment="Center"/>
             </Grid>
-            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoCreateReport}" x:Name="SaveStatistic" Grid.Row="4" FontSize="35" Width="350" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Сохранить статистику" Grid.Column="1" Click="SaveStatisticButtonClick" Foreground="White" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

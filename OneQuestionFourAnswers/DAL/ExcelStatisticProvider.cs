@@ -5,6 +5,7 @@ using System.IO;
 using OfficeOpenXml;
 using System.Drawing;
 using System;
+using System.Configuration;
 
 namespace DAL
 {
@@ -18,8 +19,7 @@ namespace DAL
         {
             try
             {
-                //REVIEW: В настройки или константы
-                File.Copy("VisualResources//ReportTemplate.xlsx", path, true);
+                File.Copy(ConfigurationManager.AppSettings["newRecordReportTemplate"], path, true);
                 var info = new FileInfo(path);
                 using (var package = new ExcelPackage(info))
                 {

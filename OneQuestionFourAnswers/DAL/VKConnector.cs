@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Net.Http;
 using System;
+using System.Configuration;
 
 namespace DAL
 {
@@ -33,8 +34,7 @@ namespace DAL
         {
             try
             {
-                //REVIEW: В настройки, ресурсы, константы
-                var bitmap = (Bitmap)Image.FromFile(@"VisualResources\Images\NewRecordTemplate.jpg");
+                var bitmap = (Bitmap)Image.FromFile(ConfigurationManager.AppSettings["newRecordImageTemplate"]);
                 using (var graphics = Graphics.FromImage(bitmap))
                 {
                     PrivateFontCollection pfc = new PrivateFontCollection();
@@ -61,8 +61,7 @@ namespace DAL
         {
             try
             {
-                //REVIEW:В константы урлу
-                var url = "https://api.vk.com/method/account.getProfileInfo?access_token=" + Properties.Settings.Default.VkToken;
+                var url = ConfigurationManager.AppSettings["getUserNameUrl"] + Properties.Settings.Default.VkToken;
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
@@ -89,8 +88,7 @@ namespace DAL
         {
             try
             {
-                //REVIEW:Урлу в константы
-                var url = "https://api.vk.com/method/photos.getWallUploadServer?access_token=" + Properties.Settings.Default.VkToken;
+                var url = ConfigurationManager.AppSettings["getUploadServerUrl"] + Properties.Settings.Default.VkToken;
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
@@ -152,8 +150,7 @@ namespace DAL
                     GlobalLogger.Instance.Error("Получение id фото было прервано из-за ошибки на предыдущем этапе");
                     return "";
                 }
-                //REVIEW:урлу - в константы
-                var url = "https://api.vk.com/method/photos.saveWallPhoto?access_token=" + Properties.Settings.Default.VkToken;
+                var url = ConfigurationManager.AppSettings["getPhotoIdUrl"] + Properties.Settings.Default.VkToken;
                 url += "&user_id=" + Properties.Settings.Default.UserID;
                 url += "&photo=" + data.photo;
                 url += "&server=" + data.server;
@@ -204,9 +201,8 @@ namespace DAL
                     GlobalLogger.Instance.Error("Размещение записи было прервано из-за ошибки на предыдущем этапе");
                     return false;
                 }
-                //REVIEW: Урлы в константы
-                var url = "https://api.vk.com/method/wall.post?access_token=" + Properties.Settings.Default.VkToken;
-                url += "&attachments=https://github.com/Julistian/SAPR-15-1_Razumov/tree/master/OneQuestionFourAnswers," + photoId;
+                var url = ConfigurationManager.AppSettings["postUrlFirst"] + Properties.Settings.Default.VkToken;
+                url += "&attachments=" + ConfigurationManager.AppSettings["postUrlSecond"] + "," + photoId;
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
@@ -233,10 +229,9 @@ namespace DAL
 
         public string GetAuthUrl()
         {
-            //REVIEW:Урлы в константы
-            var url = "https://oauth.vk.com/authorize?";
+            var url = ConfigurationManager.AppSettings["getAuthUrlFirst"];
             url += "client_id=" + Properties.Settings.Default.AppID;
-            url += "&redirect_uri=https://oauth.vk.com/blank.html";
+            url += "&redirect_uri=" + ConfigurationManager.AppSettings["getAuthUrlSecond"];
             url += "&display=page";
             url += "&scope=wall,offline,photos";
             url += "&response_type=token";
