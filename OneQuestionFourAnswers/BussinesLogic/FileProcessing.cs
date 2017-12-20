@@ -15,9 +15,16 @@ namespace BussinesLogic
 
         private IHighScoresProvider _highScoresProvider = new HighScoresProvider();
 
+        private IQuestionsLoader _questionLoader = new QuestionsLoader();
+
         private VKConnector _vkConnector = new VKConnector();
 
         private List<int> _availableQuestions;
+
+        public int GetUpdateProcent()
+        {
+            return _questionLoader.GetUpdateProcent();
+        }
 
         public void LogOut()
         {
@@ -217,8 +224,8 @@ namespace BussinesLogic
 
         public void UpdateBaseOfQuestion()
         {
-            var loader = new QuestionsLoader();
-            var questions = loader.LoadQuestions();
+            
+            var questions = _questionLoader.LoadQuestions();
             if(_questionsProvider.Update(questions))
             {
                 GlobalLogger.Instance.Info("Обновление прошло успешно");

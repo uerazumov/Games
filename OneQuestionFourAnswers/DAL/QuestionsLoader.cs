@@ -20,5 +20,10 @@ namespace DAL
         {
             return _loader.LoadQuestions();
         }
+
+        public int GetUpdateProcent()
+        {
+            return _loader.GetUpdateProcent();
+        }
     }
 }

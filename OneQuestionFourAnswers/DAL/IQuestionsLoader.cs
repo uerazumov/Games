@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    interface IQuestionsLoader
+    public interface IQuestionsLoader
     {
         List<QuestionAnswers> LoadQuestions();
+        int GetUpdateProcent();
     }
 }

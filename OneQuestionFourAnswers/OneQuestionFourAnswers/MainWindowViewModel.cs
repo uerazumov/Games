@@ -33,6 +33,30 @@ namespace OneQuestionFourAnswers
             }
         }
 
+        private bool _exitButtonState;
+
+        public bool ExitButtonState
+        {
+            get { return _exitButtonState; }
+            set
+            {
+                _exitButtonState = value;
+                DoPropertyChanged("ExitButtonState");
+            }
+        }
+
+        private int _progressBarValue;
+
+        public int ProgressBarValue
+        {
+            get { return _progressBarValue; }
+            set
+            {
+                _progressBarValue = value;
+                DoPropertyChanged("ProgressBarValue");
+            }
+        }
+
 
         private bool _logInStatus;
 
@@ -229,6 +253,8 @@ namespace OneQuestionFourAnswers
                 Update();
             }
             ChangeSettings();
+            ProgressBarValue = 0;
+            ExitButtonState = true;
         }
 
         public void ChangeSettings()
@@ -377,7 +403,6 @@ namespace OneQuestionFourAnswers
 
         private void Update()
         {
-            
             new Thread(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -385,6 +410,7 @@ namespace OneQuestionFourAnswers
                     GlobalLogger.Instance.Info("Было запущено обновление");
                     _buttonsState[0] = StrechableButton.StateType.Inactive;
                     _buttonsState[1] = StrechableButton.StateType.Inactive;
+                    ExitButtonState = false;
                     DoPropertyChanged("ButtonsState");
                     StatusbarState = Visibility.Visible;
                 });
@@ -406,6 +432,27 @@ namespace OneQuestionFourAnswers
                     DoPropertyChanged("ButtonsState");
                     CollapsStatusBar();
                     GlobalLogger.Instance.Info("Обновление было завершено");
+                });
+            }).Start();
+            new Thread(() =>
+            {
+                var e = true;
+                while (e)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        var value = _fp.GetUpdateProcent();
+                        if ((value > -1) && (value < 101)) ProgressBarValue = value;
+                        if (value == -1) ProgressBarValue = 100;
+                    });
+                    if (ProgressBarValue > 99)
+                    {
+                        e = false;
+                    }
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ExitButtonState = true;
                 });
             }).Start();
         }

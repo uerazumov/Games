@@ -12,6 +12,7 @@ namespace DAL
     {
         public readonly int TotalPages;
         private readonly Random _random;
+        private int _processedPage = 0;
 
         public WebQuestionsLoader()
         {
@@ -136,11 +137,25 @@ namespace DAL
         public List<QuestionAnswers> LoadQuestions()
         {
             var questions = new List<QuestionAnswers>();
-            for (var i = 0; i <= TotalPages; i++)
+            for (_processedPage = 0; _processedPage <= TotalPages; _processedPage++)
             {
-                questions.AddRange(GetQuestionsFromPage(i));
+                questions.AddRange(GetQuestionsFromPage(_processedPage));
             }
+            _processedPage = -1;
             return questions;
+        }
+
+        public int GetUpdateProcent()
+        {
+            try
+            {
+                return (_processedPage * 100) / TotalPages;
+            }
+            catch (Exception e)
+            {
+                GlobalLogger.Instance.Error("При получении числа обработанных страниц было вызвано исключение " + e.Message);
+                return -1;
+            }
         }
     }
 }

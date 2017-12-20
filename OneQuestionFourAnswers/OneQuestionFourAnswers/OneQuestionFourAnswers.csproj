@@ -209,6 +209,7 @@
     <Resource Include="VisualResources\Images\LogOutActiveIcon.png" />
     <Resource Include="VisualResources\Images\LogOutIcon.png" />
     <Resource Include="VisualResources\Images\LogOutUsedIcon.png" />
+    <Resource Include="VisualResources\Images\DisabledExitIcon.png" />
     <Content Include="VisualResources\Resphekt.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
