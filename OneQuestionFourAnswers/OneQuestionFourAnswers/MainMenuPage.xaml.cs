@@ -16,12 +16,6 @@ namespace OneQuestionFourAnswers
             _vm = (MainWindowViewModel)Application.Current.Resources["MainWindowVM"];
             InitializeComponent();
         }
-        //REVIEW: В команду
-        private void ButtonClickStartGame(object sender, RoutedEventArgs e)
-        {
-            NavigationService ns = NavigationService.GetNavigationService(this);
-            ns?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
-        }
         //REVIEW:В команду
         private void ButtonClickInformation(object sender, RoutedEventArgs e)
         {
@@ -54,6 +48,7 @@ namespace OneQuestionFourAnswers
             LogOutButton.ControlButton.Click += ButtonClickLogOut;
             RefreshInfo();
             InformationButton.ControlButton.Click += ButtonClickInformation;
+            _vm.AssignNavigationService(NavigationService.GetNavigationService(this));
             GlobalLogger.Instance.Info("Была открыта страница Главное Меню");
         }
         //REVIEW: в команду

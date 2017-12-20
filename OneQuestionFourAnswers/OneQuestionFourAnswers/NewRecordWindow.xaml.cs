@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using LoggingService;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,6 @@ namespace OneQuestionFourAnswers
                 UsernameTextBox.Focus();
                 UsernameTextBox.SelectAll();
                 _textBox = BorderUsernameTextBox.Child as TextBox;
-                //REVIEW: Если уж пользуем лог - туда и пишем
-                Debug.Assert(_textBox != null, nameof(_textBox) + " != null");
                 (_textBox).GotFocus += OnTextBoxFocused;
             };
         }

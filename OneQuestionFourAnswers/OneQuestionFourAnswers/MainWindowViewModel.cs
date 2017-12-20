@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 using LoggingService;
+using System.Windows.Navigation;
 
 namespace OneQuestionFourAnswers
 {
@@ -20,6 +21,8 @@ namespace OneQuestionFourAnswers
             NewRecordWindow,
             StatisticWindow
         }
+
+        private NavigationService _navigationService;
 
         private static Window _dialogWindow;
 
@@ -486,6 +489,7 @@ namespace OneQuestionFourAnswers
         {
             _timer?.Stop();
         }
+
         private void StartNewRound()
         {
             _time = new TimeSpan(0, 0, 30);
@@ -698,6 +702,124 @@ namespace OneQuestionFourAnswers
             return result;
         }
 
+        private void ReturnFalseResultClick()
+        {
+            _dialogWindow.DialogResult = false;
+            _dialogWindow.Close();
+        }
+
+        private void ReturnTrueResultClick()
+        {
+            _dialogWindow.DialogResult = true;
+            _dialogWindow.Close();
+        }
+
+        private void ExitGamePageClick()
+        {
+            _dialogWindow.DialogResult = false;
+            _dialogWindow.Close();
+            StopTimer();
+        }
+
+        private void StartNewGame()
+        {
+            (_dialogWindow.Owner as MainWindow)?.PlaySound(MainWindow.SoundType.NewGameSound);
+            _dialogWindow.DialogResult = true;
+            _dialogWindow.Close();
+            OpenNewGame();
+        }
+
+        public void AssignNavigationService(NavigationService ns)
+        {
+            _navigationService = ns;
+        }
+
+        public void StartNewGameClick()
+        {
+            _navigationService?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
+            OpenNewGame();
+        }
+
+        private ICommand _doStartNewGameClick;
+
+        public ICommand DoStartNewGameClick
+        {
+            get
+            {
+                if (_doStartNewGameClick == null)
+                {
+                    _doStartNewGameClick = new Command(
+                        p => true,
+                        p => StartNewGameClick());
+                }
+                return _doStartNewGameClick;
+            }
+        }
+
+        private ICommand _doReturnTrueResultClick;
+
+        public ICommand DoReturnTrueResultClick
+        {
+            get
+            {
+                if (_doReturnTrueResultClick == null)
+                {
+                    _doReturnTrueResultClick = new Command(
+                        p => true,
+                        p => ReturnTrueResultClick());
+                }
+                return _doReturnTrueResultClick;
+            }
+        }
+
+        private ICommand _doExitGamePageClick;
+
+        public ICommand DoExitGamePageClick
+        {
+            get
+            {
+                if (_doExitGamePageClick == null)
+                {
+                    _doExitGamePageClick = new Command(
+                        p => true,
+                        p => ExitGamePageClick());
+                }
+                return _doExitGamePageClick;
+            }
+        }
+
+        private ICommand _doStartNewGame;
+
+        public ICommand DoStartNewGame
+        {
+            get
+            {
+                if (_doStartNewGame == null)
+                {
+                    _doStartNewGame = new Command(
+                        p => true,
+                        p => StartNewGame());
+                }
+                return _doStartNewGame;
+            }
+        }
+
+        private ICommand _doReturnFalseResultClick;
+
+        public ICommand DoReturnFalseResultClick
+        {
+            get
+            {
+                if (_doReturnFalseResultClick == null)
+                {
+                    _doReturnFalseResultClick = new Command(
+                        p => true,
+                        p => ReturnFalseResultClick());
+                }
+                return _doReturnFalseResultClick;
+            }
+        }
+
         private ICommand _doUseHintTimeCommand;
 
         public ICommand DoUseHintTimeCommand
@@ -730,21 +852,21 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private ICommand _doOpenNewGameCommand;
+        //private ICommand _doOpenNewGameCommand;
 
-        public ICommand DoOpenNewGameCommand
-        {
-            get
-            {
-                if (_doOpenNewGameCommand == null)
-                {
-                    _doOpenNewGameCommand = new Command(
-                        p => true,
-                        p => OpenNewGame());
-                }
-                return _doOpenNewGameCommand;
-            }
-        }
+        //public ICommand DoOpenNewGameCommand
+        //{
+        //    get
+        //    {
+        //        if (_doOpenNewGameCommand == null)
+        //        {
+        //            _doOpenNewGameCommand = new Command(
+        //                p => true,
+        //                p => OpenNewGame());
+        //        }
+        //        return _doOpenNewGameCommand;
+        //    }
+        //}
 
         private ICommand _doGetRecordsTableCommand;
 

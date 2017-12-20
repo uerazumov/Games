@@ -27,8 +27,8 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="40" Width="250" Command="{Binding Source={StaticResource MainWindowVM}, Path=DoOpenNewGameCommand}" Margin="5,5,5,15" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White" HorizontalAlignment="Center"></Button>
-                <Button FontSize="40" Width="250" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White" HorizontalAlignment="Center"/>
+                <Button FontSize="40" Width="250" Command="{Binding Source={StaticResource MainWindowVM}, Path=DoStartNewGame}" Margin="5,5,5,15" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="Да" Foreground="White" HorizontalAlignment="Center"></Button>
+                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoReturnFalseResultClick}" FontSize="40" Width="250" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Foreground="White" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

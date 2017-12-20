@@ -28,8 +28,8 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="40" Width="190" Margin="5,5,5,15" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="Да" Click="YesButtonClick" Foreground="White" HorizontalAlignment="Left"></Button>
-                <Button FontSize="40" Width="190" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Click="CancelButtonClick" Foreground="White" HorizontalAlignment="Right"/>
+                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoReturnFalseResultClick}" FontSize="40" Width="190" Margin="5,5,5,15" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="Да" Foreground="White" HorizontalAlignment="Left"></Button>
+                <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoReturnTrueResultClick}" FontSize="40" Width="190" Margin="5,5,5,15" Style="{StaticResource ButtonStyle}" Content="Отмена" Grid.Column="1" Foreground="White" HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
     </Grid>
