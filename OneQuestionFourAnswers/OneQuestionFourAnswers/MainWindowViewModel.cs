@@ -33,18 +33,6 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private bool _exitButtonState;
-
-        public bool ExitButtonState
-        {
-            get { return _exitButtonState; }
-            set
-            {
-                _exitButtonState = value;
-                DoPropertyChanged("ExitButtonState");
-            }
-        }
-
         private int _progressBarValue;
 
         public int ProgressBarValue
@@ -254,7 +242,6 @@ namespace OneQuestionFourAnswers
             }
             ChangeSettings();
             ProgressBarValue = 0;
-            ExitButtonState = true;
         }
 
         public void ChangeSettings()
@@ -407,12 +394,18 @@ namespace OneQuestionFourAnswers
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    GlobalLogger.Instance.Info("Было запущено обновление");
-                    _buttonsState[0] = StrechableButton.StateType.Inactive;
-                    _buttonsState[1] = StrechableButton.StateType.Inactive;
-                    ExitButtonState = false;
-                    DoPropertyChanged("ButtonsState");
-                    StatusbarState = Visibility.Visible;
+                    try
+                    {
+                        GlobalLogger.Instance.Info("Было запущено обновление");
+                        _buttonsState[0] = StrechableButton.StateType.Inactive;
+                        _buttonsState[1] = StrechableButton.StateType.Inactive;
+                        DoPropertyChanged("ButtonsState");
+                        StatusbarState = Visibility.Visible;
+                    }
+                    catch (Exception e)
+                    {
+                        GlobalLogger.Instance.Error("Было вызвано исключение" + e.Message + "старте обновления");
+                    }
                 });
                 try
                 {
@@ -424,36 +417,46 @@ namespace OneQuestionFourAnswers
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    if (!IsBaseEmpty())
+                    try
                     {
-                        _buttonsState[0] = StrechableButton.StateType.Active;
+                        if (!IsBaseEmpty())
+                        {
+                            _buttonsState[0] = StrechableButton.StateType.Active;
+                        }
+                        _buttonsState[1] = StrechableButton.StateType.Active;
+                        DoPropertyChanged("ButtonsState");
+                        CollapsStatusBar();
+                        GlobalLogger.Instance.Info("Обновление было завершено");
                     }
-                    _buttonsState[1] = StrechableButton.StateType.Active;
-                    DoPropertyChanged("ButtonsState");
-                    CollapsStatusBar();
-                    GlobalLogger.Instance.Info("Обновление было завершено");
+                    catch (Exception e)
+                    {
+                        GlobalLogger.Instance.Error("Было вызвано исключение" + e.Message + "завершении обновления");
+                    }
                 });
             }).Start();
             new Thread(() =>
             {
-                var e = true;
-                while (e)
+                var status = true;
+                while (status)
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        var value = _fp.GetUpdateProcent();
-                        if ((value > -1) && (value < 101)) ProgressBarValue = value;
-                        if (value == -1) ProgressBarValue = 100;
+                        try
+                        {
+                            var value = _fp.GetUpdateProcent();
+                            if ((value > -1) && (value < 101)) ProgressBarValue = value;
+                            if (value == -1) ProgressBarValue = 100;
+                        }
+                        catch (Exception e)
+                        {
+                            GlobalLogger.Instance.Error("Было вызвано исключение" + e.Message + "при смене значения progressbar");
+                        }
                     });
                     if (ProgressBarValue > 99)
                     {
-                        e = false;
+                        status = false;
                     }
                 }
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    ExitButtonState = true;
-                });
             }).Start();
         }
 
@@ -554,14 +557,18 @@ namespace OneQuestionFourAnswers
             if (_heigth < 800)
             {
                 _questionFontSize = (int)(_width * 3000 / (_heigth * _questionAnswers.QuestionText.Length));
+                if (_questionFontSize > 65)
+                {
+                    _questionFontSize = 65;
+                }
             }
             else
             {
                 _questionFontSize = (int)(_width * 4000 / (_heigth * _questionAnswers.QuestionText.Length));
-            }
-            if (_questionFontSize > 75)
-            {
-                _questionFontSize = 75;
+                if (_questionFontSize > 75)
+                {
+                    _questionFontSize = 75;
+                }
             }
             if (_questionAnswers.QuestionText.Length > 130)
             {

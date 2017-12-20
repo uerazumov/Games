@@ -21,9 +21,6 @@
                                         <Trigger Property="Border.IsMouseOver" Value="True">
                                             <Setter Property="Border.Background" Value="{Binding BackgroundImageActive}"></Setter>
                                         </Trigger>
-                                        <Trigger Property="Border.IsEnabled" Value="False">
-                                            <Setter Property="Border.Background" Value="{Binding DisableBackgroundImage}"></Setter>
-                                        </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>

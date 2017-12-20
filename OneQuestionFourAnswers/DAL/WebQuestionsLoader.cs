@@ -67,7 +67,7 @@ namespace DAL
                     }
                     catch (Exception e)
                     {
-                        GlobalLogger.Instance.Debug("Произошла ошибка" + e.Message + " при обработке " + i.ToString() + " строки");
+                        GlobalLogger.Instance.Debug("Произошла ошибка " + e.Message + " при обработке " + i.ToString() + " строки");
                     }
                 }
             }
