@@ -12,6 +12,16 @@ namespace OneQuestionFourAnswers
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
+        public enum DialogWindowType
+        {
+            DefeatWindow,
+            ExitTheGame,
+            ExitWindow,
+            NewRecordWindow,
+            StatisticWindow
+        }
+
+        private static Window _dialogWindow;
 
         public enum ResultType
         {
@@ -476,8 +486,7 @@ namespace OneQuestionFourAnswers
         {
             _timer?.Stop();
         }
-        //REVIEW: А чего он паблик, если ссылки на него только из вьюмодели этой?
-        public void StartNewRound()
+        private void StartNewRound()
         {
             _time = new TimeSpan(0, 0, 30);
             _questionAnswers = _fp.NewQuestion();
@@ -655,6 +664,38 @@ namespace OneQuestionFourAnswers
         public bool GetLogInStatus()
         {
             return !_logInStatus;
+        }
+
+        public static bool? OpenDialogWindow(DialogWindowType type)
+        {
+            if (_dialogWindow != null)
+            {
+                _dialogWindow.Close();
+                GlobalLogger.Instance.Info("Диалоговое окно было закрыто, всвязи с открытием диалгового окна типа " + type.ToString());
+            }
+            switch (type)
+            {
+                case DialogWindowType.DefeatWindow:
+                    _dialogWindow = new DefeatWindow { Owner = App.Current.MainWindow };
+                    break;
+                case DialogWindowType.ExitTheGame:
+                    _dialogWindow = new ExitTheGame { Owner = App.Current.MainWindow };
+                    break;
+                case DialogWindowType.ExitWindow:
+                    _dialogWindow = new ExitWindow { Owner = App.Current.MainWindow };
+                    break;
+                case DialogWindowType.NewRecordWindow:
+                    _dialogWindow = new NewRecordWindow { Owner = App.Current.MainWindow };
+                    break;
+                case DialogWindowType.StatisticWindow:
+                    _dialogWindow = new StatisticsWindow { Owner = App.Current.MainWindow };
+                    break;
+            }
+            _dialogWindow.ShowDialog();
+            GlobalLogger.Instance.Info("Было открыто диалоговое окно типа " + type.ToString());
+            var result = _dialogWindow.DialogResult;
+            GlobalLogger.Instance.Info("Диалоговое окно было закрыто пользователем с результатом " + result.ToString());
+            return result;
         }
 
         private ICommand _doUseHintTimeCommand;

@@ -34,7 +34,7 @@ namespace OneQuestionFourAnswers
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.ExitTheGame) ?? true;
+            var close = MainWindowViewModel.OpenDialogWindow(MainWindowViewModel.DialogWindowType.ExitTheGame) ?? true;
             if (!close)
             {
                 NavigationService ns = NavigationService.GetNavigationService(this);
@@ -66,7 +66,7 @@ namespace OneQuestionFourAnswers
             _vm?.UseHintStatistics();
             StatisticsButton.DisableButton = !StatisticsButton.DisableButton;
             StatisticsButton.IsEnabled = false;
-            DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.StatisticWindow);
+            MainWindowViewModel.OpenDialogWindow(MainWindowViewModel.DialogWindowType.StatisticWindow);
         }
 
         private void ButtonClickTime(object sender, RoutedEventArgs e)
@@ -139,7 +139,7 @@ namespace OneQuestionFourAnswers
                 case MainWindowViewModel.ResultType.Defeat:
                     {
                         _window?.PlaySound(MainWindow.SoundType.DefeatSound);
-                        var close = DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.DefeatWindow) ?? true;
+                        var close = MainWindowViewModel.OpenDialogWindow(MainWindowViewModel.DialogWindowType.DefeatWindow) ?? true;
                         if (!close)
                            {
                                  NavigationService ns = NavigationService.GetNavigationService(this);
@@ -154,7 +154,7 @@ namespace OneQuestionFourAnswers
                 case MainWindowViewModel.ResultType.IncorrectNewRecord:
                 {
                     _window?.PlaySound(MainWindow.SoundType.WinSound);
-                    DialogManager.OpenDialogWindow(DialogManager.DialogWindowType.NewRecordWindow);
+                        MainWindowViewModel.OpenDialogWindow(MainWindowViewModel.DialogWindowType.NewRecordWindow);
                     NavigationService ns = NavigationService.GetNavigationService(this);
                     ns?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
                 }
