@@ -69,7 +69,7 @@ namespace OneQuestionFourAnswers
         {
             _vm.ChangeWidthAndHeight((int)(App.Current.MainWindow as MainWindow).Width, (int)(App.Current.MainWindow as MainWindow).Height);
             Mouse.OverrideCursor = ((FrameworkElement)Resources["KinectCursor"]).Cursor;
-            
+            _vm.AssignMainWindow(this);
             ExitButton.ControlButton.Click += Exit;
             SoundButton.ControlButton.Click += ButtonClickSound;
             CommentatorButton.ControlButton.Click += ButtonClickCommentator;
@@ -89,7 +89,7 @@ namespace OneQuestionFourAnswers
             var close = MainWindowViewModel.OpenDialogWindow(MainWindowViewModel.DialogWindowType.ExitWindow) ?? true;
             if (!close)
             {
-                Application.Current.Shutdown();
+                Environment.Exit(0);
                 GlobalLogger.Instance.Info("Приложение было закрыто пользователем при помощи кнопки Выход");
             }
         }

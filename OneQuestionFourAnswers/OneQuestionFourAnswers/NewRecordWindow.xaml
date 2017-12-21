@@ -3,12 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:OneQuestionFourAnswers"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner"
         Icon="VisualResources\WindowIcon.ico"
         Title="Новый рекорд" ResizeMode="NoResize" WindowState="Maximized" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Loaded="OnWindowLoaded">
     <Window.Resources>
         <ResourceDictionary>
+            <Style x:Key="NewRecordButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="250"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground" Value="Gray"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <FrameworkElement x:Key="KinectCursor" Cursor="VisualResources\Normal.cur"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourcesDictionary.xaml"></ResourceDictionary>
@@ -28,8 +39,13 @@
                 <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" FontSize="40" Style="{StaticResource TextBlockStyle}" Text="Вы установили новый рекорд!" Foreground="White"></TextBlock>
-            <Border DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
+            <Border IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=BorderUserNameTextBoxState}" DataContext="{StaticResource MainWindowVM}" x:Name="BorderUsernameTextBox" Grid.Row="1" BorderBrush="White" BorderThickness="2" CornerRadius="5" Margin="5">
                 <TextBox  FontSize="45" x:Name="UsernameTextBox" Style="{StaticResource TextBoxStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="GotFocus">
+                            <i:InvokeCommandAction Command="{Binding Source={StaticResource MainWindowVM}, Path=DoOnTextBoxFocused}" CommandParameter="{Binding ElementName=UsernameTextBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <DockPanel>
@@ -51,19 +67,19 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SaveButton" Margin="0,5,5,5" Width="250" Grid.Column="0" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Сохранить" Click="SaveButtonClick" Foreground="White"></Button>
-                <Button x:Name="CloseButton" Margin="5,5,0,5" Width="250" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" FontSize="40" Content="Закрыть" Grid.Column="1" Click="CloseButtonClick" Foreground="White"/>
+                <Button Command="{Binding Source={StaticResource MainWindowVM},Path=DoSaveRecordClick}" CommandParameter="{Binding ElementName=UsernameTextBox}" IsEnabled="{Binding Source={StaticResource MainWindowVM},Path=SaveRecordButtonState}" x:Name="SaveButton" Margin="0,5,5,5" Grid.Column="0" HorizontalAlignment="Center" Style="{StaticResource NewRecordButtonStyle}" Content="Сохранить"></Button>
+                <Button Command="{Binding Source={StaticResource MainWindowVM},Path=DoCloseDialog}" IsEnabled="{Binding Source={StaticResource MainWindowVM},Path=CloseButtonState}" x:Name="CloseButton" Margin="5,5,0,5" HorizontalAlignment="Center" Style="{StaticResource NewRecordButtonStyle}" Content="Закрыть" Grid.Column="1"/>
             </Grid>
-            <TextBlock x:Name="NoticeTextBlock" Grid.Row="4" Text="Имя должно быть на русском, от 3 до 15 символов" Visibility="Collapsed" Foreground="Wheat" HorizontalAlignment="Left" FontSize="15" Style="{StaticResource TextBlockStyle}" Margin="20,0,0,0"></TextBlock>
-            <TextBlock x:Name="RecotdSuccessfully" Grid.Row="4" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Рекорд успешно сохранён</TextBlock>
-            <TextBlock x:Name="WaitMessage" Grid.Row="4" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Идёт завершении операции</TextBlock>
-            <TextBlock x:Name="RecordError" Grid.Row="4" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="OrangeRed">Не удалось сохранить рекорд</TextBlock>
-            <Button x:Name="SaveStatistic" Grid.Row="5" FontSize="35" Width="250" Margin="5,5,20,15" Style="{StaticResource ButtonStyle}" Content="Cтатистика" Grid.Column="1" Click="SaveStatisticButtonClick" Foreground="White" HorizontalAlignment="Right"/>
-            <Button x:Name="SaveRecordIntoVK" Grid.Row="5" FontSize="35" Width="250" Margin="20,5,5,15" Style="{StaticResource ButtonStyle}" Content="Поделиться" Grid.Column="1" Click="SaveRecordIntoVKButtonClick" Foreground="White" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="VkSuccessfully" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,5" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Запись успешно размещена</TextBlock>
-            <TextBlock x:Name="VkError" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,5" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="OrangeRed">Не удалось разместить запись</TextBlock>
-            <TextBlock x:Name="ReportSuccessfully" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,5" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="White">Отчёт успешно создан</TextBlock>
-            <TextBlock x:Name="ReportError" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,5" Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" FontSize="20" Foreground="OrangeRed">Не удалось создать отчёт</TextBlock>
+            <TextBlock x:Name="NoticeTextBlock" Grid.Row="4" Text="Имя должно быть на русском, от 3 до 15 символов" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=RecordMessagesState[0]}" Foreground="Wheat" HorizontalAlignment="Left" FontSize="15" Style="{StaticResource TextBlockStyle}" Margin="20,0,0,0"></TextBlock>
+            <TextBlock x:Name="RecordSuccessfully" Grid.Row="4" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=RecordMessagesState[2]}" FontSize="20" Foreground="White">Рекорд успешно сохранён</TextBlock>
+            <TextBlock x:Name="WaitMessage" Grid.Row="4" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=WaitMessageState}" FontSize="20" Foreground="White">Идёт завершении операции</TextBlock>
+            <TextBlock x:Name="RecordError" Grid.Row="4" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=RecordMessagesState[1]}" FontSize="20" Foreground="OrangeRed">Не удалось сохранить рекорд</TextBlock>
+            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoSaveStatisticClick}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=SaveStatisticButtonState}" x:Name="SaveStatistic" Grid.Row="5" Margin="5,5,20,15" Style="{StaticResource NewRecordButtonStyle}" Content="Cтатистика" Grid.Column="1" HorizontalAlignment="Right"/>
+            <Button Command="{Binding Source={StaticResource MainWindowVM}, Path=DoPostPhotoClick}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=SaveRecordIntoVKButtonState}" x:Name="SaveRecordIntoVK" Grid.Row="5" Margin="20,5,5,15" Style="{StaticResource NewRecordButtonStyle}" Content="Поделиться" Grid.Column="1" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="VkSuccessfully" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,5" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=VkMessagesState[1]}" FontSize="20" Foreground="White">Запись успешно размещена</TextBlock>
+            <TextBlock x:Name="VkError" Grid.Row="6" HorizontalAlignment="Left" Margin="40,0,0,5" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=VkMessagesState[0]}" FontSize="20" Foreground="OrangeRed">Не удалось разместить запись</TextBlock>
+            <TextBlock x:Name="ReportSuccessfully" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,5" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=ReportMessagesState[1]}" FontSize="20" Foreground="White">Отчёт успешно создан</TextBlock>
+            <TextBlock x:Name="ReportError" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,40,5" Style="{StaticResource TextBlockStyle}" Visibility="{Binding Source={StaticResource MainWindowVM}, Path=ReportMessagesState[0]}" FontSize="20" Foreground="OrangeRed">Не удалось создать отчёт</TextBlock>
         </Grid>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600"
-      Title="InformationPage" Loaded="OnPageLoaded">
+      Title="InformationPage">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,7 +22,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
+        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoBackToMenuClick}" x:Name="BackButton" Margin="30,0,0,0" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <local:StrecthTextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlockText="Об игре:"></local:StrecthTextBlock>
         <TextBlock FontSize="{Binding Source={StaticResource MainWindowVM}, Path=InfoFontSize}" Grid.Row="1" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="50,10,50,10" TextAlignment="Left" Text="В данной игре вам предстоит отвечать на вопросы разных категорий. Вам будет предоставляться 4 варианта ответа. Лишь один из них является верным. За каждый верный ответ вы будете получать 10 очков. Время, за которое вы должны выбрать, ограничено (30 секунд), поэтому вам стоит принимать решение быстро. Желаем вам удачи!"/>
         <local:StrecthTextBlock VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" TextBlockText="Спасительные кнопки"></local:StrecthTextBlock>

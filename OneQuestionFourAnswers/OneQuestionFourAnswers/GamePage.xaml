@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:OneQuestionFourAnswers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -21,7 +22,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="140"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:CircularButton  x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
+        <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoExitGamePageButtonClick}" x:Name="BackButton" Margin="30,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" EnableBackgroundImage="{StaticResource BackButtonIcon}" EnableBackgroundImageActive="{StaticResource BackButtonActiveIcon}"></local:CircularButton>
         <TextBlock FontSize="{Binding Source={StaticResource MainWindowVM},Path=QuestionFontSize}" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap" Margin="150,5"
                        Text="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.QuestionText, Mode=TwoWay}"/>
             <Grid Grid.Row="1">
@@ -29,16 +30,16 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoStopTimerCommand}"  SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="AButton" Tag="0" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[0], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
-            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoStopTimerCommand}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="BButton" Tag="1" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[1], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoAnswerButtonClick}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[0].Text, Mode=OneWay}" Grid.Column="0" Margin="10" x:Name="AButton" Tag="0" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[0], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoAnswerButtonClick}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[1].Text, Mode=OneWay}" Grid.Column="1" Margin="10" x:Name="BButton" Tag="1" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[1], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoStopTimerCommand}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="0" Margin="10" x:Name="CButton" Tag="2" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[2], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
-            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoStopTimerCommand}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}" Click="AnswerButtonClick" Grid.Column="1" Margin="10" x:Name="DButton" Tag="3" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[3], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoAnswerButtonClick}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[2].Text, Mode=OneWay}" Grid.Column="0" Margin="10" x:Name="CButton" Tag="2" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[2], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
+            <local:StrechableButton ControlCommand="{Binding Source={StaticResource MainWindowVM},Path=DoAnswerButtonClick}" SizeOfFont="{Binding Source={StaticResource MainWindowVM},Path=AnswerFontSize}" ButtonText="{Binding Source={StaticResource MainWindowVM}, Path=QuestionAnswers.Answers[3].Text, Mode=OneWay}" Grid.Column="1" Margin="10" x:Name="DButton" Tag="3" State="{Binding Source={StaticResource MainWindowVM}, Path=AnswersState[3], UpdateSourceTrigger=PropertyChanged}"></local:StrechableButton>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -50,14 +51,19 @@
                 <ColumnDefinition Width="250"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Margin="0,0,0,20" x:Name="Hints"  Grid.Column="0" HorizontalAlignment="Right">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding Source={StaticResource MainWindowVM}, Path=DoAssignHintsGrid}" CommandParameter="{Binding ElementName=Hints}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <local:CircularButton x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsHintButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource StatisticsHintButtonActiveIcon}"></local:CircularButton>
-                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTimeCommand}"  x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeHintButtonIcon}" DisableBackgroundImage="{StaticResource TimeHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource TimeHintButtonActiveIcon}"></local:CircularButton>
-                <local:CircularButton ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoUseHintTwoAnswersCommand}" x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersHintUsedButtonIcon}" EnableBackgroundImage="{StaticResource TwoAnswersHintButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersHintButtonActiveIcon}"></local:CircularButton>
+                <local:CircularButton DisableButton="{Binding Source={StaticResource MainWindowVM}, Path=StatisticHintButtonState[1]}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=StatisticHintButtonState[0]}" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoButtonClickStatistics}" x:Name="StatisticsButton" Grid.Column="0" EnableBackgroundImage="{StaticResource StatisticsHintButtonIcon}" DisableBackgroundImage="{StaticResource StatisticsHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource StatisticsHintButtonActiveIcon}"></local:CircularButton>
+                <local:CircularButton DisableButton="{Binding Source={StaticResource MainWindowVM}, Path=TimeHintButtonState[1]}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TimeHintButtonState[0]}" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoButtonClickTime}" x:Name="TimeButton" Grid.Column="1" EnableBackgroundImage="{StaticResource TimeHintButtonIcon}" DisableBackgroundImage="{StaticResource TimeHintUsedButtonIcon}" EnableBackgroundImageActive="{StaticResource TimeHintButtonActiveIcon}"></local:CircularButton>
+                <local:CircularButton DisableButton="{Binding Source={StaticResource MainWindowVM}, Path=TwoAnswersHintButtonState[1]}" IsEnabled="{Binding Source={StaticResource MainWindowVM}, Path=TwoAnswersHintButtonState[0]}" ControlCommand="{Binding Source={StaticResource MainWindowVM}, Path=DoButtonClickTwoAnswers}" x:Name="TwoAnswersButton" Grid.Column="2" DisableBackgroundImage="{StaticResource TwoAnswersHintUsedButtonIcon}" EnableBackgroundImage="{StaticResource TwoAnswersHintButtonIcon}" EnableBackgroundImageActive="{StaticResource TwoAnswersHintButtonActiveIcon}"></local:CircularButton>
             </Grid>
             <Viewbox Grid.Column="1" Stretch="Uniform">
                 <Grid>

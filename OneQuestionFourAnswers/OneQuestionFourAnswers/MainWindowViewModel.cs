@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Application = System.Windows.Application;
 using LoggingService;
 using System.Windows.Navigation;
+using System.Windows.Controls;
 
 namespace OneQuestionFourAnswers
 {
@@ -22,6 +23,12 @@ namespace OneQuestionFourAnswers
             StatisticWindow
         }
 
+        private Grid _hints;
+
+        private byte _countOfAwaitings;
+
+        private MainWindow _mainWindow;
+
         private NavigationService _navigationService;
 
         private static Window _dialogWindow;
@@ -34,6 +41,42 @@ namespace OneQuestionFourAnswers
             IncorrectNewRecord
         }
 
+        private Visibility[] _recordMessagesState;
+        //0 - Nitice; 1 - Error; 2 - Succesfully
+        public Visibility[] RecordMessagesState
+        {
+            get { return _recordMessagesState; }
+            set
+            {
+                _recordMessagesState = value;
+                DoPropertyChanged("RecordMessagesState");
+            }
+        }
+
+        private Visibility[] _reportMessagesState;
+        //0 - Error; 1 - Succesfully
+        public Visibility[] ReportMessagesState
+        {
+            get { return _reportMessagesState; }
+            set
+            {
+                _reportMessagesState = value;
+                DoPropertyChanged("ReportMessagesState");
+            }
+        }
+
+        private Visibility[] _vkMessagesState;
+        //0 - Error; 1 - Succesfully
+        public Visibility[] VkMessagesState
+        {
+            get { return _vkMessagesState; }
+            set
+            {
+                _vkMessagesState = value;
+                DoPropertyChanged("VkMessagesState");
+            }
+        }
+
         private Visibility _statusbarState;
 
         public Visibility StatusbarState
@@ -43,6 +86,138 @@ namespace OneQuestionFourAnswers
             {
                 _statusbarState = value;
                 DoPropertyChanged("StatusbarState");
+            }
+        }
+
+        private Visibility _waitMessageState;
+
+        public Visibility WaitMessageState
+        {
+            get { return _waitMessageState; }
+            set
+            {
+                _waitMessageState = value;
+                DoPropertyChanged("WaitMessageState");
+            }
+        }
+
+        private Visibility _userNameBox;
+
+        public Visibility UserNameBox
+        {
+            get { return _userNameBox; }
+            set
+            {
+                _userNameBox = value;
+                DoPropertyChanged("UserNameBox");
+            }
+        }
+
+        private bool[] _twoAnswersHintButtonState;
+        // 0 - IsEnabled, 1 - DisabledButton
+        public bool[] TwoAnswersHintButtonState
+        {
+            get { return _twoAnswersHintButtonState; }
+            set
+            {
+                _twoAnswersHintButtonState = value;
+                DoPropertyChanged("TwoAnswersHintButtonState");
+            }
+        }
+
+        private bool[] _timeHintButtonState;
+        // 0 - IsEnabled, 1 - DisabledButton
+        public bool[] TimeHintButtonState
+        {
+            get { return _timeHintButtonState; }
+            set
+            {
+                _timeHintButtonState = value;
+                DoPropertyChanged("TimeHintButtonState");
+            }
+        }
+
+        private bool[] _statisticHintButtonState;
+        // 0 - IsEnabled, 1 - DisabledButton
+        public bool[] StatisticHintButtonState
+        {
+            get { return _statisticHintButtonState; }
+            set
+            {
+                _statisticHintButtonState = value;
+                DoPropertyChanged("StatisticHintButtonState");
+            }
+        }
+
+        private bool _logOutButtonState;
+
+        public bool LogOutButtonState
+        {
+            get { return _logOutButtonState; }
+            set
+            {
+                _logOutButtonState = value;
+                DoPropertyChanged("LogOutButtonState");
+            }
+        }
+
+        private bool _saveRecordIntoVKButtonState;
+
+        public bool SaveRecordIntoVKButtonState
+        {
+            get { return _saveRecordIntoVKButtonState; }
+            set
+            {
+                _saveRecordIntoVKButtonState = value;
+                DoPropertyChanged("SaveRecordIntoVKButtonState");
+            }
+        }
+
+        private bool _saveStatisticButtonState;
+
+        public bool SaveStatisticButtonState
+        {
+            get { return _saveStatisticButtonState; }
+            set
+            {
+                _saveStatisticButtonState = value;
+                DoPropertyChanged("SaveStatisticButtonState");
+            }
+        }
+
+        private bool _borderUserNameTextBoxState;
+
+        public bool BorderUserNameTextBoxState
+        {
+            get { return _borderUserNameTextBoxState; }
+            set
+            {
+                _borderUserNameTextBoxState = value;
+                DoPropertyChanged("BorderUserNameTextBoxState");
+            }
+        }
+
+        private bool _closeButtonState;
+
+        public bool CloseButtonState
+        {
+            get { return _closeButtonState; }
+            set
+            {
+                _closeButtonState = value;
+                DoPropertyChanged("CloseButtonState");
+            }
+        }
+
+        private bool _saveRecordButtonState;
+
+        public bool SaveRecordButtonState
+        {
+            get { return _saveRecordButtonState; }
+            set
+            {
+                _saveRecordButtonState = value;
+                DoPropertyChanged("SaveRecordButtonState");
             }
         }
 
@@ -145,12 +320,6 @@ namespace OneQuestionFourAnswers
                 DoPropertyChanged("AnswerFontSize");
             }
         }
-
-        public delegate void TimeoutDelegate();
-
-        public event TimeoutDelegate Timeout;
-
-        public event TimeoutDelegate Time10Sec;
 
         private readonly BussinesLogic.FileProcessing _fp = new BussinesLogic.FileProcessing();
         private TimeSpan _time;
@@ -255,6 +424,7 @@ namespace OneQuestionFourAnswers
             }
             ChangeSettings();
             ProgressBarValue = 0;
+            RefreshMainMenuPage();
         }
 
         public void ChangeSettings()
@@ -287,13 +457,13 @@ namespace OneQuestionFourAnswers
                     if (_time == TimeSpan.Zero)
                     {
                         StopTimer();
-                        Timeout?.Invoke();
+                        AnswerIsSelectAnimation(null);
                         GlobalLogger.Instance.Info("Истекло время за которое можно ответить на вопрос");
                         return;
                     }
                     if (_time == new TimeSpan(0, 0, 13))
                     {
-                        Time10Sec?.Invoke();
+                        _mainWindow?.PlaySound(MainWindow.SoundType.Ends10SecSound);
                         GlobalLogger.Instance.Info("Осталось 13 (10) секунд на выбор ответа");
                     }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
@@ -473,8 +643,27 @@ namespace OneQuestionFourAnswers
             }).Start();
         }
 
+        private void RefreshBindings()
+        {
+            TwoAnswersHintButtonState = new bool[2] { true, false };
+            StatisticHintButtonState = new bool[2] { true, false };
+            TimeHintButtonState = new bool[2] { true, false };
+            _countOfAwaitings = 0;
+            RecordMessagesState = new Visibility[3] { Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed };
+            ReportMessagesState = new Visibility[2] { Visibility.Collapsed, Visibility.Collapsed };
+            VkMessagesState = new Visibility[2] { Visibility.Collapsed, Visibility.Collapsed };
+            WaitMessageState = Visibility.Collapsed;
+            TwoAnswersHintButtonState = new bool[2] { true, false };
+            SaveRecordIntoVKButtonState = true;
+            SaveStatisticButtonState = true;
+            BorderUserNameTextBoxState = true;
+            CloseButtonState = true;
+            SaveRecordButtonState = true;
+        }
+
         private void OpenNewGame()
         {
+            RefreshBindings();
             _fp.ClearReport();
             AnswerIsSelected = false;
             Lives = new[] { true, true, true };
@@ -665,11 +854,6 @@ namespace OneQuestionFourAnswers
             LogInStatus = false;
         }
 
-        public bool GetLogInStatus()
-        {
-            return !_logInStatus;
-        }
-
         public static bool? OpenDialogWindow(DialogWindowType type)
         {
             if (_dialogWindow != null)
@@ -723,21 +907,600 @@ namespace OneQuestionFourAnswers
 
         private void StartNewGame()
         {
-            (_dialogWindow.Owner as MainWindow)?.PlaySound(MainWindow.SoundType.NewGameSound);
+            _mainWindow?.PlaySound(MainWindow.SoundType.NewGameSound);
             _dialogWindow.DialogResult = true;
             _dialogWindow.Close();
             OpenNewGame();
         }
 
-        public void AssignNavigationService(NavigationService ns)
+        public void AssignMainWindow(MainWindow mw)
         {
-            _navigationService = ns;
+            _mainWindow = mw;
         }
 
         private void StartNewGameClick()
         {
             _navigationService?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
+            GlobalLogger.Instance.Info("Была открыта страница Игра");
             OpenNewGame();
+        }
+
+        private void InformationClick()
+        {
+            _navigationService?.Navigate(new Uri("InformationPage.xaml", UriKind.Relative));
+            GlobalLogger.Instance.Info("Была открыта страница Информация");
+        }
+
+        private void HighscoreClick()
+        {
+            GetRecordsTable();
+            _navigationService?.Navigate(new Uri("HighscoreTablePage.xaml", UriKind.Relative));
+            GlobalLogger.Instance.Info("Была открыта страница Таблица Рекордов");
+        }
+
+        private void BackToMenuClick()
+        {
+            _navigationService?.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+            GlobalLogger.Instance.Info("Была открыта страница Главное Меню");
+        }
+
+        private void OnMainMenuLoaded(object page)
+        {
+            RefreshMainMenuPage();
+            _navigationService = NavigationService.GetNavigationService(page as MainMenuPage);
+        }
+
+        private void CloseDialog()
+        {
+            _dialogWindow.Close();
+        }
+
+        private void AssignHintsGrid(object grid)
+        {
+            _hints = grid as Grid;
+        }
+
+        private void LogOutClick()
+        {
+            LogOut();
+            ChangeSettings();
+            RefreshMainMenuPage();
+        }
+
+        private void SaveStatisticClick()
+        {
+            new Thread(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    CloseButtonState = false;
+                    SaveStatisticButtonState = false;
+                    WaitMessageState = Visibility.Visible;
+                    _countOfAwaitings++;
+                });
+                var result = CreateReport();
+                if (result == true)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ReportMessagesState[0] = Visibility.Collapsed;
+                        ReportMessagesState[1] = Visibility.Visible;
+                        DoPropertyChanged("ReportMessagesState");
+                    });
+                }
+                else if (result == false)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        SaveStatisticButtonState = true;
+                        ReportMessagesState[0] = Visibility.Visible;
+                        DoPropertyChanged("ReportMessagesState");
+                    });
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (_countOfAwaitings - 1 == 0)
+                    {
+                        WaitMessageState = Visibility.Collapsed;
+                        CloseButtonState = true;
+                    }
+                    _countOfAwaitings--;
+                });
+            }).Start();
+        }
+
+        private void PostPhotoClick()
+        {
+            new Thread(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    CloseButtonState = false;
+                    SaveRecordIntoVKButtonState = false;
+                    WaitMessageState = Visibility.Visible;
+                    _countOfAwaitings++;
+                });
+                bool? webResult = true;
+                if (!IsTokenExist())
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        WebBrowser web = new WebBrowser();
+                        web.ShowDialog();
+                        web.Owner = _dialogWindow.Owner;
+                        webResult = web.DialogResult;
+                    });
+                }
+                if (webResult != null)
+                {
+                    if ((webResult ?? false) && CreateRec())
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            VkMessagesState[0] = Visibility.Collapsed;
+                            VkMessagesState[1] = Visibility.Visible;
+                            DoPropertyChanged("VkMessagesState");
+                        });
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            SaveRecordIntoVKButtonState = true;
+                            VkMessagesState[0] = Visibility.Visible;
+                            DoPropertyChanged("VkMessagesState");
+                        });
+                    }
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (_countOfAwaitings - 1 == 0)
+                    {
+                        WaitMessageState = Visibility.Collapsed;
+                        CloseButtonState = true;
+                    }
+                    _countOfAwaitings--;
+                });
+            }).Start();
+        }
+
+        private void SaveRecordClick(object textBox)
+        {
+            (textBox as TextBox).GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            if (!Validation.GetHasError(textBox as TextBox))
+            {
+                new Thread(() =>
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        CloseButtonState = false;
+                        SaveRecordButtonState = false;
+                        WaitMessageState = Visibility.Visible;
+                        _countOfAwaitings++;
+                    });
+                    if (CreateNewRecord())
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            BorderUserNameTextBoxState = false;
+                            RecordMessagesState[0] = Visibility.Collapsed;
+                            RecordMessagesState[1] = Visibility.Collapsed;
+                            RecordMessagesState[2] = Visibility.Visible;
+                            DoPropertyChanged("RecordMessagesState");
+                        });
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            SaveRecordButtonState = true;
+                            RecordMessagesState[0] = Visibility.Collapsed;
+                            RecordMessagesState[1] = Visibility.Visible;
+                            DoPropertyChanged("RecordMessagesState");
+                        });
+                    };
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        if (_countOfAwaitings - 1 == 0)
+                        {
+                            WaitMessageState = Visibility.Collapsed;
+                            CloseButtonState = true;
+                        }
+                        _countOfAwaitings--;
+                    });
+                }).Start();
+            }
+            RecordMessagesState[0] = Visibility.Visible;
+            DoPropertyChanged("RecordMessagesState");
+        }
+
+        private void ExitGamePageButtonClick()
+        {
+            var close = OpenDialogWindow(DialogWindowType.ExitTheGame) ?? true;
+            if (!close)
+            {
+                BackToMenuClick();
+            }
+        }
+
+        private void ButtonClickTwoAnswers()
+        {
+            _mainWindow?.PlaySound(MainWindow.SoundType.TwoAnswersSound);
+            TwoAnswersHintButtonState[1] = true;
+            TwoAnswersHintButtonState[0] = false;
+            DoPropertyChanged("TwoAnswersHintButtonState");
+            UseHintTwoAnswers();
+        }
+
+        private void OnTextBoxFocused(object textBox)
+        {
+            (textBox as TextBox).Focus();
+            (textBox as TextBox).SelectAll();
+            if (!Validation.GetHasError(textBox as TextBox))
+            {
+                return;
+            }
+            (textBox as TextBox).Text = "";
+            var property = TextBox.TextProperty;
+            Validation.ClearInvalid((textBox as TextBox).GetBindingExpression(property));
+            RecordMessagesState[0] = Visibility.Visible;
+        }
+
+        private void RefreshMainMenuPage()
+        {
+            LogOutButtonState = !_logInStatus;
+            if (LogOutButtonState)
+            {
+                UserNameBox = Visibility.Collapsed;
+            }
+            else
+            {
+                UserNameBox = Visibility.Visible;
+            }
+        }
+
+        private void ButtonClickStatistics()
+        {
+            _mainWindow.PlaySound(MainWindow.SoundType.StatisticSound);
+            UseHintStatistics();
+            StatisticHintButtonState[1] = true;
+            StatisticHintButtonState[0] = false;
+            DoPropertyChanged("StatisticHintButtonState");
+            OpenDialogWindow(DialogWindowType.StatisticWindow);
+        }
+
+        private void ButtonClickTime(object clock)
+        {
+            _mainWindow.PlaySound(MainWindow.SoundType.TimeAddedSound);
+            UseHintTime();
+            TimeHintButtonState[1] = true;
+            TimeHintButtonState[0] = false;
+            DoPropertyChanged("TimeHintButtonState");
+        }
+
+        private void AnswerButtonClick(object button)
+        {
+            StopTimer();
+            var chosedButton = (StrechableButton)button;
+            var index = Convert.ToInt16(chosedButton.Tag);
+            AnswerIsSelectAnimation(index);
+        }
+
+        private void AnswerIsSelectAnimation( int? index)
+        {
+            AnswerIsSelect(index);
+            _hints.IsEnabled = false;
+            var counter = 0;
+            var timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                counter++;
+                if (counter == 1)
+                {
+                    PaintTrueAnswer();
+                }
+                if (counter == 2)
+                {
+                    CheckAnswer(index);
+                    _hints.IsEnabled = true;
+                    return;
+                }
+            },
+            Application.Current.Dispatcher);
+        }
+
+        private void CheckAnswer(int? index)
+        {
+
+            switch (IsCorrectAnswer(index))
+            {
+                case ResultType.Correct:
+                    {
+                        _mainWindow?.PlaySound(MainWindow.SoundType.CorrectAnswer);
+                    }
+                    break;
+                case ResultType.Incorrect:
+                    {
+                        _mainWindow?.PlaySound(MainWindow.SoundType.LifeIsBroken);
+                    }
+                    break;
+                case ResultType.Defeat:
+                    {
+                        _mainWindow?.PlaySound(MainWindow.SoundType.DefeatSound);
+                        var close = OpenDialogWindow(DialogWindowType.DefeatWindow) ?? true;
+                        if (!close)
+                        {
+                            BackToMenuClick();
+                        }
+                        else
+                        {
+                            _navigationService.Refresh();
+                        }
+                    }
+                    break;
+                case ResultType.IncorrectNewRecord:
+                    {
+                        _mainWindow?.PlaySound(MainWindow.SoundType.WinSound);
+                        OpenDialogWindow(DialogWindowType.NewRecordWindow);
+                        BackToMenuClick();
+                    }
+                    break;
+            }
+        }
+
+        private ICommand _doAnswerButtonClick;
+
+        public ICommand DoAnswerButtonClick
+        {
+            get
+            {
+                if (_doAnswerButtonClick == null)
+                {
+                    _doAnswerButtonClick = new Command(
+                        p => true,
+                        p => AnswerButtonClick(p));
+                }
+                return _doAnswerButtonClick;
+            }
+        }
+
+        private ICommand _doButtonClickTime;
+
+        public ICommand DoButtonClickTime
+        {
+            get
+            {
+                if (_doButtonClickTime == null)
+                {
+                    _doButtonClickTime = new Command(
+                        p => true,
+                        p => ButtonClickTime(p));
+                }
+                return _doButtonClickTime;
+            }
+        }
+
+        private ICommand _doAssignHintsGrid;
+
+        public ICommand DoAssignHintsGrid
+        {
+            get
+            {
+                if (_doAssignHintsGrid == null)
+                {
+                    _doAssignHintsGrid = new Command(
+                        p => true,
+                        p => AssignHintsGrid(p));
+                }
+                return _doAssignHintsGrid;
+            }
+        }
+
+        private ICommand _doButtonClickStatistics;
+
+        public ICommand DoButtonClickStatistics
+        {
+            get
+            {
+                if (_doButtonClickStatistics == null)
+                {
+                    _doButtonClickStatistics = new Command(
+                        p => true,
+                        p => ButtonClickStatistics());
+                }
+                return _doButtonClickStatistics;
+            }
+        }
+
+        private ICommand _doButtonClickTwoAnswers;
+
+        public ICommand DoButtonClickTwoAnswers
+        {
+            get
+            {
+                if (_doButtonClickTwoAnswers == null)
+                {
+                    _doButtonClickTwoAnswers = new Command(
+                        p => true,
+                        p => ButtonClickTwoAnswers());
+                }
+                return _doButtonClickTwoAnswers;
+            }
+        }
+
+        private ICommand _doExitGamePageButtonClick;
+
+        public ICommand DoExitGamePageButtonClick
+        {
+            get
+            {
+                if (_doExitGamePageButtonClick == null)
+                {
+                    _doExitGamePageButtonClick = new Command(
+                        p => true,
+                        p => ExitGamePageButtonClick());
+                }
+                return _doExitGamePageButtonClick;
+            }
+        }
+
+        private ICommand _doOnTextBoxFocused;
+
+        public ICommand DoOnTextBoxFocused
+        {
+            get
+            {
+                if (_doOnTextBoxFocused == null)
+                {
+                    _doOnTextBoxFocused = new Command(
+                        p => true,
+                        p => OnTextBoxFocused(p));
+                }
+                return _doOnTextBoxFocused;
+            }
+        }
+
+        private ICommand _doPostPhotoClick;
+
+        public ICommand DoPostPhotoClick
+        {
+            get
+            {
+                if (_doPostPhotoClick == null)
+                {
+                    _doPostPhotoClick = new Command(
+                        p => true,
+                        p => PostPhotoClick());
+                }
+                return _doPostPhotoClick;
+            }
+        }
+
+        private ICommand _doSaveStatisticClick;
+
+        public ICommand DoSaveStatisticClick
+        {
+            get
+            {
+                if (_doSaveStatisticClick == null)
+                {
+                    _doSaveStatisticClick = new Command(
+                        p => true,
+                        p => SaveStatisticClick());
+                }
+                return _doSaveStatisticClick;
+            }
+        }
+
+        private ICommand _doSaveRecordClick;
+
+        public ICommand DoSaveRecordClick
+        {
+            get
+            {
+                if (_doSaveRecordClick == null)
+                {
+                    _doSaveRecordClick = new Command(
+                        p => true,
+                        p => SaveRecordClick(p));
+                }
+                return _doSaveRecordClick;
+            }
+        }
+
+        private ICommand _doOnMainMenuLoaded;
+
+        public ICommand DoOnMainMenuLoaded
+        {
+            get
+            {
+                if (_doOnMainMenuLoaded == null)
+                {
+                    _doOnMainMenuLoaded = new Command(
+                        p => true,
+                        p => OnMainMenuLoaded(p));
+                }
+                return _doOnMainMenuLoaded;
+            }
+        }
+
+        private ICommand _doBackToMenuClick;
+
+        public ICommand DoBackToMenuClick
+        {
+            get
+            {
+                if (_doBackToMenuClick == null)
+                {
+                    _doBackToMenuClick = new Command(
+                        p => true,
+                        p => BackToMenuClick());
+                }
+                return _doBackToMenuClick;
+            }
+        }
+
+        private ICommand _doHighscoreClick;
+
+        public ICommand DoHighscoreClick
+        {
+            get
+            {
+                if (_doHighscoreClick == null)
+                {
+                    _doHighscoreClick = new Command(
+                        p => true,
+                        p => HighscoreClick());
+                }
+                return _doHighscoreClick;
+            }
+        }
+
+        private ICommand _doLogOutClick;
+
+        public ICommand DoLogOutClick
+        {
+            get
+            {
+                if (_doLogOutClick == null)
+                {
+                    _doLogOutClick = new Command(
+                        p => true,
+                        p => LogOutClick());
+                }
+                return _doLogOutClick;
+            }
+        }
+
+        private ICommand _doInformationClick;
+
+        public ICommand DoInformationClick
+        {
+            get
+            {
+                if (_doInformationClick == null)
+                {
+                    _doInformationClick = new Command(
+                        p => true,
+                        p => InformationClick());
+                }
+                return _doInformationClick;
+            }
+        }
+
+        private ICommand _doCloseDialog;
+
+        public ICommand DoCloseDialog
+        {
+            get
+            {
+                if (_doCloseDialog == null)
+                {
+                    _doCloseDialog = new Command(
+                        p => true,
+                        p => CloseDialog());
+                }
+                return _doCloseDialog;
+            }
         }
 
         private ICommand _doStartNewGameClick;
@@ -820,22 +1583,6 @@ namespace OneQuestionFourAnswers
             }
         }
 
-        private ICommand _doUseHintTimeCommand;
-
-        public ICommand DoUseHintTimeCommand
-        {
-            get
-            {
-                if (_doUseHintTimeCommand == null)
-                {
-                    _doUseHintTimeCommand = new Command(
-                        p => true,
-                        p => UseHintTime());
-                }
-                return _doUseHintTimeCommand;
-            }
-        }
-
         private ICommand _doUseHintTwoAnswersCommand;
 
         public ICommand DoUseHintTwoAnswersCommand
@@ -849,22 +1596,6 @@ namespace OneQuestionFourAnswers
                         p => UseHintTwoAnswers());
                 }
                 return _doUseHintTwoAnswersCommand;
-            }
-        }
-
-        private ICommand _doGetRecordsTableCommand;
-
-        public ICommand DoGetRecordsTableCommand
-        {
-            get
-            {
-                if (_doGetRecordsTableCommand == null)
-                {
-                    _doGetRecordsTableCommand = new Command(
-                        p => true,
-                        p => GetRecordsTable());
-                }
-                return _doGetRecordsTableCommand;
             }
         }
 
