@@ -734,7 +734,7 @@ namespace OneQuestionFourAnswers
             _navigationService = ns;
         }
 
-        public void StartNewGameClick()
+        private void StartNewGameClick()
         {
             _navigationService?.Navigate(new Uri("GamePage.xaml", UriKind.Relative));
             OpenNewGame();
@@ -851,22 +851,6 @@ namespace OneQuestionFourAnswers
                 return _doUseHintTwoAnswersCommand;
             }
         }
-
-        //private ICommand _doOpenNewGameCommand;
-
-        //public ICommand DoOpenNewGameCommand
-        //{
-        //    get
-        //    {
-        //        if (_doOpenNewGameCommand == null)
-        //        {
-        //            _doOpenNewGameCommand = new Command(
-        //                p => true,
-        //                p => OpenNewGame());
-        //        }
-        //        return _doOpenNewGameCommand;
-        //    }
-        //}
 
         private ICommand _doGetRecordsTableCommand;
 
