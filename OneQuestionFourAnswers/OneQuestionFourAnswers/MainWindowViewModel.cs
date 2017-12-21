@@ -1155,7 +1155,8 @@ namespace OneQuestionFourAnswers
             }
             else
             {
-                UserNameBox = Visibility.Visible;
+                if (Name != "Введите Имя") UserNameBox = Visibility.Visible;
+                else UserNameBox = Visibility.Collapsed;
             }
         }
 
