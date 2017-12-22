@@ -424,7 +424,6 @@ namespace OneQuestionFourAnswers
             }
             ChangeSettings();
             ProgressBarValue = 0;
-            RefreshMainMenuPage();
         }
 
         public void ChangeSettings()
@@ -432,12 +431,25 @@ namespace OneQuestionFourAnswers
             if (IsTokenExist())
             {
                 LogInStatus = true;
-                Name = GetUserName();
+                LogOutButtonState = false;
+                var name = GetUserName();
+                if (name != null)
+                {
+                    Name = name;
+                    UserNameBox = Visibility.Visible;
+                }
+                else
+                {
+                    UserNameBox = Visibility.Collapsed;
+                }
                 GlobalLogger.Instance.Info("Имя пользователя было установлено");
             }
             else
             {
+                UserNameBox = Visibility.Collapsed;
                 LogInStatus = false;
+                LogOutButtonState = true; ;
+                UserNameBox = Visibility.Collapsed;
                 Name = "Введите Имя";
             }
         }
@@ -946,7 +958,7 @@ namespace OneQuestionFourAnswers
 
         private void OnMainMenuLoaded(object page)
         {
-            RefreshMainMenuPage();
+            ChangeSettings();
             _navigationService = NavigationService.GetNavigationService(page as MainMenuPage);
         }
 
@@ -964,7 +976,7 @@ namespace OneQuestionFourAnswers
         {
             LogOut();
             ChangeSettings();
-            RefreshMainMenuPage();
+            ChangeSettings();
         }
 
         private void SaveStatisticClick()

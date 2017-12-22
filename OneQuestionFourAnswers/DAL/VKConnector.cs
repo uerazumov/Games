@@ -80,7 +80,7 @@ namespace DAL
             catch (Exception e)
             {
                 GlobalLogger.Instance.Error("Произошла ошибка " + e.Message + " при получении имени пользователя");
-                return "Введите Имя";
+                return null;
             }
         }
 
