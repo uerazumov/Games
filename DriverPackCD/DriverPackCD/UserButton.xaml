@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="DriverPackCD.UserButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DriverPackCD"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StechableButtonStyle" TargetType="Button">
+                <Setter Property="Height" Value="70"></Setter>
+                <Setter Property="Width" Value="400"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border>
+                                <Border.Style>
+                                    <Style>
+                                        <Setter Property="Border.Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="VisualResources\ButtonIcon.png"></ImageBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                                <Setter Property="Border.Background">
+                                                    <Setter.Value>
+                                                        <ImageBrush ImageSource="VisualResources\ButtonIconTap.png"></ImageBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="Button.IsEnabled" Value="False">
+                                                <Setter Property="Border.Background">
+                                                    <Setter.Value>
+                                                        <ImageBrush ImageSource="VisualResources\ButtonIconEnableFalse.png"></ImageBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Button FontStyle="Italic" FontSize="40" x:Name="Button" Style="{StaticResource StechableButtonStyle}"></Button>
+</UserControl>
