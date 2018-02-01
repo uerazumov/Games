@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:DriverPackCD">
     <ImageBrush x:Key="Background" ImageSource="VisualResources\Background.png"></ImageBrush>
     <ImageBrush x:Key="DriverPackSolutionIcon" ImageSource="VisualResources\DriverPack-SolutionIcon.png"></ImageBrush>
+    <ImageBrush x:Key="NotifyBackground" ImageSource="VisualResources\NotifyBackground.png"></ImageBrush>
 </ResourceDictionary>

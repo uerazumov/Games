@@ -1,0 +1,21 @@
+﻿<Window x:Class="DriverPackCD.Notify"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DriverPackCD"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        Title="Notify" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" Height="300" Width="400" WindowStyle="None" Loaded="OnWindowLoaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="RosorcesDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="{StaticResource NotifyBackground}">
+        <local:CloseButton x:Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15"></local:CloseButton>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontStyle="Italic" Margin="15" FontSize="50">Ошибка</TextBlock>
+        <TextBlock HorizontalAlignment="Center" Margin="15" FontSize="18" VerticalAlignment="Bottom" TextAlignment="Center" TextWrapping="Wrap" FontStyle="Italic"> Что-то пошло не так при запуски приложения. Попробуйти отключить антивирус и повторить попытку. Если данные действия не дадут результатов, запустите приложение вручную. Для это откройте "Мой компьютер", нажмите правой кнопкой мыши по ярлыку CD-диска и выберите "Открыть"</TextBlock>
+    </Grid>
+</Window>

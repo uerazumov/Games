@@ -31,7 +31,7 @@ namespace DriverPackCD
                 _LANApp.StartInfo.FileName = ExecutableFilePath;
                 _LANApp.Start();
             }
-            catch { }
+            catch { ShowNotify(); }
             LANButton.IsEnabled = false;
             try { CheckIsAppExist(LANButton, _LANApp); } catch { LANButton.IsEnabled = true; }
         }
@@ -45,7 +45,7 @@ namespace DriverPackCD
                 _OnlineApp.StartInfo.FileName = ExecutableFilePath;
                 _OnlineApp.Start();
             }
-            catch { }
+            catch { ShowNotify(); }
             OnlineButton.IsEnabled = false;
             try { CheckIsAppExist(OnlineButton, _OnlineApp); } catch { OnlineButton.IsEnabled = true; }
         }
@@ -59,9 +59,16 @@ namespace DriverPackCD
                 _InfoApp.StartInfo.FileName = ExecutableFilePath;
                 _InfoApp.Start();
             }
-            catch { }
+            catch { ShowNotify(); }
             InfoButton.IsEnabled = false;
             try { CheckIsAppExist(InfoButton, _InfoApp); } catch { InfoButton.IsEnabled = true; }
+        }
+
+        private void ShowNotify()
+        {
+            Notify n = new Notify();
+            n.Owner = this;
+            n.ShowDialog();
         }
 
         private void CheckIsAppExist(UserButton button, Process app)
