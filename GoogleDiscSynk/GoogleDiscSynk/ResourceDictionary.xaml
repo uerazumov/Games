@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GoogleDiscSynk">
+    <ImageBrush x:Key="DeleteButton" ImageSource="VisualResorces\Delete_Button.png"></ImageBrush>
+    <ImageBrush x:Key="DeleteButtonTap" ImageSource="VisualResorces\Delete_Button_Tap.png"></ImageBrush>
+    <ImageBrush x:Key="ExitButton" ImageSource="VisualResorces\Exit_Button.png"></ImageBrush>
+    <ImageBrush x:Key="ExitButtonTap" ImageSource="VisualResorces\Exit_Button_Tap.png"></ImageBrush>
+    <ImageBrush x:Key="FolderButton" ImageSource="VisualResorces\Folder_Button.png"></ImageBrush>
+    <ImageBrush x:Key="FolderButtonTap" ImageSource="VisualResorces\Folder_Button_Tap.png"></ImageBrush>
+</ResourceDictionary>
