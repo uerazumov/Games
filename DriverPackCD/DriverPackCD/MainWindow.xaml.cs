@@ -24,6 +24,7 @@ namespace DriverPackCD
 
         private void LAN(object sender, RoutedEventArgs e)
         {
+            LANButton.IsEnabled = false;
             string ExecutableFilePath = @"LAN\DriverPackSolution.exe";
             try
             {
@@ -32,12 +33,12 @@ namespace DriverPackCD
                 _LANApp.Start();
             }
             catch { ShowNotify(); }
-            LANButton.IsEnabled = false;
             try { CheckIsAppExist(LANButton, _LANApp); } catch { LANButton.IsEnabled = true; }
         }
 
         private void Online(object sender, RoutedEventArgs e)
         {
+            OnlineButton.IsEnabled = false;
             string ExecutableFilePath = "DriverPack-17-Online.exe";
             try
             {
@@ -46,12 +47,12 @@ namespace DriverPackCD
                 _OnlineApp.Start();
             }
             catch { ShowNotify(); }
-            OnlineButton.IsEnabled = false;
             try { CheckIsAppExist(OnlineButton, _OnlineApp); } catch { OnlineButton.IsEnabled = true; }
         }
 
         private void Info(object sender, RoutedEventArgs e)
         {
+            InfoButton.IsEnabled = false;
             string ExecutableFilePath = @"VisualResources\Info.txt";
             try
             {
@@ -59,8 +60,7 @@ namespace DriverPackCD
                 _InfoApp.StartInfo.FileName = ExecutableFilePath;
                 _InfoApp.Start();
             }
-            catch { ShowNotify(); }
-            InfoButton.IsEnabled = false;
+            catch { ShowNotify(); }   
             try { CheckIsAppExist(InfoButton, _InfoApp); } catch { InfoButton.IsEnabled = true; }
         }
 
